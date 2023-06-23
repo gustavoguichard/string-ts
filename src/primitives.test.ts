@@ -11,6 +11,15 @@ namespace TypeTests {
   type test3 = Expect<
     Equal<Subject.ReplaceAll<'some nice string', ' ', '-'>, 'some-nice-string'>
   >
+  type test4 = Expect<
+    Equal<Subject.TrimStart<' some nice string '>, 'some nice string '>
+  >
+  type test5 = Expect<
+    Equal<Subject.TrimEnd<' some nice string '>, ' some nice string'>
+  >
+  type test6 = Expect<
+    Equal<Subject.Trim<' some nice string '>, 'some nice string'>
+  >
 }
 
 describe('primitives', () => {
@@ -45,6 +54,33 @@ describe('primitives', () => {
       const result = subject.replaceAll(data, ' ')
       expect(result).toEqual('somenicestring')
       type test = Expect<Equal<typeof result, 'somenicestring'>>
+    })
+  })
+
+  test('trimStart', () => {
+    test('should trim the start of a string at both type level and runtime level', () => {
+      const data = ' some nice string '
+      const result = subject.trimStart(data)
+      expect(result).toEqual('some nice string ')
+      type test = Expect<Equal<typeof result, 'some nice string '>>
+    })
+  })
+
+  test('trimEnd', () => {
+    test('should trim the end of a string at both type level and runtime level', () => {
+      const data = ' some nice string '
+      const result = subject.trimEnd(data)
+      expect(result).toEqual(' some nice string')
+      type test = Expect<Equal<typeof result, ' some nice string'>>
+    })
+  })
+
+  test('trim', () => {
+    test('should trim a string at both type level and runtime level', () => {
+      const data = ' some nice string '
+      const result = subject.trim(data)
+      expect(result).toEqual('some nice string')
+      type test = Expect<Equal<typeof result, 'some nice string'>>
     })
   })
 })

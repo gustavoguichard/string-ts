@@ -54,6 +54,20 @@ describe('capitalize', () => {
 })
 
 describe('casing functions', () => {
+  test('toUpperCase', () => {
+    const expected = ' SOMEWEIRD-CASED$*STRING1986FOO BAR ' as const
+    const result = subject.toUpperCase(weirdString)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
+  test('toLowerCase', () => {
+    const expected = ' someweird-cased$*string1986foo bar ' as const
+    const result = subject.toLowerCase(weirdString)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
   test('toCamelCase', () => {
     const expected = 'someWeirdCased$*String1986FooBar' as const
     const result = subject.toCamelCase(weirdString)
