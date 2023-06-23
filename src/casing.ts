@@ -5,7 +5,7 @@ import {
   lowercaseAll,
 } from './internals'
 import { Join, join } from './primitives'
-import { Words, words } from './utils'
+import { Is, Words, words } from './utils'
 
 // CASING UTILITIES
 /**

@@ -1,3 +1,5 @@
+import { Is } from './utils'
+
 /**
  * Joins a tuple of strings with the given delimiter.
  * T: The current tuple of strings.

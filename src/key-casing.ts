@@ -11,6 +11,7 @@ import {
   toSnakeCase,
 } from './casing'
 import { typeOf } from './internals'
+import { Is } from './utils'
 
 function deepTransformKeys<T>(obj: T, transform: (s: string) => string): T {
   if (!['object', 'array'].includes(typeOf(obj))) return obj

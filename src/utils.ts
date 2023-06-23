@@ -1,5 +1,15 @@
 import { Drop, DropSuffix } from './internals'
 
+type Digit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+type Separator = ' ' | '_' | '-' | '.' | '/'
+
+// GENERAL UTILITIES
+
+/**
+ * Assures the generic matches the given condition so we avoid nesting more conditional types.
+ */
+type Is<T, cond> = Extract<T, cond>
+
 // prettier-ignore
 type UpperChars = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
 type LowerChars = Lowercase<UpperChars>
@@ -92,12 +102,15 @@ function words<T extends string>(sentence: T): Words<T> {
 }
 
 export type {
+  Digit,
+  Is,
   IsDigit,
   IsLetter,
   IsLower,
   IsSeparator,
   IsSpecial,
   IsUpper,
+  Separator,
   Words,
 }
 export { words }
