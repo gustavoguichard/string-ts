@@ -9,6 +9,24 @@ import { Is, Words, words } from './utils'
 
 // CASING UTILITIES
 /**
+ * This function is a strongly-typed counterpart of String.prototype.toLowerCase.
+ * @param str the string to make lowercase.
+ * @returns the lowercased string.
+ */
+function toLowerCase<T extends string>(str: T) {
+  return str.toLowerCase() as Lowercase<T>
+}
+
+/**
+ * This function is a strongly-typed counterpart of String.prototype.toUpperCase.
+ * @param str the string to make uppercase.
+ * @returns the uppercased string.
+ */
+function toUpperCase<T extends string>(str: T) {
+  return str.toUpperCase() as Uppercase<T>
+}
+
+/**
  * Capitalizes the first letter of a string. This is a runtime counterpart of `Capitalize<T>` from `src/types.d.ts`.
  * @param str the string to capitalize.
  * @returns the capitalized string.
@@ -100,6 +118,8 @@ export type {
 }
 export {
   capitalize,
+  toLowerCase,
+  toUpperCase,
   toCamelCase,
   toPascalCase,
   toKebabCase,

@@ -35,6 +35,11 @@ npm install string-ts
 - [Runtime counterparts of native type utilities](#runtime-counterparts-of-native-type-utilities)
   - [capitalize](#capitalize)
 - [Stronly-typed alternatives to native runtime utilities](#stronly-typed-alternatives-to-native-runtime-utilities)
+  - [toUpperCase](#touppercase)
+  - [toLowerCase](#tolowercase)
+  - [trim](#trim)
+  - [trimStart](#trimstart)
+  - [trimEnd](#trimend)
   - [join](#join)
   - [replace](#replace)
   - [replaceAll](#replaceall)
@@ -76,6 +81,60 @@ const result = capitalize(str);
 ```
 
 ## Stronly-typed alternatives to native runtime utilities
+### toUpperCase
+This function is a strongly-typed counterpart of `String.prototype.toUpperCase`.
+
+```ts
+import { toUpperCase } from 'string-ts';
+
+const str = 'hello world' as const;
+const result = toUpperCase(str);
+//    ^ 'HELLO WORLD'
+```
+
+### toLowerCase
+This function is a strongly-typed counterpart of `String.prototype.toLowerCase`.
+
+```ts
+import { toLowerCase } from 'string-ts';
+
+const str = 'HELLO WORLD' as const;
+const result = toLowerCase(str);
+//    ^ 'hello world'
+```
+
+### trim
+This function is a strongly-typed counterpart of `String.prototype.trim`.
+
+```ts
+import { trim } from 'string-ts';
+
+const str = '  hello world  ' as const;
+const result = trim(str);
+//    ^ 'hello world'
+```
+
+### trimStart
+This function is a strongly-typed counterpart of `String.prototype.trimStart`.
+
+```ts
+import { trimStart } from 'string-ts';
+
+const str = '  hello world  ' as const;
+const result = trimStart(str);
+//    ^ 'hello world  '
+```
+
+### trimEnd
+This function is a strongly-typed counterpart of `String.prototype.trimEnd`.
+
+```ts
+import { trimEnd } from 'string-ts';
+
+const str = '  hello world  ' as const;
+const result = trimEnd(str);
+//    ^ '  hello world'
+```
 
 ### join
 This function is a strongly-typed counterpart of `Array.prototype.join`.
@@ -306,6 +365,9 @@ St.Words<'hello-world'> // ['hello', 'world']
 St.Join<['hello', 'world'], '-'> // 'hello-world'
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
 St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'
+St.TrimStart<' hello world '> // 'hello world '
+St.TrimEnd<' hello world '> // ' hello world'
+St.Trim<' hello world '> // 'hello world'
 ```
 
 ### Casing type utilities
