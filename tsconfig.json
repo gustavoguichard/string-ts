@@ -1,0 +1,17 @@
+{
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "compilerOptions": {
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "outDir": "./tsc/",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2021",
+    "types": ["vitest/globals"]
+  }
+}
