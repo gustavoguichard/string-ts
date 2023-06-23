@@ -1,6 +1,4 @@
-# string-ts
-
-Strongly typed string functions for all!
+# Strongly typed string functions for all!
 
 ## 😬 The problem
 
