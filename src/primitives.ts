@@ -95,5 +95,50 @@ function replaceAll<T extends string, S extends string, R extends string = ''>(
   ) as ReplaceAll<T, S, R>
 }
 
-export type { Join, Replace, ReplaceAll }
-export { join, replace, replaceAll }
+/**
+ * Trims all whitespaces at the start of a string.
+ * T: The string to trim.
+ */
+type TrimStart<T extends string> = T extends ` ${infer rest}`
+  ? TrimStart<rest>
+  : T
+/**
+ * A strongly typed version of `String.prototype.trimStart`.
+ * @param str the string to trim.
+ * @returns the trimmed string in both type level and runtime.
+ */
+function trimStart<T extends string>(str: T) {
+  return str.trimStart() as TrimStart<T>
+}
+
+/**
+ * Trims all whitespaces at the end of a string.
+ * T: The string to trim.
+ */
+type TrimEnd<T extends string> = T extends `${infer rest} ` ? TrimEnd<rest> : T
+/**
+ * A strongly typed version of `String.prototype.trimEnd`.
+ * @param str the string to trim.
+ * @returns the trimmed string in both type level and runtime.
+ */
+function trimEnd<T extends string>(str: T) {
+  return str.trimEnd() as TrimEnd<T>
+}
+
+/**
+ * Trims all whitespaces at the start and end of a string.
+ * T: The string to trim.
+ */
+type Trim<T extends string> = TrimEnd<TrimStart<T>>
+
+/**
+ * A strongly typed version of `String.prototype.trim`.
+ * @param str the string to trim.
+ * @returns the trimmed string in both type level and runtime.
+ */
+function trim<T extends string>(str: T) {
+  return str.trim() as Trim<T>
+}
+
+export type { Join, Replace, ReplaceAll, TrimStart, TrimEnd, Trim }
+export { join, replace, replaceAll, trim, trimStart, trimEnd }
