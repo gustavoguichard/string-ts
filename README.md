@@ -419,19 +419,11 @@ This function recursively converts the keys of an object to a custom format but 
 ```ts
 import { deepTransformKeys } from 'string-ts';
 
-const data = {
-  'helloWorld': {
-    'fooBar': 'baz',
-  },
-} as const;
+const data = { 'helloWorld': 'baz' } as const;
 
 type MyType<T> = { [K in keyof T as Uppercase<K>]: MyType<T[K]> }
 const result = deepTransformKeys(data, (key) => key.toUpperCase()) as MyType<typeof data>;
-//    ^ {
-//        'HELLOWORLD': {
-//          'FOOBAR': 'baz',
-//        },
-//      }
+//    ^ { 'HELLOWORLD': 'baz' }
 ```
 
 
