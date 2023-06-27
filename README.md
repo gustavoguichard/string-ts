@@ -417,12 +417,12 @@ St.IsSpecial<' '> // false
 This function recursively converts the keys of an object to a custom format but only at runtime level.
 
 ```ts
-import { deepTransformKeys } from 'string-ts';
+import { deepTransformKeys, toUpperCase } from 'string-ts';
 
 const data = { 'helloWorld': 'baz' } as const;
 
-type MyType<T> = { [K in keyof T as Uppercase<K>]: MyType<T[K]> }
-const result = deepTransformKeys(data, (key) => key.toUpperCase()) as MyType<typeof data>;
+type MyType<T> = { [K in keyof T as Uppercase<K>]: T[K] }
+const result = deepTransformKeys(data, toUpperCase) as MyType<typeof data>;
 //    ^ { 'HELLOWORLD': 'baz' }
 ```
 
