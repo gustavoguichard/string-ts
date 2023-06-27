@@ -6,7 +6,7 @@ type Separator = ' ' | '_' | '-' | '.' | '/'
 // GENERAL UTILITIES
 
 /**
- * Assures the generic matches the given condition so we avoid nesting more conditional types.
+ * Assures the generic matches the given condition.
  */
 type Is<T, cond> = Extract<T, cond>
 
@@ -15,15 +15,40 @@ type UpperChars = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K
 type LowerChars = Lowercase<UpperChars>
 
 // UTILITIES FOR DETECTING CHARS
+/**
+ * Checks if the given character is an upper case letter.
+ */
 type IsUpper<T extends string> = T extends UpperChars ? true : false
+
+/**
+ * Checks if the given character is a letter.
+ */
 type IsLetter<T extends string> = IsUpper<T> extends true
   ? true
   : IsLower<T> extends true
   ? true
   : false
+
+/**
+ * Checks if the given character is a lower case letter.
+ */
 type IsLower<T extends string> = T extends LowerChars ? true : false
+
+/**
+ * Checks if the given character is a number.
+ */
 type IsDigit<T extends string> = T extends Digit ? true : false
+
+/**
+ * Checks if the given character is a separator.
+ * E.g. space, underscore, dash, dot, slash.
+ */
 type IsSeparator<T extends string> = T extends Separator ? true : false
+
+/**
+ * Checks if the given character is a special character.
+ * E.g. not a letter, number, or separator.
+ */
 type IsSpecial<T extends string> = IsLetter<T> extends true
   ? false
   : IsDigit<T> extends true
