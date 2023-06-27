@@ -13,6 +13,13 @@ import {
 import { typeOf } from './internals'
 import { Is } from './utils'
 
+/**
+ * This function is used to transform the keys of an object deeply.
+ * It will only be transformed at runtime, so it's not type safe.
+ * @param obj the object to transform.
+ * @param transform the function to transform the keys from string to string.
+ * @returns the transformed object.
+ */
 function deepTransformKeys<T>(obj: T, transform: (s: string) => string): T {
   if (!['object', 'array'].includes(typeOf(obj))) return obj
 
@@ -26,6 +33,10 @@ function deepTransformKeys<T>(obj: T, transform: (s: string) => string): T {
   return res
 }
 
+/**
+ * Transforms the keys of an Record to camelCase.
+ * T: the type of the Record to transform.
+ */
 type DeepCamelKeys<T> = T extends [any, ...any]
   ? { [I in keyof T]: DeepCamelKeys<T[I]> }
   : T extends (infer V)[]
@@ -33,32 +44,23 @@ type DeepCamelKeys<T> = T extends [any, ...any]
   : {
       [K in keyof T as CamelCase<Is<K, string>>]: DeepCamelKeys<T[K]>
     }
+/**
+ * A strongly typed function that recursively transforms the keys of an object to camelCase. The transformation is done both at runtime and type level.
+ * @param obj the object to transform.
+ * @returns the transformed object.
+ * @example
+ * ```ts
+ * deepCamelKeys({ 'foo-bar': 1, 'baz-qux': 2 }) // { fooBar: 1, bazQux: 2 }
+ * ```
+ */
 function deepCamelKeys<T>(obj: T): DeepCamelKeys<T> {
   return deepTransformKeys(obj, toCamelCase) as never
 }
 
-type DeepSnakeKeys<T> = T extends [any, ...any]
-  ? { [I in keyof T]: DeepSnakeKeys<T[I]> }
-  : T extends (infer V)[]
-  ? DeepSnakeKeys<V>[]
-  : {
-      [K in keyof T as SnakeCase<Is<K, string>>]: DeepSnakeKeys<T[K]>
-    }
-function deepSnakeKeys<T>(obj: T): DeepSnakeKeys<T> {
-  return deepTransformKeys(obj, toSnakeCase) as never
-}
-
-type DeepKebabKeys<T> = T extends [any, ...any]
-  ? { [I in keyof T]: DeepKebabKeys<T[I]> }
-  : T extends (infer V)[]
-  ? DeepKebabKeys<V>[]
-  : {
-      [K in keyof T as KebabCase<Is<K, string>>]: DeepKebabKeys<T[K]>
-    }
-function deepKebabKeys<T>(obj: T): DeepKebabKeys<T> {
-  return deepTransformKeys(obj, toKebabCase) as never
-}
-
+/**
+ * Transforms the keys of an Record to PascalCase.
+ * T: the type of the Record to transform.
+ */
 type DeepPascalKeys<T> = T extends [any, ...any]
   ? { [I in keyof T]: DeepPascalKeys<T[I]> }
   : T extends (infer V)[]
@@ -66,10 +68,71 @@ type DeepPascalKeys<T> = T extends [any, ...any]
   : {
       [K in keyof T as PascalCase<Is<K, string>>]: DeepPascalKeys<T[K]>
     }
+/**
+ * A strongly typed function that recursively transforms the keys of an object to pascal case. The transformation is done both at runtime and type level.
+ * @param obj the object to transform.
+ * @returns the transformed object.
+ * @example
+ * ```ts
+ * deepPascalKeys({ 'foo-bar': 1, 'baz-qux': 2 }) // { FooBar: 1, BazQux: 2 }
+ * ```
+ */
 function deepPascalKeys<T>(obj: T): DeepPascalKeys<T> {
   return deepTransformKeys(obj, toPascalCase) as never
 }
 
+/**
+ * Transforms the keys of an Record to kebab-case.
+ * T: the type of the Record to transform.
+ */
+type DeepKebabKeys<T> = T extends [any, ...any]
+  ? { [I in keyof T]: DeepKebabKeys<T[I]> }
+  : T extends (infer V)[]
+  ? DeepKebabKeys<V>[]
+  : {
+      [K in keyof T as KebabCase<Is<K, string>>]: DeepKebabKeys<T[K]>
+    }
+/**
+ * A strongly typed function that recursively transforms the keys of an object to kebab-case. The transformation is done both at runtime and type level.
+ * @param obj the object to transform.
+ * @returns the transformed object.
+ * @example
+ * ```ts
+ * deepKebabKeys({ 'foo-bar': 1, 'baz-qux': 2 }) // { 'foo-bar': 1, 'baz-qux': 2 }
+ * ```
+ */
+function deepKebabKeys<T>(obj: T): DeepKebabKeys<T> {
+  return deepTransformKeys(obj, toKebabCase) as never
+}
+
+/**
+ * Transforms the keys of an Record to snake_case.
+ * T: the type of the Record to transform.
+ */
+type DeepSnakeKeys<T> = T extends [any, ...any]
+  ? { [I in keyof T]: DeepSnakeKeys<T[I]> }
+  : T extends (infer V)[]
+  ? DeepSnakeKeys<V>[]
+  : {
+      [K in keyof T as SnakeCase<Is<K, string>>]: DeepSnakeKeys<T[K]>
+    }
+/**
+ * A strongly typed function that recursively transforms the keys of an object to snake_case. The transformation is done both at runtime and type level.
+ * @param obj the object to transform.
+ * @returns the transformed object.
+ * @example
+ * ```ts
+ * deepSnakeKeys({ 'foo-bar': 1, 'baz-qux': 2 }) // { foo_bar: 1, baz_qux: 2 }
+ * ```
+ */
+function deepSnakeKeys<T>(obj: T): DeepSnakeKeys<T> {
+  return deepTransformKeys(obj, toSnakeCase) as never
+}
+
+/**
+ * Transforms the keys of an Record to CONSTANT_CASE.
+ * T: the type of the Record to transform.
+ */
 type DeepConstantKeys<T> = T extends [any, ...any]
   ? { [I in keyof T]: DeepConstantKeys<T[I]> }
   : T extends (infer V)[]
@@ -77,6 +140,15 @@ type DeepConstantKeys<T> = T extends [any, ...any]
   : {
       [K in keyof T as ConstantCase<Is<K, string>>]: DeepConstantKeys<T[K]>
     }
+/**
+ * A strongly typed function that recursively transforms the keys of an object to CONSTANT_CASE. The transformation is done both at runtime and type level.
+ * @param obj the object to transform.
+ * @returns the transformed object.
+ * @example
+ * ```ts
+ * deepConstantKeys({ 'foo-bar': 1, 'baz-qux': 2 }) // { FOO_BAR: 1, BAZ_QUX: 2 }
+ * ```
+ */
 function deepConstantKeys<T>(obj: T): DeepConstantKeys<T> {
   return deepTransformKeys(obj, toConstantCase) as never
 }
