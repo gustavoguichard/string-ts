@@ -1,9 +1,4 @@
-import {
-  CapitalizeAll,
-  LowercaseAll,
-  capitalizeAll,
-  lowercaseAll,
-} from './internals'
+import { CapitalizeAll, capitalizeAll } from './internals'
 import { Join, join } from './primitives'
 import { Is, Words, words } from './utils'
 
@@ -32,7 +27,24 @@ function toUpperCase<T extends string>(str: T) {
  * @returns the capitalized string.
  */
 function capitalize<T extends string>(str: T) {
-  return (str.charAt(0).toUpperCase() + str.slice(1)) as Capitalize<T>
+  return (toUpperCase(str.charAt(0)) + str.slice(1)) as Capitalize<T>
+}
+
+/**
+ * Transforms a string with the specified separator (delimiter).
+ */
+type DelimiterCase<T extends string, D extends string> = Join<Words<T>, D>
+/**
+ * A function that transforms a string by splitting it into words and joining them with the specified delimiter.
+ * @param str the string to transform.
+ * @param delimiter the delimiter to use.
+ * @returns the transformed string.
+ */
+function toDelimiterCase<T extends string, D extends string>(
+  str: T,
+  delimiter: D,
+): DelimiterCase<T, D> {
+  return join(words(str), delimiter)
 }
 
 /**
@@ -60,44 +72,34 @@ type PascalCase<T extends string> = Capitalize<CamelCase<T>>
  * @param str the string to convert to pascal case.
  * @returns the pascal cased string.
  */
-function toPascalCase<T extends string>(str: T) {
-  return capitalize(toCamelCase(str)) as PascalCase<T>
+function toPascalCase<T extends string>(str: T): PascalCase<T> {
+  return capitalize(toCamelCase(str))
 }
 
 /**
  * Transforms a string to kebab-case.
  */
-type KebabCase<T extends string> = Words<T> extends [infer first, ...infer rest]
-  ? Join<
-      [Lowercase<Is<first, string>>, ...LowercaseAll<Is<rest, string[]>>],
-      '-'
-    >
-  : T
+type KebabCase<T extends string> = Lowercase<DelimiterCase<T, '-'>>
 /**
  * A strongly typed version of `toKebabCase` that works in both runtime and type level.
  * @param str the string to convert to kebab case.
  * @returns the kebab cased string.
  */
-function toKebabCase<T extends string>(str: T) {
-  return join(lowercaseAll(words(str)), '-') as string as KebabCase<T>
+function toKebabCase<T extends string>(str: T): KebabCase<T> {
+  return toLowerCase(toDelimiterCase(str, '-'))
 }
 
 /**
  * Transforms a string to snake_case.
  */
-type SnakeCase<T extends string> = Words<T> extends [infer first, ...infer rest]
-  ? Join<
-      [Lowercase<Is<first, string>>, ...LowercaseAll<Is<rest, string[]>>],
-      '_'
-    >
-  : T
+type SnakeCase<T extends string> = Lowercase<DelimiterCase<T, '_'>>
 /**
  * A strongly typed version of `toSnakeCase` that works in both runtime and type level.
  * @param str the string to convert to snake case.
  * @returns the snake cased string.
  */
-function toSnakeCase<T extends string>(str: T) {
-  return join(lowercaseAll(words(str)), '_') as string as SnakeCase<T>
+function toSnakeCase<T extends string>(str: T): SnakeCase<T> {
+  return toLowerCase(toDelimiterCase(str, '_'))
 }
 
 /**
@@ -109,39 +111,41 @@ type ConstantCase<T extends string> = Uppercase<SnakeCase<T>>
  * @param str the string to convert to constant case.
  * @returns the constant cased string.
  */
-function toConstantCase<T extends string>(str: T) {
-  return toSnakeCase(str).toUpperCase() as ConstantCase<T>
+function toConstantCase<T extends string>(str: T): ConstantCase<T> {
+  return toUpperCase(toSnakeCase(str))
 }
 
 /**
  * Transforms a string to "Title Case".
  */
-type TitleCase<T extends string> = Join<Words<PascalCase<T>>, ' '>
+type TitleCase<T extends string> = DelimiterCase<PascalCase<T>, ' '>
 /**
  * A strongly typed version of `toTitleCase` that works in both runtime and type level.
  * @param str the string to convert to title case.
  * @returns the title cased string.
  */
-function toTitleCase<T extends string>(str: T) {
-  return join(words(toPascalCase(str)), ' ') as string as TitleCase<T>
+function toTitleCase<T extends string>(str: T): TitleCase<T> {
+  return toDelimiterCase(toPascalCase(str), ' ')
 }
 
 export type {
   CamelCase,
-  PascalCase,
-  KebabCase,
-  SnakeCase,
   ConstantCase,
+  DelimiterCase,
+  KebabCase,
+  PascalCase,
+  SnakeCase,
   TitleCase,
 }
 export {
   capitalize,
-  toLowerCase,
-  toUpperCase,
   toCamelCase,
-  toPascalCase,
-  toKebabCase,
-  toSnakeCase,
   toConstantCase,
+  toDelimiterCase,
+  toKebabCase,
+  toLowerCase,
+  toPascalCase,
+  toSnakeCase,
   toTitleCase,
+  toUpperCase,
 }

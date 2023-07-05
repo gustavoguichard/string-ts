@@ -2,6 +2,18 @@ import type * as Subject from './key-casing'
 import * as subject from './key-casing'
 
 namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      Subject.DeepDelimiterKeys<
+        {
+          some: { 'deep-nested': { value: true } }
+          'other-value': true
+        },
+        '@'
+      >,
+      { some: { 'deep@nested': { value: true } }; 'other@value': true }
+    >
+  >
   type test1 = Expect<
     Equal<
       Subject.DeepCamelKeys<{
@@ -62,6 +74,26 @@ describe('key transformation', () => {
       SOME: { 'DEEP-NESTED': { VALUE: true } },
       'OTHER-VALUE': true,
     })
+  })
+
+  test('deepDelimiterKeys', () => {
+    const result = subject.deepDelimiterKeys(
+      {
+        some: { 'deep-nested': { value: true } },
+        'other-value': true,
+      },
+      '@',
+    )
+    expect(result).toEqual({
+      some: { 'deep@nested': { value: true } },
+      'other@value': true,
+    })
+    type test = Expect<
+      Equal<
+        typeof result,
+        { some: { 'deep@nested': { value: boolean } }; 'other@value': boolean }
+      >
+    >
   })
 
   test('deepCamelKeys', () => {

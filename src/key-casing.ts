@@ -1,11 +1,13 @@
 import {
   CamelCase,
   ConstantCase,
+  DelimiterCase,
   KebabCase,
   PascalCase,
   SnakeCase,
   toCamelCase,
   toConstantCase,
+  toDelimiterCase,
   toKebabCase,
   toPascalCase,
   toSnakeCase,
@@ -153,18 +155,39 @@ function deepConstantKeys<T>(obj: T): DeepConstantKeys<T> {
   return deepTransformKeys(obj, toConstantCase) as never
 }
 
+type DeepDelimiterKeys<T, D extends string> = T extends [any, ...any]
+  ? { [I in keyof T]: DeepDelimiterKeys<T[I], D> }
+  : T extends (infer V)[]
+  ? DeepDelimiterKeys<V, D>[]
+  : {
+      [K in keyof T as DelimiterCase<Is<K, string>, D>]: DeepDelimiterKeys<
+        T[K],
+        D
+      >
+    }
+function deepDelimiterKeys<T, D extends string>(
+  obj: T,
+  delimiter: D,
+): DeepDelimiterKeys<T, D> {
+  return deepTransformKeys(obj, (str) =>
+    toDelimiterCase(str, delimiter),
+  ) as never
+}
+
 export type {
   DeepCamelKeys,
-  DeepSnakeKeys,
+  DeepConstantKeys,
+  DeepDelimiterKeys,
   DeepKebabKeys,
   DeepPascalKeys,
-  DeepConstantKeys,
+  DeepSnakeKeys,
 }
 export {
   deepCamelKeys,
-  deepSnakeKeys,
+  deepConstantKeys,
+  deepDelimiterKeys,
   deepKebabKeys,
   deepPascalKeys,
-  deepConstantKeys,
+  deepSnakeKeys,
   deepTransformKeys,
 }

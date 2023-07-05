@@ -59,17 +59,5 @@ function capitalizeAll<T extends string[]>(str: T) {
   return str.map(capitalize) as CapitalizeAll<T>
 }
 
-/**
- * Lowercases all the words in a tuple of strings. This works in both runtime and type level.
- * @param str the tuple of strings to lowercase.
- * @returns the lowercased tuple of strings.
- */
-type LowercaseAll<T extends string[]> = T extends [infer First, ...infer Rest]
-  ? [Lowercase<Is<First, string>>, ...LowercaseAll<Is<Rest, string[]>>]
-  : T
-function lowercaseAll<T extends string[]>(str: T) {
-  return str.map((x) => x.toLowerCase()) as LowercaseAll<T>
-}
-
-export type { CapitalizeAll, LowercaseAll, Drop, DropSuffix }
-export { typeOf, capitalizeAll, lowercaseAll }
+export type { CapitalizeAll, Drop, DropSuffix }
+export { typeOf, capitalizeAll }
