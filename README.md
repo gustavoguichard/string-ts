@@ -43,6 +43,7 @@ npm install string-ts
   - [replaceAll](#replaceall)
 - [Stronly-typed alternatives to common loosely-typed functions](#stronly-typed-alternatives-to-common-loosely-typed-functions)
   - [words](#words)
+  - [toDelimiterCase](#todelimitercase)
   - [toCamelCase](#tocamelcase)
   - [toPascalCase](#topascalcase)
   - [toKebabCase](#tokebabcase)
@@ -50,6 +51,7 @@ npm install string-ts
   - [toConstantCase](#toconstantcase)
   - [toTitleCase](#totitlecase)
 - [Strongly-typed deep trasnformation of objects](#strongly-typed-deep-trasnformation-of-objects)
+  - [deepDelimiterKeys](#deepdelimiterkeys)
   - [deepCamelKeys](#deepcamelkeys)
   - [deepPascalKeys](#deeppascalkeys)
   - [deepKebabKeys](#deepkebabkeys)
@@ -180,6 +182,17 @@ const result = words(str);
 //    ^ ['20', 'some', 'Very', 'weird', 'String']
 ```
 
+### toDelimiterCase
+This function converts a string to a new case with a custom delimiter at both runtime and type levels.
+
+```ts
+import { toDelimiterCase } from 'string-ts';
+
+const str = 'helloWorld' as const;
+const result = toDelimiterCase(str, '.');
+//    ^ 'hello.World'
+```
+
 ### toCamelCase
 This function converts a string to `camelCase` at both runtime and type levels.
 
@@ -248,6 +261,21 @@ const result = toTitleCase(str);
 
 ## Strongly-typed deep trasnformation of objects
 
+### deepDelimiterKeys
+This function recursively converts the keys of an object to a new case with a custom delimiter at both runtime and type levels.
+
+```ts
+import { deepDelimiterKeys } from 'string-ts';
+
+const data = {
+  'hello-world': {
+    'foo-bar': 'baz',
+  },
+} as const;
+const result = deepDelimiterKeys(data, '.');
+//    ^ { 'hello.world': { 'foo.bar': 'baz' } }
+```
+
 ### deepCamelKeys
 This function recursively converts the keys of an object to `camelCase` at both runtime and type levels.
 
@@ -260,11 +288,7 @@ const data = {
   },
 } as const;
 const result = deepCamelKeys(data);
-//    ^ {
-//        helloWorld: {
-//          fooBar: 'baz',
-//        },
-//      }
+//    ^ { helloWorld: { fooBar: 'baz' } }
 ```
 
 ### deepPascalKeys
@@ -279,11 +303,7 @@ const data = {
   },
 } as const;
 const result = deepPascalKeys(data);
-//    ^ {
-//        HelloWorld: {
-//          FooBar: 'baz',
-//        },
-//      }
+//    ^ { HelloWorld: { FooBar: 'baz' } }
 ```
 
 ### deepKebabKeys
@@ -298,11 +318,7 @@ const data = {
   },
 } as const;
 const result = deepKebabKeys(data);
-//    ^ {
-//        'hello-world': {
-//          'foo-bar': 'baz',
-//        },
-//      }
+//    ^ { 'hello-world': { 'foo-bar': 'baz' } }
 ```
 
 ### deepSnakeKeys
@@ -317,11 +333,7 @@ const data = {
   },
 } as const;
 const result = deepSnakeKeys(data);
-//    ^ {
-//        'hello_world': {
-//          'foo_bar': 'baz',
-//        },
-//      }
+//    ^ { 'hello_world': { 'foo_bar': 'baz' } }
 ```
 
 ### deepConstantKeys
@@ -336,11 +348,7 @@ const data = {
   },
 } as const;
 const result = deepConstantKeys(data);
-//    ^ {
-//        'HELLO_WORLD': {
-//          'FOO_BAR': 'baz',
-//        },
-//      }
+//    ^ { 'HELLO_WORLD': { 'FOO_BAR': 'baz' } }
 ```
 
 ## Type Utilities
@@ -376,7 +384,11 @@ St.KebabCase<'helloWorld'> // 'hello-world'
 St.SnakeCase<'helloWorld'> // 'hello_world'
 St.ConstantCase<'helloWorld'> // 'HELLO_WORLD'
 St.TitleCase<'helloWorld'> // 'Hello World'
+St.DelimiterCase<'hello world', '.'> // 'hello.world'
 
+St.DeepDelimiterKeys<{
+  'hello-world': { 'foo-bar': 'baz' }
+}, '.'> // { 'hello.world': { 'foo.bar': 'baz' } }
 St.DeepCamelKeys<{
   'hello-world': { 'foo-bar': 'baz' }
 }> // { helloWorld: { fooBar: 'baz' } }

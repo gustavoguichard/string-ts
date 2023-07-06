@@ -5,6 +5,12 @@ const weirdString = ' someWeird-cased$*String1986Foo Bar ' as const
 type WeirdString = typeof weirdString
 
 namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      Subject.DelimiterCase<WeirdString, '%'>,
+      'some%Weird%cased%$*%String%1986%Foo%Bar'
+    >
+  >
   type test1 = Expect<
     Equal<Subject.CamelCase<WeirdString>, 'someWeirdCased$*String1986FooBar'>
   >
@@ -64,6 +70,13 @@ describe('casing functions', () => {
   test('toLowerCase', () => {
     const expected = ' someweird-cased$*string1986foo bar ' as const
     const result = subject.toLowerCase(weirdString)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
+  test('toDelimiterCase', () => {
+    const expected = 'some@Weird@cased@$*@String@1986@Foo@Bar' as const
+    const result = subject.toDelimiterCase(weirdString, '@')
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, typeof expected>>
   })

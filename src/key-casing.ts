@@ -1,11 +1,13 @@
 import {
   CamelCase,
   ConstantCase,
+  DelimiterCase,
   KebabCase,
   PascalCase,
   SnakeCase,
   toCamelCase,
   toConstantCase,
+  toDelimiterCase,
   toKebabCase,
   toPascalCase,
   toSnakeCase,
@@ -19,6 +21,8 @@ import { Is } from './utils'
  * @param obj the object to transform.
  * @param transform the function to transform the keys from string to string.
  * @returns the transformed object.
+ * @example deepTransformKeys({ 'foo-bar': { 'fizz-buzz': true } }, toCamelCase)
+ * // { fooBar: { fizzBuzz: true } }
  */
 function deepTransformKeys<T>(obj: T, transform: (s: string) => string): T {
   if (!['object', 'array'].includes(typeOf(obj))) return obj
@@ -48,10 +52,7 @@ type DeepCamelKeys<T> = T extends [any, ...any]
  * A strongly typed function that recursively transforms the keys of an object to camelCase. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
  * @returns the transformed object.
- * @example
- * ```ts
- * deepCamelKeys({ 'foo-bar': 1, 'baz-qux': 2 }) // { fooBar: 1, bazQux: 2 }
- * ```
+ * @example deepCamelKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { fooBar: { fizzBuzz: true } }
  */
 function deepCamelKeys<T>(obj: T): DeepCamelKeys<T> {
   return deepTransformKeys(obj, toCamelCase) as never
@@ -72,10 +73,7 @@ type DeepPascalKeys<T> = T extends [any, ...any]
  * A strongly typed function that recursively transforms the keys of an object to pascal case. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
  * @returns the transformed object.
- * @example
- * ```ts
- * deepPascalKeys({ 'foo-bar': 1, 'baz-qux': 2 }) // { FooBar: 1, BazQux: 2 }
- * ```
+ * @example deepPascalKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { FooBar: { FizzBuzz: true } }
  */
 function deepPascalKeys<T>(obj: T): DeepPascalKeys<T> {
   return deepTransformKeys(obj, toPascalCase) as never
@@ -96,10 +94,7 @@ type DeepKebabKeys<T> = T extends [any, ...any]
  * A strongly typed function that recursively transforms the keys of an object to kebab-case. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
  * @returns the transformed object.
- * @example
- * ```ts
- * deepKebabKeys({ 'foo-bar': 1, 'baz-qux': 2 }) // { 'foo-bar': 1, 'baz-qux': 2 }
- * ```
+ * @example deepKebabKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { 'foo-bar': { 'fizz-buzz': true } }
  */
 function deepKebabKeys<T>(obj: T): DeepKebabKeys<T> {
   return deepTransformKeys(obj, toKebabCase) as never
@@ -120,10 +115,7 @@ type DeepSnakeKeys<T> = T extends [any, ...any]
  * A strongly typed function that recursively transforms the keys of an object to snake_case. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
  * @returns the transformed object.
- * @example
- * ```ts
- * deepSnakeKeys({ 'foo-bar': 1, 'baz-qux': 2 }) // { foo_bar: 1, baz_qux: 2 }
- * ```
+ * @example deepSnakeKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { 'foo_bar': { 'fizz_buzz': true } }
  */
 function deepSnakeKeys<T>(obj: T): DeepSnakeKeys<T> {
   return deepTransformKeys(obj, toSnakeCase) as never
@@ -144,27 +136,57 @@ type DeepConstantKeys<T> = T extends [any, ...any]
  * A strongly typed function that recursively transforms the keys of an object to CONSTANT_CASE. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
  * @returns the transformed object.
- * @example
- * ```ts
- * deepConstantKeys({ 'foo-bar': 1, 'baz-qux': 2 }) // { FOO_BAR: 1, BAZ_QUX: 2 }
- * ```
+ * @example deepConstantKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { FOO_BAR: { FIZZ_BUZZ: true } }
  */
 function deepConstantKeys<T>(obj: T): DeepConstantKeys<T> {
   return deepTransformKeys(obj, toConstantCase) as never
 }
 
+/**
+ * Transforms the keys of an Record to a custom delimiter case.
+ * T: the type of the Record to transform.
+ * D: the delimiter to use.
+ */
+type DeepDelimiterKeys<T, D extends string> = T extends [any, ...any]
+  ? { [I in keyof T]: DeepDelimiterKeys<T[I], D> }
+  : T extends (infer V)[]
+  ? DeepDelimiterKeys<V, D>[]
+  : {
+      [K in keyof T as DelimiterCase<Is<K, string>, D>]: DeepDelimiterKeys<
+        T[K],
+        D
+      >
+    }
+/**
+ * A strongly typed function that recursively transforms the keys of an object to a custom delimiter case. The transformation is done both at runtime and type level.
+ * @param obj the object to transform.
+ * @param delimiter the delimiter to use.
+ * @returns the transformed object.
+ * @example deepDelimiterKeys({ 'foo-bar': { 'fizz-buzz': true } }, '.') // { 'foo.bar': { 'fizz.buzz': true } }
+ */
+function deepDelimiterKeys<T, D extends string>(
+  obj: T,
+  delimiter: D,
+): DeepDelimiterKeys<T, D> {
+  return deepTransformKeys(obj, (str) =>
+    toDelimiterCase(str, delimiter),
+  ) as never
+}
+
 export type {
   DeepCamelKeys,
-  DeepSnakeKeys,
+  DeepConstantKeys,
+  DeepDelimiterKeys,
   DeepKebabKeys,
   DeepPascalKeys,
-  DeepConstantKeys,
+  DeepSnakeKeys,
 }
 export {
   deepCamelKeys,
-  deepSnakeKeys,
+  deepConstantKeys,
+  deepDelimiterKeys,
   deepKebabKeys,
   deepPascalKeys,
-  deepConstantKeys,
+  deepSnakeKeys,
   deepTransformKeys,
 }

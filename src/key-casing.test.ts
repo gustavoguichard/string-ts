@@ -2,6 +2,18 @@ import type * as Subject from './key-casing'
 import * as subject from './key-casing'
 
 namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      Subject.DeepDelimiterKeys<
+        {
+          some: { 'deep-nested': { value: true } }
+          'other-value': true
+        },
+        '@'
+      >,
+      { some: { 'deep@nested': { value: true } }; 'other@value': true }
+    >
+  >
   type test1 = Expect<
     Equal<
       Subject.DeepCamelKeys<{
@@ -51,6 +63,10 @@ namespace TypeTransforms {
 
 describe('key transformation', () => {
   test('deepTransformKeys', () => {
+    const expected = {
+      SOME: { 'DEEP-NESTED': { VALUE: true } },
+      'OTHER-VALUE': true,
+    }
     const result = subject.deepTransformKeys(
       {
         some: { 'deep-nested': { value: true } },
@@ -58,94 +74,87 @@ describe('key transformation', () => {
       },
       (key) => key.toUpperCase(),
     )
-    expect(result).toEqual({
-      SOME: { 'DEEP-NESTED': { VALUE: true } },
-      'OTHER-VALUE': true,
-    })
+    expect(result).toEqual(expected)
+  })
+
+  test('deepDelimiterKeys', () => {
+    const expected = {
+      some: { 'deep@nested': { value: true } },
+      'other@value': true,
+    }
+    const result = subject.deepDelimiterKeys(
+      {
+        some: { 'deep-nested': { value: true } },
+        'other-value': true,
+      },
+      '@',
+    )
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
   })
 
   test('deepCamelKeys', () => {
+    const expected = {
+      some: { deepNested: { value: true } },
+      otherValue: true,
+    }
     const result = subject.deepCamelKeys({
       some: { 'deep-nested': { value: true } },
       'other-value': true,
     })
-    expect(result).toEqual({
-      some: { deepNested: { value: true } },
-      otherValue: true,
-    })
-    type test = Expect<
-      Equal<
-        typeof result,
-        { some: { deepNested: { value: boolean } }; otherValue: boolean }
-      >
-    >
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
   })
 
   test('deepSnakeKeys', () => {
+    const expected = {
+      some: { deep_nested: { value: true } },
+      other_value: true,
+    }
     const result = subject.deepSnakeKeys({
       some: { deepNested: { value: true } },
       otherValue: true,
     })
-    expect(result).toEqual({
-      some: { deep_nested: { value: true } },
-      other_value: true,
-    })
-    type test = Expect<
-      Equal<
-        typeof result,
-        { some: { deep_nested: { value: boolean } }; other_value: boolean }
-      >
-    >
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
   })
 
   test('deepKebabKeys', () => {
+    const expected = {
+      some: { 'deep-nested': { value: true } },
+      'other-value': true,
+    }
     const result = subject.deepKebabKeys({
       some: { deepNested: { value: true } },
       otherValue: true,
     })
-    expect(result).toEqual({
-      some: { 'deep-nested': { value: true } },
-      'other-value': true,
-    })
-    type test = Expect<
-      Equal<
-        typeof result,
-        { some: { 'deep-nested': { value: boolean } }; 'other-value': boolean }
-      >
-    >
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
   })
 
   test('deepPascalKeys', () => {
+    const expected = {
+      Some: { DeepNested: { Value: true } },
+      OtherValue: true,
+    }
     const result = subject.deepPascalKeys({
       some: { deepNested: { value: true } },
       otherValue: true,
     })
-    expect(result).toEqual({
-      Some: { DeepNested: { Value: true } },
-      OtherValue: true,
-    })
-    type test = Expect<
-      Equal<
-        typeof result,
-        { Some: { DeepNested: { Value: boolean } }; OtherValue: boolean }
-      >
-    >
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
   })
 
   test('deepConstantKeys', () => {
+    const expected = {
+      SOME: { DEEP_NESTED: { VALUE: true } },
+      OTHER_VALUE: true,
+    }
     const result = subject.deepConstantKeys({
       some: { deepNested: { value: true } },
       otherValue: true,
     })
-    expect(result).toEqual({
-      SOME: { DEEP_NESTED: { VALUE: true } },
-      OTHER_VALUE: true,
-    })
-    type test = Expect<
-      Equal<
-        typeof result,
-        { SOME: { DEEP_NESTED: { VALUE: boolean } }; OTHER_VALUE: boolean }
-      >
-    >
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
   })
 })
