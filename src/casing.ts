@@ -1,4 +1,4 @@
-import { CapitalizeAll, capitalizeAll } from './internals'
+import { CapitalizeAll } from './internals'
 import { Join, join } from './primitives'
 import { Is, Words, words } from './utils'
 
@@ -64,7 +64,7 @@ type CamelCase<T extends string> = Words<T> extends [infer first, ...infer rest]
  * @example toCamelCase('hello world') // 'helloWorld'
  */
 function toCamelCase<T extends string>(str: T) {
-  const result = capitalizeAll(words(str)).join('')
+  const result = words(str).map(capitalize).join('')
   return (result.slice(0, 1).toLowerCase() + result.slice(1)) as CamelCase<T>
 }
 
@@ -113,7 +113,7 @@ function toSnakeCase<T extends string>(str: T): SnakeCase<T> {
 /**
  * Transforms a string to CONSTANT_CASE.
  */
-type ConstantCase<T extends string> = Uppercase<SnakeCase<T>>
+type ConstantCase<T extends string> = Uppercase<DelimiterCase<T, '_'>>
 /**
  * A strongly typed version of `toConstantCase` that works in both runtime and type level.
  * @param str the string to convert to constant case.
@@ -121,7 +121,7 @@ type ConstantCase<T extends string> = Uppercase<SnakeCase<T>>
  * @example toConstantCase('hello world') // 'HELLO_WORLD'
  */
 function toConstantCase<T extends string>(str: T): ConstantCase<T> {
-  return toUpperCase(toSnakeCase(str))
+  return toUpperCase(toDelimiterCase(str, '_'))
 }
 
 /**

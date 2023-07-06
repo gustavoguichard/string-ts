@@ -1,4 +1,3 @@
-import { capitalize } from './casing'
 import { Is } from './utils'
 
 /**
@@ -53,9 +52,6 @@ type DropSuffix<
 type CapitalizeAll<T extends string[]> = T extends [infer First, ...infer Rest]
   ? [Capitalize<Is<First, string>>, ...CapitalizeAll<Is<Rest, string[]>>]
   : T
-function capitalizeAll<T extends string[]>(str: T) {
-  return str.map(capitalize) as CapitalizeAll<T>
-}
 
 export type { CapitalizeAll, Drop, DropSuffix }
-export { typeOf, capitalizeAll }
+export { typeOf }
