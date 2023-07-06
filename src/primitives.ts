@@ -21,6 +21,7 @@ type Join<
  * @param tuple the tuple of strings to join.
  * @param delimiter the delimiter.
  * @returns the joined string in both type level and runtime.
+ * @example join(['hello', 'world'], '-') // 'hello-world'
  */
 function join<T extends string[], D extends string = ''>(
   tuple: T,
@@ -49,6 +50,7 @@ type Replace<
  * @param lookup the lookup string to be replaced.
  * @param replacement the replacement string.
  * @returns the replaced string in both type level and runtime.
+ * @example replace('hello world', 'l', '1') // 'he1lo world'
  */
 function replace<T extends string, S extends string, R extends string = ''>(
   sentence: T,
@@ -82,6 +84,7 @@ type ReplaceAll<
  * @param lookup the lookup string to be replaced.
  * @param replacement the replacement string.
  * @returns the replaced string in both type level and runtime.
+ * @example replaceAll('hello world', 'l', '1') // 'he11o wor1d'
  */
 function replaceAll<T extends string, S extends string, R extends string = ''>(
   sentence: T,
@@ -106,6 +109,7 @@ type TrimStart<T extends string> = T extends ` ${infer rest}`
  * A strongly typed version of `String.prototype.trimStart`.
  * @param str the string to trim.
  * @returns the trimmed string in both type level and runtime.
+ * @example trimStart(' hello world ') // 'hello world '
  */
 function trimStart<T extends string>(str: T) {
   return str.trimStart() as TrimStart<T>
@@ -120,6 +124,7 @@ type TrimEnd<T extends string> = T extends `${infer rest} ` ? TrimEnd<rest> : T
  * A strongly typed version of `String.prototype.trimEnd`.
  * @param str the string to trim.
  * @returns the trimmed string in both type level and runtime.
+ * @example trimEnd(' hello world ') // ' hello world'
  */
 function trimEnd<T extends string>(str: T) {
   return str.trimEnd() as TrimEnd<T>
@@ -135,6 +140,7 @@ type Trim<T extends string> = TrimEnd<TrimStart<T>>
  * A strongly typed version of `String.prototype.trim`.
  * @param str the string to trim.
  * @returns the trimmed string in both type level and runtime.
+ * @example trim(' hello world ') // 'hello world'
  */
 function trim<T extends string>(str: T) {
   return str.trim() as Trim<T>

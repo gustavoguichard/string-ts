@@ -108,6 +108,7 @@ type Words<
  * A strongly typed function to extract the words from a sentence.
  * @param sentence the sentence to extract the words from.
  * @returns an array of words in both type level and runtime.
+ * @example words('helloWorld') // ['hello', 'World']
  */
 function words<T extends string>(sentence: T): Words<T> {
   // can be implemented with a single regex but it's not as readable

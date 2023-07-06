@@ -48,9 +48,7 @@ type DropSuffix<
 > = sentence extends `${infer rest}${suffix}` ? rest : sentence
 
 /**
- * Capitalizes all the words in a tuple of strings. This works in both runtime and type level.
- * @param str the tuple of strings to capitalize.
- * @returns the capitalized tuple of strings.
+ * Capitalizes all the words in a tuple of strings
  */
 type CapitalizeAll<T extends string[]> = T extends [infer First, ...infer Rest]
   ? [Capitalize<Is<First, string>>, ...CapitalizeAll<Is<Rest, string[]>>]
