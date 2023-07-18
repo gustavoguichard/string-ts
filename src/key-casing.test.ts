@@ -106,6 +106,18 @@ describe('key transformation', () => {
     type test = Expect<Equal<typeof result, typeof expected>>
   })
 
+  test('deepCamelKeys on object using screaming snake case', () => {
+    const obj = {
+      NODE_ENV: 'development',
+    }
+    const expected = {
+      nodeEnv: 'development',
+    }
+    const result = subject.deepCamelKeys(obj)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
   test('deepSnakeKeys', () => {
     const expected = {
       some: { deep_nested: { value: true } },
