@@ -1,9 +1,9 @@
-# Strongly typed string functions for all!
+# Strongly-typed string functions for all!
 
 ## 😬 The problem
 
 When you are working with literal strings, the string manipulation functions only work at the runtime level and the types don't follow those transformations.
-You end up loosing type information and possibly having to cast the result.
+You end up losing type information and possibly having to cast the result.
 
 ```ts
 const str = 'hello-world' as const;
@@ -32,7 +32,7 @@ npm install string-ts
 # 📖 API
 - [Runtime counterparts of native type utilities](#runtime-counterparts-of-native-type-utilities)
   - [capitalize](#capitalize)
-- [Stronly-typed alternatives to native runtime utilities](#stronly-typed-alternatives-to-native-runtime-utilities)
+- [Strongly-typed alternatives to native runtime utilities](#strongly-typed-alternatives-to-native-runtime-utilities)
   - [toUpperCase](#touppercase)
   - [toLowerCase](#tolowercase)
   - [trim](#trim)
@@ -41,7 +41,7 @@ npm install string-ts
   - [join](#join)
   - [replace](#replace)
   - [replaceAll](#replaceall)
-- [Stronly-typed alternatives to common loosely-typed functions](#stronly-typed-alternatives-to-common-loosely-typed-functions)
+- [Strongly-typed alternatives to common loosely-typed functions](#strongly-typed-alternatives-to-common-loosely-typed-functions)
   - [words](#words)
   - [toDelimiterCase](#todelimitercase)
   - [toCamelCase](#tocamelcase)
@@ -50,7 +50,7 @@ npm install string-ts
   - [toSnakeCase](#tosnakecase)
   - [toConstantCase](#toconstantcase)
   - [toTitleCase](#totitlecase)
-- [Strongly-typed deep trasnformation of objects](#strongly-typed-deep-trasnformation-of-objects)
+- [Strongly-typed deep transformation of objects](#strongly-typed-deep-transformation-of-objects)
   - [deepDelimiterKeys](#deepdelimiterkeys)
   - [deepCamelKeys](#deepcamelkeys)
   - [deepPascalKeys](#deeppascalkeys)
@@ -80,7 +80,7 @@ const result = capitalize(str);
 //    ^ 'Hello world'
 ```
 
-## Stronly-typed alternatives to native runtime utilities
+## Strongly-typed alternatives to native runtime utilities
 ### toUpperCase
 This function is a strongly-typed counterpart of `String.prototype.toUpperCase`.
 
@@ -169,7 +169,7 @@ const result = replaceAll(str, '-', ' ');
 //    ^ 'hello world '
 ```
 
-## Stronly-typed alternatives to common loosely-typed functions
+## Strongly-typed alternatives to common loosely-typed functions
 
 ### words
 This function identifies the words in a string and returns a tuple of words split by separators, differences in casing, numbers, and etc.
@@ -259,7 +259,7 @@ const result = toTitleCase(str);
 //    ^ 'Hello World'
 ```
 
-## Strongly-typed deep trasnformation of objects
+## Strongly-typed deep transformation of objects
 
 ### deepDelimiterKeys
 This function recursively converts the keys of an object to a new case with a custom delimiter at both runtime and type levels.
@@ -352,7 +352,7 @@ const result = deepConstantKeys(data);
 ```
 
 ## Type Utilities
-All the functions presented in this API have their type counterparts.
+All the functions presented in this API have associated type counterparts.
 
 ```ts
 import type * as St from 'string-ts';
@@ -426,7 +426,7 @@ St.IsSpecial<' '> // false
 
 ## Runtime-only utilities
 ### deepTransformKeys
-This function recursively converts the keys of an object to a custom format but only at runtime level.
+This function recursively converts the keys of an object to a custom format, but only at runtime level.
 
 ```ts
 import { deepTransformKeys, toUpperCase } from 'string-ts';
