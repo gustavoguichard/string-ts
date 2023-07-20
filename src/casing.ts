@@ -69,9 +69,8 @@ type CamelCase<T extends string> = Words<T> extends [infer first, ...infer rest]
  * @example toCamelCase('hello world') // 'helloWorld'
  */
 function toCamelCase<T extends string>(str: T) {
-  return words(str)
-    .map((v, i) => (i > 0 ? capitalize(toLowerCase(v)) : toLowerCase(v)))
-    .join('') as CamelCase<T>
+  const res = toPascalCase(str)
+  return (res.slice(0, 1).toLowerCase() + res.slice(1)) as CamelCase<T>
 }
 
 /**
@@ -85,7 +84,9 @@ type PascalCase<T extends string> = Capitalize<CamelCase<T>>
  * @example toPascalCase('hello world') // 'HelloWorld'
  */
 function toPascalCase<T extends string>(str: T): PascalCase<T> {
-  return capitalize(toCamelCase(str))
+  return words(str)
+    .map((v) => capitalize(toLowerCase(v)))
+    .join('') as PascalCase<T>
 }
 
 /**

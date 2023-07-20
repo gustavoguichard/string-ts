@@ -106,7 +106,7 @@ describe('key transformation', () => {
     type test = Expect<Equal<typeof result, typeof expected>>
   })
 
-  test('deepCamelKeys on object using screaming snake case', () => {
+  test('deepCamelKeys (SCREAMING_SNAKE_CASE)', () => {
     const obj = {
       NODE_ENV: 'development',
     }
