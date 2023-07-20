@@ -69,8 +69,9 @@ type CamelCase<T extends string> = Words<T> extends [infer first, ...infer rest]
  * @example toCamelCase('hello world') // 'helloWorld'
  */
 function toCamelCase<T extends string>(str: T) {
-  const result = words(str).map(toLowerCase).map(capitalize).join('')
-  return (result.slice(0, 1).toLowerCase() + result.slice(1)) as CamelCase<T>
+  return words(str)
+    .map((v, i) => (i > 0 ? capitalize(toLowerCase(v)) : toLowerCase(v)))
+    .join('') as CamelCase<T>
 }
 
 /**
