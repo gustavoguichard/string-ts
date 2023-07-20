@@ -88,6 +88,14 @@ describe('casing functions', () => {
     type test = Expect<Equal<typeof result, typeof expected>>
   })
 
+  test('toCamelCase (screaming_snake_case)', () => {
+    const value = 'EXAMPLE_VALUE'
+    const result = subject.toCamelCase(value)
+    const expected = 'exampleValue' as const
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
   test('toPascalCase', () => {
     const expected = 'SomeWeirdCased$*String1986FooBar' as const
     const result = subject.toPascalCase(weirdString)

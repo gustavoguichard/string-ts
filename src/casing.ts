@@ -1,4 +1,4 @@
-import { CapitalizeAll } from './internals'
+import { CapitalizeAll, LowercaseAll } from './internals'
 import { Join, join } from './primitives'
 import { Is, Words, words } from './utils'
 
@@ -55,7 +55,12 @@ function toDelimiterCase<T extends string, D extends string>(
  * Transforms a string to camelCase.
  */
 type CamelCase<T extends string> = Words<T> extends [infer first, ...infer rest]
-  ? Join<[Lowercase<Is<first, string>>, ...CapitalizeAll<Is<rest, string[]>>]>
+  ? Join<
+      [
+        Lowercase<Is<first, string>>,
+        ...CapitalizeAll<LowercaseAll<Is<rest, string[]>>>,
+      ]
+    >
   : T
 /**
  * A strongly typed version of `toCamelCase` that works in both runtime and type level.
@@ -64,7 +69,7 @@ type CamelCase<T extends string> = Words<T> extends [infer first, ...infer rest]
  * @example toCamelCase('hello world') // 'helloWorld'
  */
 function toCamelCase<T extends string>(str: T) {
-  const result = words(str).map(capitalize).join('')
+  const result = words(str).map(toLowerCase).map(capitalize).join('')
   return (result.slice(0, 1).toLowerCase() + result.slice(1)) as CamelCase<T>
 }
 

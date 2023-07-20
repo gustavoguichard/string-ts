@@ -53,5 +53,12 @@ type CapitalizeAll<T extends string[]> = T extends [infer First, ...infer Rest]
   ? [Capitalize<Is<First, string>>, ...CapitalizeAll<Is<Rest, string[]>>]
   : T
 
-export type { CapitalizeAll, Drop, DropSuffix }
+/**
+ * Lowercases all the words in a tuple of strings
+ */
+type LowercaseAll<T extends string[]> = T extends [infer First, ...infer Rest]
+  ? [Lowercase<Is<First, string>>, ...LowercaseAll<Is<Rest, string[]>>]
+  : T
+
+export type { CapitalizeAll, LowercaseAll, Drop, DropSuffix }
 export { typeOf }
