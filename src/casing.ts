@@ -1,4 +1,4 @@
-import { CapitalizeAll, LowercaseAll } from './internals'
+import { PascalCaseAll } from './internals'
 import { Join, join } from './primitives'
 import { Is, Words, words } from './utils'
 
@@ -55,12 +55,7 @@ function toDelimiterCase<T extends string, D extends string>(
  * Transforms a string to camelCase.
  */
 type CamelCase<T extends string> = Words<T> extends [infer first, ...infer rest]
-  ? Join<
-      [
-        Lowercase<Is<first, string>>,
-        ...CapitalizeAll<LowercaseAll<Is<rest, string[]>>>,
-      ]
-    >
+  ? Join<[Lowercase<Is<first, string>>, ...PascalCaseAll<Is<rest, string[]>>]>
   : T
 /**
  * A strongly typed version of `toCamelCase` that works in both runtime and type level.
@@ -76,7 +71,7 @@ function toCamelCase<T extends string>(str: T) {
 /**
  * Transforms a string to PascalCase.
  */
-type PascalCase<T extends string> = Capitalize<CamelCase<T>>
+type PascalCase<T extends string> = Join<PascalCaseAll<Is<Words<T>, string[]>>>
 /**
  * A strongly typed version of `toPascalCase` that works in both runtime and type level.
  * @param str the string to convert to pascal case.
