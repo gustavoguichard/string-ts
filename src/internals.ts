@@ -47,11 +47,14 @@ type DropSuffix<
 > = sentence extends `${infer rest}${suffix}` ? rest : sentence
 
 /**
- * Capitalizes all the words in a tuple of strings
+ * PascalCases all the words in a tuple of strings
  */
-type CapitalizeAll<T extends string[]> = T extends [infer First, ...infer Rest]
-  ? [Capitalize<Is<First, string>>, ...CapitalizeAll<Is<Rest, string[]>>]
+type PascalCaseAll<T extends string[]> = T extends [infer First, ...infer Rest]
+  ? [
+      Capitalize<Lowercase<Is<First, string>>>,
+      ...PascalCaseAll<Is<Rest, string[]>>,
+    ]
   : T
 
-export type { CapitalizeAll, Drop, DropSuffix }
+export type { PascalCaseAll, Drop, DropSuffix }
 export { typeOf }

@@ -1,4 +1,4 @@
-import { CapitalizeAll } from './internals'
+import { PascalCaseAll } from './internals'
 import { Join, join } from './primitives'
 import { Is, Words, words } from './utils'
 
@@ -54,9 +54,10 @@ function toDelimiterCase<T extends string, D extends string>(
 /**
  * Transforms a string to camelCase.
  */
-type CamelCase<T extends string> = Words<T> extends [infer first, ...infer rest]
-  ? Join<[Lowercase<Is<first, string>>, ...CapitalizeAll<Is<rest, string[]>>]>
-  : T
+type CamelCase<T extends string> =
+  PascalCase<T> extends `${infer first}${infer rest}`
+    ? `${Lowercase<first>}${rest}`
+    : T
 /**
  * A strongly typed version of `toCamelCase` that works in both runtime and type level.
  * @param str the string to convert to camel case.
@@ -64,14 +65,14 @@ type CamelCase<T extends string> = Words<T> extends [infer first, ...infer rest]
  * @example toCamelCase('hello world') // 'helloWorld'
  */
 function toCamelCase<T extends string>(str: T) {
-  const result = words(str).map(capitalize).join('')
-  return (result.slice(0, 1).toLowerCase() + result.slice(1)) as CamelCase<T>
+  const res = toPascalCase(str)
+  return (res.slice(0, 1).toLowerCase() + res.slice(1)) as CamelCase<T>
 }
 
 /**
  * Transforms a string to PascalCase.
  */
-type PascalCase<T extends string> = Capitalize<CamelCase<T>>
+type PascalCase<T extends string> = Join<PascalCaseAll<Is<Words<T>, string[]>>>
 /**
  * A strongly typed version of `toPascalCase` that works in both runtime and type level.
  * @param str the string to convert to pascal case.
@@ -79,7 +80,9 @@ type PascalCase<T extends string> = Capitalize<CamelCase<T>>
  * @example toPascalCase('hello world') // 'HelloWorld'
  */
 function toPascalCase<T extends string>(str: T): PascalCase<T> {
-  return capitalize(toCamelCase(str))
+  return words(str)
+    .map((v) => capitalize(toLowerCase(v)))
+    .join('') as PascalCase<T>
 }
 
 /**
