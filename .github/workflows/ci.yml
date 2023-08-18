@@ -1,0 +1,37 @@
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🪡 Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: 📦 Install Dependencies
+        run: npm install
+
+      - name: ⚡ Run tests
+        run: |
+          npm run test
+      - name: 🚦 Lint
+        run: |
+          npm run lint
+      - name: 🧙🏿‍♂️ TSC
+        run: |
+          npm run tsc
+      - name: 📥 Generate npm package
+        run: |
+          npm run build
