@@ -15,10 +15,11 @@
     "test": "vitest run"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "latest",
     "eslint": "latest",
     "prettier": "latest",
     "tsup": "latest",
-    "typescript": "^5.1.3",
+    "typescript": "^5.1.6",
     "vitest": "latest"
   },
   "files": [
