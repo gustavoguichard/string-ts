@@ -41,6 +41,7 @@ npm install string-ts
   - [join](#join)
   - [replace](#replace)
   - [replaceAll](#replaceall)
+  - [split](#split)
 - [Strongly-typed alternatives to common loosely-typed functions](#strongly-typed-alternatives-to-common-loosely-typed-functions)
   - [words](#words)
   - [toDelimiterCase](#todelimitercase)
@@ -167,6 +168,17 @@ import { replaceAll } from 'string-ts';
 const str = 'hello-world-' as const;
 const result = replaceAll(str, '-', ' ');
 //    ^ 'hello world '
+```
+
+### split
+This function is a strongly-typed counterpart of `String.prototype.split`.
+
+```ts
+import { split } from 'string-ts';
+
+const str = 'hello-world' as const;
+const result = split(str, '-');
+//    ^ ['hello', 'world']
 ```
 
 ## Strongly-typed alternatives to common loosely-typed functions
@@ -371,6 +383,7 @@ St.Words<'hello-world'> // ['hello', 'world']
 St.Join<['hello', 'world'], '-'> // 'hello-world'
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
 St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'
+St.Split<'hello-world', '-'> // ['hello', 'world']
 St.TrimStart<' hello world '> // 'hello world '
 St.TrimEnd<' hello world '> // ' hello world'
 St.Trim<' hello world '> // 'hello world'
