@@ -20,6 +20,9 @@ namespace TypeTests {
   type test6 = Expect<
     Equal<Subject.Trim<' some nice string '>, 'some nice string'>
   >
+  type test7 = Expect<
+    Equal<Subject.Split<'some nice string', ' '>, ['some', 'nice', 'string']>
+  >
 }
 
 describe('primitives', () => {
@@ -54,6 +57,15 @@ describe('primitives', () => {
       const result = subject.replaceAll(data, ' ')
       expect(result).toEqual('somenicestring')
       type test = Expect<Equal<typeof result, 'somenicestring'>>
+    })
+  })
+
+  test('split', () => {
+    test('should split a string by a delimiter into an array of substrings', () => {
+      const data = 'some nice string'
+      const result = subject.split(data, ' ')
+      expect(result).toEqual(['some', 'nice', 'string'])
+      type test = Expect<Equal<typeof result, ['some', 'nice', 'string']>>
     })
   })
 
