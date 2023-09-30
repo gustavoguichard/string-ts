@@ -54,10 +54,12 @@ function toDelimiterCase<T extends string, D extends string>(
 /**
  * Transforms a string to camelCase.
  */
-type CamelCase<T extends string> =
-  PascalCase<T> extends `${infer first}${infer rest}`
+type CamelCase<T extends string> = T extends unknown
+  ? PascalCase<T> extends `${infer first}${infer rest}`
     ? `${Lowercase<first>}${rest}`
     : T
+  : never
+
 /**
  * A strongly typed version of `toCamelCase` that works in both runtime and type level.
  * @param str the string to convert to camel case.
