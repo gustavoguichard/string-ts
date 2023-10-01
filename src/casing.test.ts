@@ -47,6 +47,12 @@ namespace TypeTransforms {
       'Some Weird Cased $* String 1986 Foo Bar W For Wumbo'
     >
   >
+  type test7 = Expect<
+    Equal<
+      Subject.CamelCase<'hello world' | 'Other Test' | 'whoops'>,
+      'helloWorld' | 'otherTest' | 'whoops'
+    >
+  >
 }
 
 describe('capitalize', () => {
