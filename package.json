@@ -28,9 +28,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gugaguichard/string-ts.git"
+    "url": "git+https://github.com/gustavoguichard/string-ts.git"
   },
   "bugs": {
-    "url": "https://github.com/gugaguichard/string-ts/issues"
+    "url": "https://github.com/gustavoguichard/string-ts/issues"
   }
 }
