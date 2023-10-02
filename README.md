@@ -6,7 +6,7 @@ When you are working with literal strings, the string manipulation functions onl
 You end up losing type information and possibly having to cast the result.
 
 ```ts
-const str = 'hello-world' as const;
+const str = 'hello-world';
 const result = str.replace('-', ' '); // you should use: as 'hello world'
 //    ^? string
 ```
@@ -17,7 +17,7 @@ This library aims to solve this problem by providing a set of common functions t
 ```ts
 import { replace } from 'string-ts';
 
-const str = 'hello-world' as const;
+const str = 'hello-world';
 const result = replace(str, '-', ' ');
 //    ^ 'hello world'
 ```
@@ -76,7 +76,7 @@ Capitalizes the first letter of a string. This is a runtime counterpart of `Capi
 ```ts
 import { capitalize } from 'string-ts';
 
-const str = 'hello world' as const;
+const str = 'hello world';
 const result = capitalize(str);
 //    ^ 'Hello world'
 ```
@@ -88,7 +88,7 @@ This function is a strongly-typed counterpart of `String.prototype.toUpperCase`.
 ```ts
 import { toUpperCase } from 'string-ts';
 
-const str = 'hello world' as const;
+const str = 'hello world';
 const result = toUpperCase(str);
 //    ^ 'HELLO WORLD'
 ```
@@ -99,7 +99,7 @@ This function is a strongly-typed counterpart of `String.prototype.toLowerCase`.
 ```ts
 import { toLowerCase } from 'string-ts';
 
-const str = 'HELLO WORLD' as const;
+const str = 'HELLO WORLD';
 const result = toLowerCase(str);
 //    ^ 'hello world'
 ```
@@ -110,7 +110,7 @@ This function is a strongly-typed counterpart of `String.prototype.trim`.
 ```ts
 import { trim } from 'string-ts';
 
-const str = '  hello world  ' as const;
+const str = '  hello world  ';
 const result = trim(str);
 //    ^ 'hello world'
 ```
@@ -121,7 +121,7 @@ This function is a strongly-typed counterpart of `String.prototype.trimStart`.
 ```ts
 import { trimStart } from 'string-ts';
 
-const str = '  hello world  ' as const;
+const str = '  hello world  ';
 const result = trimStart(str);
 //    ^ 'hello world  '
 ```
@@ -132,7 +132,7 @@ This function is a strongly-typed counterpart of `String.prototype.trimEnd`.
 ```ts
 import { trimEnd } from 'string-ts';
 
-const str = '  hello world  ' as const;
+const str = '  hello world  ';
 const result = trimEnd(str);
 //    ^ '  hello world'
 ```
@@ -154,7 +154,7 @@ This function is a strongly-typed counterpart of `String.prototype.replace`.
 ```ts
 import { replace } from 'string-ts';
 
-const str = 'hello-world-' as const;
+const str = 'hello-world-';
 const result = replace(str, '-', ' ');
 //    ^ 'hello world-'
 ```
@@ -165,7 +165,7 @@ This function is a strongly-typed counterpart of `String.prototype.replaceAll`.
 ```ts
 import { replaceAll } from 'string-ts';
 
-const str = 'hello-world-' as const;
+const str = 'hello-world-';
 const result = replaceAll(str, '-', ' ');
 //    ^ 'hello world '
 ```
@@ -176,7 +176,7 @@ This function is a strongly-typed counterpart of `String.prototype.split`.
 ```ts
 import { split } from 'string-ts';
 
-const str = 'hello-world' as const;
+const str = 'hello-world';
 const result = split(str, '-');
 //    ^ ['hello', 'world']
 ```
@@ -189,7 +189,7 @@ This function identifies the words in a string and returns a tuple of words spli
 ```ts
 import { words } from 'string-ts';
 
-const str = '-20someVery-weird String' as const;
+const str = '-20someVery-weird String';
 const result = words(str);
 //    ^ ['20', 'some', 'Very', 'weird', 'String']
 ```
@@ -200,7 +200,7 @@ This function converts a string to a new case with a custom delimiter at both ru
 ```ts
 import { toDelimiterCase } from 'string-ts';
 
-const str = 'helloWorld' as const;
+const str = 'helloWorld';
 const result = toDelimiterCase(str, '.');
 //    ^ 'hello.World'
 ```
@@ -211,7 +211,7 @@ This function converts a string to `camelCase` at both runtime and type levels.
 ```ts
 import { toCamelCase } from 'string-ts';
 
-const str = 'hello-world' as const;
+const str = 'hello-world';
 const result = toCamelCase(str);
 //    ^ 'helloWorld'
 ```
@@ -222,7 +222,7 @@ This function converts a string to `PascalCase` at both runtime and type levels.
 ```ts
 import { toPascalCase } from 'string-ts';
 
-const str = 'hello-world' as const;
+const str = 'hello-world';
 const result = toPascalCase(str);
 //    ^ 'HelloWorld'
 ```
@@ -233,7 +233,7 @@ This function converts a string to `kebab-case` at both runtime and type levels.
 ```ts
 import { toKebabCase } from 'string-ts';
 
-const str = 'helloWorld' as const;
+const str = 'helloWorld';
 const result = toKebabCase(str);
 //    ^ 'hello-world'
 ```
@@ -244,7 +244,7 @@ This function converts a string to `snake_case` at both runtime and type levels.
 ```ts
 import { toSnakeCase } from 'string-ts';
 
-const str = 'helloWorld' as const;
+const str = 'helloWorld';
 const result = toSnakeCase(str);
 //    ^ 'hello_world'
 ```
@@ -255,7 +255,7 @@ This function converts a string to `CONSTANT_CASE` at both runtime and type leve
 ```ts
 import { toConstantCase } from 'string-ts';
 
-const str = 'helloWorld' as const;
+const str = 'helloWorld';
 const result = toConstantCase(str);
 //    ^ 'HELLO_WORLD'
 ```
@@ -266,7 +266,7 @@ This function converts a string to `Title Case` at both runtime and type levels.
 ```ts
 import { toTitleCase } from 'string-ts';
 
-const str = 'helloWorld' as const;
+const str = 'helloWorld';
 const result = toTitleCase(str);
 //    ^ 'Hello World'
 ```
