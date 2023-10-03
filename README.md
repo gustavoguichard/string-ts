@@ -1,6 +1,6 @@
 # Strongly-typed string functions for all!
-![A demonstration of string-ts](https://github.com/gustavoguichard/string-ts/assets/566971/0aa5603f-871d-4eb7-8ace-6a73466cec4d)
 
+![A demonstration of string-ts](https://github.com/gustavoguichard/string-ts/assets/566971/0aa5603f-871d-4eb7-8ace-6a73466cec4d)
 
 ## 😬 The problem
 
@@ -87,39 +87,39 @@ npm install string-ts
 - [Runtime counterparts of native type utilities](#runtime-counterparts-of-native-type-utilities)
   - [capitalize](#capitalize)
 - [Strongly-typed alternatives to native runtime utilities](#strongly-typed-alternatives-to-native-runtime-utilities)
-  - [toUpperCase](#touppercase)
-  - [toLowerCase](#tolowercase)
-  - [trim](#trim)
-  - [trimStart](#trimstart)
-  - [trimEnd](#trimend)
   - [chartAt](#charat)
   - [join](#join)
   - [replace](#replace)
   - [replaceAll](#replaceall)
   - [split](#split)
+  - [toLowerCase](#tolowercase)
+  - [toUpperCase](#touppercase)
+  - [trim](#trim)
+  - [trimEnd](#trimend)
+  - [trimStart](#trimstart)
 - [Strongly-typed alternatives to common loosely-typed functions](#strongly-typed-alternatives-to-common-loosely-typed-functions)
-  - [words](#words)
-  - [toDelimiterCase](#todelimitercase)
   - [toCamelCase](#tocamelcase)
-  - [toPascalCase](#topascalcase)
-  - [toKebabCase](#tokebabcase)
-  - [toSnakeCase](#tosnakecase)
   - [toConstantCase](#toconstantcase)
+  - [toDelimiterCase](#todelimitercase)
+  - [toKebabCase](#tokebabcase)
+  - [toPascalCase](#topascalcase)
+  - [toSnakeCase](#tosnakecase)
   - [toTitleCase](#totitlecase)
+  - [words](#words)
 - [Strongly-typed shallow transformation of objects](#strongly-typed-shallow-transformation-of-objects)
-  - [DelimiterKeys](#delimiterkeys)
   - [CamelKeys](#camelkeys)
-  - [PascalKeys](#pascalkeys)
-  - [KebabKeys](#kebabkeys)
-  - [SnakeKeys](#snakekeys)
   - [ConstantKeys](#constantkeys)
+  - [DelimiterKeys](#delimiterkeys)
+  - [KebabKeys](#kebabkeys)
+  - [PascalKeys](#pascalkeys)
+  - [SnakeKeys](#snakekeys)
 - [Strongly-typed deep transformation of objects](#strongly-typed-deep-transformation-of-objects)
-  - [deepDelimiterKeys](#deepdelimiterkeys)
   - [deepCamelKeys](#deepcamelkeys)
-  - [deepPascalKeys](#deeppascalkeys)
-  - [deepKebabKeys](#deepkebabkeys)
-  - [deepSnakeKeys](#deepsnakekeys)
   - [deepConstantKeys](#deepconstantkeys)
+  - [deepDelimiterKeys](#deepdelimiterkeys)
+  - [deepKebabKeys](#deepkebabkeys)
+  - [deepPascalKeys](#deeppascalkeys)
+  - [deepSnakeKeys](#deepsnakekeys)
 - [Type Utilities](#type-utilities)
   - [Native TS type utilities](#native-ts-type-utilities)
   - [General Type utilities from this library](#general-type-utilities-from-this-library)
@@ -145,66 +145,6 @@ const result = capitalize(str)
 ```
 
 ## Strongly-typed alternatives to native runtime utilities
-
-### toUpperCase
-
-This function is a strongly-typed counterpart of `String.prototype.toUpperCase`.
-
-```ts
-import { toUpperCase } from 'string-ts'
-
-const str = 'hello world'
-const result = toUpperCase(str)
-//    ^ 'HELLO WORLD'
-```
-
-### toLowerCase
-
-This function is a strongly-typed counterpart of `String.prototype.toLowerCase`.
-
-```ts
-import { toLowerCase } from 'string-ts'
-
-const str = 'HELLO WORLD'
-const result = toLowerCase(str)
-//    ^ 'hello world'
-```
-
-### trim
-
-This function is a strongly-typed counterpart of `String.prototype.trim`.
-
-```ts
-import { trim } from 'string-ts'
-
-const str = '  hello world  '
-const result = trim(str)
-//    ^ 'hello world'
-```
-
-### trimStart
-
-This function is a strongly-typed counterpart of `String.prototype.trimStart`.
-
-```ts
-import { trimStart } from 'string-ts'
-
-const str = '  hello world  '
-const result = trimStart(str)
-//    ^ 'hello world  '
-```
-
-### trimEnd
-
-This function is a strongly-typed counterpart of `String.prototype.trimEnd`.
-
-```ts
-import { trimEnd } from 'string-ts'
-
-const str = '  hello world  '
-const result = trimEnd(str)
-//    ^ '  hello world'
-```
 
 ### charAt
 
@@ -266,31 +206,67 @@ const result = split(str, '-')
 //    ^ ['hello', 'world']
 ```
 
+### toLowerCase
+
+This function is a strongly-typed counterpart of `String.prototype.toLowerCase`.
+
+```ts
+import { toLowerCase } from 'string-ts'
+
+const str = 'HELLO WORLD'
+const result = toLowerCase(str)
+//    ^ 'hello world'
+```
+
+### toUpperCase
+
+This function is a strongly-typed counterpart of `String.prototype.toUpperCase`.
+
+```ts
+import { toUpperCase } from 'string-ts'
+
+const str = 'hello world'
+const result = toUpperCase(str)
+//    ^ 'HELLO WORLD'
+```
+
+### trim
+
+This function is a strongly-typed counterpart of `String.prototype.trim`.
+
+```ts
+import { trim } from 'string-ts'
+
+const str = '  hello world  '
+const result = trim(str)
+//    ^ 'hello world'
+```
+
+### trimEnd
+
+This function is a strongly-typed counterpart of `String.prototype.trimEnd`.
+
+```ts
+import { trimEnd } from 'string-ts'
+
+const str = '  hello world  '
+const result = trimEnd(str)
+//    ^ '  hello world'
+```
+
+### trimStart
+
+This function is a strongly-typed counterpart of `String.prototype.trimStart`.
+
+```ts
+import { trimStart } from 'string-ts'
+
+const str = '  hello world  '
+const result = trimStart(str)
+//    ^ 'hello world  '
+```
+
 ## Strongly-typed alternatives to common loosely-typed functions
-
-### words
-
-This function identifies the words in a string and returns a tuple of words split by separators, differences in casing, numbers, and etc.
-
-```ts
-import { words } from 'string-ts'
-
-const str = '-20someVery-weird String'
-const result = words(str)
-//    ^ ['20', 'some', 'Very', 'weird', 'String']
-```
-
-### toDelimiterCase
-
-This function converts a string to a new case with a custom delimiter at both runtime and type levels.
-
-```ts
-import { toDelimiterCase } from 'string-ts'
-
-const str = 'helloWorld'
-const result = toDelimiterCase(str, '.')
-//    ^ 'hello.World'
-```
 
 ### toCamelCase
 
@@ -302,42 +278,6 @@ import { toCamelCase } from 'string-ts'
 const str = 'hello-world'
 const result = toCamelCase(str)
 //    ^ 'helloWorld'
-```
-
-### toPascalCase
-
-This function converts a string to `PascalCase` at both runtime and type levels.
-
-```ts
-import { toPascalCase } from 'string-ts'
-
-const str = 'hello-world'
-const result = toPascalCase(str)
-//    ^ 'HelloWorld'
-```
-
-### toKebabCase
-
-This function converts a string to `kebab-case` at both runtime and type levels.
-
-```ts
-import { toKebabCase } from 'string-ts'
-
-const str = 'helloWorld'
-const result = toKebabCase(str)
-//    ^ 'hello-world'
-```
-
-### toSnakeCase
-
-This function converts a string to `snake_case` at both runtime and type levels.
-
-```ts
-import { toSnakeCase } from 'string-ts'
-
-const str = 'helloWorld'
-const result = toSnakeCase(str)
-//    ^ 'hello_world'
 ```
 
 ### toConstantCase
@@ -352,6 +292,54 @@ const result = toConstantCase(str)
 //    ^ 'HELLO_WORLD'
 ```
 
+### toDelimiterCase
+
+This function converts a string to a new case with a custom delimiter at both runtime and type levels.
+
+```ts
+import { toDelimiterCase } from 'string-ts'
+
+const str = 'helloWorld'
+const result = toDelimiterCase(str, '.')
+//    ^ 'hello.World'
+```
+
+### toKebabCase
+
+This function converts a string to `kebab-case` at both runtime and type levels.
+
+```ts
+import { toKebabCase } from 'string-ts'
+
+const str = 'helloWorld'
+const result = toKebabCase(str)
+//    ^ 'hello-world'
+```
+
+### toPascalCase
+
+This function converts a string to `PascalCase` at both runtime and type levels.
+
+```ts
+import { toPascalCase } from 'string-ts'
+
+const str = 'hello-world'
+const result = toPascalCase(str)
+//    ^ 'HelloWorld'
+```
+
+### toSnakeCase
+
+This function converts a string to `snake_case` at both runtime and type levels.
+
+```ts
+import { toSnakeCase } from 'string-ts'
+
+const str = 'helloWorld'
+const result = toSnakeCase(str)
+//    ^ 'hello_world'
+```
+
 ### toTitleCase
 
 This function converts a string to `Title Case` at both runtime and type levels.
@@ -364,23 +352,19 @@ const result = toTitleCase(str)
 //    ^ 'Hello World'
 ```
 
-## Strongly-typed shallow transformation of objects
+### words
 
-### delimiterKeys
-
-This function shallowly converts the keys of an object to a new case with a custom delimiter at both runtime and type levels.
+This function identifies the words in a string and returns a tuple of words split by separators, differences in casing, numbers, and etc.
 
 ```ts
-import { delimiterKeys } from 'string-ts'
+import { words } from 'string-ts'
 
-const data = {
-  'hello-world': {
-    'foo-bar': 'baz',
-  },
-} as const
-const result = delimiterKeys(data, '.')
-//    ^ { 'hello.world': { 'foo-bar': 'baz' } }
+const str = '-20someVery-weird String'
+const result = words(str)
+//    ^ ['20', 'some', 'Very', 'weird', 'String']
 ```
+
+## Strongly-typed shallow transformation of objects
 
 ### camelKeys
 
@@ -396,54 +380,6 @@ const data = {
 } as const
 const result = camelKeys(data)
 //    ^ { helloWorld: { 'foo-bar': 'baz' } }
-```
-
-### pascalKeys
-
-This function shallowly converts the keys of an object to `PascalCase` at both runtime and type levels.
-
-```ts
-import { pascalKeys } from 'string-ts'
-
-const data = {
-  'hello-world': {
-    'foo-bar': 'baz',
-  },
-} as const
-const result = pascalKeys(data)
-//    ^ { HelloWorld: { FooBar: 'baz' } }
-```
-
-### kebabKeys
-
-This function shallowly converts the keys of an object to `kebab-case` at both runtime and type levels.
-
-```ts
-import { kebabKeys } from 'string-ts'
-
-const data = {
-  helloWorld: {
-    fooBar: 'baz',
-  },
-} as const
-const result = kebabKeys(data)
-//    ^ { 'hello-world': { fooBar: 'baz' } }
-```
-
-### snakeKeys
-
-This function shallowly converts the keys of an object to `snake_case` at both runtime and type levels.
-
-```ts
-import { snakeKeys } from 'string-ts'
-
-const data = {
-  helloWorld: {
-    fooBar: 'baz',
-  },
-} as const
-const result = snakeKeys(data)
-//    ^ { 'hello_world': { 'fooBar': 'baz' } }
 ```
 
 ### constantKeys
@@ -462,23 +398,71 @@ const result = constantKeys(data)
 //    ^ { 'HELLO_WORLD': { 'fooBar': 'baz' } }
 ```
 
-## Strongly-typed deep transformation of objects
+### delimiterKeys
 
-### deepDelimiterKeys
-
-This function recursively converts the keys of an object to a new case with a custom delimiter at both runtime and type levels.
+This function shallowly converts the keys of an object to a new case with a custom delimiter at both runtime and type levels.
 
 ```ts
-import { deepDelimiterKeys } from 'string-ts'
+import { delimiterKeys } from 'string-ts'
 
 const data = {
   'hello-world': {
     'foo-bar': 'baz',
   },
 } as const
-const result = deepDelimiterKeys(data, '.')
-//    ^ { 'hello.world': { 'foo.bar': 'baz' } }
+const result = delimiterKeys(data, '.')
+//    ^ { 'hello.world': { 'foo-bar': 'baz' } }
 ```
+
+### kebabKeys
+
+This function shallowly converts the keys of an object to `kebab-case` at both runtime and type levels.
+
+```ts
+import { kebabKeys } from 'string-ts'
+
+const data = {
+  helloWorld: {
+    fooBar: 'baz',
+  },
+} as const
+const result = kebabKeys(data)
+//    ^ { 'hello-world': { fooBar: 'baz' } }
+```
+
+### pascalKeys
+
+This function shallowly converts the keys of an object to `PascalCase` at both runtime and type levels.
+
+```ts
+import { pascalKeys } from 'string-ts'
+
+const data = {
+  'hello-world': {
+    'foo-bar': 'baz',
+  },
+} as const
+const result = pascalKeys(data)
+//    ^ { HelloWorld: { FooBar: 'baz' } }
+```
+
+### snakeKeys
+
+This function shallowly converts the keys of an object to `snake_case` at both runtime and type levels.
+
+```ts
+import { snakeKeys } from 'string-ts'
+
+const data = {
+  helloWorld: {
+    fooBar: 'baz',
+  },
+} as const
+const result = snakeKeys(data)
+//    ^ { 'hello_world': { 'fooBar': 'baz' } }
+```
+
+## Strongly-typed deep transformation of objects
 
 ### deepCamelKeys
 
@@ -496,20 +480,36 @@ const result = deepCamelKeys(data)
 //    ^ { helloWorld: { fooBar: 'baz' } }
 ```
 
-### deepPascalKeys
+### deepConstantKeys
 
-This function recursively converts the keys of an object to `PascalCase` at both runtime and type levels.
+This function recursively converts the keys of an object to `CONSTANT_CASE` at both runtime and type levels.
 
 ```ts
-import { deepPascalKeys } from 'string-ts'
+import { deepConstantKeys } from 'string-ts'
+
+const data = {
+  helloWorld: {
+    fooBar: 'baz',
+  },
+} as const
+const result = deepConstantKeys(data)
+//    ^ { 'HELLO_WORLD': { 'FOO_BAR': 'baz' } }
+```
+
+### deepDelimiterKeys
+
+This function recursively converts the keys of an object to a new case with a custom delimiter at both runtime and type levels.
+
+```ts
+import { deepDelimiterKeys } from 'string-ts'
 
 const data = {
   'hello-world': {
     'foo-bar': 'baz',
   },
 } as const
-const result = deepPascalKeys(data)
-//    ^ { HelloWorld: { FooBar: 'baz' } }
+const result = deepDelimiterKeys(data, '.')
+//    ^ { 'hello.world': { 'foo.bar': 'baz' } }
 ```
 
 ### deepKebabKeys
@@ -528,6 +528,22 @@ const result = deepKebabKeys(data)
 //    ^ { 'hello-world': { 'foo-bar': 'baz' } }
 ```
 
+### deepPascalKeys
+
+This function recursively converts the keys of an object to `PascalCase` at both runtime and type levels.
+
+```ts
+import { deepPascalKeys } from 'string-ts'
+
+const data = {
+  'hello-world': {
+    'foo-bar': 'baz',
+  },
+} as const
+const result = deepPascalKeys(data)
+//    ^ { HelloWorld: { FooBar: 'baz' } }
+```
+
 ### deepSnakeKeys
 
 This function recursively converts the keys of an object to `snake_case` at both runtime and type levels.
@@ -542,22 +558,6 @@ const data = {
 } as const
 const result = deepSnakeKeys(data)
 //    ^ { 'hello_world': { 'foo_bar': 'baz' } }
-```
-
-### deepConstantKeys
-
-This function recursively converts the keys of an object to `CONSTANT_CASE` at both runtime and type levels.
-
-```ts
-import { deepConstantKeys } from 'string-ts'
-
-const data = {
-  helloWorld: {
-    fooBar: 'baz',
-  },
-} as const
-const result = deepConstantKeys(data)
-//    ^ { 'HELLO_WORLD': { 'FOO_BAR': 'baz' } }
 ```
 
 ## Type Utilities
@@ -579,60 +579,51 @@ Uppercase<'hello world'> // 'HELLO WORLD'
 ### General Type utilities from this library
 
 ```ts
-St.Words<'hello-world'> // ['hello', 'world']
 St.CharAt<'hello world', 6> // 'w'
 St.Join<['hello', 'world'], '-'> // 'hello-world'
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
 St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'
 St.Split<'hello-world', '-'> // ['hello', 'world']
-St.TrimStart<' hello world '> // 'hello world '
-St.TrimEnd<' hello world '> // ' hello world'
 St.Trim<' hello world '> // 'hello world'
+St.TrimEnd<' hello world '> // ' hello world'
+St.TrimStart<' hello world '> // 'hello world '
+St.Words<'hello-world'> // ['hello', 'world']
 ```
 
 ### Casing type utilities
 
 ```ts
 St.CamelCase<'hello-world'> // 'helloWorld'
-St.PascalCase<'hello-world'> // 'HelloWorld'
-St.KebabCase<'helloWorld'> // 'hello-world'
-St.SnakeCase<'helloWorld'> // 'hello_world'
 St.ConstantCase<'helloWorld'> // 'HELLO_WORLD'
-St.TitleCase<'helloWorld'> // 'Hello World'
 St.DelimiterCase<'hello world', '.'> // 'hello.world'
+St.KebabCase<'helloWorld'> // 'hello-world'
+St.PascalCase<'hello-world'> // 'HelloWorld'
+St.SnakeCase<'helloWorld'> // 'hello_world'
+St.TitleCase<'helloWorld'> // 'Hello World'
 
 // SHALLOW OBJECT KEY TRANSFORMATION
 St.CamelKeys<{
   'hello-world': { 'foo-bar': 'baz' }
 }> // { helloWorld: { 'foo-bar': 'baz' } }
-St.PascalKeys<{
-  'hello-world': { 'foo-bar': 'baz' }
-}> // { HelloWorld: { 'foo-bar': 'baz' } }
-St.KebabKeys<{
-  helloWorld: { fooBar: 'baz' }
-}> // { 'hello-world': { fooBar: 'baz' } }
-St.SnakeKeys<{
-  helloWorld: { fooBar: 'baz' }
-}> // { 'hello_world': { fooBar: 'baz' } }
 St.ConstantKeys<{
   helloWorld: { fooBar: 'baz' }
 }> // { 'HELLO_WORLD': { fooBar: 'baz' } }
 St.DelimiterKeys<{ 'hello-world': { 'foo-bar': 'baz' } }, '.'>
 // { 'hello.world': { 'foo-bar': 'baz' } }
+St.KebabKeys<{
+  helloWorld: { fooBar: 'baz' }
+}> // { 'hello-world': { fooBar: 'baz' } }
+St.PascalKeys<{
+  'hello-world': { 'foo-bar': 'baz' }
+}> // { HelloWorld: { 'foo-bar': 'baz' } }
+St.SnakeKeys<{
+  helloWorld: { fooBar: 'baz' }
+}> // { 'hello_world': { fooBar: 'baz' } }
 
 // DEEP OBJECT KEY TRANSFORMATION
 St.DeepCamelKeys<{
   'hello-world': { 'foo-bar': 'baz' }
 }> // { helloWorld: { fooBar: 'baz' } }
-St.DeepPascalKeys<{
-  'hello-world': { 'foo-bar': 'baz' }
-}> // { HelloWorld: { FooBar: 'baz' } }
-St.DeepKebabKeys<{
-  helloWorld: { fooBar: 'baz' }
-}> // { 'hello-world': { 'foo-bar': 'baz' } }
-St.DeepSnakeKeys<{
-  helloWorld: { fooBar: 'baz' }
-}> // { 'hello_world': { 'foo_bar': 'baz' } }
 St.DeepConstantKeys<{
   helloWorld: { fooBar: 'baz' }
 }> // { 'HELLO_WORLD': { 'FOO_BAR': 'baz' } }
@@ -642,6 +633,15 @@ St.DeepDelimiterKeys<
   },
   '.'
 > // { 'hello.world': { 'foo.bar': 'baz' } }
+St.DeepKebabKeys<{
+  helloWorld: { fooBar: 'baz' }
+}> // { 'hello-world': { 'foo-bar': 'baz' } }
+St.DeepPascalKeys<{
+  'hello-world': { 'foo-bar': 'baz' }
+}> // { HelloWorld: { FooBar: 'baz' } }
+St.DeepSnakeKeys<{
+  helloWorld: { fooBar: 'baz' }
+}> // { 'hello_world': { 'foo_bar': 'baz' } }
 ```
 
 ### Other exported type utilities
