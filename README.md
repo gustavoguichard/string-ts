@@ -367,92 +367,98 @@ const result = toTitleCase(str)
 ## Strongly-typed shallow transformation of objects
 
 ### delimiterKeys
+
 This function shallowly converts the keys of an object to a new case with a custom delimiter at both runtime and type levels.
 
 ```ts
-import { delimiterKeys } from 'string-ts';
+import { delimiterKeys } from 'string-ts'
 
 const data = {
   'hello-world': {
     'foo-bar': 'baz',
   },
-} as const;
-const result = delimiterKeys(data, '.');
+} as const
+const result = delimiterKeys(data, '.')
 //    ^ { 'hello.world': { 'foo-bar': 'baz' } }
 ```
 
 ### camelKeys
+
 This function shallowly converts the keys of an object to `camelCase` at both runtime and type levels.
 
 ```ts
-import { camelKeys } from 'string-ts';
+import { camelKeys } from 'string-ts'
 
 const data = {
   'hello-world': {
     'foo-bar': 'baz',
   },
-} as const;
-const result = camelKeys(data);
+} as const
+const result = camelKeys(data)
 //    ^ { helloWorld: { 'foo-bar': 'baz' } }
 ```
 
 ### pascalKeys
+
 This function shallowly converts the keys of an object to `PascalCase` at both runtime and type levels.
 
 ```ts
-import { pascalKeys } from 'string-ts';
+import { pascalKeys } from 'string-ts'
 
 const data = {
   'hello-world': {
     'foo-bar': 'baz',
   },
-} as const;
-const result = pascalKeys(data);
+} as const
+const result = pascalKeys(data)
 //    ^ { HelloWorld: { FooBar: 'baz' } }
 ```
 
 ### kebabKeys
+
 This function shallowly converts the keys of an object to `kebab-case` at both runtime and type levels.
 
 ```ts
-import { kebabKeys } from 'string-ts';
+import { kebabKeys } from 'string-ts'
 
 const data = {
-  'helloWorld': {
-    'fooBar': 'baz',
+  helloWorld: {
+    fooBar: 'baz',
   },
-} as const;
-const result = kebabKeys(data);
+} as const
+const result = kebabKeys(data)
 //    ^ { 'hello-world': { fooBar: 'baz' } }
 ```
 
 ### snakeKeys
+
 This function shallowly converts the keys of an object to `snake_case` at both runtime and type levels.
 
 ```ts
-import { snakeKeys } from 'string-ts';
+import { snakeKeys } from 'string-ts'
 
 const data = {
-  'helloWorld': {
-    'fooBar': 'baz',
+  helloWorld: {
+    fooBar: 'baz',
   },
-} as const;
-const result = snakeKeys(data);
+} as const
+const result = snakeKeys(data)
 //    ^ { 'hello_world': { 'fooBar': 'baz' } }
 ```
 
 ### constantKeys
+
 This function shallowly converts the keys of an object to `CONSTANT_CASE` at both runtime and type levels.
 
 ```ts
-import { constantKeys } from 'string-ts';
+import { constantKeys } from 'string-ts'
 
 const data = {
-  'helloWorld': {
-    'fooBar': 'baz',
+  helloWorld: {
+    fooBar: 'baz',
   },
-} as const;
-const result = constantKeys(data);
+} as const
+const result = constantKeys(data)
 //    ^ { 'HELLO_WORLD': { 'fooBar': 'baz' } }
 ```
 
@@ -595,12 +601,26 @@ St.ConstantCase<'helloWorld'> // 'HELLO_WORLD'
 St.TitleCase<'helloWorld'> // 'Hello World'
 St.DelimiterCase<'hello world', '.'> // 'hello.world'
 
-St.DeepDelimiterKeys<
-  {
-    'hello-world': { 'foo-bar': 'baz' }
-  },
-  '.'
-> // { 'hello.world': { 'foo.bar': 'baz' } }
+// SHALLOW OBJECT KEY TRANSFORMATION
+St.CamelKeys<{
+  'hello-world': { 'foo-bar': 'baz' }
+}> // { helloWorld: { 'foo-bar': 'baz' } }
+St.PascalKeys<{
+  'hello-world': { 'foo-bar': 'baz' }
+}> // { HelloWorld: { 'foo-bar': 'baz' } }
+St.KebabKeys<{
+  helloWorld: { fooBar: 'baz' }
+}> // { 'hello-world': { fooBar: 'baz' } }
+St.SnakeKeys<{
+  helloWorld: { fooBar: 'baz' }
+}> // { 'hello_world': { fooBar: 'baz' } }
+St.ConstantKeys<{
+  helloWorld: { fooBar: 'baz' }
+}> // { 'HELLO_WORLD': { fooBar: 'baz' } }
+St.DelimiterKeys<{ 'hello-world': { 'foo-bar': 'baz' } }, '.'>
+// { 'hello.world': { 'foo-bar': 'baz' } }
+
+// DEEP OBJECT KEY TRANSFORMATION
 St.DeepCamelKeys<{
   'hello-world': { 'foo-bar': 'baz' }
 }> // { helloWorld: { fooBar: 'baz' } }
@@ -616,6 +636,12 @@ St.DeepSnakeKeys<{
 St.DeepConstantKeys<{
   helloWorld: { fooBar: 'baz' }
 }> // { 'HELLO_WORLD': { 'FOO_BAR': 'baz' } }
+St.DeepDelimiterKeys<
+  {
+    'hello-world': { 'foo-bar': 'baz' }
+  },
+  '.'
+> // { 'hello.world': { 'foo.bar': 'baz' } }
 ```
 
 ### Other exported type utilities
