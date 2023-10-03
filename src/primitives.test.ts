@@ -23,9 +23,19 @@ namespace TypeTests {
   type test7 = Expect<
     Equal<Subject.Split<'some nice string', ' '>, ['some', 'nice', 'string']>
   >
+  type test8 = Expect<Equal<Subject.CharAt<'some nice string', 5>, 'n'>>
 }
 
 describe('primitives', () => {
+  describe('charAt', () => {
+    test('should get the character of a string at the given index in both type and runtime level', () => {
+      const data = 'some nice string'
+      const result = subject.charAt(data, 5)
+      expect(result).toEqual('n')
+      type test = Expect<Equal<typeof result, 'n'>>
+    })
+  })
+
   describe('join', () => {
     test('should join words in both type level and runtime level', () => {
       const data = ['a', 'b', 'c'] as const

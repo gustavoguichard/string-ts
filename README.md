@@ -38,6 +38,7 @@ npm install string-ts
   - [trim](#trim)
   - [trimStart](#trimstart)
   - [trimEnd](#trimend)
+  - [chartAt](#charat)
   - [join](#join)
   - [replace](#replace)
   - [replaceAll](#replaceall)
@@ -135,6 +136,17 @@ import { trimEnd } from 'string-ts';
 const str = '  hello world  ';
 const result = trimEnd(str);
 //    ^ '  hello world'
+```
+
+### charAt
+This function is a strongly-typed counterpart of `String.prototype.charAt`.
+
+```ts
+import { charAt } from 'string-ts';
+
+const str = 'hello world';
+const result = charAt(str, 6);
+//    ^ 'w'
 ```
 
 ### join
@@ -380,6 +392,7 @@ Uppercase<'hello world'> // 'HELLO WORLD'
 ### General Type utilities from this library
 ```ts
 St.Words<'hello-world'> // ['hello', 'world']
+St.CharAt<'hello world', 6> // 'w'
 St.Join<['hello', 'world'], '-'> // 'hello-world'
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
 St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'

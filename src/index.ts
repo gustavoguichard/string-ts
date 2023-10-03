@@ -1,5 +1,6 @@
 // PRIMITIVES
 export type {
+  CharAt,
   Join,
   Replace,
   ReplaceAll,
@@ -9,6 +10,7 @@ export type {
   Trim,
 } from './primitives'
 export {
+  charAt,
   join,
   replace,
   replaceAll,

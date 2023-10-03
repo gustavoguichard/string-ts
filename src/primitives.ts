@@ -1,8 +1,26 @@
-import type { Is } from './utils'
+/**
+ * Gets the character at the given index.
+ * T: The string to get the character from.
+ * index: The index of the character.
+ */
+type CharAt<T extends string, index extends number> = Split<T, ''>[index]
+/**
+ * A strongly typed version of `String.prototype.charAt`.
+ * @param str the string to get the character from.
+ * @param index the index of the character.
+ * @returns the character in both type level and runtime.
+ * @example charAt('hello world', 6) // 'w'
+ */
+function charAt<T extends string, I extends number>(
+  str: T,
+  index: I,
+): CharAt<T, I> {
+  return str.charAt(index)
+}
 
 /**
  * Joins a tuple of strings with the given delimiter.
- * T: The current tuple of strings.
+ * T: The tuple of strings to join.
  * delimiter: The delimiter.
  */
 type Join<
@@ -171,5 +189,14 @@ function trim<T extends string>(str: T) {
   return str.trim() as Trim<T>
 }
 
-export type { Join, Replace, ReplaceAll, Split, TrimStart, TrimEnd, Trim }
-export { join, replace, replaceAll, split, trim, trimStart, trimEnd }
+export type {
+  CharAt,
+  Join,
+  Replace,
+  ReplaceAll,
+  Split,
+  TrimStart,
+  TrimEnd,
+  Trim,
+}
+export { charAt, join, replace, replaceAll, split, trim, trimStart, trimEnd }
