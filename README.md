@@ -51,7 +51,7 @@ npm install string-ts
   - [toSnakeCase](#tosnakecase)
   - [toConstantCase](#toconstantcase)
   - [toTitleCase](#totitlecase)
-- [Strongly-typed deep transformation of objects](#strongly-typed-transformation-of-objects)
+- [Strongly-typed shallow transformation of objects](#strongly-typed-shallow-transformation-of-objects)
   - [DelimiterKeys](#delimiterkeys)
   - [CamelKeys](#camelkeys)
   - [PascalKeys](#pascalkeys)
@@ -278,10 +278,10 @@ const result = toTitleCase(str);
 //    ^ 'Hello World'
 ```
 
-## Strongly-typed transformation of objects
+## Strongly-typed shallow transformation of objects
 
 ### delimiterKeys
-This function recursively converts the keys of an object to a new case with a custom delimiter at both runtime and type levels.
+This function shallowly converts the keys of an object to a new case with a custom delimiter at both runtime and type levels.
 
 ```ts
 import { delimiterKeys } from 'string-ts';
@@ -296,7 +296,7 @@ const result = delimiterKeys(data, '.');
 ```
 
 ### camelKeys
-This function recursively converts the keys of an object to `camelCase` at both runtime and type levels.
+This function shallowly converts the keys of an object to `camelCase` at both runtime and type levels.
 
 ```ts
 import { camelKeys } from 'string-ts';
@@ -311,7 +311,7 @@ const result = camelKeys(data);
 ```
 
 ### pascalKeys
-This function recursively converts the keys of an object to `PascalCase` at both runtime and type levels.
+This function shallowly converts the keys of an object to `PascalCase` at both runtime and type levels.
 
 ```ts
 import { pascalKeys } from 'string-ts';
@@ -326,7 +326,7 @@ const result = pascalKeys(data);
 ```
 
 ### kebabKeys
-This function recursively converts the keys of an object to `kebab-case` at both runtime and type levels.
+This function shallowly converts the keys of an object to `kebab-case` at both runtime and type levels.
 
 ```ts
 import { kebabKeys } from 'string-ts';
@@ -341,7 +341,7 @@ const result = kebabKeys(data);
 ```
 
 ### snakeKeys
-This function recursively converts the keys of an object to `snake_case` at both runtime and type levels.
+This function shallowly converts the keys of an object to `snake_case` at both runtime and type levels.
 
 ```ts
 import { snakeKeys } from 'string-ts';
@@ -356,7 +356,7 @@ const result = snakeKeys(data);
 ```
 
 ### constantKeys
-This function recursively converts the keys of an object to `CONSTANT_CASE` at both runtime and type levels.
+This function shallowly converts the keys of an object to `CONSTANT_CASE` at both runtime and type levels.
 
 ```ts
 import { constantKeys } from 'string-ts';
