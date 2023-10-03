@@ -334,4 +334,18 @@ describe('key transformation', () => {
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, typeof expected>>
   })
+
+  test('deepTransformKeys should handle null properly', () => {
+    const expected = null
+    const result = subject.deepConstantKeys(null)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
+  test('transformKeys should handle null properly', () => {
+    const expected = null
+    const result = subject.constantKeys(null)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
 })
