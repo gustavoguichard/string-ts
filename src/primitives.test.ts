@@ -28,7 +28,7 @@ namespace TypeTests {
 describe('primitives', () => {
   describe('join', () => {
     test('should join words in both type level and runtime level', () => {
-      const data: ['a', 'b', 'c'] = ['a', 'b', 'c']
+      const data = ['a', 'b', 'c'] as const
       const result = subject.join(data, '-')
       expect(result).toEqual('a-b-c')
       type test = Expect<Equal<typeof result, 'a-b-c'>>

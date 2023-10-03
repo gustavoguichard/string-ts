@@ -143,7 +143,7 @@ This function is a strongly-typed counterpart of `Array.prototype.join`.
 ```ts
 import { join } from 'string-ts';
 
-const str = ['hello', 'world'] as ['hello', 'world'];
+const str = ['hello', 'world'] as const;
 const result = join(str, ' ');
 //    ^ 'hello world'
 ```

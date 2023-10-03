@@ -1,4 +1,4 @@
-import { Is } from './utils'
+import type { Is } from './utils'
 
 /**
  * Joins a tuple of strings with the given delimiter.
@@ -6,14 +6,17 @@ import { Is } from './utils'
  * delimiter: The delimiter.
  */
 type Join<
-  T extends string[],
+  T extends readonly string[],
   delimiter extends string = '',
 > = string[] extends T
   ? string // Avoid spending resources on a wide type
-  : T extends [infer first, ...infer rest]
+  : T extends readonly [
+      infer first extends string,
+      ...infer rest extends string[],
+    ]
   ? rest extends []
     ? first
-    : `${Is<first, string>}${delimiter}${Join<Is<rest, string[]>, delimiter>}`
+    : `${first}${delimiter}${Join<rest, delimiter>}`
   : ''
 
 /**
@@ -23,7 +26,7 @@ type Join<
  * @returns the joined string in both type level and runtime.
  * @example join(['hello', 'world'], '-') // 'hello-world'
  */
-function join<T extends string[], D extends string = ''>(
+function join<const T extends readonly string[], D extends string = ''>(
   tuple: T,
   delimiter?: D,
 ) {
