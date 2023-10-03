@@ -60,14 +60,22 @@ export {
 
 // KEY CASING
 export type {
+  CamelKeys,
+  ConstantKeys,
   DeepCamelKeys,
   DeepConstantKeys,
   DeepDelimiterKeys,
   DeepKebabKeys,
   DeepPascalKeys,
   DeepSnakeKeys,
+  DelimiterKeys,
+  KebabKeys,
+  PascalKeys,
+  SnakeKeys,
 } from './key-casing'
 export {
+  camelKeys,
+  constantKeys,
   deepCamelKeys,
   deepConstantKeys,
   deepDelimiterKeys,
@@ -75,4 +83,8 @@ export {
   deepPascalKeys,
   deepSnakeKeys,
   deepTransformKeys,
+  delimiterKeys,
+  kebabKeys,
+  pascalKeys,
+  snakeKeys,
 } from './key-casing'

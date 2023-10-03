@@ -104,6 +104,13 @@ npm install string-ts
   - [toSnakeCase](#tosnakecase)
   - [toConstantCase](#toconstantcase)
   - [toTitleCase](#totitlecase)
+- [Strongly-typed shallow transformation of objects](#strongly-typed-shallow-transformation-of-objects)
+  - [DelimiterKeys](#delimiterkeys)
+  - [CamelKeys](#camelkeys)
+  - [PascalKeys](#pascalkeys)
+  - [KebabKeys](#kebabkeys)
+  - [SnakeKeys](#snakekeys)
+  - [ConstantKeys](#constantkeys)
 - [Strongly-typed deep transformation of objects](#strongly-typed-deep-transformation-of-objects)
   - [deepDelimiterKeys](#deepdelimiterkeys)
   - [deepCamelKeys](#deepcamelkeys)
@@ -353,6 +360,98 @@ import { toTitleCase } from 'string-ts'
 const str = 'helloWorld'
 const result = toTitleCase(str)
 //    ^ 'Hello World'
+```
+
+## Strongly-typed shallow transformation of objects
+
+### delimiterKeys
+This function shallowly converts the keys of an object to a new case with a custom delimiter at both runtime and type levels.
+
+```ts
+import { delimiterKeys } from 'string-ts';
+
+const data = {
+  'hello-world': {
+    'foo-bar': 'baz',
+  },
+} as const;
+const result = delimiterKeys(data, '.');
+//    ^ { 'hello.world': { 'foo-bar': 'baz' } }
+```
+
+### camelKeys
+This function shallowly converts the keys of an object to `camelCase` at both runtime and type levels.
+
+```ts
+import { camelKeys } from 'string-ts';
+
+const data = {
+  'hello-world': {
+    'foo-bar': 'baz',
+  },
+} as const;
+const result = camelKeys(data);
+//    ^ { helloWorld: { 'foo-bar': 'baz' } }
+```
+
+### pascalKeys
+This function shallowly converts the keys of an object to `PascalCase` at both runtime and type levels.
+
+```ts
+import { pascalKeys } from 'string-ts';
+
+const data = {
+  'hello-world': {
+    'foo-bar': 'baz',
+  },
+} as const;
+const result = pascalKeys(data);
+//    ^ { HelloWorld: { FooBar: 'baz' } }
+```
+
+### kebabKeys
+This function shallowly converts the keys of an object to `kebab-case` at both runtime and type levels.
+
+```ts
+import { kebabKeys } from 'string-ts';
+
+const data = {
+  'helloWorld': {
+    'fooBar': 'baz',
+  },
+} as const;
+const result = kebabKeys(data);
+//    ^ { 'hello-world': { fooBar: 'baz' } }
+```
+
+### snakeKeys
+This function shallowly converts the keys of an object to `snake_case` at both runtime and type levels.
+
+```ts
+import { snakeKeys } from 'string-ts';
+
+const data = {
+  'helloWorld': {
+    'fooBar': 'baz',
+  },
+} as const;
+const result = snakeKeys(data);
+//    ^ { 'hello_world': { 'fooBar': 'baz' } }
+```
+
+### constantKeys
+This function shallowly converts the keys of an object to `CONSTANT_CASE` at both runtime and type levels.
+
+```ts
+import { constantKeys } from 'string-ts';
+
+const data = {
+  'helloWorld': {
+    'fooBar': 'baz',
+  },
+} as const;
+const result = constantKeys(data);
+//    ^ { 'HELLO_WORLD': { 'fooBar': 'baz' } }
 ```
 
 ## Strongly-typed deep transformation of objects
