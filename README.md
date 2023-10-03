@@ -64,7 +64,7 @@ function getEnvPrecise() {
 
   // Error: Property 'abc' does not exist on type '{ nodeEnv: string; }'
   // Our type is more specific, so TypeScript catches this error.
-  // This mistake will be caught at build time
+  // This mistake will be caught at compile time
   console.log(env.abc)
 }
 
