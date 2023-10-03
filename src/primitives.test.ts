@@ -77,6 +77,16 @@ describe('primitives', () => {
       expect(result).toEqual(['some', 'nice', 'string'])
       type test = Expect<Equal<typeof result, ['some', 'nice', 'string']>>
     })
+
+    test('should no add extra characters when splitting by empty string', () => {
+      const data = 'hello'
+      const result = subject.split(data, '')
+      expect(result).toEqual(['h', 'e', 'l', 'l', 'o'])
+      type test = Expect<Equal<typeof result, ['h', 'e', 'l', 'l', 'o']>>
+
+      expect(subject.split('', '')).toEqual([])
+      type test2 = Expect<Equal<Subject.Split<''>, []>>
+    })
   })
 
   test('trimStart', () => {
