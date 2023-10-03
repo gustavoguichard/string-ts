@@ -283,7 +283,7 @@ function deepDelimiterKeys<T, D extends string>(
   ) as never
 }
 /**
- * A strongly typed function that shallowly the keys of an object to a custom delimiter case. The transformation is done both at runtime and type level.
+ * A strongly typed function that shallowly transforms the keys of an object to a custom delimiter case. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
  * @param delimiter the delimiter to use.
  * @returns the transformed object.
