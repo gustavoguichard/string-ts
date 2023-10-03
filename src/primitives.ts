@@ -126,9 +126,11 @@ function replaceAll<T extends string, S extends string, R extends string = ''>(
  */
 type Split<
   T,
-  delimiter extends string,
+  delimiter extends string = '',
 > = T extends `${infer first}${delimiter}${infer rest}`
   ? [first, ...Split<rest, delimiter>]
+  : T extends ''
+  ? []
   : [T]
 /**
  * A strongly typed version of `String.prototype.split`.
