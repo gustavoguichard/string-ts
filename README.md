@@ -6,20 +6,70 @@ When you are working with literal strings, the string manipulation functions onl
 You end up losing type information and possibly having to cast the result.
 
 ```ts
-const str = 'hello-world';
-const result = str.replace('-', ' '); // you should use: as 'hello world'
+const str = 'hello-world'
+const result = str.replace('-', ' ') // you should use: as 'hello world'
 //    ^? string
 ```
 
 ## 🤓 The solution
+
 This library aims to solve this problem by providing a set of common functions that work with literal strings at both type and runtime level.
 
 ```ts
-import { replace } from 'string-ts';
+import { replace } from 'string-ts'
 
-const str = 'hello-world';
-const result = replace(str, '-', ' ');
+const str = 'hello-world'
+const result = replace(str, '-', ' ')
 //    ^ 'hello world'
+```
+
+## 🔍 Why this matters
+
+TypeScript yields the best static analysis when types are highly specific.
+Literals are more specific than type `string`.
+This library preserves literals (and unions of literals) after transformations, unlike most existing utility libraries (and built-in string methods.)
+
+## In-depth example
+
+In the below example, I want to get a strongly-typed, camel-case version of `process.env`.
+One flow results in a loose type, and the other results in a more precise type.
+This example should illustrate the highly-specific and flexible nature of `string-ts`.
+_Note: All types in this example could be inferred, but are included for demonstrative purposes._
+
+```ts
+import { deepCamelKeys } from 'string-ts'
+import { camelCase, mapKeys } from 'lodash-es'
+import type { Dictionary } from 'lodash'
+import z from 'zod'
+
+export const EnvSchema = z.object({
+  NODE_ENV: z.string(),
+})
+
+function getEnvLoose() {
+  const rawEnv: { NODE_ENV: string } = EnvSchema.parse(process.env)
+  const env: Dictionary<string> = mapKeys(rawEnv, (_v, k) => camelCase(k))
+
+  // `Dictionary<string>` is too loose
+  // TypeScript is okay with this, 'abc' will be of type `string`
+  console.log(env.abc)
+}
+
+function getEnvPrecise() {
+  const rawEnv: { NODE_ENV: string } = EnvSchema.parse(process.env)
+  const env: { nodeEnv: string } = deepCamelKeys(rawEnv)
+
+  // Error: Property 'abc' does not exist on type '{ nodeEnv: string; }'
+  // Our type is more specific, so TypeScript catches this error.
+  console.log(env.abc)
+}
+
+function main() {
+  getEnvLoose()
+  getEnvPrecise()
+}
+
+main()
 ```
 
 ## 📦 Installation
@@ -28,8 +78,10 @@ const result = replace(str, '-', ' ');
 npm install string-ts
 ```
 
-****
+---
+
 # 📖 API
+
 - [Runtime counterparts of native type utilities](#runtime-counterparts-of-native-type-utilities)
   - [capitalize](#capitalize)
 - [Strongly-typed alternatives to native runtime utilities](#strongly-typed-alternatives-to-native-runtime-utilities)
@@ -67,322 +119,350 @@ npm install string-ts
 - [Runtime-only utilities](#runtime-only-utilities)
   - [deepTransformKeys](#deeptransformkeys)
 
-****
+---
 
 ## Runtime counterparts of native type utilities
 
 ### capitalize
+
 Capitalizes the first letter of a string. This is a runtime counterpart of `Capitalize<T>` from `src/types.d.ts`.
 
 ```ts
-import { capitalize } from 'string-ts';
+import { capitalize } from 'string-ts'
 
-const str = 'hello world';
-const result = capitalize(str);
+const str = 'hello world'
+const result = capitalize(str)
 //    ^ 'Hello world'
 ```
 
 ## Strongly-typed alternatives to native runtime utilities
+
 ### toUpperCase
+
 This function is a strongly-typed counterpart of `String.prototype.toUpperCase`.
 
 ```ts
-import { toUpperCase } from 'string-ts';
+import { toUpperCase } from 'string-ts'
 
-const str = 'hello world';
-const result = toUpperCase(str);
+const str = 'hello world'
+const result = toUpperCase(str)
 //    ^ 'HELLO WORLD'
 ```
 
 ### toLowerCase
+
 This function is a strongly-typed counterpart of `String.prototype.toLowerCase`.
 
 ```ts
-import { toLowerCase } from 'string-ts';
+import { toLowerCase } from 'string-ts'
 
-const str = 'HELLO WORLD';
-const result = toLowerCase(str);
+const str = 'HELLO WORLD'
+const result = toLowerCase(str)
 //    ^ 'hello world'
 ```
 
 ### trim
+
 This function is a strongly-typed counterpart of `String.prototype.trim`.
 
 ```ts
-import { trim } from 'string-ts';
+import { trim } from 'string-ts'
 
-const str = '  hello world  ';
-const result = trim(str);
+const str = '  hello world  '
+const result = trim(str)
 //    ^ 'hello world'
 ```
 
 ### trimStart
+
 This function is a strongly-typed counterpart of `String.prototype.trimStart`.
 
 ```ts
-import { trimStart } from 'string-ts';
+import { trimStart } from 'string-ts'
 
-const str = '  hello world  ';
-const result = trimStart(str);
+const str = '  hello world  '
+const result = trimStart(str)
 //    ^ 'hello world  '
 ```
 
 ### trimEnd
+
 This function is a strongly-typed counterpart of `String.prototype.trimEnd`.
 
 ```ts
-import { trimEnd } from 'string-ts';
+import { trimEnd } from 'string-ts'
 
-const str = '  hello world  ';
-const result = trimEnd(str);
+const str = '  hello world  '
+const result = trimEnd(str)
 //    ^ '  hello world'
 ```
 
 ### charAt
+
 This function is a strongly-typed counterpart of `String.prototype.charAt`.
 
 ```ts
-import { charAt } from 'string-ts';
+import { charAt } from 'string-ts'
 
-const str = 'hello world';
-const result = charAt(str, 6);
+const str = 'hello world'
+const result = charAt(str, 6)
 //    ^ 'w'
 ```
 
 ### join
+
 This function is a strongly-typed counterpart of `Array.prototype.join`.
 
 ```ts
-import { join } from 'string-ts';
+import { join } from 'string-ts'
 
-const str = ['hello', 'world'] as const;
-const result = join(str, ' ');
+const str = ['hello', 'world'] as const
+const result = join(str, ' ')
 //    ^ 'hello world'
 ```
 
 ### replace
+
 This function is a strongly-typed counterpart of `String.prototype.replace`.
 
 ```ts
-import { replace } from 'string-ts';
+import { replace } from 'string-ts'
 
-const str = 'hello-world-';
-const result = replace(str, '-', ' ');
+const str = 'hello-world-'
+const result = replace(str, '-', ' ')
 //    ^ 'hello world-'
 ```
 
 ### replaceAll
+
 This function is a strongly-typed counterpart of `String.prototype.replaceAll`.
 
 ```ts
-import { replaceAll } from 'string-ts';
+import { replaceAll } from 'string-ts'
 
-const str = 'hello-world-';
-const result = replaceAll(str, '-', ' ');
+const str = 'hello-world-'
+const result = replaceAll(str, '-', ' ')
 //    ^ 'hello world '
 ```
 
 ### split
+
 This function is a strongly-typed counterpart of `String.prototype.split`.
 
 ```ts
-import { split } from 'string-ts';
+import { split } from 'string-ts'
 
-const str = 'hello-world';
-const result = split(str, '-');
+const str = 'hello-world'
+const result = split(str, '-')
 //    ^ ['hello', 'world']
 ```
 
 ## Strongly-typed alternatives to common loosely-typed functions
 
 ### words
+
 This function identifies the words in a string and returns a tuple of words split by separators, differences in casing, numbers, and etc.
 
 ```ts
-import { words } from 'string-ts';
+import { words } from 'string-ts'
 
-const str = '-20someVery-weird String';
-const result = words(str);
+const str = '-20someVery-weird String'
+const result = words(str)
 //    ^ ['20', 'some', 'Very', 'weird', 'String']
 ```
 
 ### toDelimiterCase
+
 This function converts a string to a new case with a custom delimiter at both runtime and type levels.
 
 ```ts
-import { toDelimiterCase } from 'string-ts';
+import { toDelimiterCase } from 'string-ts'
 
-const str = 'helloWorld';
-const result = toDelimiterCase(str, '.');
+const str = 'helloWorld'
+const result = toDelimiterCase(str, '.')
 //    ^ 'hello.World'
 ```
 
 ### toCamelCase
+
 This function converts a string to `camelCase` at both runtime and type levels.
 
 ```ts
-import { toCamelCase } from 'string-ts';
+import { toCamelCase } from 'string-ts'
 
-const str = 'hello-world';
-const result = toCamelCase(str);
+const str = 'hello-world'
+const result = toCamelCase(str)
 //    ^ 'helloWorld'
 ```
 
 ### toPascalCase
+
 This function converts a string to `PascalCase` at both runtime and type levels.
 
 ```ts
-import { toPascalCase } from 'string-ts';
+import { toPascalCase } from 'string-ts'
 
-const str = 'hello-world';
-const result = toPascalCase(str);
+const str = 'hello-world'
+const result = toPascalCase(str)
 //    ^ 'HelloWorld'
 ```
 
 ### toKebabCase
+
 This function converts a string to `kebab-case` at both runtime and type levels.
 
 ```ts
-import { toKebabCase } from 'string-ts';
+import { toKebabCase } from 'string-ts'
 
-const str = 'helloWorld';
-const result = toKebabCase(str);
+const str = 'helloWorld'
+const result = toKebabCase(str)
 //    ^ 'hello-world'
 ```
 
 ### toSnakeCase
+
 This function converts a string to `snake_case` at both runtime and type levels.
 
 ```ts
-import { toSnakeCase } from 'string-ts';
+import { toSnakeCase } from 'string-ts'
 
-const str = 'helloWorld';
-const result = toSnakeCase(str);
+const str = 'helloWorld'
+const result = toSnakeCase(str)
 //    ^ 'hello_world'
 ```
 
 ### toConstantCase
+
 This function converts a string to `CONSTANT_CASE` at both runtime and type levels.
 
 ```ts
-import { toConstantCase } from 'string-ts';
+import { toConstantCase } from 'string-ts'
 
-const str = 'helloWorld';
-const result = toConstantCase(str);
+const str = 'helloWorld'
+const result = toConstantCase(str)
 //    ^ 'HELLO_WORLD'
 ```
 
 ### toTitleCase
+
 This function converts a string to `Title Case` at both runtime and type levels.
 
 ```ts
-import { toTitleCase } from 'string-ts';
+import { toTitleCase } from 'string-ts'
 
-const str = 'helloWorld';
-const result = toTitleCase(str);
+const str = 'helloWorld'
+const result = toTitleCase(str)
 //    ^ 'Hello World'
 ```
 
 ## Strongly-typed deep transformation of objects
 
 ### deepDelimiterKeys
+
 This function recursively converts the keys of an object to a new case with a custom delimiter at both runtime and type levels.
 
 ```ts
-import { deepDelimiterKeys } from 'string-ts';
+import { deepDelimiterKeys } from 'string-ts'
 
 const data = {
   'hello-world': {
     'foo-bar': 'baz',
   },
-} as const;
-const result = deepDelimiterKeys(data, '.');
+} as const
+const result = deepDelimiterKeys(data, '.')
 //    ^ { 'hello.world': { 'foo.bar': 'baz' } }
 ```
 
 ### deepCamelKeys
+
 This function recursively converts the keys of an object to `camelCase` at both runtime and type levels.
 
 ```ts
-import { deepCamelKeys } from 'string-ts';
+import { deepCamelKeys } from 'string-ts'
 
 const data = {
   'hello-world': {
     'foo-bar': 'baz',
   },
-} as const;
-const result = deepCamelKeys(data);
+} as const
+const result = deepCamelKeys(data)
 //    ^ { helloWorld: { fooBar: 'baz' } }
 ```
 
 ### deepPascalKeys
+
 This function recursively converts the keys of an object to `PascalCase` at both runtime and type levels.
 
 ```ts
-import { deepPascalKeys } from 'string-ts';
+import { deepPascalKeys } from 'string-ts'
 
 const data = {
   'hello-world': {
     'foo-bar': 'baz',
   },
-} as const;
-const result = deepPascalKeys(data);
+} as const
+const result = deepPascalKeys(data)
 //    ^ { HelloWorld: { FooBar: 'baz' } }
 ```
 
 ### deepKebabKeys
+
 This function recursively converts the keys of an object to `kebab-case` at both runtime and type levels.
 
 ```ts
-import { deepKebabKeys } from 'string-ts';
+import { deepKebabKeys } from 'string-ts'
 
 const data = {
-  'helloWorld': {
-    'fooBar': 'baz',
+  helloWorld: {
+    fooBar: 'baz',
   },
-} as const;
-const result = deepKebabKeys(data);
+} as const
+const result = deepKebabKeys(data)
 //    ^ { 'hello-world': { 'foo-bar': 'baz' } }
 ```
 
 ### deepSnakeKeys
+
 This function recursively converts the keys of an object to `snake_case` at both runtime and type levels.
 
 ```ts
-import { deepSnakeKeys } from 'string-ts';
+import { deepSnakeKeys } from 'string-ts'
 
 const data = {
-  'helloWorld': {
-    'fooBar': 'baz',
+  helloWorld: {
+    fooBar: 'baz',
   },
-} as const;
-const result = deepSnakeKeys(data);
+} as const
+const result = deepSnakeKeys(data)
 //    ^ { 'hello_world': { 'foo_bar': 'baz' } }
 ```
 
 ### deepConstantKeys
+
 This function recursively converts the keys of an object to `CONSTANT_CASE` at both runtime and type levels.
 
 ```ts
-import { deepConstantKeys } from 'string-ts';
+import { deepConstantKeys } from 'string-ts'
 
 const data = {
-  'helloWorld': {
-    'fooBar': 'baz',
+  helloWorld: {
+    fooBar: 'baz',
   },
-} as const;
-const result = deepConstantKeys(data);
+} as const
+const result = deepConstantKeys(data)
 //    ^ { 'HELLO_WORLD': { 'FOO_BAR': 'baz' } }
 ```
 
 ## Type Utilities
+
 All the functions presented in this API have associated type counterparts.
 
 ```ts
-import type * as St from 'string-ts';
+import type * as St from 'string-ts'
 ```
 
 ### Native TS type utilities
+
 ```ts
 Capitalize<'hello world'> // 'Hello world'
 Lowercase<'HELLO WORLD'> // 'hello world'
@@ -390,6 +470,7 @@ Uppercase<'hello world'> // 'HELLO WORLD'
 ```
 
 ### General Type utilities from this library
+
 ```ts
 St.Words<'hello-world'> // ['hello', 'world']
 St.CharAt<'hello world', 6> // 'w'
@@ -403,6 +484,7 @@ St.Trim<' hello world '> // 'hello world'
 ```
 
 ### Casing type utilities
+
 ```ts
 St.CamelCase<'hello-world'> // 'helloWorld'
 St.PascalCase<'hello-world'> // 'HelloWorld'
@@ -412,9 +494,12 @@ St.ConstantCase<'helloWorld'> // 'HELLO_WORLD'
 St.TitleCase<'helloWorld'> // 'Hello World'
 St.DelimiterCase<'hello world', '.'> // 'hello.world'
 
-St.DeepDelimiterKeys<{
-  'hello-world': { 'foo-bar': 'baz' }
-}, '.'> // { 'hello.world': { 'foo.bar': 'baz' } }
+St.DeepDelimiterKeys<
+  {
+    'hello-world': { 'foo-bar': 'baz' }
+  },
+  '.'
+> // { 'hello.world': { 'foo.bar': 'baz' } }
 St.DeepCamelKeys<{
   'hello-world': { 'foo-bar': 'baz' }
 }> // { helloWorld: { fooBar: 'baz' } }
@@ -422,17 +507,18 @@ St.DeepPascalKeys<{
   'hello-world': { 'foo-bar': 'baz' }
 }> // { HelloWorld: { FooBar: 'baz' } }
 St.DeepKebabKeys<{
-  'helloWorld': { 'fooBar': 'baz' }
+  helloWorld: { fooBar: 'baz' }
 }> // { 'hello-world': { 'foo-bar': 'baz' } }
 St.DeepSnakeKeys<{
-  'helloWorld': { 'fooBar': 'baz' }
+  helloWorld: { fooBar: 'baz' }
 }> // { 'hello_world': { 'foo_bar': 'baz' } }
 St.DeepConstantKeys<{
-  'helloWorld': { 'fooBar': 'baz' }
+  helloWorld: { fooBar: 'baz' }
 }> // { 'HELLO_WORLD': { 'FOO_BAR': 'baz' } }
 ```
 
 ### Other exported type utilities
+
 ```ts
 St.IsDigit<'a'> // false
 St.IsDigit<'1'> // true
@@ -451,19 +537,21 @@ St.IsSpecial<' '> // false
 ```
 
 ## Runtime-only utilities
+
 ### deepTransformKeys
+
 This function recursively converts the keys of an object to a custom format, but only at runtime level.
 
 ```ts
-import { deepTransformKeys, toUpperCase } from 'string-ts';
+import { deepTransformKeys, toUpperCase } from 'string-ts'
 
-const data = { 'helloWorld': 'baz' } as const;
+const data = { helloWorld: 'baz' } as const
 
 type MyType<T> = { [K in keyof T as Uppercase<K>]: T[K] }
-const result = deepTransformKeys(data, toUpperCase) as MyType<typeof data>;
+const result = deepTransformKeys(data, toUpperCase) as MyType<typeof data>
 //    ^ { 'HELLOWORLD': 'baz' }
 ```
 
-
 ## Disclaimer
+
 This library doesn't support every internal character for the sake of keeping the maintainer's sanity.
