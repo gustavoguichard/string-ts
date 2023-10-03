@@ -1,4 +1,4 @@
-import { Is } from './utils'
+import type { Is } from './utils'
 
 /**
  * This is an enhanced version of the typeof operator to check the type of more complex values.

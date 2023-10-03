@@ -1,10 +1,12 @@
-import {
+import type {
   CamelCase,
   ConstantCase,
   DelimiterCase,
   KebabCase,
   PascalCase,
   SnakeCase,
+} from './casing'
+import {
   toCamelCase,
   toConstantCase,
   toDelimiterCase,
@@ -13,7 +15,7 @@ import {
   toSnakeCase,
 } from './casing'
 import { typeOf } from './internals'
-import { Is } from './utils'
+import type { Is } from './utils'
 
 /**
  * This function is used to transform the keys of an object deeply.

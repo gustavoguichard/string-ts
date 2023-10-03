@@ -1,6 +1,8 @@
-import { PascalCaseAll } from './internals'
-import { Join, join } from './primitives'
-import { Is, Words, words } from './utils'
+import type { PascalCaseAll } from './internals'
+import type { Join } from './primitives'
+import { join } from './primitives'
+import type { Is, Words } from './utils'
+import { words } from './utils'
 
 // CASING UTILITIES
 /**

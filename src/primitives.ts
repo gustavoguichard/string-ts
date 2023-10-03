@@ -32,7 +32,7 @@ function join<T extends string[], D extends string = ''>(
 
 /**
  * Replaces the first occurrence of a string with another string.
- * sentence: The current sentence.
+ * sentence: The sentence to replace.
  * lookup: The lookup string to be replaced.
  * replacement: The replacement string.
  */
@@ -66,7 +66,7 @@ function replace<T extends string, S extends string, R extends string = ''>(
 
 /**
  * Replaces all the occurrences of a string with another string.
- * sentence: The current sentence.
+ * sentence: The sentence to replace.
  * lookup: The lookup string to be replaced.
  * replacement: The replacement string.
  */
