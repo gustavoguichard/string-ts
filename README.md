@@ -36,12 +36,10 @@ This library preserves literals (and unions of literals) after transformations, 
 In the below example, I want to get a strongly-typed, camel-case version of `process.env`.
 One flow results in a loose type, and the other results in a more precise type.
 This example should illustrate the highly-specific and flexible nature of `string-ts`.
-_Note: All types in this example could be inferred, but are included for demonstrative purposes._
 
 ```ts
 import { deepCamelKeys } from 'string-ts'
 import { camelCase, mapKeys } from 'lodash-es'
-import type { Dictionary } from 'lodash'
 import z from 'zod'
 
 export const EnvSchema = z.object({
@@ -50,7 +48,8 @@ export const EnvSchema = z.object({
 
 function getEnvLoose() {
   const rawEnv: { NODE_ENV: string } = EnvSchema.parse(process.env)
-  const env: Dictionary<string> = mapKeys(rawEnv, (_v, k) => camelCase(k))
+  const env = mapKeys(rawEnv, (_v, k) => camelCase(k))
+  //    ^? Dictionary<string>
 
   // `Dictionary<string>` is too loose
   // TypeScript is okay with this, 'abc' will be of type `string`
@@ -59,7 +58,8 @@ function getEnvLoose() {
 
 function getEnvPrecise() {
   const rawEnv: { NODE_ENV: string } = EnvSchema.parse(process.env)
-  const env: { nodeEnv: string } = deepCamelKeys(rawEnv)
+  const env = deepCamelKeys(rawEnv)
+  //    ^? { nodeEnv: string }
 
   // Error: Property 'abc' does not exist on type '{ nodeEnv: string; }'
   // Our type is more specific, so TypeScript catches this error.
@@ -67,8 +67,8 @@ function getEnvPrecise() {
 }
 
 function main() {
-  getEnvLoose()
-  getEnvPrecise()
+  getEnvLoose() // This will break at runtime
+  getEnvPrecise() // This will break at development time
 }
 
 main()
@@ -225,7 +225,7 @@ This function is a strongly-typed counterpart of `Array.prototype.join`.
 ```ts
 import { join } from 'string-ts'
 
-const str = ['hello', 'world'] as const
+const str = ['hello', 'world']
 const result = join(str, ' ')
 //    ^ 'hello world'
 ```
