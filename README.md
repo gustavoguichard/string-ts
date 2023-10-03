@@ -42,33 +42,35 @@ import { deepCamelKeys } from 'string-ts'
 import { camelCase, mapKeys } from 'lodash-es'
 import z from 'zod'
 
-export const EnvSchema = z.object({
+const EnvSchema = z.object({
   NODE_ENV: z.string(),
 })
 
 function getEnvLoose() {
-  const rawEnv: { NODE_ENV: string } = EnvSchema.parse(process.env)
+  const rawEnv = EnvSchema.parse(process.env)
   const env = mapKeys(rawEnv, (_v, k) => camelCase(k))
   //    ^? Dictionary<string>
 
   // `Dictionary<string>` is too loose
-  // TypeScript is okay with this, 'abc' will be of type `string`
+  // TypeScript is okay with this, 'abc' is expected to be of type `string`
+  // This will have unexpected behavior at runtime
   console.log(env.abc)
 }
 
 function getEnvPrecise() {
-  const rawEnv: { NODE_ENV: string } = EnvSchema.parse(process.env)
+  const rawEnv = EnvSchema.parse(process.env)
   const env = deepCamelKeys(rawEnv)
   //    ^? { nodeEnv: string }
 
   // Error: Property 'abc' does not exist on type '{ nodeEnv: string; }'
   // Our type is more specific, so TypeScript catches this error.
+  // This mistake will be caught at build time
   console.log(env.abc)
 }
 
 function main() {
-  getEnvLoose() // This will break at runtime
-  getEnvPrecise() // This will break at development time
+  getEnvLoose()
+  getEnvPrecise()
 }
 
 main()
