@@ -36,8 +36,6 @@ function concat<T extends string[]>(...strings: T): Concat<T> {
   return join(strings)
 }
 
-'abc'.concat()
-
 /**
  * Joins a tuple of strings with the given delimiter.
  * T: The tuple of strings to join.
