@@ -108,13 +108,9 @@ type Replace<
 function replace<T extends string, S extends string, R extends string = ''>(
   sentence: T,
   lookup: S,
-  replacement?: R,
+  replacement: R = '' as R,
 ) {
-  return sentence.replace(lookup, replacement ?? ('' as const)) as Replace<
-    T,
-    S,
-    R
-  >
+  return sentence.replace(lookup, replacement) as Replace<T, S, R>
 }
 
 /**
@@ -142,13 +138,15 @@ type ReplaceAll<
 function replaceAll<T extends string, S extends string, R extends string = ''>(
   sentence: T,
   lookup: S,
-  replacement?: R,
+  replacement: R = '' as R,
 ) {
   // Only supported in ES2021+
-  return sentence.replaceAll(
-    lookup,
-    replacement ?? ('' as const),
-  ) as ReplaceAll<T, S, R>
+  if (typeof sentence.replaceAll === 'function') {
+    return sentence.replaceAll(lookup, replacement) as ReplaceAll<T, S, R>
+  }
+
+  const regex = new RegExp(lookup, 'g')
+  return sentence.replace(regex, replacement) as ReplaceAll<T, S, R>
 }
 
 // TODO: this is not equivalent to the native slice but it is as far as I got with Type level arithmetic. When the startIndex is negative, the endIndex is gonna be considered as undefined.

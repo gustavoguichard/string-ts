@@ -215,6 +215,8 @@ const result = length(str)
 
 This function is a strongly-typed counterpart of `String.prototype.replace`.
 
+_Warning: this is a partial implementation as we don't support Regex._
+
 ```ts
 import { replace } from 'string-ts'
 
@@ -226,6 +228,9 @@ const result = replace(str, '-', ' ')
 ### replaceAll
 
 This function is a strongly-typed counterpart of `String.prototype.replaceAll`.
+It also has a polyfill for runtimes older than ES2021.
+
+_Warning: this is a partial implementation as we don't support Regex._
 
 ```ts
 import { replaceAll } from 'string-ts'
@@ -239,7 +244,7 @@ const result = replaceAll(str, '-', ' ')
 
 This function is a strongly-typed counterpart of `String.prototype.slice`.
 
-_Warning: due to TS limitations - for now - we ignore the second argument (endIndex) if the first (startIndex) is negative and we also don't support a negative endIndex._
+_Warning: this is a partial implementation. For now we ignore the second argument (endIndex) if the first (startIndex) is negative and we also don't support a negative endIndex._
 
 ```ts
 import { slice } from 'string-ts'
