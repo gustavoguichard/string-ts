@@ -36,6 +36,8 @@ namespace TypeTests {
       'abcdef' | '123456'
     >
   >
+
+  type test12 = Expect<Equal<Subject.StartsWith<'abc', 'a'>, true>>
 }
 
 beforeEach(() => {
@@ -165,6 +167,47 @@ describe('primitives', () => {
 
       expect(subject.split('', '')).toEqual([])
       type test2 = Expect<Equal<Subject.Split<''>, []>>
+    })
+  })
+
+  describe('startsWith', () => {
+    describe('without offset', () => {
+      test('should return true when text starts with search', () => {
+        const result = subject.startsWith('abc', 'a')
+        expect(result).toEqual(true)
+        type test = Expect<Equal<typeof result, true>>
+      })
+      test('should return false when text does not start with search', () => {
+        const result = subject.startsWith('abc', 'b')
+        expect(result).toEqual(false)
+        type test = Expect<Equal<typeof result, false>>
+      })
+    })
+
+    describe('with offset', () => {
+      test('should return true when offset text starts with search', () => {
+        const result = subject.startsWith('abc', 'b', 1)
+        expect(result).toEqual(true)
+        type test = Expect<Equal<typeof result, true>>
+      })
+      test('should return false when offset string does not start with search', () => {
+        const result = subject.startsWith('abc', 'a', 1)
+        expect(result).toEqual(false)
+        type test = Expect<Equal<typeof result, false>>
+      })
+    })
+
+    describe('bad offset', () => {
+      test('should return true when text starts with search and offset is negative', () => {
+        const result = subject.startsWith('abc', 'a', -1)
+        expect(result).toEqual(true)
+        type test = Expect<Equal<typeof result, true>>
+      })
+      test('should return false when offset is greater than text length', () => {
+        const result = subject.startsWith('abc', 'a', 10)
+        expect(result).toEqual(false)
+        type test = Expect<Equal<typeof result, false>>
+      })
     })
   })
 

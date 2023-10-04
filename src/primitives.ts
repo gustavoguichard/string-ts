@@ -220,6 +220,30 @@ function split<T extends string, D extends string = ''>(str: T, delimiter?: D) {
   return str.split(delimiter ?? ('' as const)) as Split<T, D>
 }
 
+type StartsWith<
+  T extends string,
+  S extends string,
+  P extends number = 0,
+> = Math.IsPositive<P> extends true
+  ? P extends 0
+    ? T extends `${infer TFirst}${infer TRest}`
+      ? S extends `${infer SFirst}${infer SRest}`
+        ? TFirst extends SFirst
+          ? StartsWith<TRest, SRest, P> // Compare next character
+          : false // T differs from S
+        : true // S (Search) is exhausted (and didn't fail)
+      : false // T (Text) is exhausted with S (Search) leftover
+    : StartsWith<Slice<T, P>, S, 0> // P is >0, slice
+  : StartsWith<T, S, 0> // P (Position) is negative, ignore
+
+function startsWith<T extends string, S extends string, P extends number = 0>(
+  text: T,
+  search: S,
+  position = 0 as P,
+) {
+  return text.startsWith(search, position) as StartsWith<T, S, P>
+}
+
 /**
  * Trims all whitespaces at the start of a string.
  * T: The string to trim.
@@ -277,6 +301,7 @@ export type {
   ReplaceAll,
   Slice,
   Split,
+  StartsWith,
   TrimStart,
   TrimEnd,
   Trim,
@@ -290,6 +315,7 @@ export {
   replaceAll,
   slice,
   split,
+  startsWith,
   trim,
   trimStart,
   trimEnd,
