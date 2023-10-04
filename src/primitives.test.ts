@@ -80,6 +80,13 @@ describe('primitives', () => {
       expect(result).toEqual('somenicestring')
       type test = Expect<Equal<typeof result, 'somenicestring'>>
     })
+
+    test('accepts an argument for the replacement', () => {
+      const data = 'some nice string'
+      const result = subject.replaceAll(data, ' ', '@')
+      expect(result).toEqual('some@nice@string')
+      type test = Expect<Equal<typeof result, 'some@nice@string'>>
+    })
   })
 
   describe('slice', () => {
