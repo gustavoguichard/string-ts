@@ -197,7 +197,7 @@ describe('primitives', () => {
       })
     })
 
-    describe('bad offset', () => {
+    describe('with bad offset', () => {
       test('should return true when text starts with search and offset is negative', () => {
         const result = subject.startsWith('abc', 'a', -1)
         expect(result).toEqual(true)
