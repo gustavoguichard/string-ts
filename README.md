@@ -90,7 +90,7 @@ npm install string-ts
   - [capitalize](#capitalize)
   - [uncapitalize](#uncapitalize)
 - [Strongly-typed alternatives to native runtime utilities](#strongly-typed-alternatives-to-native-runtime-utilities)
-  - [chartAt](#charat)
+  - [charAt](#charat)
   - [concat](#concat)
   - [join](#join)
   - [length](#length)
@@ -113,12 +113,12 @@ npm install string-ts
   - [toTitleCase](#totitlecase)
   - [words](#words)
 - [Strongly-typed shallow transformation of objects](#strongly-typed-shallow-transformation-of-objects)
-  - [CamelKeys](#camelkeys)
-  - [ConstantKeys](#constantkeys)
-  - [DelimiterKeys](#delimiterkeys)
-  - [KebabKeys](#kebabkeys)
-  - [PascalKeys](#pascalkeys)
-  - [SnakeKeys](#snakekeys)
+  - [camelKeys](#camelkeys)
+  - [constantKeys](#constantkeys)
+  - [delimiterKeys](#delimiterkeys)
+  - [kebabKeys](#kebabkeys)
+  - [pascalKeys](#pascalkeys)
+  - [snakeKeys](#snakekeys)
 - [Strongly-typed deep transformation of objects](#strongly-typed-deep-transformation-of-objects)
   - [deepCamelKeys](#deepcamelkeys)
   - [deepConstantKeys](#deepconstantkeys)
@@ -748,4 +748,8 @@ const result = deepTransformKeys(data, toUpperCase) as MyType<typeof data>
 
 ## Disclaimer
 
-This library doesn't support every internal character for the sake of keeping the maintainer's sanity.
+We don't plan to support international characters.
+
+## Aknowledgements
+
+This library got a lot of inspiration from libraries such as [lodash](https://github.com/lodash/lodash), [ts-reset](https://github.com/total-typescript/ts-reset), [type-fest](https://github.com/sindresorhus/type-fest), [HOTScript](https://github.com/gvergnaud/hotscript), and many others.
