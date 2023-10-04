@@ -2,8 +2,10 @@
 export type {
   CharAt,
   Join,
+  Length,
   Replace,
   ReplaceAll,
+  Slice,
   Split,
   TrimStart,
   TrimEnd,
@@ -12,8 +14,10 @@ export type {
 export {
   charAt,
   join,
+  length,
   replace,
   replaceAll,
+  slice,
   split,
   trim,
   trimStart,
@@ -23,7 +27,6 @@ export {
 // UTILS
 export type {
   Digit,
-  Is,
   IsDigit,
   IsLetter,
   IsLower,
@@ -56,6 +59,7 @@ export {
   toSnakeCase,
   toTitleCase,
   toUpperCase,
+  uncapitalize,
 } from './casing'
 
 // KEY CASING

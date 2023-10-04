@@ -1,9 +1,11 @@
+import type { Math } from './math'
+
 /**
  * Gets the character at the given index.
  * T: The string to get the character from.
  * index: The index of the character.
  */
-type CharAt<T extends string, index extends number> = Split<T, ''>[index]
+type CharAt<T extends string, index extends number> = Split<T>[index]
 /**
  * A strongly typed version of `String.prototype.charAt`.
  * @param str the string to get the character from.
@@ -49,6 +51,20 @@ function join<const T extends readonly string[], D extends string = ''>(
   delimiter?: D,
 ) {
   return tuple.join(delimiter ?? ('' as const)) as Join<T, D>
+}
+
+/**
+ * Gets the length of a string.
+ */
+type Length<T extends string> = Split<T>['length']
+/**
+ * A strongly typed version of `String.prototype.length`.
+ * @param str the string to get the length from.
+ * @returns the length of the string in both type level and runtime.
+ * @example length('hello world') // 11
+ */
+function length<T extends string>(str: T) {
+  return str.length as Length<T>
 }
 
 /**
@@ -117,6 +133,53 @@ function replaceAll<T extends string, S extends string, R extends string = ''>(
     lookup,
     replacement ?? ('' as const),
   ) as ReplaceAll<T, S, R>
+}
+
+// TODO: this is not equivalent to the native slice but it is as far as I got with Type level arithmetic. When the startIndex is negative, the endIndex is gonna be considered as undefined.
+/**
+ * Slices a string from a startIndex to an endIndex.
+ * T: The string to slice.
+ * startIndex: The start index.
+ * endIndex: The end index.
+ * @warning 🚨 it doesn't work exactly like the native slice as it will ignore the end index if start index is negative
+ */
+type Slice<
+  T extends string,
+  startIndex extends number = 0,
+  endIndex extends number = Split<T>['length'],
+> = T extends `${infer head}${infer rest}`
+  ? startIndex extends 0
+    ? endIndex extends 0
+      ? ''
+      : `${head}${Slice<
+          rest,
+          0,
+          endIndex extends -1 ? -1 : Math.Subtract<endIndex, 1>
+        >}`
+    : `${Slice<
+        rest,
+        Math.Subtract<Math.GetPositiveIndex<T, startIndex>, 1>,
+        Math.IsPositive<startIndex> extends true
+          ? Math.Subtract<endIndex, 1>
+          : Split<T>['length'] // TODO: figure out how to deal with negative endIndex
+      >}`
+  : ''
+/**
+ * A strongly typed version of `String.prototype.slice`.
+ * @param str the string to slice.
+ * @param start the start index.
+ * @param end the end index.
+ * @returns the sliced string in both type level and runtime.
+ * @example slice('hello world', 6) // 'world'
+ * @warning 🚨 it doesn't work exactly like the native slice as it will ignore the end index if start index is negative
+ */
+function slice<
+  T extends string,
+  const S extends number = 0,
+  const E extends number = Split<T>['length'],
+>(str: T, start: S = 0 as S, end: E = str.length as E) {
+  // TODO: figure out how to deal with negative endIndex
+  return str.slice(start, start < 0 ? undefined : end) as Slice<T, S, E>
 }
 
 /**
@@ -194,11 +257,24 @@ function trim<T extends string>(str: T) {
 export type {
   CharAt,
   Join,
+  Length,
   Replace,
   ReplaceAll,
+  Slice,
   Split,
   TrimStart,
   TrimEnd,
   Trim,
 }
-export { charAt, join, replace, replaceAll, split, trim, trimStart, trimEnd }
+export {
+  charAt,
+  join,
+  length,
+  replace,
+  replaceAll,
+  slice,
+  split,
+  trim,
+  trimStart,
+  trimEnd,
+}

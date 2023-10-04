@@ -1,10 +1,21 @@
-import type { PascalCaseAll } from './internals'
+import { pascalCaseAll, type PascalCaseAll } from './internals'
 import type { Join } from './primitives'
-import { join } from './primitives'
-import type { Is, Words } from './utils'
+import { charAt, join, slice } from './primitives'
+import type { Words } from './utils'
 import { words } from './utils'
 
-// CASING UTILITIES
+// CASING UTILITIES THAT ALREADY HAVE NATIVE TS TYPES
+
+/**
+ * Capitalizes the first letter of a string. This is a runtime counterpart of `Capitalize<T>` from `src/types.d.ts`.
+ * @param str the string to capitalize.
+ * @returns the capitalized string.
+ * @example capitalize('hello world') // 'Hello world'
+ */
+function capitalize<T extends string>(str: T): Capitalize<T> {
+  return join([toUpperCase(charAt(str, 0)), slice(str, 1)])
+}
+
 /**
  * This function is a strongly-typed counterpart of String.prototype.toLowerCase.
  * @param str the string to make lowercase.
@@ -26,15 +37,16 @@ function toUpperCase<T extends string>(str: T) {
 }
 
 /**
- * Capitalizes the first letter of a string. This is a runtime counterpart of `Capitalize<T>` from `src/types.d.ts`.
- * @param str the string to capitalize.
- * @returns the capitalized string.
- * @example capitalize('hello world') // 'Hello world'
+ * Uncapitalizes the first letter of a string. This is a runtime counterpart of `Uncapitalize<T>` from `src/types.d.ts`.
+ * @param str the string to uncapitalize.
+ * @returns the uncapitalized string.
+ * @example uncapitalize('Hello world') // 'hello world'
  */
-function capitalize<T extends string>(str: T) {
-  return (toUpperCase(str.charAt(0)) + str.slice(1)) as Capitalize<T>
+function uncapitalize<T extends string>(str: T): Uncapitalize<T> {
+  return join([toLowerCase(charAt(str, 0)), slice(str, 1)])
 }
 
+// CASING UTILITIES
 /**
  * Transforms a string with the specified separator (delimiter).
  */
@@ -56,11 +68,7 @@ function toDelimiterCase<T extends string, D extends string>(
 /**
  * Transforms a string to camelCase.
  */
-type CamelCase<T extends string> = T extends unknown
-  ? PascalCase<T> extends `${infer first}${infer rest}`
-    ? `${Lowercase<first>}${rest}`
-    : T
-  : never
+type CamelCase<T extends string> = Uncapitalize<PascalCase<T>>
 
 /**
  * A strongly typed version of `toCamelCase` that works in both runtime and type level.
@@ -68,15 +76,14 @@ type CamelCase<T extends string> = T extends unknown
  * @returns the camel cased string.
  * @example toCamelCase('hello world') // 'helloWorld'
  */
-function toCamelCase<T extends string>(str: T) {
-  const res = toPascalCase(str)
-  return (res.slice(0, 1).toLowerCase() + res.slice(1)) as CamelCase<T>
+function toCamelCase<T extends string>(str: T): CamelCase<T> {
+  return uncapitalize(toPascalCase(str))
 }
 
 /**
  * Transforms a string to PascalCase.
  */
-type PascalCase<T extends string> = Join<PascalCaseAll<Is<Words<T>, string[]>>>
+type PascalCase<T extends string> = Join<PascalCaseAll<Words<T>>>
 /**
  * A strongly typed version of `toPascalCase` that works in both runtime and type level.
  * @param str the string to convert to pascal case.
@@ -84,9 +91,7 @@ type PascalCase<T extends string> = Join<PascalCaseAll<Is<Words<T>, string[]>>>
  * @example toPascalCase('hello world') // 'HelloWorld'
  */
 function toPascalCase<T extends string>(str: T): PascalCase<T> {
-  return words(str)
-    .map((v) => capitalize(toLowerCase(v)))
-    .join('') as PascalCase<T>
+  return join(pascalCaseAll(words(str)))
 }
 
 /**
@@ -165,4 +170,5 @@ export {
   toSnakeCase,
   toTitleCase,
   toUpperCase,
+  uncapitalize,
 }
