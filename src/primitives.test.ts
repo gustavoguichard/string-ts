@@ -24,6 +24,9 @@ namespace TypeTests {
     Equal<Subject.Split<'some nice string', ' '>, ['some', 'nice', 'string']>
   >
   type test8 = Expect<Equal<Subject.CharAt<'some nice string', 5>, 'n'>>
+  type test9 = Expect<
+    Equal<Subject.Slice<'some nice string', 5>, 'nice string'>
+  >
   type test10 = Expect<Equal<Subject.Length<'some nice string'>, 16>>
 }
 
@@ -77,6 +80,35 @@ describe('primitives', () => {
       const result = subject.replaceAll(data, ' ')
       expect(result).toEqual('somenicestring')
       type test = Expect<Equal<typeof result, 'somenicestring'>>
+    })
+  })
+
+  describe('slice', () => {
+    const str = 'The quick brown fox jumps over the lazy dog.'
+    test('should slice a string from a startIndex position', () => {
+      const result = subject.slice(str, 31)
+      expect(result).toEqual('the lazy dog.')
+      type test = Expect<Equal<typeof result, 'the lazy dog.'>>
+    })
+
+    test('should slice a string from a startIndex to an endIndex position', () => {
+      const result = subject.slice(str, 4, 19)
+      expect(result).toEqual('quick brown fox')
+      type test = Expect<Equal<typeof result, 'quick brown fox'>>
+    })
+
+    test('should slice a string from the end with a negative startIndex', () => {
+      const result = subject.slice(str, -4)
+      expect(result).toEqual('dog.')
+      type test = Expect<Equal<typeof result, 'dog.'>>
+    })
+
+    test('should slice a string from the end with a negative startIndex to a negative endIndex', () => {
+      const result = subject.slice(str, -9, -5)
+      expect(result).toEqual('lazy dog.')
+      type test = Expect<Equal<typeof result, 'lazy dog.'>>
+      // TODO: figure out how to deal with negative endIndex, this should be the expected result
+      // type test = Expect<Equal<typeof result, 'lazy'>>
     })
   })
 

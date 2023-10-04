@@ -1,3 +1,5 @@
+import type { Math } from './math'
+
 /**
  * Gets the character at the given index.
  * T: The string to get the character from.
@@ -133,6 +135,53 @@ function replaceAll<T extends string, S extends string, R extends string = ''>(
   ) as ReplaceAll<T, S, R>
 }
 
+// TODO: this is not equivalent to the native slice but it is as far as I got with Type level arithmetic. When the startIndex is negative, the endIndex is gonna be considered as undefined.
+/**
+ * Slices a string from a startIndex to an endIndex.
+ * T: The string to slice.
+ * startIndex: The start index.
+ * endIndex: The end index.
+ * @warning 🚨 it doesn't work exactly like the native slice as it will ignore the end index if start index is negative
+ */
+type Slice<
+  T extends string,
+  startIndex extends number = 0,
+  endIndex extends number = Split<T>['length'],
+> = T extends `${infer head}${infer rest}`
+  ? startIndex extends 0
+    ? endIndex extends 0
+      ? ''
+      : `${head}${Slice<
+          rest,
+          0,
+          endIndex extends -1 ? -1 : Math.Subtract<endIndex, 1>
+        >}`
+    : `${Slice<
+        rest,
+        Math.Subtract<Math.GetPositiveIndex<T, startIndex>, 1>,
+        Math.IsPositive<startIndex> extends true
+          ? Math.Subtract<endIndex, 1>
+          : Split<T>['length'] // TODO: figure out how to deal with negative endIndex
+      >}`
+  : ''
+/**
+ * A strongly typed version of `String.prototype.slice`.
+ * @param str the string to slice.
+ * @param start the start index.
+ * @param end the end index.
+ * @returns the sliced string in both type level and runtime.
+ * @example slice('hello world', 6) // 'world'
+ * @warning 🚨 it doesn't work exactly like the native slice as it will ignore the end index if start index is negative
+ */
+function slice<
+  T extends string,
+  const S extends number = 0,
+  const E extends number = Split<T>['length'],
+>(str: T, start: S = 0 as S, end: E = str.length as E) {
+  // TODO: figure out how to deal with negative endIndex
+  return str.slice(start, start < 0 ? undefined : end) as Slice<T, S, E>
+}
+
 /**
  * Splits a string into an array of substrings.
  * T: The string to split.
@@ -211,6 +260,7 @@ export type {
   Length,
   Replace,
   ReplaceAll,
+  Slice,
   Split,
   TrimStart,
   TrimEnd,
@@ -222,6 +272,7 @@ export {
   length,
   replace,
   replaceAll,
+  slice,
   split,
   trim,
   trimStart,

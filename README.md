@@ -95,6 +95,7 @@ npm install string-ts
   - [length](#length)
   - [replace](#replace)
   - [replaceAll](#replaceall)
+  - [slice](#slice)
   - [split](#split)
   - [toLowerCase](#tolowercase)
   - [toUpperCase](#touppercase)
@@ -220,6 +221,24 @@ import { replaceAll } from 'string-ts'
 const str = 'hello-world-'
 const result = replaceAll(str, '-', ' ')
 //    ^ 'hello world '
+```
+
+### slice
+
+This function is a strongly-typed counterpart of `String.prototype.slice`.
+
+_Warning: due to TS limitations - for now - we ignore the second argument (endIndex) if the first (startIndex) is negative and we also don't support a negative endIndex._
+
+```ts
+import { slice } from 'string-ts'
+
+const str = 'hello-world'
+const result = slice(str, 6)
+//    ^ 'world'
+const result2 = slice(str, 1, 5)
+//    ^ 'ello'
+const result3 = slice(str, -5)
+//    ^ 'world'
 ```
 
 ### split
@@ -612,6 +631,7 @@ St.Join<['hello', 'world'], '-'> // 'hello-world'
 St.Length<'hello'> // 4
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
 St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'
+St.Slice<'hello-world', -5> // 'world'
 St.Split<'hello-world', '-'> // ['hello', 'world']
 St.Trim<' hello world '> // 'hello world'
 St.TrimEnd<' hello world '> // ' hello world'
