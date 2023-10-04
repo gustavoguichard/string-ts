@@ -220,6 +220,12 @@ function split<T extends string, D extends string = ''>(str: T, delimiter?: D) {
   return str.split(delimiter ?? ('' as const)) as Split<T, D>
 }
 
+/**
+ * Checks if a string starts with another string.
+ * T: The string to check.
+ * S: The string to check against.
+ * P: The position to start the search.
+ */
 type StartsWith<
   T extends string,
   S extends string,
@@ -236,6 +242,14 @@ type StartsWith<
     : StartsWith<Slice<T, P>, S, 0> // P is >0, slice
   : StartsWith<T, S, 0> // P (Position) is negative, ignore
 
+/**
+ * A strongly-typed version of `String.prototype.startsWith`.
+ * @param text the string to search.
+ * @param search the string to search with.
+ * @param position the index to start search at.
+ * @returns boolean, whether or not the text string starts with the search string.
+ * @example startsWith('abc', 'a') // true
+ */
 function startsWith<T extends string, S extends string, P extends number = 0>(
   text: T,
   search: S,
