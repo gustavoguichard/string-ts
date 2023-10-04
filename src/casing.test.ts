@@ -70,6 +70,22 @@ describe('capitalize', () => {
   })
 })
 
+describe('uncapitalize', () => {
+  test('it does nothing with a string that has no char at the beginning', () => {
+    const expected = weirdString
+    const result = subject.uncapitalize(weirdString)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
+  test('it uncapitalizes the first char of a string', () => {
+    const expected = 'someWeird-casedString' as const
+    const result = subject.uncapitalize('SomeWeird-casedString')
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+})
+
 describe('casing functions', () => {
   test('toUpperCase', () => {
     const expected = ' SOMEWEIRD-CASED$*STRING1986FOO BAR W_FOR_WUMBO' as const

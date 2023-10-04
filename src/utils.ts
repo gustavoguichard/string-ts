@@ -58,7 +58,6 @@ type IsSpecial<T extends string> = IsLetter<T> extends true
   : true
 
 // STRING FUNCTIONS
-
 /**
  * Splits a string into words.
  * sentence: The current string to split.

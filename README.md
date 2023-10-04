@@ -88,6 +88,7 @@ npm install string-ts
 
 - [Runtime counterparts of native type utilities](#runtime-counterparts-of-native-type-utilities)
   - [capitalize](#capitalize)
+  - [uncapitalize](#uncapitalize)
 - [Strongly-typed alternatives to native runtime utilities](#strongly-typed-alternatives-to-native-runtime-utilities)
   - [chartAt](#charat)
   - [join](#join)
@@ -144,6 +145,18 @@ import { capitalize } from 'string-ts'
 const str = 'hello world'
 const result = capitalize(str)
 //    ^ 'Hello world'
+```
+
+### uncapitalize
+
+Uncapitalizes the first letter of a string. This is a runtime counterpart of `Uncapitalize<T>` from `src/types.d.ts`.
+
+```ts
+import { uncapitalize } from 'string-ts'
+
+const str = 'Hello world'
+const result = uncapitalize(str)
+//    ^ 'hello world'
 ```
 
 ## Strongly-typed alternatives to native runtime utilities

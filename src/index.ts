@@ -56,6 +56,7 @@ export {
   toSnakeCase,
   toTitleCase,
   toUpperCase,
+  uncapitalize,
 } from './casing'
 
 // KEY CASING

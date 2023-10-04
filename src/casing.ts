@@ -4,7 +4,18 @@ import { join } from './primitives'
 import type { Is, Words } from './utils'
 import { words } from './utils'
 
-// CASING UTILITIES
+// CASING UTILITIES THAT ALREADY HAVE NATIVE TS TYPES
+
+/**
+ * Capitalizes the first letter of a string. This is a runtime counterpart of `Capitalize<T>` from `src/types.d.ts`.
+ * @param str the string to capitalize.
+ * @returns the capitalized string.
+ * @example capitalize('hello world') // 'Hello world'
+ */
+function capitalize<T extends string>(str: T) {
+  return (toUpperCase(str.charAt(0)) + str.slice(1)) as Capitalize<T>
+}
+
 /**
  * This function is a strongly-typed counterpart of String.prototype.toLowerCase.
  * @param str the string to make lowercase.
@@ -26,15 +37,16 @@ function toUpperCase<T extends string>(str: T) {
 }
 
 /**
- * Capitalizes the first letter of a string. This is a runtime counterpart of `Capitalize<T>` from `src/types.d.ts`.
- * @param str the string to capitalize.
- * @returns the capitalized string.
- * @example capitalize('hello world') // 'Hello world'
+ * Uncapitalizes the first letter of a string. This is a runtime counterpart of `Uncapitalize<T>` from `src/types.d.ts`.
+ * @param str the string to uncapitalize.
+ * @returns the uncapitalized string.
+ * @example uncapitalize('Hello world') // 'hello world'
  */
-function capitalize<T extends string>(str: T) {
-  return (toUpperCase(str.charAt(0)) + str.slice(1)) as Capitalize<T>
+function uncapitalize<T extends string>(str: T) {
+  return (toLowerCase(str.charAt(0)) + str.slice(1)) as Uncapitalize<T>
 }
 
+// CASING UTILITIES
 /**
  * Transforms a string with the specified separator (delimiter).
  */
@@ -165,4 +177,5 @@ export {
   toSnakeCase,
   toTitleCase,
   toUpperCase,
+  uncapitalize,
 }
