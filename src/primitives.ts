@@ -20,11 +20,23 @@ function charAt<T extends string, I extends number>(
   return str.charAt(index)
 }
 
+/**
+ * Concatenates a tuple of strings.
+ * T: The tuple of strings to concatenate.
+ */
 type Concat<T extends string[]> = Join<T>
 
+/**
+ * A strongly typed version of `String.prototype.concat`.
+ * @param strings the tuple of strings to concatenate.
+ * @returns the concatenated string in both type level and runtime.
+ * @example concat('a', 'bc', 'def') // 'abcdef'
+ */
 function concat<T extends string[]>(...strings: T): Concat<T> {
   return join(strings)
 }
+
+'abc'.concat()
 
 /**
  * Joins a tuple of strings with the given delimiter.
