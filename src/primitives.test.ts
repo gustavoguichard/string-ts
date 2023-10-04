@@ -28,6 +28,13 @@ namespace TypeTests {
     Equal<Subject.Slice<'some nice string', 5>, 'nice string'>
   >
   type test10 = Expect<Equal<Subject.Length<'some nice string'>, 16>>
+
+  type test11 = Expect<
+    Equal<
+      Subject.Concat<['a', 'bc', 'def'] | ['1', '23', '456']>,
+      'abcdef' | '123456'
+    >
+  >
 }
 
 describe('primitives', () => {

@@ -20,6 +20,12 @@ function charAt<T extends string, I extends number>(
   return str.charAt(index)
 }
 
+type Concat<T extends string[]> = Join<T, ''>
+
+function concat<T extends string[]>(...strings: T): Concat<T> {
+  return join(strings) as Concat<T>
+}
+
 /**
  * Joins a tuple of strings with the given delimiter.
  * T: The tuple of strings to join.
@@ -256,6 +262,7 @@ function trim<T extends string>(str: T) {
 
 export type {
   CharAt,
+  Concat,
   Join,
   Length,
   Replace,
@@ -268,6 +275,7 @@ export type {
 }
 export {
   charAt,
+  concat,
   join,
   length,
   replace,
