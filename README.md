@@ -100,6 +100,7 @@ npm install string-ts
   - [split](#split)
   - [toLowerCase](#tolowercase)
   - [toUpperCase](#touppercase)
+  - [startsWith](#startsWith)
   - [trim](#trim)
   - [trimEnd](#trimend)
   - [trimStart](#trimstart)
@@ -304,6 +305,17 @@ import { trim } from 'string-ts'
 const str = '  hello world  '
 const result = trim(str)
 //    ^ 'hello world'
+```
+
+### startsWith
+
+This function is a strongly-typed counterpart of `String.prototype.startsWith`.
+
+```ts
+import { startsWith } from 'string-ts'
+
+const result = startsWith('abc', 'a')
+//    ^ true
 ```
 
 ### trimEnd
@@ -652,6 +664,7 @@ St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'
 St.Slice<'hello-world', -5> // 'world'
 St.Split<'hello-world', '-'> // ['hello', 'world']
 St.Trim<' hello world '> // 'hello world'
+St.StartsWith<'abc', 'a'> // true
 St.TrimEnd<' hello world '> // ' hello world'
 St.TrimStart<' hello world '> // 'hello world '
 St.Words<'hello-world'> // ['hello', 'world']
