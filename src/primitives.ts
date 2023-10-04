@@ -7,7 +7,7 @@ import type { Math } from './math'
  */
 type CharAt<T extends string, index extends number> = Split<T>[index]
 /**
- * A strongly typed version of `String.prototype.charAt`.
+ * A strongly-typed version of `String.prototype.charAt`.
  * @param str the string to get the character from.
  * @param index the index of the character.
  * @returns the character in both type level and runtime.
@@ -27,7 +27,7 @@ function charAt<T extends string, I extends number>(
 type Concat<T extends string[]> = Join<T>
 
 /**
- * A strongly typed version of `String.prototype.concat`.
+ * A strongly-typed version of `String.prototype.concat`.
  * @param strings the tuple of strings to concatenate.
  * @returns the concatenated string in both type level and runtime.
  * @example concat('a', 'bc', 'def') // 'abcdef'
@@ -58,7 +58,7 @@ type Join<
   : ''
 
 /**
- * A strongly typed version of `Array.prototype.join`.
+ * A strongly-typed version of `Array.prototype.join`.
  * @param tuple the tuple of strings to join.
  * @param delimiter the delimiter.
  * @returns the joined string in both type level and runtime.
@@ -76,7 +76,7 @@ function join<const T extends readonly string[], D extends string = ''>(
  */
 type Length<T extends string> = Split<T>['length']
 /**
- * A strongly typed version of `String.prototype.length`.
+ * A strongly-typed version of `String.prototype.length`.
  * @param str the string to get the length from.
  * @returns the length of the string in both type level and runtime.
  * @example length('hello world') // 11
@@ -100,7 +100,7 @@ type Replace<
   : sentence
 
 /**
- * A strongly typed version of `String.prototype.replace`.
+ * A strongly-typed version of `String.prototype.replace`.
  * @param sentence the sentence to replace.
  * @param lookup the lookup string to be replaced.
  * @param replacement the replacement string.
@@ -134,7 +134,7 @@ type ReplaceAll<
   : sentence
 
 /**
- * A strongly typed version of `String.prototype.replaceAll`.
+ * A strongly-typed version of `String.prototype.replaceAll`.
  * @param sentence the sentence to replace.
  * @param lookup the lookup string to be replaced.
  * @param replacement the replacement string.
@@ -183,7 +183,7 @@ type Slice<
       >}`
   : ''
 /**
- * A strongly typed version of `String.prototype.slice`.
+ * A strongly-typed version of `String.prototype.slice`.
  * @param str the string to slice.
  * @param start the start index.
  * @param end the end index.
@@ -214,7 +214,7 @@ type Split<
   ? []
   : [T]
 /**
- * A strongly typed version of `String.prototype.split`.
+ * A strongly-typed version of `String.prototype.split`.
  * @param str the string to split.
  * @param delimiter the delimiter.
  * @returns the splitted string in both type level and runtime.
@@ -232,7 +232,7 @@ type TrimStart<T extends string> = T extends ` ${infer rest}`
   ? TrimStart<rest>
   : T
 /**
- * A strongly typed version of `String.prototype.trimStart`.
+ * A strongly-typed version of `String.prototype.trimStart`.
  * @param str the string to trim.
  * @returns the trimmed string in both type level and runtime.
  * @example trimStart(' hello world ') // 'hello world '
@@ -247,7 +247,7 @@ function trimStart<T extends string>(str: T) {
  */
 type TrimEnd<T extends string> = T extends `${infer rest} ` ? TrimEnd<rest> : T
 /**
- * A strongly typed version of `String.prototype.trimEnd`.
+ * A strongly-typed version of `String.prototype.trimEnd`.
  * @param str the string to trim.
  * @returns the trimmed string in both type level and runtime.
  * @example trimEnd(' hello world ') // ' hello world'
@@ -263,7 +263,7 @@ function trimEnd<T extends string>(str: T) {
 type Trim<T extends string> = TrimEnd<TrimStart<T>>
 
 /**
- * A strongly typed version of `String.prototype.trim`.
+ * A strongly-typed version of `String.prototype.trim`.
  * @param str the string to trim.
  * @returns the trimmed string in both type level and runtime.
  * @example trim(' hello world ') // 'hello world'
