@@ -1,4 +1,4 @@
-import type { Is } from './utils'
+import { capitalize, toLowerCase } from './casing'
 
 /**
  * This is an enhanced version of the typeof operator to check the type of more complex values.
@@ -28,6 +28,10 @@ function typeOf(t: unknown) {
     | 'urlsearchparams'
 }
 
+function pascalCaseAll<T extends string[]>(words: T) {
+  return words.map((v) => capitalize(toLowerCase(v))) as PascalCaseAll<T>
+}
+
 /**
  * Removes all the elements matching the given condition from a tuple.
  */
@@ -49,12 +53,12 @@ type DropSuffix<
 /**
  * PascalCases all the words in a tuple of strings
  */
-type PascalCaseAll<T extends string[]> = T extends [infer First, ...infer Rest]
-  ? [
-      Capitalize<Lowercase<Is<First, string>>>,
-      ...PascalCaseAll<Is<Rest, string[]>>,
-    ]
+type PascalCaseAll<T extends string[]> = T extends [
+  infer head extends string,
+  ...infer rest extends string[],
+]
+  ? [Capitalize<Lowercase<head>>, ...PascalCaseAll<rest>]
   : T
 
-export type { PascalCaseAll, Drop, DropSuffix }
-export { typeOf }
+export type { Drop, DropSuffix, PascalCaseAll }
+export { pascalCaseAll, typeOf }

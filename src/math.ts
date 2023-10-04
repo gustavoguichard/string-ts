@@ -9,7 +9,7 @@ namespace Math {
   export type Subtract<
     A extends number,
     B extends number,
-  > = GetTuple<A> extends [...infer U, ...GetTuple<B>] ? U['length'] : never
+  > = GetTuple<A> extends [...infer U, ...GetTuple<B>] ? U['length'] : 0
 
   export type IsPositive<T extends number> = `${T}` extends `-${number}`
     ? false

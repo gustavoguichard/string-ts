@@ -196,7 +196,7 @@ import { length } from 'string-ts'
 
 const str = 'hello'
 const result = length(str)
-//    ^ 4
+//    ^ 5
 ```
 
 ### replace
@@ -628,7 +628,7 @@ Uppercase<'hello world'> // 'HELLO WORLD'
 ```ts
 St.CharAt<'hello world', 6> // 'w'
 St.Join<['hello', 'world'], '-'> // 'hello-world'
-St.Length<'hello'> // 4
+St.Length<'hello'> // 5
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
 St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'
 St.Slice<'hello-world', -5> // 'world'
