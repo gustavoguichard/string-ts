@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type * as Subject from './primitives'
 import * as subject from './primitives'
 
@@ -29,6 +30,10 @@ namespace TypeTests {
   >
   type test10 = Expect<Equal<Subject.Length<'some nice string'>, 16>>
 }
+
+beforeEach(() => {
+  vi.clearAllMocks()
+})
 
 describe('primitives', () => {
   describe('charAt', () => {
@@ -86,6 +91,25 @@ describe('primitives', () => {
       const result = subject.replaceAll(data, ' ', '@')
       expect(result).toEqual('some@nice@string')
       type test = Expect<Equal<typeof result, 'some@nice@string'>>
+    })
+  })
+
+  describe('replaceAll polyfill', () => {
+    const replaceAll = String.prototype.replaceAll
+    beforeAll(() => {
+      // @ts-ignore
+      String.prototype.replaceAll = undefined
+    })
+
+    afterAll(() => {
+      String.prototype.replaceAll = replaceAll
+    })
+    test('it works through a polyfill', () => {
+      const spy = vi.spyOn(String.prototype, 'replace')
+      const data = 'some nice string'
+      const result = subject.replaceAll(data, ' ', '@')
+      expect(result).toEqual('some@nice@string')
+      expect(spy).toHaveBeenCalledWith(/ /g, '@')
     })
   })
 
