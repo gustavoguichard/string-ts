@@ -91,6 +91,7 @@ npm install string-ts
   - [uncapitalize](#uncapitalize)
 - [Strongly-typed alternatives to native runtime utilities](#strongly-typed-alternatives-to-native-runtime-utilities)
   - [chartAt](#charat)
+  - [concat](#concat)
   - [join](#join)
   - [length](#length)
   - [replace](#replace)
@@ -173,6 +174,17 @@ import { charAt } from 'string-ts'
 const str = 'hello world'
 const result = charAt(str, 6)
 //    ^ 'w'
+```
+
+### concat
+
+This function is a strongly-typed counterpart of `String.prototype.concat`.
+
+```ts
+import { concat } from 'string-ts'
+
+const result = concat('a', 'bc', 'def')
+//    ^ 'abcdef'
 ```
 
 ### join
@@ -627,6 +639,7 @@ Uppercase<'hello world'> // 'HELLO WORLD'
 
 ```ts
 St.CharAt<'hello world', 6> // 'w'
+St.Concat<['a', 'bc', 'def']> // 'abcdef'
 St.Join<['hello', 'world'], '-'> // 'hello-world'
 St.Length<'hello'> // 5
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
