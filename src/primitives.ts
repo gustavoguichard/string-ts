@@ -232,15 +232,11 @@ type StartsWith<
   P extends number = 0,
 > = Math.IsPositive<P> extends true
   ? P extends 0
-    ? T extends `${infer TFirst}${infer TRest}`
-      ? S extends `${infer SFirst}${infer SRest}`
-        ? TFirst extends SFirst
-          ? StartsWith<TRest, SRest, P> // Compare next character
-          : false // T differs from S
-        : true // S (Search) is exhausted (and didn't fail)
-      : false // T (Text) is exhausted with S (Search) leftover
+    ? T extends `${S}${string}`
+      ? true
+      : false
     : StartsWith<Slice<T, P>, S, 0> // P is >0, slice
-  : StartsWith<T, S, 0> // P (Position) is negative, ignore
+  : StartsWith<T, S, 0> // P is negative, ignore it
 
 /**
  * A strongly-typed version of `String.prototype.startsWith`.
