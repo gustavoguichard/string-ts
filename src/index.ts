@@ -1,6 +1,7 @@
 // PRIMITIVES
 export type {
   CharAt,
+  Concat,
   Join,
   Length,
   Replace,
@@ -13,6 +14,7 @@ export type {
 } from './primitives'
 export {
   charAt,
+  concat,
   join,
   length,
   replace,

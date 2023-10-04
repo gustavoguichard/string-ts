@@ -20,10 +20,10 @@ function charAt<T extends string, I extends number>(
   return str.charAt(index)
 }
 
-type Concat<T extends string[]> = Join<T, ''>
+type Concat<T extends string[]> = Join<T>
 
 function concat<T extends string[]>(...strings: T): Concat<T> {
-  return join(strings) as Concat<T>
+  return join(strings)
 }
 
 /**
