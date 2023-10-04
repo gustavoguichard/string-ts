@@ -24,6 +24,7 @@ namespace TypeTests {
     Equal<Subject.Split<'some nice string', ' '>, ['some', 'nice', 'string']>
   >
   type test8 = Expect<Equal<Subject.CharAt<'some nice string', 5>, 'n'>>
+  type test10 = Expect<Equal<Subject.Length<'some nice string'>, 16>>
 }
 
 describe('primitives', () => {
@@ -49,6 +50,15 @@ describe('primitives', () => {
       const result = subject.join(data, '-')
       expect(result).toEqual('a-b-c')
       type test = Expect<Equal<typeof result, string>>
+    })
+  })
+
+  describe('length', () => {
+    test('should return the lenght of a string at both type level and runtime level', () => {
+      const data = 'some nice string'
+      const result = subject.length(data)
+      expect(result).toEqual(16)
+      type test = Expect<Equal<typeof result, 16>>
     })
   })
 

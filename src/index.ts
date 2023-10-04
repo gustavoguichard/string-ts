@@ -2,6 +2,7 @@
 export type {
   CharAt,
   Join,
+  Length,
   Replace,
   ReplaceAll,
   Split,
@@ -12,6 +13,7 @@ export type {
 export {
   charAt,
   join,
+  length,
   replace,
   replaceAll,
   split,
@@ -23,7 +25,6 @@ export {
 // UTILS
 export type {
   Digit,
-  Is,
   IsDigit,
   IsLetter,
   IsLower,

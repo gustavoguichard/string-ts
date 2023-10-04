@@ -92,6 +92,7 @@ npm install string-ts
 - [Strongly-typed alternatives to native runtime utilities](#strongly-typed-alternatives-to-native-runtime-utilities)
   - [chartAt](#charat)
   - [join](#join)
+  - [length](#length)
   - [replace](#replace)
   - [replaceAll](#replaceall)
   - [split](#split)
@@ -183,6 +184,18 @@ import { join } from 'string-ts'
 const str = ['hello', 'world']
 const result = join(str, ' ')
 //    ^ 'hello world'
+```
+
+### length
+
+This function is a strongly-typed counterpart of `String.prototype.length`.
+
+```ts
+import { length } from 'string-ts'
+
+const str = 'hello'
+const result = length(str)
+//    ^ 4
 ```
 
 ### replace
@@ -596,6 +609,7 @@ Uppercase<'hello world'> // 'HELLO WORLD'
 ```ts
 St.CharAt<'hello world', 6> // 'w'
 St.Join<['hello', 'world'], '-'> // 'hello-world'
+St.Length<'hello'> // 4
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
 St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'
 St.Split<'hello-world', '-'> // ['hello', 'world']

@@ -3,7 +3,7 @@
  * T: The string to get the character from.
  * index: The index of the character.
  */
-type CharAt<T extends string, index extends number> = Split<T, ''>[index]
+type CharAt<T extends string, index extends number> = Split<T>[index]
 /**
  * A strongly typed version of `String.prototype.charAt`.
  * @param str the string to get the character from.
@@ -49,6 +49,20 @@ function join<const T extends readonly string[], D extends string = ''>(
   delimiter?: D,
 ) {
   return tuple.join(delimiter ?? ('' as const)) as Join<T, D>
+}
+
+/**
+ * Gets the length of a string.
+ */
+type Length<T extends string> = Split<T>['length']
+/**
+ * A strongly typed version of `String.prototype.length`.
+ * @param str the string to get the length from.
+ * @returns the length of the string in both type level and runtime.
+ * @example length('hello world') // 11
+ */
+function length<T extends string>(str: T) {
+  return str.length as Length<T>
 }
 
 /**
@@ -194,6 +208,7 @@ function trim<T extends string>(str: T) {
 export type {
   CharAt,
   Join,
+  Length,
   Replace,
   ReplaceAll,
   Split,
@@ -201,4 +216,14 @@ export type {
   TrimEnd,
   Trim,
 }
-export { charAt, join, replace, replaceAll, split, trim, trimStart, trimEnd }
+export {
+  charAt,
+  join,
+  length,
+  replace,
+  replaceAll,
+  split,
+  trim,
+  trimStart,
+  trimEnd,
+}
