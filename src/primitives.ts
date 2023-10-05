@@ -37,6 +37,40 @@ function concat<T extends string[]>(...strings: T): Concat<T> {
 }
 
 /**
+ * Checks if a string ends with another string.
+ * T: The string to check.
+ * S: The string to check against.
+ * P: The position the search should end.
+ */
+type EndsWith<
+  T extends string,
+  S extends string,
+  P extends number = Length<T>,
+> = Math.IsPositive<P> extends true
+  ? P extends Length<T>
+    ? S extends Slice<T, Math.Subtract<Length<T>, Length<S>>, Length<T>>
+      ? true
+      : false
+    : EndsWith<Slice<T, 0, P>, S, Length<T>> // P !== T.length, slice
+  : false // P is negative, false
+
+/**
+ * A strongly-typed version of `String.prototype.endsWith`.
+ * @param text the string to search.
+ * @param search the string to search with.
+ * @param position the index the search should end at.
+ * @returns boolean, whether or not the text string ends with the search string.
+ * @example endsWith('abc', 'c') // true
+ */
+function endsWith<
+  T extends string,
+  S extends string,
+  P extends number = Length<T>,
+>(text: T, search: S, position = text.length as P) {
+  return text.endsWith(search, position) as EndsWith<T, S, P>
+}
+
+/**
  * Joins a tuple of strings with the given delimiter.
  * T: The tuple of strings to join.
  * delimiter: The delimiter.
@@ -218,6 +252,40 @@ function split<T extends string, D extends string = ''>(
 }
 
 /**
+ * Checks if a string starts with another string.
+ * T: The string to check.
+ * S: The string to check against.
+ * P: The position to start the search.
+ */
+type StartsWith<
+  T extends string,
+  S extends string,
+  P extends number = 0,
+> = Math.IsPositive<P> extends true
+  ? P extends 0
+    ? T extends `${S}${string}`
+      ? true
+      : false
+    : StartsWith<Slice<T, P>, S, 0> // P is >0, slice
+  : StartsWith<T, S, 0> // P is negative, ignore it
+
+/**
+ * A strongly-typed version of `String.prototype.startsWith`.
+ * @param text the string to search.
+ * @param search the string to search with.
+ * @param position the index to start search at.
+ * @returns boolean, whether or not the text string starts with the search string.
+ * @example startsWith('abc', 'a') // true
+ */
+function startsWith<T extends string, S extends string, P extends number = 0>(
+  text: T,
+  search: S,
+  position = 0 as P,
+) {
+  return text.startsWith(search, position) as StartsWith<T, S, P>
+}
+
+/**
  * Trims all whitespaces at the start of a string.
  * T: The string to trim.
  */
@@ -268,12 +336,14 @@ function trim<T extends string>(str: T) {
 export type {
   CharAt,
   Concat,
+  EndsWith,
   Join,
   Length,
   Replace,
   ReplaceAll,
   Slice,
   Split,
+  StartsWith,
   TrimStart,
   TrimEnd,
   Trim,
@@ -281,12 +351,14 @@ export type {
 export {
   charAt,
   concat,
+  endsWith,
   join,
   length,
   replace,
   replaceAll,
   slice,
   split,
+  startsWith,
   trim,
   trimStart,
   trimEnd,

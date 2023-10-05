@@ -36,6 +36,9 @@ namespace TypeTests {
       'abcdef' | '123456'
     >
   >
+
+  type test12 = Expect<Equal<Subject.StartsWith<'abc', 'a'>, true>>
+  type test13 = Expect<Equal<Subject.EndsWith<'abc', 'c'>, true>>
 }
 
 beforeEach(() => {
@@ -181,6 +184,93 @@ describe('primitives', () => {
 
       expect(subject.split('', '')).toEqual([])
       type test2 = Expect<Equal<Subject.Split<''>, []>>
+    })
+  })
+
+  describe('startsWith', () => {
+    describe('without offset', () => {
+      test('should return true when text starts with search', () => {
+        const result = subject.startsWith('abc', 'a')
+        expect(result).toEqual(true)
+        type test = Expect<Equal<typeof result, true>>
+      })
+      test('should return false when text does not start with search', () => {
+        const result = subject.startsWith('abc', 'b')
+        expect(result).toEqual(false)
+        type test = Expect<Equal<typeof result, false>>
+      })
+    })
+
+    describe('with offset', () => {
+      test('should return true when offset text starts with search', () => {
+        const result = subject.startsWith('abc', 'b', 1)
+        expect(result).toEqual(true)
+        type test = Expect<Equal<typeof result, true>>
+      })
+      test('should return false when offset string does not start with search', () => {
+        const result = subject.startsWith('abc', 'a', 1)
+        expect(result).toEqual(false)
+        type test = Expect<Equal<typeof result, false>>
+      })
+    })
+
+    describe('with bad offset', () => {
+      test('should return true when text starts with search and offset is negative', () => {
+        const result = subject.startsWith('abc', 'a', -1)
+        expect(result).toEqual(true)
+        type test = Expect<Equal<typeof result, true>>
+      })
+      test('should return false when offset is greater than text length', () => {
+        const result = subject.startsWith('abc', 'a', 10)
+        expect(result).toEqual(false)
+        type test = Expect<Equal<typeof result, false>>
+      })
+    })
+  })
+
+  describe('endsWith', () => {
+    describe('without offset', () => {
+      test('should return true when text ends with search', () => {
+        const result = subject.endsWith('abc', 'c')
+        expect(result).toEqual(true)
+        type test = Expect<Equal<typeof result, true>>
+      })
+      test('should return false when text does not end with search', () => {
+        const result = subject.endsWith('abc', 'b')
+        expect(result).toEqual(false)
+        type test = Expect<Equal<typeof result, false>>
+      })
+    })
+
+    describe('with offset', () => {
+      test('should return true when offset text ends with search', () => {
+        const result = subject.endsWith('abc', 'b', 2)
+        expect(result).toEqual(true)
+        type test = Expect<Equal<typeof result, true>>
+      })
+      test('should return true when offset text ends with search (multi-char)', () => {
+        const result = subject.endsWith('abc', 'bc', 3)
+        expect(result).toEqual(true)
+        type test = Expect<Equal<typeof result, true>>
+      })
+      test('should return false when offset string does not end with search', () => {
+        const result = subject.endsWith('abc', 'c', 1)
+        expect(result).toEqual(false)
+        type test = Expect<Equal<typeof result, false>>
+      })
+    })
+
+    describe('with bad offset', () => {
+      test('should return false when the offset is negative', () => {
+        const result = subject.endsWith('abc', 'a', -1)
+        expect(result).toEqual(false)
+        type test = Expect<Equal<typeof result, false>>
+      })
+      test('should return true when the end matches and offset is greater than text length', () => {
+        const result = subject.endsWith('abc', 'c', 10)
+        expect(result).toEqual(true)
+        type test = Expect<Equal<typeof result, true>>
+      })
     })
   })
 

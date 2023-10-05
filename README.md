@@ -92,12 +92,14 @@ npm install string-ts
 - [Strongly-typed alternatives to native runtime utilities](#strongly-typed-alternatives-to-native-runtime-utilities)
   - [charAt](#charat)
   - [concat](#concat)
+  - [endsWith](#endsWith)
   - [join](#join)
   - [length](#length)
   - [replace](#replace)
   - [replaceAll](#replaceall)
   - [slice](#slice)
   - [split](#split)
+  - [startsWith](#startsWith)
   - [toLowerCase](#tolowercase)
   - [toUpperCase](#touppercase)
   - [trim](#trim)
@@ -187,6 +189,17 @@ const result = concat('a', 'bc', 'def')
 //    ^ 'abcdef'
 ```
 
+### endsWith
+
+This function is a strongly-typed counterpart of `String.prototype.endsWith`.
+
+```ts
+import { endsWith } from 'string-ts'
+
+const result = endsWith('abc', 'c')
+//    ^ true
+```
+
 ### join
 
 This function is a strongly-typed counterpart of `Array.prototype.join`.
@@ -266,6 +279,17 @@ import { split } from 'string-ts'
 const str = 'hello-world'
 const result = split(str, '-')
 //    ^ ['hello', 'world']
+```
+
+### startsWith
+
+This function is a strongly-typed counterpart of `String.prototype.startsWith`.
+
+```ts
+import { startsWith } from 'string-ts'
+
+const result = startsWith('abc', 'a')
+//    ^ true
 ```
 
 ### toLowerCase
@@ -643,6 +667,7 @@ Uppercase<'hello world'> // 'HELLO WORLD'
 ```ts
 St.CharAt<'hello world', 6> // 'w'
 St.Concat<['a', 'bc', 'def']> // 'abcdef'
+St.EndsWith<'abc', 'c'> // true
 St.Join<['hello', 'world'], '-'> // 'hello-world'
 St.Length<'hello'> // 5
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
@@ -650,6 +675,7 @@ St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'
 St.Slice<'hello-world', -5> // 'world'
 St.Split<'hello-world', '-'> // ['hello', 'world']
 St.Trim<' hello world '> // 'hello world'
+St.StartsWith<'abc', 'a'> // true
 St.TrimEnd<' hello world '> // ' hello world'
 St.TrimStart<' hello world '> // 'hello world '
 St.Words<'hello-world'> // ['hello', 'world']
