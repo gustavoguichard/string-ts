@@ -84,8 +84,6 @@ describe('words', () => {
     const result = subject.words(
       '[one] two-three/four.five(six){seven}|eight_nine\\ten',
     )
-    // const expected = ['some', 'weird', 'cased', 'string', 'foo'] as const
-    // const result = subject.words('some--weird cased/string.foo')
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, Mutable<typeof expected>>>
   })
