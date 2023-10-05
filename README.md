@@ -98,6 +98,7 @@ It also only work with common ASCII characters characters. We don't plan to supp
   - [charAt](#charat)
   - [concat](#concat)
   - [endsWith](#endsWith)
+  - [includes](#includes)
   - [join](#join)
   - [length](#length)
   - [padEnd](#padend)
@@ -205,6 +206,17 @@ This function is a strongly-typed counterpart of `String.prototype.endsWith`.
 import { endsWith } from 'string-ts'
 
 const result = endsWith('abc', 'c')
+//    ^ true
+```
+
+### includes
+
+This function is a strongly-typed counterpart of `String.prototype.includes`.
+
+```ts
+import { includes } from 'string-ts'
+
+const result = includes('abcde', 'bcd')
 //    ^ true
 ```
 
@@ -712,6 +724,7 @@ Uppercase<'hello world'> // 'HELLO WORLD'
 St.CharAt<'hello world', 6> // 'w'
 St.Concat<['a', 'bc', 'def']> // 'abcdef'
 St.EndsWith<'abc', 'c'> // true
+St.Includes<'abcde', 'bcd'> // true
 St.Join<['hello', 'world'], '-'> // 'hello-world'
 St.Length<'hello'> // 5
 St.PadEnd<'hello', 10, '='> // 'hello====='
