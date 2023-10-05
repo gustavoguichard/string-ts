@@ -64,9 +64,9 @@ type Join<
  */
 function join<const T extends readonly string[], D extends string = ''>(
   tuple: T,
-  delimiter?: D,
+  delimiter: D = '' as D,
 ) {
-  return tuple.join(delimiter ?? ('' as const)) as Join<T, D>
+  return tuple.join(delimiter) as Join<T, D>
 }
 
 /**
@@ -184,8 +184,8 @@ type Slice<
  */
 function slice<
   T extends string,
-  const S extends number = 0,
-  const E extends number = Split<T>['length'],
+  S extends number = 0,
+  E extends number = Split<T>['length'],
 >(str: T, start: S = 0 as S, end: E = str.length as E) {
   return str.slice(start, end) as Slice<T, S, E>
 }
@@ -210,8 +210,11 @@ type Split<
  * @returns the splitted string in both type level and runtime.
  * @example split('hello world', ' ') // ['hello', 'world']
  */
-function split<T extends string, D extends string = ''>(str: T, delimiter?: D) {
-  return str.split(delimiter ?? ('' as const)) as Split<T, D>
+function split<T extends string, D extends string = ''>(
+  str: T,
+  delimiter: D = '' as D,
+) {
+  return str.split(delimiter) as Split<T, D>
 }
 
 /**
