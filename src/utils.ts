@@ -15,12 +15,22 @@ const SEPARATORS = [
   ']',
   '{',
   '}',
-  '\\',
 ] as const
 
 type Separator = (typeof SEPARATORS)[number]
 
-const SEPARATOR_REGEX = new RegExp(`[${SEPARATORS.join('')}]`, 'g')
+/** Escape characters with special significance in regular expressions */
+function escapeCharacter(char: string): string {
+  if (['[', ']', '{', '}', '(', ')', '|', '/', '-'].includes(char)) {
+    return `\\${char}`
+  }
+  return char
+}
+
+const SEPARATOR_REGEX = new RegExp(
+  `[${SEPARATORS.map(escapeCharacter).join('')}]`,
+  'g',
+)
 
 // GENERAL UTILITIES
 
