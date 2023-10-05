@@ -140,12 +140,28 @@ describe('primitives', () => {
       type test = Expect<Equal<typeof result, 'dog.'>>
     })
 
+    test('should allow a negative endIndex', () => {
+      const result = subject.slice(str, 0, -5)
+      expect(result).toEqual('The quick brown fox jumps over the lazy')
+      type test = Expect<
+        Equal<typeof result, 'The quick brown fox jumps over the lazy'>
+      >
+    })
+
     test('should slice a string from the end with a negative startIndex to a negative endIndex', () => {
       const result = subject.slice(str, -9, -5)
-      expect(result).toEqual('lazy dog.')
-      type test = Expect<Equal<typeof result, 'lazy dog.'>>
-      // TODO: figure out how to deal with negative endIndex, this should be the expected result
-      // type test = Expect<Equal<typeof result, 'lazy'>>
+      expect(result).toEqual('lazy')
+      type test = Expect<Equal<typeof result, 'lazy'>>
+    })
+
+    test('should return an empty string if endIndex is lower than startIndex', () => {
+      const result = subject.slice(str, -9, -10)
+      expect(result).toEqual('')
+      type test = Expect<Equal<typeof result, ''>>
+
+      const result2 = subject.slice(str, 9, 1)
+      expect(result2).toEqual('')
+      type test2 = Expect<Equal<typeof result2, ''>>
     })
   })
 
