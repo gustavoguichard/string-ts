@@ -39,6 +39,19 @@ namespace TypeChecks {
   type test30 = Expect<Equal<Subject.IsSpecial<' '>, false>>
   type test31 = Expect<Equal<Subject.IsSpecial<'*'>, true>>
   type test32 = Expect<Equal<Subject.IsSpecial<'_'>, false>>
+
+  type test33 = Expect<Equal<Subject.Truncate<'Hello, world', 9>, 'Hello,...'>>
+  type test34 = Expect<
+    Equal<Subject.Truncate<'Hello, world', 12>, 'Hello, world'>
+  >
+  type test35 = Expect<Equal<Subject.Truncate<'Hello, world', 2>, '...'>>
+  type test36 = Expect<
+    Equal<Subject.Truncate<'Hello, world', 9, '[...]'>, 'Hell[...]'>
+  >
+  type test37 = Expect<Equal<Subject.Truncate<'Hello, world', -1>, '...'>>
+  type test38 = Expect<
+    Equal<Subject.Truncate<'Hello, world', 0, '[...]'>, '[...]'>
+  >
 }
 
 type Mutable<Type> = {
@@ -98,5 +111,40 @@ describe('words', () => {
     const result = subject.words(' someWeird-cased$*String1986Foo Bar ')
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, Mutable<typeof expected>>>
+  })
+
+  test('truncate small sentence does nothing', () => {
+    const expected = 'Hello' as const
+    const result = subject.truncate('Hello', 9)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
+  test('truncate big sentence truncate', () => {
+    const expected = 'Hello ...' as const
+    const result = subject.truncate('Hello world', 9)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
+  test('truncate with negative integer does truncate', () => {
+    const expected = '...' as const
+    const result = subject.truncate('Hello world', -1)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
+  test('truncate big sentence with specified omission', () => {
+    const expected = 'Hello[...]' as const
+    const result = subject.truncate('Hello world', 10, '[...]')
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
+  test('truncate small sentence with specified omission', () => {
+    const expected = 'Hello' as const
+    const result = subject.truncate('Hello', 10, '[...]')
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
   })
 })

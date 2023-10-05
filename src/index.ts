@@ -48,9 +48,10 @@ export type {
   IsSpecial,
   IsUpper,
   Separator,
+  Truncate,
   Words,
 } from './utils'
-export { words } from './utils'
+export { truncate, words } from './utils'
 
 // CASING
 export type {
