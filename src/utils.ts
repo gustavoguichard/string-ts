@@ -1,5 +1,5 @@
 import type { Math } from './math'
-import type { Slice, Split } from './primitives'
+import { join, type Join, type Length, type Slice } from './primitives'
 import type { Drop, DropSuffix } from './internals'
 
 type Digit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
@@ -147,13 +147,13 @@ type Truncate<
   Omission extends string = '...',
 > = Math.IsNegative<Size> extends true
   ? Omission
-  : Math.Subtract<Split<T>['length'], Size> extends 0
+  : Math.Subtract<Length<T>, Size> extends 0
   ? T
-  : `${Slice<T, 0, Math.Subtract<Size, Split<Omission>['length']>>}${Omission}`
+  : Join<[Slice<T, 0, Math.Subtract<Size, Length<Omission>>>, Omission]>
 
 /**
- * A strongly typed function to truncate a string .
- * if it's longer than the given maximum string length.
+ * A strongly typed function to truncate a string if it's longer than the given maximum string length.
+ * The last characters of the truncated string are replaced with the omission string which defaults to "...".
  * @param sentence the sentence to extract the words from.
  * @param length the maximum length of the string.
  * @param omission the string to append to the end of the truncated string.
@@ -168,10 +168,7 @@ function truncate<T extends string, S extends number, P extends string = '...'>(
   if (length <= 0) return omission as Truncate<T, S, P>
   if (sentence.length <= length) return sentence as Truncate<T, S, P>
   if (sentence.length <= omission.length) return omission as Truncate<T, S, P>
-  return `${sentence.slice(
-    0,
-    length - omission.length,
-  )}${omission}` as Truncate<T, S, P>
+  return join([sentence.slice(0, length - omission.length), omission])
 }
 
 export type {
