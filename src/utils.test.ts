@@ -39,19 +39,6 @@ namespace TypeChecks {
   type test30 = Expect<Equal<Subject.IsSpecial<' '>, false>>
   type test31 = Expect<Equal<Subject.IsSpecial<'*'>, true>>
   type test32 = Expect<Equal<Subject.IsSpecial<'_'>, false>>
-
-  type test33 = Expect<Equal<Subject.Truncate<'Hello, world', 9>, 'Hello,...'>>
-  type test34 = Expect<
-    Equal<Subject.Truncate<'Hello, world', 12>, 'Hello, world'>
-  >
-  type test35 = Expect<Equal<Subject.Truncate<'Hello, world', 2>, '...'>>
-  type test36 = Expect<
-    Equal<Subject.Truncate<'Hello, world', 9, '[...]'>, 'Hell[...]'>
-  >
-  type test37 = Expect<Equal<Subject.Truncate<'Hello, world', -1>, '...'>>
-  type test38 = Expect<
-    Equal<Subject.Truncate<'Hello, world', 0, '[...]'>, '[...]'>
-  >
 }
 
 type Mutable<Type> = {
@@ -65,6 +52,21 @@ namespace WordsTests {
       Subject.Words<' someWeird-cased$*String1986Foo Bar '>,
       ['some', 'Weird', 'cased', '$*', 'String', '1986', 'Foo', 'Bar']
     >
+  >
+}
+
+namespace TruncateTests {
+  type test1 = Expect<Equal<Subject.Truncate<'Hello, world', 9>, 'Hello,...'>>
+  type test2 = Expect<
+    Equal<Subject.Truncate<'Hello, world', 12>, 'Hello, world'>
+  >
+  type test3 = Expect<Equal<Subject.Truncate<'Hello, world', 2>, '...'>>
+  type test4 = Expect<
+    Equal<Subject.Truncate<'Hello, world', 9, '[...]'>, 'Hell[...]'>
+  >
+  type test5 = Expect<Equal<Subject.Truncate<'Hello, world', -1>, '...'>>
+  type test6 = Expect<
+    Equal<Subject.Truncate<'Hello, world', 0, '[...]'>, '[...]'>
   >
 }
 
@@ -112,7 +114,9 @@ describe('words', () => {
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, Mutable<typeof expected>>>
   })
+})
 
+describe('truncate', () => {
   test('truncate small sentence does nothing', () => {
     const expected = 'Hello' as const
     const result = subject.truncate('Hello', 9)
