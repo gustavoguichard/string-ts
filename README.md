@@ -669,6 +669,7 @@ Uppercase<'hello world'> // 'HELLO WORLD'
 ```ts
 St.CharAt<'hello world', 6> // 'w'
 St.Concat<['a', 'bc', 'def']> // 'abcdef'
+St.EndsWith<'abc', 'c'> // true
 St.Join<['hello', 'world'], '-'> // 'hello-world'
 St.Length<'hello'> // 5
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'

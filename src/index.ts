@@ -2,6 +2,7 @@
 export type {
   CharAt,
   Concat,
+  EndsWith,
   Join,
   Length,
   Replace,
@@ -16,6 +17,7 @@ export type {
 export {
   charAt,
   concat,
+  endsWith,
   join,
   length,
   replace,

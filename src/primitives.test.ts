@@ -38,6 +38,7 @@ namespace TypeTests {
   >
 
   type test12 = Expect<Equal<Subject.StartsWith<'abc', 'a'>, true>>
+  type test13 = Expect<Equal<Subject.EndsWith<'abc', 'c'>, true>>
 }
 
 beforeEach(() => {
