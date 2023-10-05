@@ -279,6 +279,12 @@ describe('primitives', () => {
       expect(result).toEqual('somenice string')
       type test = Expect<Equal<typeof result, 'somenice string'>>
     })
+    test('should replace chars but not at type level when using RegExp', () => {
+      const data = 'some nice string'
+      const result = subject.replace(data, /nice /)
+      expect(result).toEqual('some string')
+      type test = Expect<Equal<typeof result, string>>
+    })
   })
 
   describe('replaceAll', () => {
@@ -294,6 +300,14 @@ describe('primitives', () => {
       const result = subject.replaceAll(data, ' ', '@')
       expect(result).toEqual('some@nice@string')
       type test = Expect<Equal<typeof result, 'some@nice@string'>>
+    })
+
+    test('should replace chars but not at type level when using RegExp', () => {
+      const data = 'some nice string'
+      const result = subject.replaceAll(data, / /g, '-')
+      expect(result).toEqual('some-nice-string')
+      // Note: `string` instead of `some-nice-string`
+      type test = Expect<Equal<typeof result, string>>
     })
   })
 
