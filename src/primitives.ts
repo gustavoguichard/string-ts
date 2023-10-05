@@ -1,5 +1,5 @@
 import type { Math } from './math'
-import { TupleOf } from './utils'
+import type { TupleOf } from './utils'
 
 /**
  * Gets the character at the given index.
@@ -373,6 +373,40 @@ function startsWith<T extends string, S extends string, P extends number = 0>(
 }
 
 /**
+ * Checks if a string includes another string.
+ * T: The string to check.
+ * S: The string to check against.
+ * P: The position to start the search.
+ */
+type Includes<
+  T extends string,
+  S extends string,
+  P extends number = 0,
+> = Math.IsNegative<P> extends false
+  ? P extends 0
+    ? T extends `${string}${S}${string}`
+      ? true
+      : false
+    : Includes<Slice<T, P>, S, 0> // P is >0, slice
+  : Includes<T, S, 0> // P is negative, ignore it
+
+/**
+ * A strongly-typed version of `String.prototype.includes`.
+ * @param text the string to search
+ * @param search the string to search with
+ * @param position the index to start search at
+ * @returns boolean, whether or not the text contains the search string.
+ * @example includes('abcde', 'bcd') // true
+ */
+function includes<T extends string, S extends string, P extends number = 0>(
+  text: T,
+  search: S,
+  position = 0 as P,
+) {
+  return text.includes(search, position) as Includes<T, S, P>
+}
+
+/**
  * Trims all whitespaces at the start of a string.
  * T: The string to trim.
  */
@@ -424,6 +458,7 @@ export type {
   CharAt,
   Concat,
   EndsWith,
+  Includes,
   Join,
   Length,
   PadEnd,
@@ -442,6 +477,7 @@ export {
   charAt,
   concat,
   endsWith,
+  includes,
   join,
   length,
   padEnd,
