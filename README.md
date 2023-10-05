@@ -122,8 +122,8 @@ It also only work with common ASCII characters characters. We don't plan to supp
   - [toPascalCase](#topascalcase)
   - [toSnakeCase](#tosnakecase)
   - [toTitleCase](#totitlecase)
-  - [words](#words)
   - [truncate](#truncate)
+  - [words](#words)
 - [Strongly-typed shallow transformation of objects](#strongly-typed-shallow-transformation-of-objects)
   - [camelKeys](#camelkeys)
   - [constantKeys](#constantkeys)
@@ -495,18 +495,6 @@ const result = toTitleCase(str)
 //    ^ 'Hello World'
 ```
 
-### words
-
-This function identifies the words in a string and returns a tuple of words split by separators, differences in casing, numbers, and etc.
-
-```ts
-import { words } from 'string-ts'
-
-const str = '-20someVery-weird String'
-const result = words(str)
-//    ^ ['20', 'some', 'Very', 'weird', 'String']
-```
-
 ### truncate
 
 This function truncates string if it's longer than the given maximum string length. The last characters of the truncated string are replaced with the omission string which defaults to "...".
@@ -518,6 +506,18 @@ import { truncate } from 'string-ts'
 const str = '-20someVery-weird String'
 const result = truncate(str, 8)
 //    ^ '-20so...'
+```
+
+### words
+
+This function identifies the words in a string and returns a tuple of words split by separators, differences in casing, numbers, and etc.
+
+```ts
+import { words } from 'string-ts'
+
+const str = '-20someVery-weird String'
+const result = words(str)
+//    ^ ['20', 'some', 'Very', 'weird', 'String']
 ```
 
 ## Strongly-typed shallow transformation of objects
@@ -752,8 +752,8 @@ St.Trim<' hello world '> // 'hello world'
 St.StartsWith<'abc', 'a'> // true
 St.TrimEnd<' hello world '> // ' hello world'
 St.TrimStart<' hello world '> // 'hello world '
-St.Words<'hello-world'> // ['hello', 'world']
 St.Truncate<'hello world', 9, '[...]'> // 'hello[...]
+St.Words<'hello-world'> // ['hello', 'world']
 ```
 
 ### Casing type utilities
