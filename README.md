@@ -94,6 +94,7 @@ npm install string-ts
   - [concat](#concat)
   - [join](#join)
   - [length](#length)
+  - [repeat](#repeat)
   - [replace](#replace)
   - [replaceAll](#replaceall)
   - [slice](#slice)
@@ -209,6 +210,18 @@ import { length } from 'string-ts'
 const str = 'hello'
 const result = length(str)
 //    ^ 5
+```
+
+### repeat
+
+This function is a strongly-typed counterpart of `String.prototype.repeat`.
+
+```ts
+import { repeat } from 'string-ts'
+
+const str = 'abc'
+const result = repeat(str, 3)
+//    ^ 'abcabcabc'
 ```
 
 ### replace
@@ -645,6 +658,7 @@ St.CharAt<'hello world', 6> // 'w'
 St.Concat<['a', 'bc', 'def']> // 'abcdef'
 St.Join<['hello', 'world'], '-'> // 'hello-world'
 St.Length<'hello'> // 5
+St.Repeat<'abc', 3> // 'abcabcabc'
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
 St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'
 St.Slice<'hello-world', -5> // 'world'

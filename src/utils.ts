@@ -57,6 +57,15 @@ type IsSpecial<T extends string> = IsLetter<T> extends true
   ? false
   : true
 
+/**
+ * Returns a tuple of the given length with the given type.
+ */
+type TupleOf<
+  L extends number,
+  T = unknown,
+  result extends any[] = [],
+> = result['length'] extends L ? result : TupleOf<L, T, [...result, T]>
+
 // STRING FUNCTIONS
 /**
  * Splits a string into words.
@@ -136,6 +145,7 @@ export type {
   IsSpecial,
   IsUpper,
   Separator,
+  TupleOf,
   Words,
 }
 export { words }

@@ -76,6 +76,28 @@ describe('primitives', () => {
     })
   })
 
+  test('repeat', () => {
+    test('should repeat the string by a given number of times', () => {
+      const data = 'abc'
+      const result = subject.repeat(data, 3)
+      expect(result).toEqual('abcabcabc')
+      type test = Expect<Equal<typeof result, 'abcabcabc'>>
+    })
+
+    test('should be empty when repeating 0 times', () => {
+      const data = 'abc'
+      const result = subject.repeat(data)
+      expect(result).toEqual('')
+      type test = Expect<Equal<typeof result, ''>>
+    })
+
+    test('should throw when trying to repeat with negative number', () => {
+      const data = 'abc'
+      expect(() => subject.repeat(data, -1)).toThrow()
+      type test = Expect<Equal<subject.Repeat<'a', -1>, never>>
+    })
+  })
+
   test('replace', () => {
     test('should replace chars in a string at both type level and runtime level once', () => {
       const data = 'some nice string'

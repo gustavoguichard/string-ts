@@ -1,15 +1,11 @@
 import type { Length } from './primitives'
-
-type GetTuple<
-  L extends number,
-  result extends any[] = [],
-> = result['length'] extends L ? result : GetTuple<L, [...result, any]>
+import { TupleOf } from './utils'
 
 namespace Math {
   export type Subtract<
     A extends number,
     B extends number,
-  > = GetTuple<A> extends [...infer U, ...GetTuple<B>] ? U['length'] : 0
+  > = TupleOf<A> extends [...infer U, ...TupleOf<B>] ? U['length'] : 0
 
   export type IsPositive<T extends number> = `${T}` extends `-${number}`
     ? false
