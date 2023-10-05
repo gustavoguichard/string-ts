@@ -92,15 +92,16 @@ npm install string-ts
 - [Strongly-typed alternatives to native runtime utilities](#strongly-typed-alternatives-to-native-runtime-utilities)
   - [charAt](#charat)
   - [concat](#concat)
+  - [endsWith](#endsWith)
   - [join](#join)
   - [length](#length)
   - [replace](#replace)
   - [replaceAll](#replaceall)
   - [slice](#slice)
   - [split](#split)
+  - [startsWith](#startsWith)
   - [toLowerCase](#tolowercase)
   - [toUpperCase](#touppercase)
-  - [startsWith](#startsWith)
   - [trim](#trim)
   - [trimEnd](#trimend)
   - [trimStart](#trimstart)
@@ -188,6 +189,17 @@ const result = concat('a', 'bc', 'def')
 //    ^ 'abcdef'
 ```
 
+### endsWith
+
+This function is a strongly-typed counterpart of `String.prototype.endsWith`.
+
+```ts
+import { endsWith } from 'string-ts'
+
+const result = endsWith('abc', 'c')
+//    ^ true
+```
+
 ### join
 
 This function is a strongly-typed counterpart of `Array.prototype.join`.
@@ -271,6 +283,17 @@ const result = split(str, '-')
 //    ^ ['hello', 'world']
 ```
 
+### startsWith
+
+This function is a strongly-typed counterpart of `String.prototype.startsWith`.
+
+```ts
+import { startsWith } from 'string-ts'
+
+const result = startsWith('abc', 'a')
+//    ^ true
+```
+
 ### toLowerCase
 
 This function is a strongly-typed counterpart of `String.prototype.toLowerCase`.
@@ -305,17 +328,6 @@ import { trim } from 'string-ts'
 const str = '  hello world  '
 const result = trim(str)
 //    ^ 'hello world'
-```
-
-### startsWith
-
-This function is a strongly-typed counterpart of `String.prototype.startsWith`.
-
-```ts
-import { startsWith } from 'string-ts'
-
-const result = startsWith('abc', 'a')
-//    ^ true
 ```
 
 ### trimEnd
