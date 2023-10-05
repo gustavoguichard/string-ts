@@ -83,6 +83,7 @@ npm install string-ts
 ```
 
 ## 👌 Supported TypeScript Versions
+
 `string-ts` currently only works on TypeScript v5+.
 
 It also only work with common ASCII characters characters. We don't plan to support international characters or emojis.
@@ -284,7 +285,7 @@ const result = repeat(str, 3)
 
 This function is a strongly-typed counterpart of `String.prototype.replace`.
 
-_Warning: this is a partial implementation as we don't support Regex._
+_Warning: this is a partial implementation, as we don't fully support Regex. Using a RegExp lookup will result in a loose typing._
 
 ```ts
 import { replace } from 'string-ts'
@@ -292,6 +293,8 @@ import { replace } from 'string-ts'
 const str = 'hello-world-'
 const result = replace(str, '-', ' ')
 //    ^ 'hello world-'
+const looselyTypedResult = replace(str, /-/, ' ')
+//    ^ string
 ```
 
 ### replaceAll
@@ -299,7 +302,7 @@ const result = replace(str, '-', ' ')
 This function is a strongly-typed counterpart of `String.prototype.replaceAll`.
 It also has a polyfill for runtimes older than ES2021.
 
-_Warning: this is a partial implementation as we don't support Regex._
+_Warning: this is a partial implementation, as we don't fully support Regex. Using a RegExp lookup will result in a loose typing._
 
 ```ts
 import { replaceAll } from 'string-ts'
@@ -307,6 +310,8 @@ import { replaceAll } from 'string-ts'
 const str = 'hello-world-'
 const result = replaceAll(str, '-', ' ')
 //    ^ 'hello world '
+const looselyTypedResult = replaceAll(str, /-/g, ' ')
+//    ^ string
 ```
 
 ### slice
