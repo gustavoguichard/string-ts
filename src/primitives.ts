@@ -149,13 +149,11 @@ function replaceAll<T extends string, S extends string, R extends string = ''>(
   return sentence.replace(regex, replacement) as ReplaceAll<T, S, R>
 }
 
-// TODO: this is not equivalent to the native slice but it is as far as I got with Type level arithmetic. When the startIndex is negative, the endIndex is gonna be considered as undefined.
 /**
  * Slices a string from a startIndex to an endIndex.
  * T: The string to slice.
  * startIndex: The start index.
  * endIndex: The end index.
- * @warning 🚨 it doesn't work exactly like the native slice as it will ignore the end index if start index is negative
  */
 type Slice<
   T extends string,
@@ -167,15 +165,13 @@ type Slice<
       ? ''
       : `${head}${Slice<
           rest,
-          0,
-          endIndex extends -1 ? -1 : Math.Subtract<endIndex, 1>
+          Math.Subtract<Math.GetPositiveIndex<T, startIndex>, 1>,
+          Math.Subtract<Math.GetPositiveIndex<T, endIndex>, 1>
         >}`
     : `${Slice<
         rest,
         Math.Subtract<Math.GetPositiveIndex<T, startIndex>, 1>,
-        Math.IsPositive<startIndex> extends true
-          ? Math.Subtract<endIndex, 1>
-          : Split<T>['length'] // TODO: figure out how to deal with negative endIndex
+        Math.Subtract<Math.GetPositiveIndex<T, endIndex>, 1>
       >}`
   : ''
 /**
@@ -185,15 +181,13 @@ type Slice<
  * @param end the end index.
  * @returns the sliced string in both type level and runtime.
  * @example slice('hello world', 6) // 'world'
- * @warning 🚨 it doesn't work exactly like the native slice as it will ignore the end index if start index is negative
  */
 function slice<
   T extends string,
   const S extends number = 0,
   const E extends number = Split<T>['length'],
 >(str: T, start: S = 0 as S, end: E = str.length as E) {
-  // TODO: figure out how to deal with negative endIndex
-  return str.slice(start, start < 0 ? undefined : end) as Slice<T, S, E>
+  return str.slice(start, end) as Slice<T, S, E>
 }
 
 /**

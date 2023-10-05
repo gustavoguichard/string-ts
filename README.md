@@ -244,8 +244,6 @@ const result = replaceAll(str, '-', ' ')
 
 This function is a strongly-typed counterpart of `String.prototype.slice`.
 
-_Warning: this is a partial implementation. For now we ignore the second argument (endIndex) if the first (startIndex) is negative and we also don't support a negative endIndex._
-
 ```ts
 import { slice } from 'string-ts'
 

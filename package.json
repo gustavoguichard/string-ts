@@ -11,7 +11,7 @@
     "build": "tsup ./src/index.ts --format esm,cjs --dts",
     "dev": "tsup ./src/index.ts --format esm,cjs --watch --dts",
     "lint": "eslint *.ts*",
-    "tsc": "tsc",
+    "tsc": "tsc --noEmit",
     "test": "vitest run"
   },
   "devDependencies": {
