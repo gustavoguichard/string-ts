@@ -282,7 +282,7 @@ function replaceAll<
 type Slice<
   T extends string,
   startIndex extends number = 0,
-  endIndex extends number = Split<T>['length'],
+  endIndex extends number = Length<T>,
 > = T extends `${infer head}${infer rest}`
   ? startIndex extends 0
     ? endIndex extends 0
@@ -309,7 +309,7 @@ type Slice<
 function slice<
   T extends string,
   S extends number = 0,
-  E extends number = Split<T>['length'],
+  E extends number = Length<T>,
 >(str: T, start: S = 0 as S, end: E = str.length as E) {
   return str.slice(start, end) as Slice<T, S, E>
 }

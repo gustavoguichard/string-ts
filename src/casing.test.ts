@@ -156,4 +156,65 @@ describe('casing functions', () => {
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, typeof expected>>
   })
+
+  describe('with various separators', () => {
+    const text =
+      '[one] two-three/four.five(six){seven}|eight_nine\\ten' as const
+
+    test('toUpperCase', () => {
+      const result = subject.toUpperCase(text)
+      const expected = '[ONE] TWO-THREE/FOUR.FIVE(SIX){SEVEN}|EIGHT_NINE\\TEN'
+      expect(result).toEqual(expected)
+      type test = Expect<Equal<typeof result, typeof expected>>
+    })
+
+    test('toLowerCase', () => {
+      const result = subject.toLowerCase(text)
+      const expected = '[one] two-three/four.five(six){seven}|eight_nine\\ten'
+      expect(result).toEqual(expected)
+      type test = Expect<Equal<typeof result, typeof expected>>
+    })
+    test('toDelimiterCase', () => {
+      const result = subject.toDelimiterCase(text, '.')
+      const expected = 'one.two.three.four.five.six.seven.eight.nine.ten'
+      expect(result).toEqual(expected)
+      type test = Expect<Equal<typeof result, typeof expected>>
+    })
+    test('toCamelCase', () => {
+      const result = subject.toCamelCase(text)
+      const expected = 'oneTwoThreeFourFiveSixSevenEightNineTen'
+      expect(result).toEqual(expected)
+      type test = Expect<Equal<typeof result, typeof expected>>
+    })
+    test('toPascalCase', () => {
+      const result = subject.toPascalCase(text)
+      const expected = 'OneTwoThreeFourFiveSixSevenEightNineTen'
+      expect(result).toEqual(expected)
+      type test = Expect<Equal<typeof result, typeof expected>>
+    })
+    test('toKebabCase', () => {
+      const result = subject.toKebabCase(text)
+      const expected = 'one-two-three-four-five-six-seven-eight-nine-ten'
+      expect(result).toEqual(expected)
+      type test = Expect<Equal<typeof result, typeof expected>>
+    })
+    test('toSnakeCase', () => {
+      const result = subject.toSnakeCase(text)
+      const expected = 'one_two_three_four_five_six_seven_eight_nine_ten'
+      expect(result).toEqual(expected)
+      type test = Expect<Equal<typeof result, typeof expected>>
+    })
+    test('toConstantCase', () => {
+      const result = subject.toConstantCase(text)
+      const expected = 'ONE_TWO_THREE_FOUR_FIVE_SIX_SEVEN_EIGHT_NINE_TEN'
+      expect(result).toEqual(expected)
+      type test = Expect<Equal<typeof result, typeof expected>>
+    })
+    test('toTitleCase', () => {
+      const result = subject.toTitleCase(text)
+      const expected = 'One Two Three Four Five Six Seven Eight Nine Ten'
+      expect(result).toEqual(expected)
+      type test = Expect<Equal<typeof result, typeof expected>>
+    })
+  })
 })

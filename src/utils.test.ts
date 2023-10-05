@@ -49,16 +49,41 @@ namespace WordsTests {
   type Foo = Subject.Words<' someWeird-cased$*String1986Foo Bar '>
   type test1 = Expect<
     Equal<
-      Subject.Words<' someWeird-cased$*String1986Foo Bar '>,
-      ['some', 'Weird', 'cased', '$*', 'String', '1986', 'Foo', 'Bar']
+      Subject.Words<' someWeird-cased$*String1986Foo Bar obj.items[0]'>,
+      [
+        'some',
+        'Weird',
+        'cased',
+        '$*',
+        'String',
+        '1986',
+        'Foo',
+        'Bar',
+        'obj',
+        'items',
+        '0',
+      ]
     >
   >
 }
 
 describe('words', () => {
   test('it splits words at separators', () => {
-    const expected = ['some', 'weird', 'cased', 'string', 'foo'] as const
-    const result = subject.words('some--weird cased/string.foo')
+    const expected = [
+      'one',
+      'two',
+      'three',
+      'four',
+      'five',
+      'six',
+      'seven',
+      'eight',
+      'nine',
+      'ten',
+    ] as const
+    const result = subject.words(
+      '[one] two-three/four.five(six){seven}|eight_nine\\ten',
+    )
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, Mutable<typeof expected>>>
   })
