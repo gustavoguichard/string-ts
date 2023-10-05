@@ -69,8 +69,23 @@ namespace WordsTests {
 
 describe('words', () => {
   test('it splits words at separators', () => {
-    const expected = ['some', 'weird', 'cased', 'string', 'foo'] as const
-    const result = subject.words('some--weird cased/string.foo')
+    const expected = [
+      'one',
+      'two',
+      'three',
+      'four',
+      'five',
+      'six',
+      'seven',
+      'eight',
+      'nine',
+      'ten',
+    ] as const
+    const result = subject.words(
+      '[one] two-three/four.five(six){seven}|eight_nine\\ten',
+    )
+    // const expected = ['some', 'weird', 'cased', 'string', 'foo'] as const
+    // const result = subject.words('some--weird cased/string.foo')
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, Mutable<typeof expected>>>
   })

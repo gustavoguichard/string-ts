@@ -2,29 +2,26 @@ import type { Drop, DropSuffix } from './internals'
 
 type Digit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
 
-const SEPARATORS = [
-  ' ',
-  '_',
-  '-',
-  '.',
-  '/',
-  '|',
-  '(',
-  ')',
+const UNESCAPED_SEPARATORS = [
   '[',
   ']',
   '{',
   '}',
+  '(',
+  ')',
+  '|',
+  '/',
+  '-',
+  '\\',
 ] as const
-
+const SEPARATORS = [...UNESCAPED_SEPARATORS, ' ', '_', '.'] as const
 type Separator = (typeof SEPARATORS)[number]
 
 /** Escape characters with special significance in regular expressions */
 function escapeCharacter(char: string): string {
-  if (['[', ']', '{', '}', '(', ')', '|', '/', '-'].includes(char)) {
-    return `\\${char}`
-  }
-  return char
+  return (UNESCAPED_SEPARATORS as readonly string[]).includes(char)
+    ? `\\${char}`
+    : char
 }
 
 const SEPARATOR_REGEX = new RegExp(
