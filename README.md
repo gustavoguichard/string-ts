@@ -95,6 +95,8 @@ npm install string-ts
   - [endsWith](#endsWith)
   - [join](#join)
   - [length](#length)
+  - [padEnd](#padend)
+  - [padStart](#padstart)
   - [repeat](#repeat)
   - [replace](#replace)
   - [replaceAll](#replaceall)
@@ -223,6 +225,30 @@ import { length } from 'string-ts'
 const str = 'hello'
 const result = length(str)
 //    ^ 5
+```
+
+### padEnd
+
+This function is a strongly-typed counterpart of `String.prototype.padEnd`.
+
+```ts
+import { padEnd } from 'string-ts'
+
+const str = 'hello'
+const result = padEnd(str, 10, '=')
+//    ^ 'hello====='
+```
+
+### padStart
+
+This function is a strongly-typed counterpart of `String.prototype.padStart`.
+
+```ts
+import { padStart } from 'string-ts'
+
+const str = 'hello'
+const result = padStart(str, 10, '=')
+//    ^ '=====hello'
 ```
 
 ### repeat
@@ -683,6 +709,8 @@ St.Concat<['a', 'bc', 'def']> // 'abcdef'
 St.EndsWith<'abc', 'c'> // true
 St.Join<['hello', 'world'], '-'> // 'hello-world'
 St.Length<'hello'> // 5
+St.PadEnd<'hello', 10, '='> // 'hello====='
+St.PadStart<'hello', 10, '='> // '=====hello'
 St.Repeat<'abc', 3> // 'abcabcabc'
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
 St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'

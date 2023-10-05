@@ -79,7 +79,81 @@ describe('primitives', () => {
     })
   })
 
-  test('repeat', () => {
+  describe('padEnd', () => {
+    test('should pad a string at the end', () => {
+      const data = 'hello'
+      const result = subject.padEnd(data, 10)
+      expect(result).toEqual('hello     ')
+      type test = Expect<Equal<typeof result, 'hello     '>>
+    })
+
+    test('should pad with a given string', () => {
+      const data = 'hello'
+      const result = subject.padEnd(data, 10, '=>')
+      expect(result).toEqual('hello=>=>=')
+      type test = Expect<Equal<typeof result, 'hello=>=>='>>
+    })
+
+    test('should not pad if no arguments are given', () => {
+      const data = 'hello'
+      const result = subject.padEnd(data)
+      expect(result).toEqual('hello')
+      type test = Expect<Equal<typeof result, 'hello'>>
+    })
+
+    test('should not pad or truncate if length is shorter than string', () => {
+      const data = 'hello'
+      const result = subject.padEnd(data, 3, '=')
+      expect(result).toEqual('hello')
+      type test = Expect<Equal<typeof result, 'hello'>>
+    })
+
+    test('should not pad for negative numbers', () => {
+      const data = 'hello'
+      const result = subject.padEnd(data, -1, '=')
+      expect(result).toEqual('hello')
+      type test = Expect<Equal<typeof result, 'hello'>>
+    })
+  })
+
+  describe('padStart', () => {
+    test('should pad a string at the start', () => {
+      const data = 'hello'
+      const result = subject.padStart(data, 10)
+      expect(result).toEqual('     hello')
+      type test = Expect<Equal<typeof result, '     hello'>>
+    })
+
+    test('should pad with a given string', () => {
+      const data = 'hello'
+      const result = subject.padStart(data, 10, '=>')
+      expect(result).toEqual('=>=>=hello')
+      type test = Expect<Equal<typeof result, '=>=>=hello'>>
+    })
+
+    test('should not pad if no arguments are given', () => {
+      const data = 'hello'
+      const result = subject.padStart(data)
+      expect(result).toEqual('hello')
+      type test = Expect<Equal<typeof result, 'hello'>>
+    })
+
+    test('should not pad or truncate if length is shorter than string', () => {
+      const data = 'hello'
+      const result = subject.padStart(data, 3, '=')
+      expect(result).toEqual('hello')
+      type test = Expect<Equal<typeof result, 'hello'>>
+    })
+
+    test('should not pad for negative numbers', () => {
+      const data = 'hello'
+      const result = subject.padStart(data, -1, '=')
+      expect(result).toEqual('hello')
+      type test = Expect<Equal<typeof result, 'hello'>>
+    })
+  })
+
+  describe('repeat', () => {
     test('should repeat the string by a given number of times', () => {
       const data = 'abc'
       const result = subject.repeat(data, 3)
@@ -101,7 +175,7 @@ describe('primitives', () => {
     })
   })
 
-  test('replace', () => {
+  describe('replace', () => {
     test('should replace chars in a string at both type level and runtime level once', () => {
       const data = 'some nice string'
       const result = subject.replace(data, ' ')
@@ -110,7 +184,7 @@ describe('primitives', () => {
     })
   })
 
-  test('replaceAll', () => {
+  describe('replaceAll', () => {
     test('should replace all chars in a string at both type level and runtime level once', () => {
       const data = 'some nice string'
       const result = subject.replaceAll(data, ' ')
@@ -190,7 +264,7 @@ describe('primitives', () => {
     })
   })
 
-  test('split', () => {
+  describe('split', () => {
     test('should split a string by a delimiter into an array of substrings', () => {
       const data = 'some nice string'
       const result = subject.split(data, ' ')
@@ -296,7 +370,7 @@ describe('primitives', () => {
     })
   })
 
-  test('trimStart', () => {
+  describe('trimStart', () => {
     test('should trim the start of a string at both type level and runtime level', () => {
       const data = ' some nice string '
       const result = subject.trimStart(data)
@@ -305,7 +379,7 @@ describe('primitives', () => {
     })
   })
 
-  test('trimEnd', () => {
+  describe('trimEnd', () => {
     test('should trim the end of a string at both type level and runtime level', () => {
       const data = ' some nice string '
       const result = subject.trimEnd(data)
@@ -314,7 +388,7 @@ describe('primitives', () => {
     })
   })
 
-  test('trim', () => {
+  describe('trim', () => {
     test('should trim a string at both type level and runtime level', () => {
       const data = ' some nice string '
       const result = subject.trim(data)

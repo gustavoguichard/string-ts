@@ -47,7 +47,7 @@ type EndsWith<
   T extends string,
   S extends string,
   P extends number = Length<T>,
-> = Math.IsPositive<P> extends true
+> = Math.IsNegative<P> extends false
   ? P extends Length<T>
     ? S extends Slice<T, Math.Subtract<Length<T>, Length<S>>, Length<T>>
       ? true
@@ -119,14 +119,76 @@ function length<T extends string>(str: T) {
 }
 
 /**
+ * Pads a string at the end with another string.
+ * T: The string to pad.
+ * times: The number of times to pad.
+ * pad: The string to pad with.
+ */
+type PadEnd<
+  T extends string,
+  times extends number = 0,
+  pad extends string = ' ',
+> = Math.IsNegative<times> extends false
+  ? Math.Subtract<times, Length<T>> extends infer missing extends number
+    ? `${T}${Slice<Repeat<pad, missing>, 0, missing>}`
+    : never
+  : T
+/**
+ * A strongly-typed version of `String.prototype.padEnd`.
+ * @param str the string to pad.
+ * @param length the length to pad.
+ * @param pad the string to pad with.
+ * @returns the padded string in both type level and runtime.
+ * @example padEnd('hello', 10, '=') // 'hello====='
+ */
+function padEnd<T extends string, N extends number = 0, U extends string = ' '>(
+  str: T,
+  length: N = 0 as N,
+  pad: U = ' ' as U,
+) {
+  return str.padEnd(length, pad) as PadEnd<T, N, U>
+}
+
+/**
+ * Pads a string at the start with another string.
+ * T: The string to pad.
+ * times: The number of times to pad.
+ * pad: The string to pad with.
+ */
+type PadStart<
+  T extends string,
+  times extends number = 0,
+  pad extends string = ' ',
+> = Math.IsNegative<times> extends false
+  ? Math.Subtract<times, Length<T>> extends infer missing extends number
+    ? `${Slice<Repeat<pad, missing>, 0, missing>}${T}`
+    : never
+  : T
+/**
+ * A strongly-typed version of `String.prototype.padStart`.
+ * @param str the string to pad.
+ * @param length the length to pad.
+ * @param pad the string to pad with.
+ * @returns the padded string in both type level and runtime.
+ * @example padStart('hello', 10, '=') // '=====hello'
+ */
+function padStart<
+  T extends string,
+  N extends number = 0,
+  U extends string = ' ',
+>(str: T, length: N = 0 as N, pad: U = ' ' as U) {
+  return str.padStart(length, pad) as PadStart<T, N, U>
+}
+
+/**
  * Repeats a string N times.
  * T: The string to repeat.
  * N: The number of times to repeat.
  */
-type Repeat<T extends string, N extends number = 0> = N extends 0
+type Repeat<T extends string, times extends number = 0> = times extends 0
   ? ''
-  : Math.IsPositive<N> extends true
-  ? Join<TupleOf<N, T>>
+  : Math.IsNegative<times> extends false
+  ? Join<TupleOf<times, T>>
   : never
 /**
  * A strongly-typed version of `String.prototype.repeat`.
@@ -286,7 +348,7 @@ type StartsWith<
   T extends string,
   S extends string,
   P extends number = 0,
-> = Math.IsPositive<P> extends true
+> = Math.IsNegative<P> extends false
   ? P extends 0
     ? T extends `${S}${string}`
       ? true
@@ -364,6 +426,8 @@ export type {
   EndsWith,
   Join,
   Length,
+  PadEnd,
+  PadStart,
   Repeat,
   Replace,
   ReplaceAll,
@@ -380,6 +444,8 @@ export {
   endsWith,
   join,
   length,
+  padEnd,
+  padStart,
   repeat,
   replace,
   replaceAll,
