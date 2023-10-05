@@ -1,7 +1,26 @@
 import type { Drop, DropSuffix } from './internals'
 
 type Digit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-type Separator = ' ' | '_' | '-' | '.' | '/'
+
+const SEPARATORS = [
+  ' ',
+  '_',
+  '-',
+  '.',
+  '/',
+  '|',
+  '(',
+  ')',
+  '[',
+  ']',
+  '{',
+  '}',
+  '\\',
+] as const
+
+type Separator = (typeof SEPARATORS)[number]
+
+const SEPARATOR_REGEX = new RegExp(`[${SEPARATORS.join('')}]`, 'g')
 
 // GENERAL UTILITIES
 
@@ -124,7 +143,7 @@ function words<T extends string>(sentence: T): Words<T> {
   //   /([A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b))|([A-Z]?[a-z]+)|([A-Z])|([0-9]+)/g,
   // )
   return sentence
-    .replace(/[_\-./]/g, ' ') // Step 1: Remove separators
+    .replace(SEPARATOR_REGEX, ' ') // Step 1: Remove separators
     .replace(/([a-zA-Z])([0-9])/g, '$1 $2') // Step 2: From non-digit to digit
     .replace(/([0-9])([a-zA-Z])/g, '$1 $2') // Step 3: From digit to non-digit
     .replace(/([a-zA-Z0-9_\-./])([^a-zA-Z0-9_\-./])/g, '$1 $2') // Step 4: From non-special to special
