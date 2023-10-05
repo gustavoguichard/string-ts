@@ -31,7 +31,7 @@ TypeScript yields the best static analysis when types are highly specific.
 Literals are more specific than type `string`.
 This library preserves literals (and unions of literals) after transformations, unlike most existing utility libraries (and built-in string methods.)
 
-## In-depth example
+### In-depth example
 
 In the below example, I want to get a strongly-typed, camel-case version of `process.env`.
 One flow results in a loose type, and the other results in a more precise type.
@@ -81,6 +81,11 @@ main()
 ```bash
 npm install string-ts
 ```
+
+## 👌 Supported TypeScript Versions
+`string-ts` currently only works on TypeScript v5+.
+
+It also only work with common ASCII characters characters. We don't plan to support international characters or emojis.
 
 ---
 
@@ -812,10 +817,6 @@ const result = deepTransformKeys(data, toUpperCase) as MyType<typeof data>
 //    ^ { 'HELLOWORLD': 'baz' }
 ```
 
-## Disclaimer
-
-We don't plan to support international characters.
-
-## Aknowledgements
+## 🫶 Aknowledgements
 
 This library got a lot of inspiration from libraries such as [lodash](https://github.com/lodash/lodash), [ts-reset](https://github.com/total-typescript/ts-reset), [type-fest](https://github.com/sindresorhus/type-fest), [HOTScript](https://github.com/gvergnaud/hotscript), and many others.
