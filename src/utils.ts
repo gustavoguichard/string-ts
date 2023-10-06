@@ -58,10 +58,6 @@ type Words<
  * @example words('helloWorld') // ['hello', 'World']
  */
 function words<T extends string>(sentence: T): Words<T> {
-  // can be implemented with a single regex but it's not as readable
-  // sentence.match(
-  //   /([A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b))|([A-Z]?[a-z]+)|([A-Z])|([0-9]+)/g,
-  // )
   return sentence
     .replace(SEPARATOR_REGEX, ' ') // Step 1: Remove separators
     .replace(/([a-zA-Z])([0-9])/g, '$1 $2') // Step 2: From non-digit to digit
