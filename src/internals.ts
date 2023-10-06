@@ -2,6 +2,7 @@ import { capitalize, toLowerCase } from './casing'
 
 /**
  * This is an enhanced version of the typeof operator to check the type of more complex values.
+ * In this case we just mind about arrays and objects. We can add more on demand.
  * @param t the value to be checked
  * @returns the type of the value
  */
@@ -9,24 +10,19 @@ function typeOf(t: unknown) {
   return Object.prototype.toString
     .call(t)
     .replace(/^\[object (.+)\]$/, '$1')
-    .toLowerCase() as
-    | 'array'
-    | 'arraybuffer'
-    | 'bigint'
-    | 'blob'
-    | 'boolean'
-    | 'formdata'
-    | 'function'
-    | 'null'
-    | 'number'
-    | 'object'
-    | 'readablestream'
-    | 'string'
-    | 'symbol'
-    | 'undefined'
-    | 'url'
-    | 'urlsearchparams'
+    .toLowerCase() as 'array' | 'object' | (string & {})
 }
+
+// MAP TYPES
+/**
+ * PascalCases all the words in a tuple of strings
+ */
+type PascalCaseAll<T extends string[]> = T extends [
+  infer head extends string,
+  ...infer rest extends string[],
+]
+  ? [Capitalize<Lowercase<head>>, ...PascalCaseAll<rest>]
+  : T
 
 function pascalCaseAll<T extends string[]>(words: T) {
   return words.map((v) => capitalize(toLowerCase(v))) as PascalCaseAll<T>
@@ -35,11 +31,11 @@ function pascalCaseAll<T extends string[]>(words: T) {
 /**
  * Removes all the elements matching the given condition from a tuple.
  */
-type Drop<tuple, cond, output extends any[] = []> = tuple extends [
+type Filter<tuple, cond, output extends any[] = []> = tuple extends [
   infer first,
   ...infer rest,
 ]
-  ? Drop<rest, cond, first extends cond ? output : [...output, first]>
+  ? Filter<rest, cond, first extends cond ? output : [...output, first]>
   : output
 
 /**
@@ -51,14 +47,13 @@ type DropSuffix<
 > = sentence extends `${infer rest}${suffix}` ? rest : sentence
 
 /**
- * PascalCases all the words in a tuple of strings
+ * Returns a tuple of the given length with the given type.
  */
-type PascalCaseAll<T extends string[]> = T extends [
-  infer head extends string,
-  ...infer rest extends string[],
-]
-  ? [Capitalize<Lowercase<head>>, ...PascalCaseAll<rest>]
-  : T
+type TupleOf<
+  L extends number,
+  T = unknown,
+  result extends any[] = [],
+> = result['length'] extends L ? result : TupleOf<L, T, [...result, T]>
 
-export type { Drop, DropSuffix, PascalCaseAll }
+export type { Filter, DropSuffix, PascalCaseAll, TupleOf }
 export { pascalCaseAll, typeOf }

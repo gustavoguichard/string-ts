@@ -39,19 +39,20 @@ export {
 } from './primitives'
 
 // UTILS
+export type { Truncate, Words } from './utils'
+export { truncate, words } from './utils'
+
+// CHARACTERS
 export type {
   Digit,
   IsDigit,
   IsLetter,
   IsLower,
-  IsSeparator,
   IsSpecial,
   IsUpper,
-  Separator,
-  Truncate,
-  Words,
-} from './utils'
-export { truncate, words } from './utils'
+} from './chars'
+// SEPARATORS
+export type { Separator, IsSeparator } from './separators'
 
 // CASING
 export type {
@@ -81,12 +82,6 @@ export {
 export type {
   CamelKeys,
   ConstantKeys,
-  DeepCamelKeys,
-  DeepConstantKeys,
-  DeepDelimiterKeys,
-  DeepKebabKeys,
-  DeepPascalKeys,
-  DeepSnakeKeys,
   DelimiterKeys,
   KebabKeys,
   PascalKeys,
@@ -95,6 +90,22 @@ export type {
 export {
   camelKeys,
   constantKeys,
+  delimiterKeys,
+  kebabKeys,
+  pascalKeys,
+  snakeKeys,
+} from './key-casing'
+
+// DEEP KEY CASING
+export type {
+  DeepCamelKeys,
+  DeepConstantKeys,
+  DeepDelimiterKeys,
+  DeepKebabKeys,
+  DeepPascalKeys,
+  DeepSnakeKeys,
+} from './deep-key-casing'
+export {
   deepCamelKeys,
   deepConstantKeys,
   deepDelimiterKeys,
@@ -102,8 +113,4 @@ export {
   deepPascalKeys,
   deepSnakeKeys,
   deepTransformKeys,
-  delimiterKeys,
-  kebabKeys,
-  pascalKeys,
-  snakeKeys,
-} from './key-casing'
+} from './deep-key-casing'

@@ -1,5 +1,5 @@
 import type { Math } from './math'
-import type { TupleOf } from './utils'
+import type { TupleOf } from './internals'
 
 /**
  * Gets the character at the given index.

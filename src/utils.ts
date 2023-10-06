@@ -1,98 +1,9 @@
 import type { Math } from './math'
 import { join, type Join, type Length, type Slice } from './primitives'
-import type { Drop, DropSuffix } from './internals'
-
-type Digit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-
-const UNESCAPED_SEPARATORS = [
-  '[',
-  ']',
-  '{',
-  '}',
-  '(',
-  ')',
-  '|',
-  '/',
-  '-',
-  '\\',
-] as const
-const SEPARATORS = [...UNESCAPED_SEPARATORS, ' ', '_', '.'] as const
-type Separator = (typeof SEPARATORS)[number]
-
-/** Escape characters with special significance in regular expressions */
-function escapeCharacter(char: string): string {
-  return (UNESCAPED_SEPARATORS as readonly string[]).includes(char)
-    ? `\\${char}`
-    : char
-}
-
-const SEPARATOR_REGEX = new RegExp(
-  `[${SEPARATORS.map(escapeCharacter).join('')}]`,
-  'g',
-)
-
-// GENERAL UTILITIES
-
-/**
- * Assures the generic matches the given condition.
- */
-type Is<T, cond> = Extract<T, cond>
-
-// prettier-ignore
-type UpperChars = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
-type LowerChars = Lowercase<UpperChars>
-
-// UTILITIES FOR DETECTING CHARS
-/**
- * Checks if the given character is an upper case letter.
- */
-type IsUpper<T extends string> = T extends UpperChars ? true : false
-
-/**
- * Checks if the given character is a letter.
- */
-type IsLetter<T extends string> = IsUpper<T> extends true
-  ? true
-  : IsLower<T> extends true
-  ? true
-  : false
-
-/**
- * Checks if the given character is a lower case letter.
- */
-type IsLower<T extends string> = T extends LowerChars ? true : false
-
-/**
- * Checks if the given character is a number.
- */
-type IsDigit<T extends string> = T extends Digit ? true : false
-
-/**
- * Checks if the given character is a separator.
- * E.g. space, underscore, dash, dot, slash.
- */
-type IsSeparator<T extends string> = T extends Separator ? true : false
-
-/**
- * Checks if the given character is a special character.
- * E.g. not a letter, number, or separator.
- */
-type IsSpecial<T extends string> = IsLetter<T> extends true
-  ? false
-  : IsDigit<T> extends true
-  ? false
-  : IsSeparator<T> extends true
-  ? false
-  : true
-
-/**
- * Returns a tuple of the given length with the given type.
- */
-type TupleOf<
-  L extends number,
-  T = unknown,
-  result extends any[] = [],
-> = result['length'] extends L ? result : TupleOf<L, T, [...result, T]>
+import type { Filter, DropSuffix, TupleOf } from './internals'
+import type { IsSeparator } from './separators'
+import { SEPARATOR_REGEX } from './separators'
+import type { IsDigit, IsLower, IsSpecial, IsUpper } from './chars'
 
 // STRING FUNCTIONS
 /**
@@ -110,10 +21,10 @@ type Words<
   : sentence extends `${infer curr}${infer rest}`
   ? IsSeparator<curr> extends true
     ? // Step 1: Remove separators
-      Drop<[word, ...Words<rest>], ''>
+      Filter<[word, ...Words<rest>], ''>
     : prev extends ''
     ? // Start of sentence, start a new word
-      Drop<Words<rest, curr, curr>, ''>
+      Filter<Words<rest, curr, curr>, ''>
     : [false, true] extends [IsDigit<prev>, IsDigit<curr>]
     ? // Step 2: From non-digit to digit
       [word, ...Words<rest, curr, curr>]
@@ -128,7 +39,7 @@ type Words<
       [word, ...Words<rest, curr, curr>]
     : [true, true] extends [IsDigit<prev>, IsDigit<curr>]
     ? // If both are digit, continue with the sentence
-      Drop<Words<rest, `${word}${curr}`, curr>, ''>
+      Filter<Words<rest, `${word}${curr}`, curr>, ''>
     : [true, true] extends [IsLower<prev>, IsUpper<curr>]
     ? // Step 6: From lower to upper
       [word, ...Words<rest, curr, curr>]
@@ -136,9 +47,9 @@ type Words<
     ? // Step 7: From upper to upper and lower
       // Remove the last character from the current word and start a new word with it
       [DropSuffix<word, prev>, ...Words<rest, `${prev}${curr}`, curr>]
-    : Drop<Words<rest, `${word}${curr}`, curr>, ''> // Otherwise continue with the sentence
+    : Filter<Words<rest, `${word}${curr}`, curr>, ''> // Otherwise continue with the sentence
   : // Step 8: Trim the last word
-    Drop<[word], ''>
+    Filter<[word], ''>
 
 /**
  * A strongly typed function to extract the words from a sentence.
@@ -147,10 +58,6 @@ type Words<
  * @example words('helloWorld') // ['hello', 'World']
  */
 function words<T extends string>(sentence: T): Words<T> {
-  // can be implemented with a single regex but it's not as readable
-  // sentence.match(
-  //   /([A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b))|([A-Z]?[a-z]+)|([A-Z])|([0-9]+)/g,
-  // )
   return sentence
     .replace(SEPARATOR_REGEX, ' ') // Step 1: Remove separators
     .replace(/([a-zA-Z])([0-9])/g, '$1 $2') // Step 2: From non-digit to digit
@@ -196,18 +103,5 @@ function truncate<T extends string, S extends number, P extends string = '...'>(
   return join([sentence.slice(0, length - omission.length), omission])
 }
 
-export type {
-  Digit,
-  Is,
-  IsDigit,
-  IsLetter,
-  IsLower,
-  IsSeparator,
-  IsSpecial,
-  IsUpper,
-  Separator,
-  TupleOf,
-  Truncate,
-  Words,
-}
+export type { Truncate, Words }
 export { truncate, words }
