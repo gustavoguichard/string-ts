@@ -39,19 +39,20 @@ export {
 } from './primitives'
 
 // UTILS
+export type { Truncate, Words } from './utils'
+export { truncate, words } from './utils'
+
+// CHARACTERS
 export type {
   Digit,
   IsDigit,
   IsLetter,
   IsLower,
-  IsSeparator,
   IsSpecial,
   IsUpper,
-  Separator,
-  Truncate,
-  Words,
-} from './utils'
-export { truncate, words } from './utils'
+} from './chars'
+// SEPARATORS
+export type { Separator, IsSeparator } from './separators'
 
 // CASING
 export type {

@@ -1,5 +1,5 @@
 import type { Length } from './primitives'
-import { TupleOf } from './utils'
+import type { TupleOf } from './internals'
 
 namespace Math {
   export type Subtract<

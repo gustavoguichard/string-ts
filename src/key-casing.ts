@@ -15,7 +15,6 @@ import {
   toSnakeCase,
 } from './casing'
 import { typeOf } from './internals'
-import type { Is } from './utils'
 
 /**
  * This function is used to shallowly transform the keys of an object.
@@ -64,7 +63,7 @@ function deepTransformKeys<T>(obj: T, transform: (s: string) => string): T {
  */
 type CamelKeys<T> = T extends []
   ? T
-  : { [K in keyof T as CamelCase<Is<K, string>>]: T[K] }
+  : { [K in keyof T as CamelCase<Extract<K, string>>]: T[K] }
 /**
  * A strongly typed function that shallowly transforms the keys of an object to camelCase. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
@@ -84,7 +83,7 @@ type DeepCamelKeys<T> = T extends [any, ...any]
   : T extends (infer V)[]
   ? DeepCamelKeys<V>[]
   : {
-      [K in keyof T as CamelCase<Is<K, string>>]: DeepCamelKeys<T[K]>
+      [K in keyof T as CamelCase<Extract<K, string>>]: DeepCamelKeys<T[K]>
     }
 /**
  * A strongly typed function that recursively transforms the keys of an object to camelCase. The transformation is done both at runtime and type level.
@@ -102,7 +101,7 @@ function deepCamelKeys<T>(obj: T): DeepCamelKeys<T> {
  */
 type ConstantKeys<T> = T extends []
   ? T
-  : { [K in keyof T as ConstantCase<Is<K, string>>]: T[K] }
+  : { [K in keyof T as ConstantCase<Extract<K, string>>]: T[K] }
 /**
  * A strongly typed function that shallowly transforms the keys of an object to CONSTANT_CASE. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
@@ -122,7 +121,7 @@ type DeepConstantKeys<T> = T extends [any, ...any]
   : T extends (infer V)[]
   ? DeepConstantKeys<V>[]
   : {
-      [K in keyof T as ConstantCase<Is<K, string>>]: DeepConstantKeys<T[K]>
+      [K in keyof T as ConstantCase<Extract<K, string>>]: DeepConstantKeys<T[K]>
     }
 /**
  * A strongly typed function that recursively transforms the keys of an object to CONSTANT_CASE. The transformation is done both at runtime and type level.
@@ -141,7 +140,7 @@ function deepConstantKeys<T>(obj: T): DeepConstantKeys<T> {
  */
 type DelimiterKeys<T, D extends string> = T extends []
   ? T
-  : { [K in keyof T as DelimiterCase<Is<K, string>, D>]: T[K] }
+  : { [K in keyof T as DelimiterCase<Extract<K, string>, D>]: T[K] }
 /**
  * A strongly typed function that shallowly transforms the keys of an object to a custom delimiter case. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
@@ -166,7 +165,7 @@ type DeepDelimiterKeys<T, D extends string> = T extends [any, ...any]
   : T extends (infer V)[]
   ? DeepDelimiterKeys<V, D>[]
   : {
-      [K in keyof T as DelimiterCase<Is<K, string>, D>]: DeepDelimiterKeys<
+      [K in keyof T as DelimiterCase<Extract<K, string>, D>]: DeepDelimiterKeys<
         T[K],
         D
       >
@@ -194,7 +193,7 @@ function deepDelimiterKeys<T, D extends string>(
 type KebabKeys<T> = T extends []
   ? T
   : {
-      [K in keyof T as KebabCase<Is<K, string>>]: T[K]
+      [K in keyof T as KebabCase<Extract<K, string>>]: T[K]
     }
 /**
  * A strongly typed function that shallowly transforms the keys of an object to kebab-case. The transformation is done both at runtime and type level.
@@ -215,7 +214,7 @@ type DeepKebabKeys<T> = T extends [any, ...any]
   : T extends (infer V)[]
   ? DeepKebabKeys<V>[]
   : {
-      [K in keyof T as KebabCase<Is<K, string>>]: DeepKebabKeys<T[K]>
+      [K in keyof T as KebabCase<Extract<K, string>>]: DeepKebabKeys<T[K]>
     }
 /**
  * A strongly typed function that recursively transforms the keys of an object to kebab-case. The transformation is done both at runtime and type level.
@@ -233,7 +232,7 @@ function deepKebabKeys<T>(obj: T): DeepKebabKeys<T> {
  */
 type PascalKeys<T> = T extends []
   ? T
-  : { [K in keyof T as PascalCase<Is<K, string>>]: T[K] }
+  : { [K in keyof T as PascalCase<Extract<K, string>>]: T[K] }
 /**
  * A strongly typed function that shallowly transforms the keys of an object to pascal case. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
@@ -253,7 +252,7 @@ type DeepPascalKeys<T> = T extends [any, ...any]
   : T extends (infer V)[]
   ? DeepPascalKeys<V>[]
   : {
-      [K in keyof T as PascalCase<Is<K, string>>]: DeepPascalKeys<T[K]>
+      [K in keyof T as PascalCase<Extract<K, string>>]: DeepPascalKeys<T[K]>
     }
 /**
  * A strongly typed function that recursively transforms the keys of an object to pascal case. The transformation is done both at runtime and type level.
@@ -271,7 +270,7 @@ function deepPascalKeys<T>(obj: T): DeepPascalKeys<T> {
  */
 type SnakeKeys<T> = T extends []
   ? T
-  : { [K in keyof T as SnakeCase<Is<K, string>>]: T[K] }
+  : { [K in keyof T as SnakeCase<Extract<K, string>>]: T[K] }
 /**
  * A strongly typed function that shallowly the keys of an object to snake_case. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
@@ -291,7 +290,7 @@ type DeepSnakeKeys<T> = T extends [any, ...any]
   : T extends (infer V)[]
   ? DeepSnakeKeys<V>[]
   : {
-      [K in keyof T as SnakeCase<Is<K, string>>]: DeepSnakeKeys<T[K]>
+      [K in keyof T as SnakeCase<Extract<K, string>>]: DeepSnakeKeys<T[K]>
     }
 /**
  * A strongly typed function that recursively transforms the keys of an object to snake_case. The transformation is done both at runtime and type level.
