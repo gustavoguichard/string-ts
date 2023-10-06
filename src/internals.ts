@@ -45,13 +45,6 @@ type DropSuffix<
   suffix extends string,
 > = sentence extends `${infer rest}${suffix}` ? rest : sentence
 
-// type MapCase<T extends string[], F> = T extends [
-//   infer head extends string,
-//   ...infer rest extends string[],
-// ]
-//   ? [F<head>, MapCase<rest, F>]
-//   : T
-
 /**
  * PascalCases all the words in a tuple of strings
  */
