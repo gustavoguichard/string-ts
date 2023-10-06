@@ -793,9 +793,11 @@ St.CamelCase<'hello-world'> // 'helloWorld'
 St.ConstantCase<'helloWorld'> // 'HELLO_WORLD'
 St.DelimiterCase<'hello world', '.'> // 'hello.world'
 St.KebabCase<'helloWorld'> // 'hello-world'
+St.LowerCase<'HELLO-WORLD'> // 'hello world'
 St.PascalCase<'hello-world'> // 'HelloWorld'
 St.SnakeCase<'helloWorld'> // 'hello_world'
 St.TitleCase<'helloWorld'> // 'Hello World'
+St.UpperCase<'hello-world'> // 'HELLO WORLD'
 
 // SHALLOW OBJECT KEY TRANSFORMATION
 St.CamelKeys<{
