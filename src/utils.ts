@@ -165,9 +165,8 @@ function truncate<T extends string, S extends number, P extends string = '...'>(
   length: S,
   omission = '...' as P,
 ): Truncate<T, S, P> {
-  if (length <= 0) return omission as Truncate<T, S, P>
+  if (length < 0) return omission as Truncate<T, S, P>
   if (sentence.length <= length) return sentence as Truncate<T, S, P>
-  if (sentence.length <= omission.length) return omission as Truncate<T, S, P>
   return join([sentence.slice(0, length - omission.length), omission])
 }
 
