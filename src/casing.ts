@@ -97,7 +97,7 @@ type LowerCase<T extends string> = Lowercase<DelimiterCase<T, ' '>>
  * A strongly-typed version of `lowerCase` that works in both runtime and type level.
  * @param str the string to convert to lower case.
  * @returns the lowercased string.
- * @example lowerCase('HELLO WORLD') // 'hello world'
+ * @example lowerCase('HELLO-WORLD') // 'hello world'
  */
 function lowerCase<T extends string>(str: T): LowerCase<T> {
   return toLowerCase(toDelimiterCase(str, ' '))

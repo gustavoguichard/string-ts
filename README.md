@@ -419,12 +419,12 @@ const result = trimStart(str)
 ### lowerCase
 
 This function converts a string to `lower case` at both runtime and type levels.
-_NOTE: this function will split by words and join them with `" "`._
+_NOTE: this function will split by words and join them with `" "`, unlike `toLowerCase`._
 
 ```ts
 import { lowerCase } from 'string-ts'
 
-const str = 'HELLO WORLD'
+const str = 'HELLO-WORLD'
 const result = lowerCase(str)
 //    ^ 'hello world'
 ```
@@ -516,12 +516,12 @@ const result = toTitleCase(str)
 ### upperCase
 
 This function converts a string to `UPPER CASE` at both runtime and type levels.
-_NOTE: this function will split by words and join them with `" "`._
+_NOTE: this function will split by words and join them with `" "`, unlike `toUpperCase`._
 
 ```ts
 import { upperCase } from 'string-ts'
 
-const str = 'hello world'
+const str = 'hello-world'
 const result = upperCase(str)
 //    ^ 'HELLO WORLD'
 ```
