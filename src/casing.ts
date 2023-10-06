@@ -91,7 +91,7 @@ function toCamelCase<T extends string>(str: T): CamelCase<T> {
 /**
  * Transforms a string to lowercase, with words delimited by a space.
  */
-type LowerCase<T extends string> = Join<LowerCaseAll<Words<T>>, ' '>
+type LowerCase<T extends string> = Lowercase<DelimiterCase<T, ' '>>
 
 /**
  * A strongly-typed version of `lowerCase` that works in both runtime and type level.
@@ -100,22 +100,21 @@ type LowerCase<T extends string> = Join<LowerCaseAll<Words<T>>, ' '>
  * @example lowerCase('HELLO WORLD') // 'hello world'
  */
 function lowerCase<T extends string>(str: T): LowerCase<T> {
-  return join(lowerCaseAll(words(str)), ' ')
+  return toLowerCase(toDelimiterCase(str, ' '))
 }
 
 /**
  * Transforms a string to lowercase, with words delimited by a space.
  */
-type UpperCase<T extends string> = Join<UpperCaseAll<Words<T>>, ' '>
-
+type UpperCase<T extends string> = Uppercase<DelimiterCase<T, ' '>>
 /**
  * A strongly-typed version of `upperCase` that works in both runtime and type level.
  * @param str the string to convert to upper case.
  * @returns the uppercased string.
- * @example upperCase('hello world') // 'HELLO WORLD'
+ * @example upperCase('hello-world') // 'HELLO WORLD'
  */
 function upperCase<T extends string>(str: T): UpperCase<T> {
-  return join(upperCaseAll(words(str)), ' ')
+  return toUpperCase(toDelimiterCase(str, ' '))
 }
 
 /**
