@@ -123,6 +123,7 @@ It also only work with common ASCII characters characters. We don't plan to supp
   - [toPascalCase](#topascalcase)
   - [toSnakeCase](#tosnakecase)
   - [toTitleCase](#totitlecase)
+  - [truncate](#truncate)
   - [words](#words)
 - [Strongly-typed shallow transformation of objects](#strongly-typed-shallow-transformation-of-objects)
   - [camelKeys](#camelkeys)
@@ -499,6 +500,19 @@ const result = toTitleCase(str)
 //    ^ 'Hello World'
 ```
 
+### truncate
+
+This function truncates string if it's longer than the given maximum string length. The last characters of the truncated string are replaced with the omission string which defaults to "...".
+
+
+```ts
+import { truncate } from 'string-ts'
+
+const str = '-20someVery-weird String'
+const result = truncate(str, 8)
+//    ^ '-20so...'
+```
+
 ### words
 
 This function identifies the words in a string and returns a tuple of words split by separators, differences in casing, numbers, and etc.
@@ -743,6 +757,7 @@ St.Trim<' hello world '> // 'hello world'
 St.StartsWith<'abc', 'a'> // true
 St.TrimEnd<' hello world '> // ' hello world'
 St.TrimStart<' hello world '> // 'hello world '
+St.Truncate<'hello world', 9, '[...]'> // 'hello[...]
 St.Words<'hello-world'> // ['hello', 'world']
 ```
 
