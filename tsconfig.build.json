@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+
+  "include": ["src"],
+  "exclude": ["**/*.test.ts"],
+
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": false,
+    "removeComments": true
+  }
+}

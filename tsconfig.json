@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
+    "noEmit": true,
     "outDir": "./tsc/",
     "skipLibCheck": true,
     "strict": true,

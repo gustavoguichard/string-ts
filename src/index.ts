@@ -9,8 +9,6 @@ export type {
   PadEnd,
   PadStart,
   Repeat,
-  Replace,
-  ReplaceAll,
   Slice,
   Split,
   StartsWith,
@@ -28,8 +26,6 @@ export {
   padEnd,
   padStart,
   repeat,
-  replace,
-  replaceAll,
   slice,
   split,
   startsWith,
@@ -37,6 +33,9 @@ export {
   trimStart,
   trimEnd,
 } from './primitives'
+
+export * from './replace'
+export * from './replace-all'
 
 // UTILS
 export type { Truncate, Words } from './utils'

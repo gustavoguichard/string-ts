@@ -4,12 +4,6 @@ namespace TypeTests {
   type test1 = Expect<
     Equal<Subject.Join<['some', 'nice', 'string'], ' '>, 'some nice string'>
   >
-  type test2 = Expect<
-    Equal<Subject.Replace<'some nice string', ' ', '-'>, 'some-nice string'>
-  >
-  type test3 = Expect<
-    Equal<Subject.ReplaceAll<'some nice string', ' ', '-'>, 'some-nice-string'>
-  >
   type test4 = Expect<
     Equal<Subject.TrimStart<' some nice string '>, 'some nice string '>
   >

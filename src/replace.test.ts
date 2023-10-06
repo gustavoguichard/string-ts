@@ -1,0 +1,17 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import * as subject from './replace'
+
+describe('replace', () => {
+  test('should replace chars in a string at both type level and runtime level once', () => {
+    const data = 'some nice string'
+    const result = subject.replace(data, ' ')
+    expect(result).toEqual('somenice string')
+    type test = Expect<Equal<typeof result, 'somenice string'>>
+  })
+  test('should replace chars but not at type level when using RegExp', () => {
+    const data = 'some nice string'
+    const result = subject.replace(data, /nice /)
+    expect(result).toEqual('some string')
+    type test = Expect<Equal<typeof result, string>>
+  })
+})

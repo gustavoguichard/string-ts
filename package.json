@@ -2,23 +2,25 @@
   "name": "string-ts",
   "version": "1.2.0",
   "description": "Strongly-typed string functions.",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/es/index.js",
+  "jsnext:main": "dist/es/index.js",
   "author": "Gustavo Guichard <@gugaguichard>",
   "license": "MIT",
   "scripts": {
-    "build": "tsup ./src/index.ts --format esm,cjs --dts",
+    "build": "npm run clean-dist && npm run build:es && npm run build:cjs",
     "dev": "tsup ./src/index.ts --format esm,cjs --watch --dts",
     "lint": "eslint *.ts*",
-    "tsc": "tsc --noEmit",
-    "test": "vitest run"
+    "tsc": "tsc",
+    "test": "vitest run",
+    "clean-dist": "rm -rf ./dist && mkdir dist",
+    "build:es": "tsc --project tsconfig.build.json --module esnext --outDir \"./dist/es\"",
+    "build:cjs": "tsc --project tsconfig.build.json --module commonjs --outDir \"./dist/commonjs\""
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "latest",
     "eslint": "latest",
     "prettier": "latest",
-    "tsup": "latest",
     "typescript": "^5.1.6",
     "vitest": "latest"
   },
