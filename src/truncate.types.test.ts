@@ -1,25 +1,4 @@
-import type * as Subject from './utils'
-
-namespace WordsTests {
-  type test1 = Expect<
-    Equal<
-      Subject.Words<' someWeird-cased$*String1986Foo Bar obj.items[0]'>,
-      [
-        'some',
-        'Weird',
-        'cased',
-        '$*',
-        'String',
-        '1986',
-        'Foo',
-        'Bar',
-        'obj',
-        'items',
-        '0',
-      ]
-    >
-  >
-}
+import type * as Subject from './truncate'
 
 namespace TruncateTests {
   type test1 = Expect<Equal<Subject.Truncate<'Hello, world', 9>, 'Hello,...'>>

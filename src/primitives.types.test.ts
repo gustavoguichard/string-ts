@@ -1,9 +1,6 @@
 import type * as Subject from './primitives'
 
 namespace TypeTests {
-  type test1 = Expect<
-    Equal<Subject.Join<['some', 'nice', 'string'], ' '>, 'some nice string'>
-  >
   type test4 = Expect<
     Equal<Subject.TrimStart<' some nice string '>, 'some nice string '>
   >

@@ -1,8 +1,7 @@
 import { pascalCaseAll, type PascalCaseAll } from './internals'
-import type { Join } from './primitives'
-import { charAt, join, slice } from './primitives'
-import type { Words } from './utils'
-import { words } from './utils'
+import { type Join, join } from './join'
+import { charAt, slice } from './primitives'
+import { type Words, words } from './words'
 
 // CASING UTILITIES THAT ALREADY HAVE NATIVE TS TYPES
 

@@ -4,7 +4,6 @@ export type {
   Concat,
   EndsWith,
   Includes,
-  Join,
   Length,
   PadEnd,
   PadStart,
@@ -21,7 +20,6 @@ export {
   concat,
   endsWith,
   includes,
-  join,
   length,
   padEnd,
   padStart,
@@ -34,12 +32,11 @@ export {
   trimEnd,
 } from './primitives'
 
+export * from './join'
 export * from './replace'
 export * from './replace-all'
-
-// UTILS
-export type { Truncate, Words } from './utils'
-export { truncate, words } from './utils'
+export * from './truncate'
+export * from './words'
 
 // CHARACTERS
 export type {
