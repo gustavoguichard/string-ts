@@ -82,7 +82,7 @@ main()
 npm install string-ts
 ```
 
-## 👌 Supported TypeScript Versions
+## 👌 Supported TypeScript versions
 
 `string-ts` currently only works on TypeScript v5+.
 
@@ -721,7 +721,7 @@ const result = deepSnakeKeys(data)
 //    ^ { 'hello_world': { 'foo_bar': 'baz' } }
 ```
 
-## Type Utilities
+## Type utilities
 
 All the functions presented in this API have associated type counterparts.
 
@@ -737,7 +737,7 @@ Lowercase<'HELLO WORLD'> // 'hello world'
 Uppercase<'hello world'> // 'HELLO WORLD'
 ```
 
-### General Type utilities from this library
+### General type utilities from this library
 
 ```ts
 St.CharAt<'hello world', 6> // 'w'
@@ -850,6 +850,6 @@ const result = deepTransformKeys(data, toUpperCase) as MyType<typeof data>
 //    ^ { 'HELLOWORLD': 'baz' }
 ```
 
-## 🫶 Aknowledgements
+## 🫶 Acknowledgements
 
 This library got a lot of inspiration from libraries such as [lodash](https://github.com/lodash/lodash), [ts-reset](https://github.com/total-typescript/ts-reset), [type-fest](https://github.com/sindresorhus/type-fest), [HOTScript](https://github.com/gvergnaud/hotscript), and many others.
