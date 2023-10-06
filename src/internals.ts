@@ -58,31 +58,5 @@ function pascalCaseAll<T extends string[]>(words: T) {
   return words.map((v) => capitalize(toLowerCase(v))) as PascalCaseAll<T>
 }
 
-/**
- * LowerCases all the words in a tuple of strings
- */
-type LowerCaseAll<T extends string[]> = T extends [
-  infer head extends string,
-  ...infer rest extends string[],
-]
-  ? [Lowercase<head>, ...LowerCaseAll<rest>]
-  : T
-function lowerCaseAll<T extends string[]>(words: T) {
-  return words.map(toLowerCase) as LowerCaseAll<T>
-}
-
-/**
- * UpperCases all the words in a tuple of strings
- */
-type UpperCaseAll<T extends string[]> = T extends [
-  infer head extends string,
-  ...infer rest extends string[],
-]
-  ? [Uppercase<head>, ...UpperCaseAll<rest>]
-  : T
-function upperCaseAll<T extends string[]>(words: T) {
-  return words.map(toUpperCase) as UpperCaseAll<T>
-}
-
-export type { Drop, DropSuffix, LowerCaseAll, PascalCaseAll, UpperCaseAll }
-export { lowerCaseAll, pascalCaseAll, typeOf, upperCaseAll }
+export type { Drop, DropSuffix, PascalCaseAll }
+export { pascalCaseAll, typeOf }
