@@ -416,6 +416,19 @@ const result = trimStart(str)
 
 ## Strongly-typed alternatives to common loosely-typed functions
 
+### lowerCase
+
+This function converts a string to `lower case` at both runtime and type levels.
+_NOTE: this function will split by words and join them with `" "`._
+
+```ts
+import { lowerCase } from 'string-ts'
+
+const str = 'HELLO WORLD'
+const result = lowerCase(str)
+//    ^ 'hello world'
+```
+
 ### toCamelCase
 
 This function converts a string to `camelCase` at both runtime and type levels.
@@ -500,10 +513,22 @@ const result = toTitleCase(str)
 //    ^ 'Hello World'
 ```
 
+### upperCase
+
+This function converts a string to `UPPER CASE` at both runtime and type levels.
+_NOTE: this function will split by words and join them with `" "`._
+
+```ts
+import { upperCase } from 'string-ts'
+
+const str = 'hello world'
+const result = upperCase(str)
+//    ^ 'HELLO WORLD'
+```
+
 ### truncate
 
 This function truncates string if it's longer than the given maximum string length. The last characters of the truncated string are replaced with the omission string which defaults to "...".
-
 
 ```ts
 import { truncate } from 'string-ts'

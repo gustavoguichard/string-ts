@@ -1,4 +1,11 @@
-import { pascalCaseAll, type PascalCaseAll } from './internals'
+import {
+  pascalCaseAll,
+  type PascalCaseAll,
+  type LowerCaseAll,
+  type UpperCaseAll,
+  lowerCaseAll,
+  upperCaseAll,
+} from './internals'
 import type { Join } from './primitives'
 import { charAt, join, slice } from './primitives'
 import type { Words } from './utils'
@@ -47,6 +54,7 @@ function uncapitalize<T extends string>(str: T): Uncapitalize<T> {
 }
 
 // CASING UTILITIES
+
 /**
  * Transforms a string with the specified separator (delimiter).
  */
@@ -78,6 +86,36 @@ type CamelCase<T extends string> = Uncapitalize<PascalCase<T>>
  */
 function toCamelCase<T extends string>(str: T): CamelCase<T> {
   return uncapitalize(toPascalCase(str))
+}
+
+/**
+ * Transforms a string to lowercase, with words delimited by a space.
+ */
+type LowerCase<T extends string> = Join<LowerCaseAll<Words<T>>, ' '>
+
+/**
+ * A strongly-typed version of `lowerCase` that works in both runtime and type level.
+ * @param str the string to convert to lower case.
+ * @returns the lowercased string.
+ * @example lowerCase('HELLO WORLD') // 'hello world'
+ */
+function lowerCase<T extends string>(str: T): LowerCase<T> {
+  return join(lowerCaseAll(words(str)), ' ')
+}
+
+/**
+ * Transforms a string to lowercase, with words delimited by a space.
+ */
+type UpperCase<T extends string> = Join<UpperCaseAll<Words<T>>, ' '>
+
+/**
+ * A strongly-typed version of `upperCase` that works in both runtime and type level.
+ * @param str the string to convert to upper case.
+ * @returns the uppercased string.
+ * @example upperCase('hello world') // 'HELLO WORLD'
+ */
+function upperCase<T extends string>(str: T): UpperCase<T> {
+  return join(upperCaseAll(words(str)), ' ')
 }
 
 /**
@@ -155,12 +193,15 @@ export type {
   ConstantCase,
   DelimiterCase,
   KebabCase,
+  LowerCase,
   PascalCase,
   SnakeCase,
   TitleCase,
+  UpperCase,
 }
 export {
   capitalize,
+  lowerCase,
   toCamelCase,
   toConstantCase,
   toDelimiterCase,
@@ -171,4 +212,5 @@ export {
   toTitleCase,
   toUpperCase,
   uncapitalize,
+  upperCase,
 }

@@ -59,12 +59,15 @@ export type {
   ConstantCase,
   DelimiterCase,
   KebabCase,
+  LowerCase,
   PascalCase,
   SnakeCase,
   TitleCase,
+  UpperCase,
 } from './casing'
 export {
   capitalize,
+  lowerCase,
   toCamelCase,
   toConstantCase,
   toDelimiterCase,
@@ -75,6 +78,7 @@ export {
   toTitleCase,
   toUpperCase,
   uncapitalize,
+  upperCase,
 } from './casing'
 
 // KEY CASING

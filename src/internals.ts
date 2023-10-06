@@ -1,4 +1,4 @@
-import { capitalize, toLowerCase } from './casing'
+import { capitalize, toLowerCase, toUpperCase } from './casing'
 
 /**
  * This is an enhanced version of the typeof operator to check the type of more complex values.
@@ -27,11 +27,6 @@ function typeOf(t: unknown) {
     | 'url'
     | 'urlsearchparams'
 }
-
-function pascalCaseAll<T extends string[]>(words: T) {
-  return words.map((v) => capitalize(toLowerCase(v))) as PascalCaseAll<T>
-}
-
 /**
  * Removes all the elements matching the given condition from a tuple.
  */
@@ -50,6 +45,13 @@ type DropSuffix<
   suffix extends string,
 > = sentence extends `${infer rest}${suffix}` ? rest : sentence
 
+// type MapCase<T extends string[], F> = T extends [
+//   infer head extends string,
+//   ...infer rest extends string[],
+// ]
+//   ? [F<head>, MapCase<rest, F>]
+//   : T
+
 /**
  * PascalCases all the words in a tuple of strings
  */
@@ -59,6 +61,35 @@ type PascalCaseAll<T extends string[]> = T extends [
 ]
   ? [Capitalize<Lowercase<head>>, ...PascalCaseAll<rest>]
   : T
+function pascalCaseAll<T extends string[]>(words: T) {
+  return words.map((v) => capitalize(toLowerCase(v))) as PascalCaseAll<T>
+}
 
-export type { Drop, DropSuffix, PascalCaseAll }
-export { pascalCaseAll, typeOf }
+/**
+ * LowerCases all the words in a tuple of strings
+ */
+type LowerCaseAll<T extends string[]> = T extends [
+  infer head extends string,
+  ...infer rest extends string[],
+]
+  ? [Lowercase<head>, ...LowerCaseAll<rest>]
+  : T
+function lowerCaseAll<T extends string[]>(words: T) {
+  return words.map(toLowerCase) as LowerCaseAll<T>
+}
+
+/**
+ * UpperCases all the words in a tuple of strings
+ */
+type UpperCaseAll<T extends string[]> = T extends [
+  infer head extends string,
+  ...infer rest extends string[],
+]
+  ? [Uppercase<head>, ...UpperCaseAll<rest>]
+  : T
+function upperCaseAll<T extends string[]>(words: T) {
+  return words.map(toUpperCase) as UpperCaseAll<T>
+}
+
+export type { Drop, DropSuffix, LowerCaseAll, PascalCaseAll, UpperCaseAll }
+export { lowerCaseAll, pascalCaseAll, typeOf, upperCaseAll }
