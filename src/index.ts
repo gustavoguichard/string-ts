@@ -59,11 +59,9 @@ export type {
   ConstantCase,
   DelimiterCase,
   KebabCase,
-  LowerCase,
   PascalCase,
   SnakeCase,
   TitleCase,
-  UpperCase,
 } from './casing'
 export {
   capitalize,

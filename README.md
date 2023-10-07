@@ -788,18 +788,35 @@ St.Words<'hello-world'> // ['hello', 'world']
 
 ### Casing type utilities
 
+#### Core
+
 ```ts
 St.CamelCase<'hello-world'> // 'helloWorld'
 St.ConstantCase<'helloWorld'> // 'HELLO_WORLD'
 St.DelimiterCase<'hello world', '.'> // 'hello.world'
 St.KebabCase<'helloWorld'> // 'hello-world'
-St.LowerCase<'HELLO-WORLD'> // 'hello world'
 St.PascalCase<'hello-world'> // 'HelloWorld'
 St.SnakeCase<'helloWorld'> // 'hello_world'
 St.TitleCase<'helloWorld'> // 'Hello World'
-St.UpperCase<'hello-world'> // 'HELLO WORLD'
+```
 
-// SHALLOW OBJECT KEY TRANSFORMATION
+##### Missing types
+
+_Note that we do not include `UpperCase` and `LowerCase` types. These would be too close to the existing TS types `Uppercase` and `Lowercase`._
+
+One could create either by using like so:
+
+```ts
+type LowerCase<T extends string> = Lowercase<DelimiterCase<T, ' '>>
+type UpperCase<T extends string> = Uppercase<DelimiterCase<T, ' '>>
+// or
+type LowerCase<T extends string> = ReturnType<typeof lowerCase<T>>
+type UpperCase<T extends string> = ReturnType<typeof upperCase<T>>
+```
+
+#### Shallow object key transformation
+
+```ts
 St.CamelKeys<{
   'hello-world': { 'foo-bar': 'baz' }
 }> // { helloWorld: { 'foo-bar': 'baz' } }
@@ -817,8 +834,11 @@ St.PascalKeys<{
 St.SnakeKeys<{
   helloWorld: { fooBar: 'baz' }
 }> // { 'hello_world': { fooBar: 'baz' } }
+```
 
-// DEEP OBJECT KEY TRANSFORMATION
+#### Deep object key transformation
+
+```ts
 St.DeepCamelKeys<{
   'hello-world': { 'foo-bar': 'baz' }
 }> // { helloWorld: { fooBar: 'baz' } }

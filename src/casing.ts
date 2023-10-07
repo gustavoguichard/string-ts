@@ -82,31 +82,22 @@ function toCamelCase<T extends string>(str: T): CamelCase<T> {
 }
 
 /**
- * Transforms a string to lowercase, with words delimited by a space.
- */
-type LowerCase<T extends string> = Lowercase<DelimiterCase<T, ' '>>
-
-/**
  * A strongly-typed version of `lowerCase` that works in both runtime and type level.
  * @param str the string to convert to lower case.
  * @returns the lowercased string.
  * @example lowerCase('HELLO-WORLD') // 'hello world'
  */
-function lowerCase<T extends string>(str: T): LowerCase<T> {
+function lowerCase<T extends string>(str: T): Lowercase<DelimiterCase<T, ' '>> {
   return toLowerCase(toDelimiterCase(str, ' '))
 }
 
-/**
- * Transforms a string to lowercase, with words delimited by a space.
- */
-type UpperCase<T extends string> = Uppercase<DelimiterCase<T, ' '>>
 /**
  * A strongly-typed version of `upperCase` that works in both runtime and type level.
  * @param str the string to convert to upper case.
  * @returns the uppercased string.
  * @example upperCase('hello-world') // 'HELLO WORLD'
  */
-function upperCase<T extends string>(str: T): UpperCase<T> {
+function upperCase<T extends string>(str: T): Uppercase<DelimiterCase<T, ' '>> {
   return toUpperCase(toDelimiterCase(str, ' '))
 }
 
@@ -185,11 +176,9 @@ export type {
   ConstantCase,
   DelimiterCase,
   KebabCase,
-  LowerCase,
   PascalCase,
   SnakeCase,
   TitleCase,
-  UpperCase,
 }
 export {
   capitalize,
