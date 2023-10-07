@@ -31,11 +31,11 @@ function pascalCaseAll<T extends string[]>(words: T) {
 /**
  * Removes all the elements matching the given condition from a tuple.
  */
-type Filter<tuple, cond, output extends any[] = []> = tuple extends [
+type Reject<tuple, cond, output extends any[] = []> = tuple extends [
   infer first,
   ...infer rest,
 ]
-  ? Filter<rest, cond, first extends cond ? output : [...output, first]>
+  ? Reject<rest, cond, first extends cond ? output : [...output, first]>
   : output
 
 /**
@@ -55,5 +55,5 @@ type TupleOf<
   result extends any[] = [],
 > = result['length'] extends L ? result : TupleOf<L, T, [...result, T]>
 
-export type { Filter, DropSuffix, PascalCaseAll, TupleOf }
+export type { Reject, DropSuffix, PascalCaseAll, TupleOf }
 export { pascalCaseAll, typeOf }
