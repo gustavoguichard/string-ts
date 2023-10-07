@@ -1,6 +1,6 @@
 import type { Math } from './math'
 import { join, type Join, type Length, type Slice } from './primitives'
-import type { Filter, DropSuffix, TupleOf } from './internals'
+import type { Reject, DropSuffix } from './internals'
 import type { IsSeparator } from './separators'
 import { SEPARATOR_REGEX } from './separators'
 import type { IsDigit, IsLower, IsSpecial, IsUpper } from './chars'
@@ -21,10 +21,10 @@ type Words<
   : sentence extends `${infer curr}${infer rest}`
   ? IsSeparator<curr> extends true
     ? // Step 1: Remove separators
-      Filter<[word, ...Words<rest>], ''>
+      Reject<[word, ...Words<rest>], ''>
     : prev extends ''
     ? // Start of sentence, start a new word
-      Filter<Words<rest, curr, curr>, ''>
+      Reject<Words<rest, curr, curr>, ''>
     : [false, true] extends [IsDigit<prev>, IsDigit<curr>]
     ? // Step 2: From non-digit to digit
       [word, ...Words<rest, curr, curr>]
@@ -39,7 +39,7 @@ type Words<
       [word, ...Words<rest, curr, curr>]
     : [true, true] extends [IsDigit<prev>, IsDigit<curr>]
     ? // If both are digit, continue with the sentence
-      Filter<Words<rest, `${word}${curr}`, curr>, ''>
+      Reject<Words<rest, `${word}${curr}`, curr>, ''>
     : [true, true] extends [IsLower<prev>, IsUpper<curr>]
     ? // Step 6: From lower to upper
       [word, ...Words<rest, curr, curr>]
@@ -47,9 +47,9 @@ type Words<
     ? // Step 7: From upper to upper and lower
       // Remove the last character from the current word and start a new word with it
       [DropSuffix<word, prev>, ...Words<rest, `${prev}${curr}`, curr>]
-    : Filter<Words<rest, `${word}${curr}`, curr>, ''> // Otherwise continue with the sentence
+    : Reject<Words<rest, `${word}${curr}`, curr>, ''> // Otherwise continue with the sentence
   : // Step 8: Trim the last word
-    Filter<[word], ''>
+    Reject<[word], ''>
 
 /**
  * A strongly typed function to extract the words from a sentence.
