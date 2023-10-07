@@ -804,7 +804,7 @@ St.TitleCase<'helloWorld'> // 'Hello World'
 
 _Note that we do not include `UpperCase` and `LowerCase` types. These would be too close to the existing TS types `Uppercase` and `Lowercase`._
 
-One could create either by using like so:
+One could create either by doing like so:
 
 ```ts
 type LowerCase<T extends string> = Lowercase<DelimiterCase<T, ' '>>
