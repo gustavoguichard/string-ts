@@ -416,6 +416,19 @@ const result = trimStart(str)
 
 ## Strongly-typed alternatives to common loosely-typed functions
 
+### lowerCase
+
+This function converts a string to `lower case` at both runtime and type levels.
+_NOTE: this function will split by words and join them with `" "`, unlike `toLowerCase`._
+
+```ts
+import { lowerCase } from 'string-ts'
+
+const str = 'HELLO-WORLD'
+const result = lowerCase(str)
+//    ^ 'hello world'
+```
+
 ### toCamelCase
 
 This function converts a string to `camelCase` at both runtime and type levels.
@@ -500,10 +513,22 @@ const result = toTitleCase(str)
 //    ^ 'Hello World'
 ```
 
+### upperCase
+
+This function converts a string to `UPPER CASE` at both runtime and type levels.
+_NOTE: this function will split by words and join them with `" "`, unlike `toUpperCase`._
+
+```ts
+import { upperCase } from 'string-ts'
+
+const str = 'hello-world'
+const result = upperCase(str)
+//    ^ 'HELLO WORLD'
+```
+
 ### truncate
 
 This function truncates string if it's longer than the given maximum string length. The last characters of the truncated string are replaced with the omission string which defaults to "...".
-
 
 ```ts
 import { truncate } from 'string-ts'
@@ -763,6 +788,8 @@ St.Words<'hello-world'> // ['hello', 'world']
 
 ### Casing type utilities
 
+#### Core
+
 ```ts
 St.CamelCase<'hello-world'> // 'helloWorld'
 St.ConstantCase<'helloWorld'> // 'HELLO_WORLD'
@@ -771,8 +798,25 @@ St.KebabCase<'helloWorld'> // 'hello-world'
 St.PascalCase<'hello-world'> // 'HelloWorld'
 St.SnakeCase<'helloWorld'> // 'hello_world'
 St.TitleCase<'helloWorld'> // 'Hello World'
+```
 
-// SHALLOW OBJECT KEY TRANSFORMATION
+##### Missing types
+
+_Note that we do not include `UpperCase` and `LowerCase` types. These would be too close to the existing TS types `Uppercase` and `Lowercase`._
+
+One could create either by doing like so:
+
+```ts
+type LowerCase<T extends string> = Lowercase<DelimiterCase<T, ' '>>
+type UpperCase<T extends string> = Uppercase<DelimiterCase<T, ' '>>
+// or
+type LowerCase<T extends string> = ReturnType<typeof lowerCase<T>>
+type UpperCase<T extends string> = ReturnType<typeof upperCase<T>>
+```
+
+#### Shallow object key transformation
+
+```ts
 St.CamelKeys<{
   'hello-world': { 'foo-bar': 'baz' }
 }> // { helloWorld: { 'foo-bar': 'baz' } }
@@ -790,8 +834,11 @@ St.PascalKeys<{
 St.SnakeKeys<{
   helloWorld: { fooBar: 'baz' }
 }> // { 'hello_world': { fooBar: 'baz' } }
+```
 
-// DEEP OBJECT KEY TRANSFORMATION
+#### Deep object key transformation
+
+```ts
 St.DeepCamelKeys<{
   'hello-world': { 'foo-bar': 'baz' }
 }> // { helloWorld: { fooBar: 'baz' } }

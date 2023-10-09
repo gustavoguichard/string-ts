@@ -36,6 +36,14 @@ describe('uncapitalize', () => {
 })
 
 describe('casing functions', () => {
+  test('lowerCase', () => {
+    const expected =
+      'some weird cased $* string 1986 foo bar w for wumbo' as const
+    const result = subject.lowerCase(weirdString)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
   test('toUpperCase', () => {
     const expected =
       ' SOMEWEIRD-CASED$*STRING1986FOO [BAR] W_FOR_WUMBO...' as const
@@ -108,17 +116,30 @@ describe('casing functions', () => {
     type test = Expect<Equal<typeof result, typeof expected>>
   })
 
+  test('upperCase', () => {
+    const expected =
+      'SOME WEIRD CASED $* STRING 1986 FOO BAR W FOR WUMBO' as const
+    const result = subject.upperCase(weirdString)
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, typeof expected>>
+  })
+
   describe('with various separators', () => {
     const text =
       '[one] two-three/four.five(six){seven}|eight_nine\\ten' as const
 
+    test('lowerCase', () => {
+      const result = subject.lowerCase(text)
+      const expected = 'one two three four five six seven eight nine ten'
+      expect(result).toEqual(expected)
+      type test = Expect<Equal<typeof result, typeof expected>>
+    })
     test('toUpperCase', () => {
       const result = subject.toUpperCase(text)
       const expected = '[ONE] TWO-THREE/FOUR.FIVE(SIX){SEVEN}|EIGHT_NINE\\TEN'
       expect(result).toEqual(expected)
       type test = Expect<Equal<typeof result, typeof expected>>
     })
-
     test('toLowerCase', () => {
       const result = subject.toLowerCase(text)
       const expected = '[one] two-three/four.five(six){seven}|eight_nine\\ten'
@@ -164,6 +185,12 @@ describe('casing functions', () => {
     test('toTitleCase', () => {
       const result = subject.toTitleCase(text)
       const expected = 'One Two Three Four Five Six Seven Eight Nine Ten'
+      expect(result).toEqual(expected)
+      type test = Expect<Equal<typeof result, typeof expected>>
+    })
+    test('upperCase', () => {
+      const result = subject.upperCase(text)
+      const expected = 'ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE TEN'
       expect(result).toEqual(expected)
       type test = Expect<Equal<typeof result, typeof expected>>
     })

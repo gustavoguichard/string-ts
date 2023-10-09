@@ -66,6 +66,7 @@ export type {
 } from './casing'
 export {
   capitalize,
+  lowerCase,
   toCamelCase,
   toConstantCase,
   toDelimiterCase,
@@ -76,6 +77,7 @@ export {
   toTitleCase,
   toUpperCase,
   uncapitalize,
+  upperCase,
 } from './casing'
 
 // KEY CASING

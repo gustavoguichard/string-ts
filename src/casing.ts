@@ -47,6 +47,7 @@ function uncapitalize<T extends string>(str: T): Uncapitalize<T> {
 }
 
 // CASING UTILITIES
+
 /**
  * Transforms a string with the specified separator (delimiter).
  */
@@ -78,6 +79,26 @@ type CamelCase<T extends string> = Uncapitalize<PascalCase<T>>
  */
 function toCamelCase<T extends string>(str: T): CamelCase<T> {
   return uncapitalize(toPascalCase(str))
+}
+
+/**
+ * A strongly-typed version of `lowerCase` that works in both runtime and type level.
+ * @param str the string to convert to lower case.
+ * @returns the lowercased string.
+ * @example lowerCase('HELLO-WORLD') // 'hello world'
+ */
+function lowerCase<T extends string>(str: T): Lowercase<DelimiterCase<T, ' '>> {
+  return toLowerCase(toDelimiterCase(str, ' '))
+}
+
+/**
+ * A strongly-typed version of `upperCase` that works in both runtime and type level.
+ * @param str the string to convert to upper case.
+ * @returns the uppercased string.
+ * @example upperCase('hello-world') // 'HELLO WORLD'
+ */
+function upperCase<T extends string>(str: T): Uppercase<DelimiterCase<T, ' '>> {
+  return toUpperCase(toDelimiterCase(str, ' '))
 }
 
 /**
@@ -161,6 +182,7 @@ export type {
 }
 export {
   capitalize,
+  lowerCase,
   toCamelCase,
   toConstantCase,
   toDelimiterCase,
@@ -171,4 +193,5 @@ export {
   toTitleCase,
   toUpperCase,
   uncapitalize,
+  upperCase,
 }
