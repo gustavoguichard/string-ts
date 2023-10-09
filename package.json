@@ -8,7 +8,7 @@
   "author": "Gustavo Guichard <@gugaguichard>",
   "license": "MIT",
   "scripts": {
-    "build": "tsup ./src/index.ts --format esm,cjs --dts",
+    "build": "tsup ./src/index.ts --format esm,cjs --dts --treeshake",
     "dev": "tsup ./src/index.ts --format esm,cjs --watch --dts",
     "lint": "eslint *.ts*",
     "tsc": "tsc --noEmit",
