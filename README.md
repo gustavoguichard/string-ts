@@ -2,7 +2,7 @@
 ![Library size](https://img.shields.io/bundlephobia/minzip/string-ts)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # string-ts
@@ -920,6 +920,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jly36963"><img src="https://avatars.githubusercontent.com/u/33426811?v=4?s=100" width="100px;" alt="Landon Yarrington"/><br /><sub><b>Landon Yarrington</b></sub></a><br /><a href="https://github.com/gustavoguichard/string-ts/commits?author=jly36963" title="Code">💻</a> <a href="#maintenance-jly36963" title="Maintenance">🚧</a> <a href="https://github.com/gustavoguichard/string-ts/commits?author=jly36963" title="Documentation">📖</a> <a href="https://github.com/gustavoguichard/string-ts/pulls?q=is%3Apr+reviewed-by%3Ajly36963" title="Reviewed Pull Requests">👀</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/p9f"><img src="https://avatars.githubusercontent.com/u/20539361?v=4?s=100" width="100px;" alt="Guillaume"/><br /><sub><b>Guillaume</b></sub></a><br /><a href="https://github.com/gustavoguichard/string-ts/commits?author=p9f" title="Code">💻</a> <a href="#maintenance-p9f" title="Maintenance">🚧</a> <a href="https://github.com/gustavoguichard/string-ts/commits?author=p9f" title="Documentation">📖</a> <a href="https://github.com/gustavoguichard/string-ts/issues?q=author%3Ap9f" title="Bug reports">🐛</a> <a href="#infra-p9f" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#question-p9f" title="Answering Questions">💬</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://totaltypescript.com"><img src="https://avatars.githubusercontent.com/u/28293365?v=4?s=100" width="100px;" alt="Matt Pocock"/><br /><sub><b>Matt Pocock</b></sub></a><br /><a href="https://github.com/gustavoguichard/string-ts/commits?author=mattpocock" title="Documentation">📖</a> <a href="https://github.com/gustavoguichard/string-ts/commits?author=mattpocock" title="Code">💻</a> <a href="#promotion-mattpocock" title="Promotion">📣</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://luca.md"><img src="https://avatars.githubusercontent.com/u/1881266?v=4?s=100" width="100px;" alt="Andrew Luca"/><br /><sub><b>Andrew Luca</b></sub></a><br /><a href="https://github.com/gustavoguichard/string-ts/commits?author=iamandrewluca" title="Documentation">📖</a> <a href="#promotion-iamandrewluca" title="Promotion">📣</a></td>
     </tr>
   </tbody>
 </table>
