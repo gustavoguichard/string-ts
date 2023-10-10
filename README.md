@@ -533,7 +533,7 @@ const result = upperCase(str)
 
 ### reverse
 
-This function truncates string if it's longer than the given maximum string length. The last characters of the truncated string are replaced with the omission string which defaults to "...".
+This function reverses a string.
 
 ```ts
 import { reverse } from 'string-ts'
