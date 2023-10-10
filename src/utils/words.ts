@@ -1,12 +1,9 @@
 import type { Reject, DropSuffix } from '../internal/internals.js'
 import type { IsSeparator } from './characters/separators.js'
 import { SEPARATOR_REGEX } from './characters/separators.js'
-import type {
-  IsDigit,
-  IsLower,
-  IsSpecial,
-  IsUpper,
-} from './characters/special.js'
+import type { IsLower, IsUpper } from './characters/letters.js'
+import type { IsDigit } from './characters/numbers.js'
+import type { IsSpecial } from './characters/special.js'
 
 /**
  * Splits a string into words.
