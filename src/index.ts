@@ -1,45 +1,45 @@
 // PRIMITIVES
-export type { CharAt } from './charAt.js'
-export type { Concat } from './concat.js'
-export type { EndsWith } from './endsWith.js'
-export type { Includes } from './includes.js'
-export type { Join } from './join.js'
-export type { Length } from './length.js'
-export type { PadEnd } from './padEnd.js'
-export type { PadStart } from './padStart.js'
-export type { Repeat } from './repeat.js'
-export type { Replace } from './replace.js'
-export type { ReplaceAll } from './replaceAll.js'
-export type { Slice } from './slice.js'
-export type { Split } from './split.js'
-export type { StartsWith } from './startsWith.js'
-export type { TrimStart } from './trimStart.js'
-export type { TrimEnd } from './trimEnd.js'
-export type { Trim } from './trim.js'
+export type { CharAt } from './native/char-at.js'
+export type { Concat } from './native/concat.js'
+export type { EndsWith } from './native/ends-with.js'
+export type { Includes } from './native/includes.js'
+export type { Join } from './native/join.js'
+export type { Length } from './native/length.js'
+export type { PadEnd } from './native/pad-end.js'
+export type { PadStart } from './native/pad-start.js'
+export type { Repeat } from './native/repeat.js'
+export type { Replace } from './native/replace.js'
+export type { ReplaceAll } from './native/replace-all.js'
+export type { Slice } from './native/slice.js'
+export type { Split } from './native/split.js'
+export type { StartsWith } from './native/starts-with.js'
+export type { TrimStart } from './native/trim-start.js'
+export type { TrimEnd } from './native/trim-end.js'
+export type { Trim } from './native/trim.js'
 
-export { charAt } from './charAt.js'
-export { concat } from './concat.js'
-export { endsWith } from './endsWith.js'
-export { includes } from './includes.js'
-export { join } from './join.js'
-export { length } from './length.js'
-export { padEnd } from './padEnd.js'
-export { padStart } from './padStart.js'
-export { repeat } from './repeat.js'
-export { replace } from './replace.js'
-export { replaceAll } from './replaceAll.js'
-export { slice } from './slice.js'
-export { split } from './split.js'
-export { startsWith } from './startsWith.js'
-export { trimStart } from './trimStart.js'
-export { trimEnd } from './trimEnd.js'
+export { charAt } from './native/char-at.js'
+export { concat } from './native/concat.js'
+export { endsWith } from './native/ends-with.js'
+export { includes } from './native/includes.js'
+export { join } from './native/join.js'
+export { length } from './native/length.js'
+export { padEnd } from './native/pad-end.js'
+export { padStart } from './native/pad-start.js'
+export { repeat } from './native/repeat.js'
+export { replace } from './native/replace.js'
+export { replaceAll } from './native/replace-all.js'
+export { slice } from './native/slice.js'
+export { split } from './native/split.js'
+export { startsWith } from './native/starts-with.js'
+export { trimStart } from './native/trim-start.js'
+export { trimEnd } from './native/trim-end.js'
 
 // UTILS
-export type { Truncate } from './truncate.js'
-export type { Words } from './words.js'
+export type { Truncate } from './additional/truncate.js'
+export type { Words } from './casing/words.js'
 
-export { truncate } from './truncate.js'
-export { words } from './words.js'
+export { truncate } from './additional/truncate.js'
+export { words } from './casing/words.js'
 
 // CHARACTERS
 export type {
@@ -49,33 +49,33 @@ export type {
   IsLower,
   IsSpecial,
   IsUpper,
-} from './chars.js'
+} from './casing/chars.js'
 
 // SEPARATORS
 export type { Separator, IsSeparator } from './separators.js'
 
 // CASING
-export type { CamelCase } from './toCamelCase.js'
-export type { ConstantCase } from './toConstantCase.js'
-export type { DelimiterCase } from './toDelimiterCase.js'
-export type { KebabCase } from './toKebabCase.js'
-export type { PascalCase } from './toPascalCase.js'
-export type { SnakeCase } from './toSnakeCase.js'
-export type { TitleCase } from './toTitleCase.js'
+export type { CamelCase } from './casing/to-camel-case.js'
+export type { ConstantCase } from './casing/to-constant-case.js'
+export type { DelimiterCase } from './casing/to-delimiter-case.js'
+export type { KebabCase } from './casing/to-kebab-case.js'
+export type { PascalCase } from './casing/to-pascal-case.js'
+export type { SnakeCase } from './casing/to-snake-case.js'
+export type { TitleCase } from './casing/to-title-case.js'
 
-export { capitalize } from './capitalize.js'
-export { lowerCase } from './lowerCase.js'
-export { toCamelCase } from './toCamelCase.js'
-export { toConstantCase } from './toConstantCase.js'
-export { toDelimiterCase } from './toDelimiterCase.js'
-export { toKebabCase } from './toKebabCase.js'
-export { toLowerCase } from './toLowerCase.js'
-export { toPascalCase } from './toPascalCase.js'
-export { toSnakeCase } from './toSnakeCase.js'
-export { toTitleCase } from './toTitleCase.js'
-export { toUpperCase } from './toUpperCase.js'
-export { uncapitalize } from './uncapitalize.js'
-export { upperCase } from './upperCase.js'
+export { capitalize } from './casing/capitalize.js'
+export { lowerCase } from './casing/lower-case.js'
+export { toCamelCase } from './casing/to-camel-case.js'
+export { toConstantCase } from './casing/to-constant-case.js'
+export { toDelimiterCase } from './casing/to-delimiter-case.js'
+export { toKebabCase } from './casing/to-kebab-case.js'
+export { toLowerCase } from './casing/to-lower-case.js'
+export { toPascalCase } from './casing/to-pascal-case.js'
+export { toSnakeCase } from './casing/to-snake-case.js'
+export { toTitleCase } from './casing/to-title-case.js'
+export { toUpperCase } from './casing/to-upper-case.js'
+export { uncapitalize } from './casing/uncapitalize.js'
+export { upperCase } from './casing/upper-case.js'
 
 // KEY CASING
 export type {
@@ -85,7 +85,7 @@ export type {
   KebabKeys,
   PascalKeys,
   SnakeKeys,
-} from './key-casing.js'
+} from './objects/key-casing.js'
 
 export {
   camelKeys,
@@ -94,7 +94,7 @@ export {
   kebabKeys,
   pascalKeys,
   snakeKeys,
-} from './key-casing.js'
+} from './objects/key-casing.js'
 
 // DEEP KEY CASING
 export type {
@@ -104,7 +104,7 @@ export type {
   DeepKebabKeys,
   DeepPascalKeys,
   DeepSnakeKeys,
-} from './deep-key-casing.js'
+} from './objects/deep-key-casing.js'
 
 export {
   deepCamelKeys,
@@ -114,4 +114,4 @@ export {
   deepPascalKeys,
   deepSnakeKeys,
   deepTransformKeys,
-} from './deep-key-casing.js'
+} from './objects/deep-key-casing.js'
