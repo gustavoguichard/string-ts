@@ -1,4 +1,4 @@
-import type * as Subject from '../casing/chars'
+import type * as Subject from './chars.js'
 
 namespace TypeChecks {
   type test1 = Expect<Equal<Subject.IsDigit<'1'>, true>>

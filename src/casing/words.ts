@@ -1,6 +1,6 @@
 import type { Reject, DropSuffix } from '../internal/internals.js'
-import type { IsSeparator } from '../separators.js'
-import { SEPARATOR_REGEX } from '../separators.js'
+import type { IsSeparator } from './separators.js'
+import { SEPARATOR_REGEX } from './separators.js'
 import type { IsDigit, IsLower, IsSpecial, IsUpper } from './chars.js'
 
 /**

@@ -52,7 +52,7 @@ export type {
 } from './casing/chars.js'
 
 // SEPARATORS
-export type { Separator, IsSeparator } from './separators.js'
+export type { Separator, IsSeparator } from './casing/separators.js'
 
 // CASING
 export type { CamelCase } from './casing/to-camel-case.js'
