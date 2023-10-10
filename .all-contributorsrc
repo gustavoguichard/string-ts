@@ -1,0 +1,35 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "gustavoguichard",
+      "name": "Guga Guichard",
+      "avatar_url": "https://avatars.githubusercontent.com/u/566971?v=4",
+      "profile": "https://github.com/gustavoguichard",
+      "contributions": [
+        "code",
+        "projectManagement",
+        "promotion",
+        "maintenance",
+        "doc",
+        "bug",
+        "infra",
+        "question",
+        "research",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "string-ts",
+  "projectOwner": "gustavoguichard"
+}
