@@ -78,40 +78,31 @@ export { uncapitalize } from './casing/uncapitalize.js'
 export { upperCase } from './casing/upper-case.js'
 
 // KEY CASING
-export type {
-  CamelKeys,
-  ConstantKeys,
-  DelimiterKeys,
-  KebabKeys,
-  PascalKeys,
-  SnakeKeys,
-} from './objects/key-casing.js'
+export type { CamelKeys } from './objects/camel-keys.js'
+export type { ConstantKeys } from './objects/constant-keys.js'
+export type { DelimiterKeys } from './objects/delimiter-keys.js'
+export type { KebabKeys } from './objects/kebab-keys.js'
+export type { PascalKeys } from './objects/pascal-keys.js'
+export type { SnakeKeys } from './objects/snake-keys.js'
 
-export {
-  camelKeys,
-  constantKeys,
-  delimiterKeys,
-  kebabKeys,
-  pascalKeys,
-  snakeKeys,
-} from './objects/key-casing.js'
+export { camelKeys } from './objects/camel-keys.js'
+export { constantKeys } from './objects/constant-keys.js'
+export { delimiterKeys } from './objects/delimiter-keys.js'
+export { kebabKeys } from './objects/kebab-keys.js'
+export { pascalKeys } from './objects/pascal-keys.js'
+export { snakeKeys } from './objects/snake-keys.js'
 
 // DEEP KEY CASING
-export type {
-  DeepCamelKeys,
-  DeepConstantKeys,
-  DeepDelimiterKeys,
-  DeepKebabKeys,
-  DeepPascalKeys,
-  DeepSnakeKeys,
-} from './objects/deep-key-casing.js'
+export type { DeepCamelKeys } from './objects/deep-camel-keys.js'
+export type { DeepConstantKeys } from './objects/deep-constant-keys.js'
+export type { DeepDelimiterKeys } from './objects/deep-delimiter-keys.js'
+export type { DeepKebabKeys } from './objects/deep-kebab-keys.js'
+export type { DeepPascalKeys } from './objects/deep-pascal-keys.js'
+export type { DeepSnakeKeys } from './objects/deep-snake-keys.js'
 
-export {
-  deepCamelKeys,
-  deepConstantKeys,
-  deepDelimiterKeys,
-  deepKebabKeys,
-  deepPascalKeys,
-  deepSnakeKeys,
-  deepTransformKeys,
-} from './objects/deep-key-casing.js'
+export { deepCamelKeys } from './objects/deep-camel-keys.js'
+export { deepConstantKeys } from './objects/deep-constant-keys.js'
+export { deepDelimiterKeys } from './objects/deep-delimiter-keys.js'
+export { deepKebabKeys } from './objects/deep-kebab-keys.js'
+export { deepPascalKeys } from './objects/deep-pascal-keys.js'
+export { deepSnakeKeys } from './objects/deep-snake-keys.js'

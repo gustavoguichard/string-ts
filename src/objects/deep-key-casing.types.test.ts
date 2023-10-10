@@ -1,9 +1,13 @@
-import type * as Subject from './deep-key-casing'
-
+import type { DeepDelimiterKeys } from './deep-delimiter-keys.js'
+import type { DeepCamelKeys } from './deep-camel-keys.js'
+import type { DeepSnakeKeys } from './deep-snake-keys.js'
+import type { DeepKebabKeys } from './deep-kebab-keys.js'
+import type { DeepPascalKeys } from './deep-pascal-keys.js'
+import type { DeepConstantKeys } from './deep-constant-keys.js'
 namespace TypeTransforms {
   type test = Expect<
     Equal<
-      Subject.DeepDelimiterKeys<
+      DeepDelimiterKeys<
         {
           some: { 'deep-nested': { value: true } }
           'other-value': true
@@ -15,7 +19,7 @@ namespace TypeTransforms {
   >
   type test1 = Expect<
     Equal<
-      Subject.DeepCamelKeys<{
+      DeepCamelKeys<{
         some: { 'deep-nested': { value: true } }
         'other-value': true
       }>,
@@ -24,7 +28,7 @@ namespace TypeTransforms {
   >
   type test2 = Expect<
     Equal<
-      Subject.DeepSnakeKeys<{
+      DeepSnakeKeys<{
         some: { 'deep-nested': { value: true } }
         'other-value': true
       }>,
@@ -33,7 +37,7 @@ namespace TypeTransforms {
   >
   type test3 = Expect<
     Equal<
-      Subject.DeepKebabKeys<{
+      DeepKebabKeys<{
         some: { deepNested: { value: true } }
         otherValue: true
       }>,
@@ -42,7 +46,7 @@ namespace TypeTransforms {
   >
   type test4 = Expect<
     Equal<
-      Subject.DeepPascalKeys<{
+      DeepPascalKeys<{
         some: { 'deep-nested': { value: true } }
         'other-value': true
       }>,
@@ -51,7 +55,7 @@ namespace TypeTransforms {
   >
   type test5 = Expect<
     Equal<
-      Subject.DeepConstantKeys<{
+      DeepConstantKeys<{
         some: { 'deep-nested': { value: true } }
         'other-value': true
       }>,
