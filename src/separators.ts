@@ -19,18 +19,15 @@ function escapeChar(char: string): string {
     : char
 }
 
-const SEPARATOR_REGEX = new RegExp(
+export const SEPARATOR_REGEX = new RegExp(
   `[${SEPARATORS.map(escapeChar).join('')}]`,
   'g',
 )
 
-type Separator = (typeof SEPARATORS)[number]
+export type Separator = (typeof SEPARATORS)[number]
 
 /**
  * Checks if the given character is a separator.
  * E.g. space, underscore, dash, dot, slash.
  */
-type IsSeparator<T extends string> = T extends Separator ? true : false
-
-export type { IsSeparator, Separator }
-export { SEPARATOR_REGEX }
+export type IsSeparator<T extends string> = T extends Separator ? true : false

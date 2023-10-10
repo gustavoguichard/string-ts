@@ -1,20 +1,11 @@
-import type {
-  CamelCase,
-  ConstantCase,
-  DelimiterCase,
-  KebabCase,
-  PascalCase,
-  SnakeCase,
-} from './casing'
-import {
-  toCamelCase,
-  toConstantCase,
-  toDelimiterCase,
-  toKebabCase,
-  toPascalCase,
-  toSnakeCase,
-} from './casing'
-import { typeOf } from './internals'
+import { type CamelCase, toCamelCase } from './toCamelCase.js'
+import { type ConstantCase, toConstantCase } from './toConstantCase.js'
+import { type DelimiterCase, toDelimiterCase } from './toDelimiterCase.js'
+import { type KebabCase, toKebabCase } from './toKebabCase.js'
+import { type PascalCase, toPascalCase } from './toPascalCase.js'
+import { type SnakeCase, toSnakeCase } from './toSnakeCase.js'
+
+import { typeOf } from './internals.js'
 
 /**
  * This function is used to shallowly transform the keys of an object.
