@@ -89,6 +89,11 @@ main()
 npm install string-ts
 ```
 
+## 🌳 Tree shaking
+
+`string-ts` has been designed with tree shaking in mind.
+We have tested it with build tools like Webpack, Vite, Rollup, etc.
+
 ## 👌 Supported TypeScript versions
 
 `string-ts` currently only works on TypeScript v5+.
