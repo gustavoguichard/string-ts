@@ -116,3 +116,7 @@ export {
   deepSnakeKeys,
   deepTransformKeys,
 } from './deep-key-casing'
+
+// REVERSE
+export type { Reverse } from './reverse'
+export { reverse } from './reverse'
