@@ -3,6 +3,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ![Library size](https://img.shields.io/bundlephobia/minzip/string-ts)
+[![All Contributors](https://img.shields.io/github/all-contributors/gustavoguichard/string-ts?color=0375b6&style=flat-square)](#contributors)
 
 # string-ts
 
@@ -904,6 +905,17 @@ type MyType<T> = { [K in keyof T as Uppercase<K>]: T[K] }
 const result = deepTransformKeys(data, toUpperCase) as MyType<typeof data>
 //    ^ { 'HELLOWORLD': 'baz' }
 ```
+
+## 🐝 Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## 🫶 Acknowledgements
 
