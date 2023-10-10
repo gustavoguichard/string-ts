@@ -908,6 +908,13 @@ const result = deepTransformKeys(data, toUpperCase) as MyType<typeof data>
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jly36963"><img src="https://avatars.githubusercontent.com/u/33426811?v=4?s=100" width="100px;" alt="Landon Yarrington"/><br /><sub><b>Landon Yarrington</b></sub></a><br /><a href="#code-jly36963" title="Code">💻</a> <a href="#maintenance-jly36963" title="Maintenance">🚧</a> <a href="#doc-jly36963" title="Documentation">📖</a> <a href="#review-jly36963" title="Reviewed Pull Requests">👀</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
