@@ -36,6 +36,20 @@
         "doc",
         "review"
       ]
+    },
+    {
+      "login": "p9f",
+      "name": "Guillaume",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20539361?v=4",
+      "profile": "https://github.com/p9f",
+      "contributions": [
+        "code",
+        "maintenance",
+        "doc",
+        "bug",
+        "infra",
+        "question"
+      ]
     }
   ],
   "contributorsPerLine": 7,
