@@ -1,9 +1,7 @@
 [![NPM](https://img.shields.io/npm/v/string-ts)](https://www.npmjs.org/package/string-ts)
 ![Library size](https://img.shields.io/bundlephobia/minzip/string-ts)
-
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![Code Coverage](https://img.shields.io/codecov/c/github/gustavoguichard/string-ts)](https://app.codecov.io/gh/gustavoguichard/string-ts)
+[![All Contributors](https://img.shields.io/github/contributors/gustavoguichard/string-ts)](#-contributors)
 
 # string-ts
 
