@@ -2,9 +2,7 @@
 ![Library size](https://img.shields.io/bundlephobia/minzip/string-ts)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # string-ts
@@ -920,6 +918,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/gustavoguichard"><img src="https://avatars.githubusercontent.com/u/566971?v=4?s=100" width="100px;" alt="Guga Guichard"/><br /><sub><b>Guga Guichard</b></sub></a><br /><a href="https://github.com/gustavoguichard/string-ts/commits?author=gustavoguichard" title="Code">💻</a> <a href="#projectManagement-gustavoguichard" title="Project Management">📆</a> <a href="#promotion-gustavoguichard" title="Promotion">📣</a> <a href="#maintenance-gustavoguichard" title="Maintenance">🚧</a> <a href="https://github.com/gustavoguichard/string-ts/commits?author=gustavoguichard" title="Documentation">📖</a> <a href="https://github.com/gustavoguichard/string-ts/issues?q=author%3Agustavoguichard" title="Bug reports">🐛</a> <a href="#infra-gustavoguichard" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#question-gustavoguichard" title="Answering Questions">💬</a> <a href="#research-gustavoguichard" title="Research">🔬</a> <a href="https://github.com/gustavoguichard/string-ts/pulls?q=is%3Apr+reviewed-by%3Agustavoguichard" title="Reviewed Pull Requests">👀</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jly36963"><img src="https://avatars.githubusercontent.com/u/33426811?v=4?s=100" width="100px;" alt="Landon Yarrington"/><br /><sub><b>Landon Yarrington</b></sub></a><br /><a href="https://github.com/gustavoguichard/string-ts/commits?author=jly36963" title="Code">💻</a> <a href="#maintenance-jly36963" title="Maintenance">🚧</a> <a href="https://github.com/gustavoguichard/string-ts/commits?author=jly36963" title="Documentation">📖</a> <a href="https://github.com/gustavoguichard/string-ts/pulls?q=is%3Apr+reviewed-by%3Ajly36963" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/p9f"><img src="https://avatars.githubusercontent.com/u/20539361?v=4?s=100" width="100px;" alt="Guillaume"/><br /><sub><b>Guillaume</b></sub></a><br /><a href="https://github.com/gustavoguichard/string-ts/commits?author=p9f" title="Code">💻</a> <a href="#maintenance-p9f" title="Maintenance">🚧</a> <a href="https://github.com/gustavoguichard/string-ts/commits?author=p9f" title="Documentation">📖</a> <a href="https://github.com/gustavoguichard/string-ts/issues?q=author%3Ap9f" title="Bug reports">🐛</a> <a href="#infra-p9f" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#question-p9f" title="Answering Questions">💬</a></td>
     </tr>
   </tbody>
 </table>
