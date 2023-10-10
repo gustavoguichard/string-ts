@@ -1,4 +1,19 @@
-import { delimiterKeys } from './delimiter-keys.js'
+import { type DelimiterKeys, delimiterKeys } from './delimiter-keys.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      DelimiterKeys<
+        {
+          'some-value': { 'nested-value': true }
+          'other-value': true
+        },
+        '@'
+      >,
+      { 'some@value': { 'nested-value': true }; 'other@value': true }
+    >
+  >
+}
 
 test('delimiterKeys', () => {
   const expected = {

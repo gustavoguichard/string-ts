@@ -1,4 +1,8 @@
-import { slice } from './slice.js'
+import { type Slice, slice } from './slice.js'
+
+namespace TypeTests {
+  type test = Expect<Equal<Slice<'some nice string', 5>, 'nice string'>>
+}
 
 describe('slice', () => {
   const str = 'The quick brown fox jumps over the lazy dog.'

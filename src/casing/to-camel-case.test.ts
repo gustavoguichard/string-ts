@@ -1,5 +1,18 @@
-import { WEIRD_TEXT, SEPARATORS_TEXT } from '../internal/fixtures.js'
-import { toCamelCase } from './to-camel-case.js'
+import {
+  type WeirdTextUnion,
+  WEIRD_TEXT,
+  SEPARATORS_TEXT,
+} from '../internal/fixtures.js'
+import { type CamelCase, toCamelCase } from './to-camel-case.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      CamelCase<WeirdTextUnion>,
+      'someWeirdCased$*String1986FooBarWForWumbo' | 'dontDistributeUnions'
+    >
+  >
+}
 
 describe('toCamelCase', () => {
   test('casing functions', () => {

@@ -1,4 +1,16 @@
-import { pascalKeys } from './pascal-keys.js'
+import { type PascalKeys, pascalKeys } from './pascal-keys.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      PascalKeys<{
+        someValue: { deepNested: true }
+        otherValue: true
+      }>,
+      { SomeValue: { deepNested: true }; OtherValue: true }
+    >
+  >
+}
 
 test('pascalKeys', () => {
   const expected = {

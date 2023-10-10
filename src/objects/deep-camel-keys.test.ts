@@ -1,4 +1,16 @@
-import { deepCamelKeys } from './deep-camel-keys.js'
+import { type DeepCamelKeys, deepCamelKeys } from './deep-camel-keys.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      DeepCamelKeys<{
+        some: { 'deep-nested': { value: true } }
+        'other-value': true
+      }>,
+      { some: { deepNested: { value: true } }; otherValue: true }
+    >
+  >
+}
 
 describe('deepCamelKeys', () => {
   test('should camelize the object', () => {

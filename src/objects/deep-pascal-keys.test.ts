@@ -1,4 +1,16 @@
-import { deepPascalKeys } from './deep-pascal-keys.js'
+import { type DeepPascalKeys, deepPascalKeys } from './deep-pascal-keys.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      DeepPascalKeys<{
+        some: { 'deep-nested': { value: true } }
+        'other-value': true
+      }>,
+      { Some: { DeepNested: { Value: true } }; OtherValue: true }
+    >
+  >
+}
 
 test('deepPascalKeys', () => {
   const expected = {

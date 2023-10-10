@@ -1,5 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { replaceAll } from './replace-all.js'
+import { type ReplaceAll, replaceAll } from './replace-all.js'
+
+namespace TypeTests {
+  type test = Expect<
+    Equal<ReplaceAll<'some nice string', ' ', '-'>, 'some-nice-string'>
+  >
+}
 
 beforeEach(() => {
   vi.clearAllMocks()

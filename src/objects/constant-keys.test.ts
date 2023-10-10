@@ -1,4 +1,16 @@
-import { constantKeys } from './constant-keys.js'
+import { type ConstantKeys, constantKeys } from './constant-keys.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      ConstantKeys<{
+        someValue: { deepNested: true }
+        otherValue: true
+      }>,
+      { SOME_VALUE: { deepNested: true }; OTHER_VALUE: true }
+    >
+  >
+}
 
 describe('constantKeys', () => {
   test('should shollowly transform object keys to constant case', () => {

@@ -1,4 +1,16 @@
-import { kebabKeys } from './kebab-keys.js'
+import { type KebabKeys, kebabKeys } from './kebab-keys.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      KebabKeys<{
+        someValue: { deepNested: true }
+        otherValue: true
+      }>,
+      { 'some-value': { deepNested: true }; 'other-value': true }
+    >
+  >
+}
 
 test('kebabKeys', () => {
   const expected = {

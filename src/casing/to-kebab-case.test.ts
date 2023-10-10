@@ -1,5 +1,19 @@
-import { WEIRD_TEXT, SEPARATORS_TEXT } from '../internal/fixtures.js'
-import { toKebabCase } from './to-kebab-case.js'
+import {
+  type WeirdTextUnion,
+  WEIRD_TEXT,
+  SEPARATORS_TEXT,
+} from '../internal/fixtures.js'
+import { type KebabCase, toKebabCase } from './to-kebab-case.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      KebabCase<WeirdTextUnion>,
+      | 'some-weird-cased-$*-string-1986-foo-bar-w-for-wumbo'
+      | 'dont-distribute-unions'
+    >
+  >
+}
 
 describe('toKebabCase', () => {
   test('casing functions', () => {

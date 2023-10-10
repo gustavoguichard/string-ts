@@ -1,4 +1,8 @@
-import { includes } from './includes.js'
+import { type Includes, includes } from './includes.js'
+
+namespace TypeTests {
+  type test = Expect<Equal<Includes<'abcde', 'bcd'>, true>>
+}
 
 describe('includes', () => {
   const text = 'abcde'

@@ -1,4 +1,8 @@
-import { length } from './length.js'
+import { type Length, length } from './length.js'
+
+namespace TypeTests {
+  type test = Expect<Equal<Length<'some nice string'>, 16>>
+}
 
 describe('length', () => {
   test('should return the lenght of a string at both type level and runtime level', () => {

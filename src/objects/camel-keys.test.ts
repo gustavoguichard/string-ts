@@ -1,4 +1,16 @@
-import { camelKeys } from './camel-keys.js'
+import { type CamelKeys, camelKeys } from './camel-keys.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      CamelKeys<{
+        'some-value': { 'deep-nested': true }
+        'other-value': true
+      }>,
+      { someValue: { 'deep-nested': true }; otherValue: true }
+    >
+  >
+}
 
 test('camelKeys', () => {
   const expected = {

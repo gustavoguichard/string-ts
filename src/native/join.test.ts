@@ -1,4 +1,10 @@
-import { join } from './join.js'
+import { type Join, join } from './join.js'
+
+namespace TypeTests {
+  type test = Expect<
+    Equal<Join<['some', 'nice', 'string'], ' '>, 'some nice string'>
+  >
+}
 
 describe('join', () => {
   test('should join words in both type level and runtime level', () => {

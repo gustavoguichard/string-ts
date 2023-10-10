@@ -1,5 +1,19 @@
-import { WEIRD_TEXT, SEPARATORS_TEXT } from '../internal/fixtures.js'
-import { toTitleCase } from './to-title-case.js'
+import {
+  type WeirdTextUnion,
+  WEIRD_TEXT,
+  SEPARATORS_TEXT,
+} from '../internal/fixtures.js'
+import { type TitleCase, toTitleCase } from './to-title-case.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      TitleCase<WeirdTextUnion>,
+      | 'Some Weird Cased $* String 1986 Foo Bar W For Wumbo'
+      | 'Dont Distribute Unions'
+    >
+  >
+}
 
 describe('toTitleCase', () => {
   test('casing functions', () => {

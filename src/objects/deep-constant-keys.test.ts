@@ -1,4 +1,19 @@
-import { deepConstantKeys } from './deep-constant-keys.js'
+import {
+  type DeepConstantKeys,
+  deepConstantKeys,
+} from './deep-constant-keys.js'
+
+namespace TypeTransforms {
+  type test5 = Expect<
+    Equal<
+      DeepConstantKeys<{
+        some: { 'deep-nested': { value: true } }
+        'other-value': true
+      }>,
+      { SOME: { DEEP_NESTED: { VALUE: true } }; OTHER_VALUE: true }
+    >
+  >
+}
 
 describe('deepConstantKeys', () => {
   test('should deeply transform object keys to constant case', () => {

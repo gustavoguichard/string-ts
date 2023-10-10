@@ -1,4 +1,8 @@
-import { charAt } from './char-at.js'
+import { type CharAt, charAt } from './char-at.js'
+
+namespace TypeTests {
+  type test = Expect<Equal<CharAt<'some nice string', 5>, 'n'>>
+}
 
 describe('charAt', () => {
   test('should get the character of a string at the given index in both type and runtime level', () => {

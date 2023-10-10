@@ -1,4 +1,8 @@
-import { trimEnd } from './trim-end.js'
+import { type TrimEnd, trimEnd } from './trim-end.js'
+
+namespace TypeTests {
+  type test = Expect<Equal<TrimEnd<' some nice string '>, ' some nice string'>>
+}
 
 describe('trimEnd', () => {
   test('should trim the end of a string at both type level and runtime level', () => {

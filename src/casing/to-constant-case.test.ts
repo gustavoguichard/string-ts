@@ -1,5 +1,15 @@
-import { SEPARATORS_TEXT } from '../internal/fixtures.js'
-import { toConstantCase } from './to-constant-case.js'
+import { type WeirdTextUnion, SEPARATORS_TEXT } from '../internal/fixtures.js'
+import { type ConstantCase, toConstantCase } from './to-constant-case.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      ConstantCase<WeirdTextUnion>,
+      | 'SOME_WEIRD_CASED_$*_STRING_1986_FOO_BAR_W_FOR_WUMBO'
+      | 'DONT_DISTRIBUTE_UNIONS'
+    >
+  >
+}
 
 describe('toConstantCase', () => {
   test('casing functions', () => {

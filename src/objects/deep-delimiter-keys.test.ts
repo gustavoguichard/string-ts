@@ -1,4 +1,22 @@
-import { deepDelimiterKeys } from './deep-delimiter-keys.js'
+import {
+  type DeepDelimiterKeys,
+  deepDelimiterKeys,
+} from './deep-delimiter-keys.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      DeepDelimiterKeys<
+        {
+          some: { 'deep-nested': { value: true } }
+          'other-value': true
+        },
+        '@'
+      >,
+      { some: { 'deep@nested': { value: true } }; 'other@value': true }
+    >
+  >
+}
 
 test('deepDelimiterKeys', () => {
   const expected = {

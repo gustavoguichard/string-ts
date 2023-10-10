@@ -1,4 +1,8 @@
-import { trim } from './trim.js'
+import { type Trim, trim } from './trim.js'
+
+namespace TypeTests {
+  type test = Expect<Equal<Trim<' some nice string '>, 'some nice string'>>
+}
 
 describe('trim', () => {
   test('should trim a string at both type level and runtime level', () => {

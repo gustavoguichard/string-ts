@@ -1,4 +1,10 @@
-import { replace } from './replace.js'
+import { type Replace, replace } from './replace.js'
+
+namespace TypeTests {
+  type test = Expect<
+    Equal<Replace<'some nice string', ' ', '-'>, 'some-nice string'>
+  >
+}
 
 describe('replace', () => {
   test('should replace chars in a string at both type level and runtime level once', () => {

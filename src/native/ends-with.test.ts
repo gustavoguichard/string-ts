@@ -1,4 +1,8 @@
-import { endsWith } from './ends-with.js'
+import { type EndsWith, endsWith } from './ends-with.js'
+
+namespace TypeTests {
+  type test = Expect<Equal<EndsWith<'abc', 'c'>, true>>
+}
 
 describe('endsWith', () => {
   const text = 'abc'

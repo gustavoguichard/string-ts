@@ -1,4 +1,10 @@
-import { split } from './split.js'
+import { type Split, split } from './split.js'
+
+namespace TypeTests {
+  type test = Expect<
+    Equal<Split<'some nice string', ' '>, ['some', 'nice', 'string']>
+  >
+}
 
 describe('split', () => {
   test('should split a string by a delimiter into an array of substrings', () => {

@@ -1,5 +1,19 @@
-import { WEIRD_TEXT, SEPARATORS_TEXT } from '../internal/fixtures.js'
-import { toSnakeCase } from './to-snake-case.js'
+import {
+  type WeirdTextUnion,
+  WEIRD_TEXT,
+  SEPARATORS_TEXT,
+} from '../internal/fixtures.js'
+import { type SnakeCase, toSnakeCase } from './to-snake-case.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      SnakeCase<WeirdTextUnion>,
+      | 'some_weird_cased_$*_string_1986_foo_bar_w_for_wumbo'
+      | 'dont_distribute_unions'
+    >
+  >
+}
 
 describe('toSnakeCase', () => {
   test('casing functions', () => {

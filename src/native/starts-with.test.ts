@@ -1,4 +1,8 @@
-import { startsWith } from './starts-with.js'
+import { type StartsWith, startsWith } from './starts-with.js'
+
+namespace TypeTests {
+  type test = Expect<Equal<StartsWith<'abc', 'a'>, true>>
+}
 
 describe('startsWith', () => {
   const text = 'abc'

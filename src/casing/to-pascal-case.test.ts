@@ -1,5 +1,18 @@
-import { WEIRD_TEXT, SEPARATORS_TEXT } from '../internal/fixtures.js'
-import { toPascalCase } from './to-pascal-case.js'
+import {
+  type WeirdTextUnion,
+  WEIRD_TEXT,
+  SEPARATORS_TEXT,
+} from '../internal/fixtures.js'
+import { type PascalCase, toPascalCase } from './to-pascal-case.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      PascalCase<WeirdTextUnion>,
+      'SomeWeirdCased$*String1986FooBarWForWumbo' | 'DontDistributeUnions'
+    >
+  >
+}
 
 describe('toPascelCase', () => {
   test('casing functions', () => {

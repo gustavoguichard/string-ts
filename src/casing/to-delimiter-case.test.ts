@@ -1,5 +1,19 @@
-import { WEIRD_TEXT, SEPARATORS_TEXT } from '../internal/fixtures.js'
-import { toDelimiterCase } from './to-delimiter-case.js'
+import {
+  type WeirdTextUnion,
+  WEIRD_TEXT,
+  SEPARATORS_TEXT,
+} from '../internal/fixtures.js'
+import { type DelimiterCase, toDelimiterCase } from './to-delimiter-case.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      DelimiterCase<WeirdTextUnion, '%'>,
+      | 'some%Weird%cased%$*%String%1986%Foo%Bar%W%FOR%WUMBO'
+      | 'dont%distribute%unions'
+    >
+  >
+}
 
 describe('toDelimiterCase', () => {
   test('casing functions', () => {

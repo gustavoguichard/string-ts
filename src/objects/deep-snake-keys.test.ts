@@ -1,4 +1,16 @@
-import { deepSnakeKeys } from './deep-snake-keys.js'
+import { type DeepSnakeKeys, deepSnakeKeys } from './deep-snake-keys.js'
+
+namespace TypeTransforms {
+  type test = Expect<
+    Equal<
+      DeepSnakeKeys<{
+        some: { 'deep-nested': { value: true } }
+        'other-value': true
+      }>,
+      { some: { deep_nested: { value: true } }; other_value: true }
+    >
+  >
+}
 
 test('deepSnakeKeys', () => {
   const expected = {
