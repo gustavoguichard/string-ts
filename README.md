@@ -1,4 +1,9 @@
-# Strongly-typed string functions for all!
+[![NPM](https://img.shields.io/npm/v/string-ts)](https://www.npmjs.org/package/string-ts)
+![Library size](https://img.shields.io/bundlephobia/minzip/string-ts)
+
+# string-ts
+
+Strongly-typed string functions for all!
 
 ![A demonstration of string-ts](https://github.com/gustavoguichard/string-ts/assets/566971/0aa5603f-871d-4eb7-8ace-6a73466cec4d)
 
