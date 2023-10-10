@@ -1,5 +1,5 @@
 import { transformKeys } from './transform-keys.js'
-import { type SnakeCase, toSnakeCase } from '../word-case/to-snake-case.js'
+import { type SnakeCase, snakeCase } from '../word-case/snake-case.js'
 
 /**
  * Shallowly transforms the keys of an Record to snake_case.
@@ -15,5 +15,5 @@ export type SnakeKeys<T> = T extends []
  * @example snakeKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { 'foo_bar': { 'fizz-buzz': true } }
  */
 export function snakeKeys<T>(obj: T): SnakeKeys<T> {
-  return transformKeys(obj, toSnakeCase) as never
+  return transformKeys(obj, snakeCase) as never
 }

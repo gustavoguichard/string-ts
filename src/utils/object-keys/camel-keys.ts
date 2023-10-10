@@ -1,5 +1,5 @@
 import { transformKeys } from './transform-keys.js'
-import { type CamelCase, toCamelCase } from '../word-case/to-camel-case.js'
+import { type CamelCase, camelCase } from '../word-case/camel-case.js'
 
 /**
  * Shallowly transforms the keys of an Record to camelCase.
@@ -15,5 +15,5 @@ export type CamelKeys<T> = T extends []
  * @example camelKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { fooBar: { 'fizz-buz': true } }
  */
 export function camelKeys<T>(obj: T): CamelKeys<T> {
-  return transformKeys(obj, toCamelCase) as never
+  return transformKeys(obj, camelCase) as never
 }

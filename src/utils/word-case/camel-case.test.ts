@@ -3,27 +3,27 @@ import {
   WEIRD_TEXT,
   SEPARATORS_TEXT,
 } from '../../internal/fixtures.js'
-import { type PascalCase, toPascalCase } from './to-pascal-case.js'
+import { type CamelCase, camelCase } from './camel-case.js'
 
 namespace TypeTransforms {
   type test = Expect<
     Equal<
-      PascalCase<WeirdTextUnion>,
-      'SomeWeirdCased$*String1986FooBarWForWumbo' | 'DontDistributeUnions'
+      CamelCase<WeirdTextUnion>,
+      'someWeirdCased$*String1986FooBarWForWumbo' | 'dontDistributeUnions'
     >
   >
 }
 
-describe('toPascelCase', () => {
+describe('camelCase', () => {
   test('casing functions', () => {
-    const expected = 'SomeWeirdCased$*String1986FooBarWForWumbo' as const
-    const result = toPascalCase(WEIRD_TEXT)
+    const expected = 'someWeirdCased$*String1986FooBarWForWumbo' as const
+    const result = camelCase(WEIRD_TEXT)
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, typeof expected>>
   })
   test('with various separators', () => {
-    const result = toPascalCase(SEPARATORS_TEXT)
-    const expected = 'OneTwoThreeFourFiveSixSevenEightNineTen'
+    const result = camelCase(SEPARATORS_TEXT)
+    const expected = 'oneTwoThreeFourFiveSixSevenEightNineTen'
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, typeof expected>>
   })

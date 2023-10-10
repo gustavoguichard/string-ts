@@ -1,4 +1,4 @@
-import { type PascalCase, toPascalCase } from '../word-case/to-pascal-case.js'
+import { type PascalCase, pascalCase } from '../word-case/pascal-case.js'
 import { deepTransformKeys } from './deep-transform-keys.js'
 
 /**
@@ -19,5 +19,5 @@ export type DeepPascalKeys<T> = T extends [any, ...any]
  * @example deepPascalKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { FooBar: { FizzBuzz: true } }
  */
 export function deepPascalKeys<T>(obj: T): DeepPascalKeys<T> {
-  return deepTransformKeys(obj, toPascalCase) as never
+  return deepTransformKeys(obj, pascalCase) as never
 }

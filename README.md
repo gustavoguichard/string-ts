@@ -128,13 +128,13 @@ It also only work with common ASCII characters characters. We don't plan to supp
   - [trimEnd](#trimend)
   - [trimStart](#trimstart)
 - [Strongly-typed alternatives to common loosely-typed functions](#strongly-typed-alternatives-to-common-loosely-typed-functions)
-  - [toCamelCase](#tocamelcase)
-  - [toConstantCase](#toconstantcase)
-  - [toDelimiterCase](#todelimitercase)
-  - [toKebabCase](#tokebabcase)
-  - [toPascalCase](#topascalcase)
-  - [toSnakeCase](#tosnakecase)
-  - [toTitleCase](#totitlecase)
+  - [camelCase](#camelcase)
+  - [constantCase](#constantcase)
+  - [delimiterCase](#delimitercase)
+  - [kebabCase](#kebabcase)
+  - [pascalCase](#pascalcase)
+  - [snakeCase](#snakecase)
+  - [titleCase](#titlecase)
   - [truncate](#truncate)
   - [words](#words)
 - [Strongly-typed shallow transformation of objects](#strongly-typed-shallow-transformation-of-objects)
@@ -441,87 +441,87 @@ const result = lowerCase(str)
 //    ^ 'hello world'
 ```
 
-### toCamelCase
+### camelCase
 
 This function converts a string to `camelCase` at both runtime and type levels.
 
 ```ts
-import { toCamelCase } from 'string-ts'
+import { camelCase } from 'string-ts'
 
 const str = 'hello-world'
-const result = toCamelCase(str)
+const result = camelCase(str)
 //    ^ 'helloWorld'
 ```
 
-### toConstantCase
+### constantCase
 
 This function converts a string to `CONSTANT_CASE` at both runtime and type levels.
 
 ```ts
-import { toConstantCase } from 'string-ts'
+import { constantCase } from 'string-ts'
 
 const str = 'helloWorld'
-const result = toConstantCase(str)
+const result = constantCase(str)
 //    ^ 'HELLO_WORLD'
 ```
 
-### toDelimiterCase
+### delimiterCase
 
 This function converts a string to a new case with a custom delimiter at both runtime and type levels.
 
 ```ts
-import { toDelimiterCase } from 'string-ts'
+import { delimiterCase } from 'string-ts'
 
 const str = 'helloWorld'
-const result = toDelimiterCase(str, '.')
+const result = delimiterCase(str, '.')
 //    ^ 'hello.World'
 ```
 
-### toKebabCase
+### kebabCase
 
 This function converts a string to `kebab-case` at both runtime and type levels.
 
 ```ts
-import { toKebabCase } from 'string-ts'
+import { kebabCase } from 'string-ts'
 
 const str = 'helloWorld'
-const result = toKebabCase(str)
+const result = kebabCase(str)
 //    ^ 'hello-world'
 ```
 
-### toPascalCase
+### pascalCase
 
 This function converts a string to `PascalCase` at both runtime and type levels.
 
 ```ts
-import { toPascalCase } from 'string-ts'
+import { pascalCase } from 'string-ts'
 
 const str = 'hello-world'
-const result = toPascalCase(str)
+const result = pascalCase(str)
 //    ^ 'HelloWorld'
 ```
 
-### toSnakeCase
+### snakeCase
 
 This function converts a string to `snake_case` at both runtime and type levels.
 
 ```ts
-import { toSnakeCase } from 'string-ts'
+import { snakeCase } from 'string-ts'
 
 const str = 'helloWorld'
-const result = toSnakeCase(str)
+const result = snakeCase(str)
 //    ^ 'hello_world'
 ```
 
-### toTitleCase
+### titleCase
 
 This function converts a string to `Title Case` at both runtime and type levels.
 
 ```ts
-import { toTitleCase } from 'string-ts'
+import { titleCase } from 'string-ts'
 
 const str = 'helloWorld'
-const result = toTitleCase(str)
+const result = titleCase(str)
 //    ^ 'Hello World'
 ```
 

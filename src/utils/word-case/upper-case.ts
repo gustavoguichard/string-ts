@@ -1,5 +1,5 @@
 import { toUpperCase } from '../../native/to-upper-case.js'
-import { type DelimiterCase, toDelimiterCase } from './to-delimiter-case.js'
+import { type DelimiterCase, delimiterCase } from './delimiter-case.js'
 
 /**
  * A strongly-typed version of `upperCase` that works in both runtime and type level.
@@ -10,5 +10,5 @@ import { type DelimiterCase, toDelimiterCase } from './to-delimiter-case.js'
 export function upperCase<T extends string>(
   str: T,
 ): Uppercase<DelimiterCase<T, ' '>> {
-  return toUpperCase(toDelimiterCase(str, ' '))
+  return toUpperCase(delimiterCase(str, ' '))
 }
