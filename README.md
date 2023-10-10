@@ -1,4 +1,7 @@
 [![NPM](https://img.shields.io/npm/v/string-ts)](https://www.npmjs.org/package/string-ts)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 ![Library size](https://img.shields.io/bundlephobia/minzip/string-ts)
 [![All Contributors](https://img.shields.io/github/all-contributors/gustavoguichard/string-ts?color=0375b6&style=flat-square)](#contributors)
 
@@ -917,3 +920,25 @@ const result = deepTransformKeys(data, toUpperCase) as MyType<typeof data>
 ## 🫶 Acknowledgements
 
 This library got a lot of inspiration from libraries such as [lodash](https://github.com/lodash/lodash), [ts-reset](https://github.com/total-typescript/ts-reset), [type-fest](https://github.com/sindresorhus/type-fest), [HOTScript](https://github.com/gvergnaud/hotscript), and many others.
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/gustavoguichard"><img src="https://avatars.githubusercontent.com/u/566971?v=4?s=100" width="100px;" alt="Guga Guichard"/><br /><sub><b>Guga Guichard</b></sub></a><br /><a href="https://github.com/gustavoguichard/string-ts/commits?author=gustavoguichard" title="Code">💻</a> <a href="#projectManagement-gustavoguichard" title="Project Management">📆</a> <a href="#promotion-gustavoguichard" title="Promotion">📣</a> <a href="#maintenance-gustavoguichard" title="Maintenance">🚧</a> <a href="https://github.com/gustavoguichard/string-ts/commits?author=gustavoguichard" title="Documentation">📖</a> <a href="https://github.com/gustavoguichard/string-ts/issues?q=author%3Agustavoguichard" title="Bug reports">🐛</a> <a href="#infra-gustavoguichard" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#question-gustavoguichard" title="Answering Questions">💬</a> <a href="#research-gustavoguichard" title="Research">🔬</a> <a href="https://github.com/gustavoguichard/string-ts/pulls?q=is%3Apr+reviewed-by%3Agustavoguichard" title="Reviewed Pull Requests">👀</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
