@@ -1,0 +1,36 @@
+name: Codecov
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  codecov:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test -- --coverage
+
+      - name: Upload coverage to github actions artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage
+          path: coverage/
+
+      - name: Upload coverage to codecov
+        uses: codecov/codecov-action@v3
