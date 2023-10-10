@@ -24,6 +24,18 @@
         "research",
         "review"
       ]
+    },
+    {
+      "login": "jly36963",
+      "name": "Landon Yarrington",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33426811?v=4",
+      "profile": "https://github.com/jly36963",
+      "contributions": [
+        "code",
+        "maintenance",
+        "doc",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
