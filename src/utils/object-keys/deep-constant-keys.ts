@@ -1,7 +1,4 @@
-import {
-  type ConstantCase,
-  toConstantCase,
-} from '../word-case/to-constant-case.js'
+import { type ConstantCase, constantCase } from '../word-case/constant-case.js'
 import { deepTransformKeys } from './deep-transform-keys.js'
 
 /**
@@ -22,5 +19,5 @@ export type DeepConstantKeys<T> = T extends [any, ...any]
  * @example deepConstantKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { FOO_BAR: { FIZZ_BUZZ: true } }
  */
 export function deepConstantKeys<T>(obj: T): DeepConstantKeys<T> {
-  return deepTransformKeys(obj, toConstantCase) as never
+  return deepTransformKeys(obj, constantCase) as never
 }

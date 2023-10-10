@@ -1,4 +1,4 @@
-import { type CamelCase, toCamelCase } from '../word-case/to-camel-case.js'
+import { type CamelCase, camelCase } from '../word-case/camel-case.js'
 import { deepTransformKeys } from './deep-transform-keys.js'
 
 /**
@@ -19,5 +19,5 @@ export type DeepCamelKeys<T> = T extends [any, ...any]
  * @example deepCamelKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { fooBar: { fizzBuzz: true } }
  */
 export function deepCamelKeys<T>(obj: T): DeepCamelKeys<T> {
-  return deepTransformKeys(obj, toCamelCase) as never
+  return deepTransformKeys(obj, camelCase) as never
 }

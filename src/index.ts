@@ -31,6 +31,8 @@ export { replaceAll } from './native/replace-all.js'
 export { slice } from './native/slice.js'
 export { split } from './native/split.js'
 export { startsWith } from './native/starts-with.js'
+export { toLowerCase } from './native/to-lower-case.js'
+export { toUpperCase } from './native/to-upper-case.js'
 export { trimStart } from './native/trim-start.js'
 export { trimEnd } from './native/trim-end.js'
 
@@ -48,25 +50,29 @@ export type { IsSpecial } from './utils/characters/special.js'
 export type { Separator, IsSeparator } from './utils/characters/separators.js'
 
 // Word casing
-export type { CamelCase } from './utils/word-case/to-camel-case.js'
-export type { ConstantCase } from './utils/word-case/to-constant-case.js'
-export type { DelimiterCase } from './utils/word-case/to-delimiter-case.js'
-export type { KebabCase } from './utils/word-case/to-kebab-case.js'
-export type { PascalCase } from './utils/word-case/to-pascal-case.js'
-export type { SnakeCase } from './utils/word-case/to-snake-case.js'
-export type { TitleCase } from './utils/word-case/to-title-case.js'
+export type { CamelCase } from './utils/word-case/camel-case.js'
+export type { ConstantCase } from './utils/word-case/constant-case.js'
+export type { DelimiterCase } from './utils/word-case/delimiter-case.js'
+export type { KebabCase } from './utils/word-case/kebab-case.js'
+export type { PascalCase } from './utils/word-case/pascal-case.js'
+export type { SnakeCase } from './utils/word-case/snake-case.js'
+export type { TitleCase } from './utils/word-case/title-case.js'
 
 export { capitalize } from './utils/capitalize.js'
 export { lowerCase } from './utils/word-case/lower-case.js'
-export { toCamelCase } from './utils/word-case/to-camel-case.js'
-export { toConstantCase } from './utils/word-case/to-constant-case.js'
-export { toDelimiterCase } from './utils/word-case/to-delimiter-case.js'
-export { toKebabCase } from './utils/word-case/to-kebab-case.js'
-export { toLowerCase } from './native/to-lower-case.js'
-export { toPascalCase } from './utils/word-case/to-pascal-case.js'
-export { toSnakeCase } from './utils/word-case/to-snake-case.js'
-export { toTitleCase } from './utils/word-case/to-title-case.js'
-export { toUpperCase } from './native/to-upper-case.js'
+export { camelCase, toCamelCase } from './utils/word-case/camel-case.js'
+export {
+  constantCase,
+  toConstantCase,
+} from './utils/word-case/constant-case.js'
+export {
+  delimiterCase,
+  toDelimiterCase,
+} from './utils/word-case/delimiter-case.js'
+export { kebabCase, toKebabCase } from './utils/word-case/kebab-case.js'
+export { pascalCase, toPascalCase } from './utils/word-case/pascal-case.js'
+export { snakeCase, toSnakeCase } from './utils/word-case/snake-case.js'
+export { titleCase, toTitleCase } from './utils/word-case/title-case.js'
 export { uncapitalize } from './utils/uncapitalize.js'
 export { upperCase } from './utils/word-case/upper-case.js'
 

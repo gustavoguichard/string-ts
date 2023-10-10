@@ -6,7 +6,7 @@ import { typeOf } from '../../internal/internals.js'
  * @param obj the object to transform.
  * @param transform the function to transform the keys from string to string.
  * @returns the transformed object.
- * @example deepTransformKeys({ 'foo-bar': { 'fizz-buzz': true } }, toCamelCase)
+ * @example deepTransformKeys({ 'foo-bar': { 'fizz-buzz': true } }, camelCase)
  * // { fooBar: { fizzBuzz: true } }
  */
 export function deepTransformKeys<T>(
