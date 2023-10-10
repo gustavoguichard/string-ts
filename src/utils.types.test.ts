@@ -3,7 +3,7 @@ import type * as Subject from './utils'
 namespace WordsTests {
   type test1 = Expect<
     Equal<
-      Subject.Words<' someWeird-cased$*String1986Foo Bar obj.items[0]'>,
+      Subject.Words<' someWeird-cased$*String1986Foo Bar obj.items[0]prev2PreV2'>,
       [
         'some',
         'Weird',
@@ -16,6 +16,10 @@ namespace WordsTests {
         'obj',
         'items',
         '0',
+        'prev',
+        '2',
+        'Pre',
+        'V2',
       ]
     >
   >

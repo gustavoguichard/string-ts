@@ -26,8 +26,15 @@ describe('words', () => {
   })
 
   test('it splits words at digits', () => {
-    const expected = ['2', 'Weird', 'Cased', '1986', 'Foo'] as const
-    const result = subject.words('2WeirdCased1986Foo')
+    const expected = ['2', 'Weird', 'Cased', '1986', 'Foo', 'V2'] as const
+    const result = subject.words('2WeirdCased1986FooV2')
+    expect(result).toEqual(expected)
+    type test = Expect<Equal<typeof result, Mutable<typeof expected>>>
+  })
+
+  test('it correctly splits upper vs lower words with digits', () => {
+    const expected = ['love', '2', 'be', 'Pre', 'V2', 'Alpha'] as const
+    const result = subject.words('love2bePreV2Alpha')
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, Mutable<typeof expected>>>
   })

@@ -110,10 +110,14 @@ test('deepSnakeKeys', () => {
   const expected = {
     some: { deep_nested: { value: true } },
     other_value: true,
+    prev_2: true,
+    pre_v2: true,
   }
   const result = subject.deepSnakeKeys({
     some: { deepNested: { value: true } },
     otherValue: true,
+    prev2: true,
+    preV2: true,
   })
   expect(result).toEqual(expected)
   type test = Expect<Equal<typeof result, typeof expected>>

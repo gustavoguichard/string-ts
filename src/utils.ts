@@ -25,9 +25,12 @@ type Words<
     : prev extends ''
     ? // Start of sentence, start a new word
       Reject<Words<rest, curr, curr>, ''>
-    : [false, true] extends [IsDigit<prev>, IsDigit<curr>]
-    ? // Step 2: From non-digit to digit
+    : [true, true] extends [IsLower<prev>, IsDigit<curr>]
+    ? // Step 2.a: Non-digit to digit: Split when from lower-case
       [word, ...Words<rest, curr, curr>]
+    : [true, true] extends [IsUpper<prev>, IsDigit<curr>]
+    ? // Step 2.b: Non-digit to digit: Continue when from upper-case
+      Reject<Words<rest, `${word}${curr}`, curr>, ''>
     : [true, false] extends [IsDigit<prev>, IsDigit<curr>]
     ? // Step 3: From digit to non-digit
       [word, ...Words<rest, curr, curr>]
@@ -60,12 +63,13 @@ type Words<
 function words<T extends string>(sentence: T): Words<T> {
   return sentence
     .replace(SEPARATOR_REGEX, ' ') // Step 1: Remove separators
-    .replace(/([a-zA-Z])([0-9])/g, '$1 $2') // Step 2: From non-digit to digit
-    .replace(/([0-9])([a-zA-Z])/g, '$1 $2') // Step 3: From digit to non-digit
-    .replace(/([a-zA-Z0-9_\-./])([^a-zA-Z0-9_\-./])/g, '$1 $2') // Step 4: From non-special to special
-    .replace(/([^a-zA-Z0-9_\-./])([a-zA-Z0-9_\-./])/g, '$1 $2') // Step 5: From special to non-special
-    .replace(/([a-z])([A-Z])/g, '$1 $2') // Step 6: From lower to upper
-    .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2') // Step 7: From upper to upper and lower
+    .replace(/([a-z])([0-9])/g, '$1 $2') // Step 2: From lower-case non-digit to digit
+    .replace(/([A-Z])([0-9])/g, '$1$2') // Step 3: From upper-case non-digit to digit
+    .replace(/([0-9])([a-zA-Z])/g, '$1 $2') // Step 4: From digit to non-digit
+    .replace(/([a-zA-Z0-9_\-./])([^a-zA-Z0-9_\-./])/g, '$1 $2') // Step 5: From non-special to special
+    .replace(/([^a-zA-Z0-9_\-./])([a-zA-Z0-9_\-./])/g, '$1 $2') // Step 6: From special to non-special
+    .replace(/([a-z])([A-Z])/g, '$1 $2') // Step 7: From lower to upper
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2') // Step 8: From upper to upper and lower
     .trim() // Step 8: Trim the last word
     .split(/\s+/g) as Words<T>
 }
