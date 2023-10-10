@@ -61,6 +61,16 @@
         "code",
         "promotion"
       ]
+    },
+    {
+      "login": "iamandrewluca",
+      "name": "Andrew Luca",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1881266?v=4",
+      "profile": "https://luca.md",
+      "contributions": [
+        "doc",
+        "promotion"
+      ]
     }
   ],
   "contributorsPerLine": 7,
