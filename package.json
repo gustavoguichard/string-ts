@@ -32,5 +32,8 @@
   },
   "bugs": {
     "url": "https://github.com/gustavoguichard/string-ts/issues"
+  },
+  "dependencies": {
+    "@vitest/coverage-v8": "^0.34.6"
   }
 }
