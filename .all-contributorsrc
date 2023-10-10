@@ -50,6 +50,17 @@
         "infra",
         "question"
       ]
+    },
+    {
+      "login": "mattpocock",
+      "name": "Matt Pocock",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28293365?v=4",
+      "profile": "https://totaltypescript.com",
+      "contributions": [
+        "doc",
+        "code",
+        "promotion"
+      ]
     }
   ],
   "contributorsPerLine": 7,
