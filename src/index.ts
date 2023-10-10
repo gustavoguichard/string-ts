@@ -1,4 +1,4 @@
-// PRIMITIVES
+// Native
 export type { CharAt } from './native/char-at.js'
 export type { Concat } from './native/concat.js'
 export type { EndsWith } from './native/ends-with.js'
@@ -34,75 +34,68 @@ export { startsWith } from './native/starts-with.js'
 export { trimStart } from './native/trim-start.js'
 export { trimEnd } from './native/trim-end.js'
 
-// UTILS
-export type { Truncate } from './additional/truncate.js'
-export type { Words } from './casing/words.js'
+// Utils
+export type { Truncate } from './utils/truncate.js'
+export type { Words } from './utils/words.js'
 
-export { truncate } from './additional/truncate.js'
-export { words } from './casing/words.js'
+export { truncate } from './utils/truncate.js'
+export { words } from './utils/words.js'
 
-// CHARACTERS
-export type {
-  Digit,
-  IsDigit,
-  IsLetter,
-  IsLower,
-  IsSpecial,
-  IsUpper,
-} from './casing/chars.js'
+// Characters
+export type { IsLetter, IsLower, IsUpper } from './utils/characters/letters.js'
+export type { Digit, IsDigit } from './utils/characters/numbers.js'
+export type { IsSpecial } from './utils/characters/special.js'
+export type { Separator, IsSeparator } from './utils/characters/separators.js'
 
-// SEPARATORS
-export type { Separator, IsSeparator } from './casing/separators.js'
+// Word casing
+export type { CamelCase } from './utils/word-case/to-camel-case.js'
+export type { ConstantCase } from './utils/word-case/to-constant-case.js'
+export type { DelimiterCase } from './utils/word-case/to-delimiter-case.js'
+export type { KebabCase } from './utils/word-case/to-kebab-case.js'
+export type { PascalCase } from './utils/word-case/to-pascal-case.js'
+export type { SnakeCase } from './utils/word-case/to-snake-case.js'
+export type { TitleCase } from './utils/word-case/to-title-case.js'
 
-// CASING
-export type { CamelCase } from './casing/to-camel-case.js'
-export type { ConstantCase } from './casing/to-constant-case.js'
-export type { DelimiterCase } from './casing/to-delimiter-case.js'
-export type { KebabCase } from './casing/to-kebab-case.js'
-export type { PascalCase } from './casing/to-pascal-case.js'
-export type { SnakeCase } from './casing/to-snake-case.js'
-export type { TitleCase } from './casing/to-title-case.js'
+export { capitalize } from './utils/capitalize.js'
+export { lowerCase } from './utils/word-case/lower-case.js'
+export { toCamelCase } from './utils/word-case/to-camel-case.js'
+export { toConstantCase } from './utils/word-case/to-constant-case.js'
+export { toDelimiterCase } from './utils/word-case/to-delimiter-case.js'
+export { toKebabCase } from './utils/word-case/to-kebab-case.js'
+export { toLowerCase } from './native/to-lower-case.js'
+export { toPascalCase } from './utils/word-case/to-pascal-case.js'
+export { toSnakeCase } from './utils/word-case/to-snake-case.js'
+export { toTitleCase } from './utils/word-case/to-title-case.js'
+export { toUpperCase } from './native/to-upper-case.js'
+export { uncapitalize } from './utils/uncapitalize.js'
+export { upperCase } from './utils/word-case/upper-case.js'
 
-export { capitalize } from './casing/capitalize.js'
-export { lowerCase } from './casing/lower-case.js'
-export { toCamelCase } from './casing/to-camel-case.js'
-export { toConstantCase } from './casing/to-constant-case.js'
-export { toDelimiterCase } from './casing/to-delimiter-case.js'
-export { toKebabCase } from './casing/to-kebab-case.js'
-export { toLowerCase } from './casing/to-lower-case.js'
-export { toPascalCase } from './casing/to-pascal-case.js'
-export { toSnakeCase } from './casing/to-snake-case.js'
-export { toTitleCase } from './casing/to-title-case.js'
-export { toUpperCase } from './casing/to-upper-case.js'
-export { uncapitalize } from './casing/uncapitalize.js'
-export { upperCase } from './casing/upper-case.js'
+// Object keys word casing
+export type { CamelKeys } from './utils/object-keys/camel-keys.js'
+export type { ConstantKeys } from './utils/object-keys/constant-keys.js'
+export type { DelimiterKeys } from './utils/object-keys/delimiter-keys.js'
+export type { KebabKeys } from './utils/object-keys/kebab-keys.js'
+export type { PascalKeys } from './utils/object-keys/pascal-keys.js'
+export type { SnakeKeys } from './utils/object-keys/snake-keys.js'
 
-// KEY CASING
-export type { CamelKeys } from './objects/camel-keys.js'
-export type { ConstantKeys } from './objects/constant-keys.js'
-export type { DelimiterKeys } from './objects/delimiter-keys.js'
-export type { KebabKeys } from './objects/kebab-keys.js'
-export type { PascalKeys } from './objects/pascal-keys.js'
-export type { SnakeKeys } from './objects/snake-keys.js'
+export { camelKeys } from './utils/object-keys/camel-keys.js'
+export { constantKeys } from './utils/object-keys/constant-keys.js'
+export { delimiterKeys } from './utils/object-keys/delimiter-keys.js'
+export { kebabKeys } from './utils/object-keys/kebab-keys.js'
+export { pascalKeys } from './utils/object-keys/pascal-keys.js'
+export { snakeKeys } from './utils/object-keys/snake-keys.js'
 
-export { camelKeys } from './objects/camel-keys.js'
-export { constantKeys } from './objects/constant-keys.js'
-export { delimiterKeys } from './objects/delimiter-keys.js'
-export { kebabKeys } from './objects/kebab-keys.js'
-export { pascalKeys } from './objects/pascal-keys.js'
-export { snakeKeys } from './objects/snake-keys.js'
+// Object keys word casing (deep)
+export type { DeepCamelKeys } from './utils/object-keys/deep-camel-keys.js'
+export type { DeepConstantKeys } from './utils/object-keys/deep-constant-keys.js'
+export type { DeepDelimiterKeys } from './utils/object-keys/deep-delimiter-keys.js'
+export type { DeepKebabKeys } from './utils/object-keys/deep-kebab-keys.js'
+export type { DeepPascalKeys } from './utils/object-keys/deep-pascal-keys.js'
+export type { DeepSnakeKeys } from './utils/object-keys/deep-snake-keys.js'
 
-// DEEP KEY CASING
-export type { DeepCamelKeys } from './objects/deep-camel-keys.js'
-export type { DeepConstantKeys } from './objects/deep-constant-keys.js'
-export type { DeepDelimiterKeys } from './objects/deep-delimiter-keys.js'
-export type { DeepKebabKeys } from './objects/deep-kebab-keys.js'
-export type { DeepPascalKeys } from './objects/deep-pascal-keys.js'
-export type { DeepSnakeKeys } from './objects/deep-snake-keys.js'
-
-export { deepCamelKeys } from './objects/deep-camel-keys.js'
-export { deepConstantKeys } from './objects/deep-constant-keys.js'
-export { deepDelimiterKeys } from './objects/deep-delimiter-keys.js'
-export { deepKebabKeys } from './objects/deep-kebab-keys.js'
-export { deepPascalKeys } from './objects/deep-pascal-keys.js'
-export { deepSnakeKeys } from './objects/deep-snake-keys.js'
+export { deepCamelKeys } from './utils/object-keys/deep-camel-keys.js'
+export { deepConstantKeys } from './utils/object-keys/deep-constant-keys.js'
+export { deepDelimiterKeys } from './utils/object-keys/deep-delimiter-keys.js'
+export { deepKebabKeys } from './utils/object-keys/deep-kebab-keys.js'
+export { deepPascalKeys } from './utils/object-keys/deep-pascal-keys.js'
+export { deepSnakeKeys } from './utils/object-keys/deep-snake-keys.js'

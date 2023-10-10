@@ -1,5 +1,5 @@
-import { capitalize } from '../casing/capitalize.js'
-import { toLowerCase } from '../casing/to-lower-case.js'
+import { capitalize } from '../utils/capitalize.js'
+import { toLowerCase } from '../native/to-lower-case.js'
 
 /**
  * This is an enhanced version of the typeof operator to check the type of more complex values.
