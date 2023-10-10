@@ -1,5 +1,6 @@
 [![NPM](https://img.shields.io/npm/v/string-ts)](https://www.npmjs.org/package/string-ts)
 ![Library size](https://img.shields.io/bundlephobia/minzip/string-ts)
+[![All Contributors](https://img.shields.io/github/all-contributors/gustavoguichard/string-ts?color=0375b6&style=flat-square)](#contributors)
 
 # string-ts
 
