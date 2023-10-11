@@ -78,6 +78,16 @@
         "doc",
         "promotion"
       ]
+    },
+    {
+      "login": "mjuksel",
+      "name": "Mjuksel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10691584?v=4",
+      "profile": "https://github.com/mjuksel",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
