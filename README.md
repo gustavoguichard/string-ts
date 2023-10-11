@@ -133,6 +133,7 @@ It also only work with common ASCII characters characters. We don't plan to supp
   - [delimiterCase](#delimitercase)
   - [kebabCase](#kebabcase)
   - [pascalCase](#pascalcase)
+  - [reverse](#reverse)
   - [snakeCase](#snakecase)
   - [titleCase](#titlecase)
   - [truncate](#truncate)
@@ -538,6 +539,18 @@ const result = upperCase(str)
 //    ^ 'HELLO WORLD'
 ```
 
+### reverse
+
+This function reverses a string.
+
+```ts
+import { reverse } from 'string-ts'
+
+const str = 'Hello StringTS!'
+const result = reverse(str)
+//    ^ '!TSgnirtS olleH'
+```
+
 ### truncate
 
 This function truncates string if it's longer than the given maximum string length. The last characters of the truncated string are replaced with the omission string which defaults to "...".
@@ -788,6 +801,7 @@ St.PadStart<'hello', 10, '='> // '=====hello'
 St.Repeat<'abc', 3> // 'abcabcabc'
 St.Replace<'hello-world', 'l', '1'> // 'he1lo-world'
 St.ReplaceAll<'hello-world', 'l', '1'> // 'he11o-wor1d'
+St.Reverse<'Hello World!'> // '!dlroW olleH'
 St.Slice<'hello-world', -5> // 'world'
 St.Split<'hello-world', '-'> // ['hello', 'world']
 St.Trim<' hello world '> // 'hello world'

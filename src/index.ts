@@ -37,9 +37,11 @@ export { trimStart } from './native/trim-start.js'
 export { trimEnd } from './native/trim-end.js'
 
 // Utils
+export type { Reverse } from './utils/reverse'
 export type { Truncate } from './utils/truncate.js'
 export type { Words } from './utils/words.js'
 
+export { reverse } from './utils/reverse'
 export { truncate } from './utils/truncate.js'
 export { words } from './utils/words.js'
 
