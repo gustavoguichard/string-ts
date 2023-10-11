@@ -1,8 +1,5 @@
 import { transformKeys } from './transform-keys.js'
-import {
-  type ConstantCase,
-  toConstantCase,
-} from '../word-case/to-constant-case.js'
+import { type ConstantCase, constantCase } from '../word-case/constant-case.js'
 
 /**
  * Shallowly transforms the keys of an Record to CONSTANT_CASE.
@@ -18,5 +15,5 @@ export type ConstantKeys<T> = T extends []
  * @example constantKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { FOO_BAR: { 'fizz-buzz': true } }
  */
 export function constantKeys<T>(obj: T): ConstantKeys<T> {
-  return transformKeys(obj, toConstantCase) as never
+  return transformKeys(obj, constantCase) as never
 }

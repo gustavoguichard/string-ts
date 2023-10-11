@@ -1,4 +1,4 @@
-import { type SnakeCase, toSnakeCase } from '../word-case/to-snake-case.js'
+import { type SnakeCase, snakeCase } from '../word-case/snake-case.js'
 import { deepTransformKeys } from './deep-transform-keys.js'
 
 /**
@@ -19,5 +19,5 @@ export type DeepSnakeKeys<T> = T extends [any, ...any]
  * @example deepSnakeKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { 'foo_bar': { 'fizz_buzz': true } }
  */
 export function deepSnakeKeys<T>(obj: T): DeepSnakeKeys<T> {
-  return deepTransformKeys(obj, toSnakeCase) as never
+  return deepTransformKeys(obj, snakeCase) as never
 }

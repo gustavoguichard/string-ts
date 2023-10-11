@@ -1,4 +1,4 @@
-import { type KebabCase, toKebabCase } from '../word-case/to-kebab-case.js'
+import { type KebabCase, kebabCase } from '../word-case/kebab-case.js'
 import { deepTransformKeys } from './deep-transform-keys.js'
 
 /**
@@ -19,5 +19,5 @@ export type DeepKebabKeys<T> = T extends [any, ...any]
  * @example deepKebabKeys({ 'foo-bar': { 'fizz-buzz': true } }) // { 'foo-bar': { 'fizz-buzz': true } }
  */
 export function deepKebabKeys<T>(obj: T): DeepKebabKeys<T> {
-  return deepTransformKeys(obj, toKebabCase) as never
+  return deepTransformKeys(obj, kebabCase) as never
 }

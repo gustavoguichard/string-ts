@@ -3,29 +3,29 @@ import {
   WEIRD_TEXT,
   SEPARATORS_TEXT,
 } from '../../internal/fixtures.js'
-import { type SnakeCase, toSnakeCase } from './to-snake-case.js'
+import { type KebabCase, kebabCase } from './kebab-case.js'
 
 namespace TypeTransforms {
   type test = Expect<
     Equal<
-      SnakeCase<WeirdTextUnion>,
-      | 'some_weird_cased_$*_string_1986_foo_bar_w_for_wumbo'
-      | 'dont_distribute_unions'
+      KebabCase<WeirdTextUnion>,
+      | 'some-weird-cased-$*-string-1986-foo-bar-w-for-wumbo'
+      | 'dont-distribute-unions'
     >
   >
 }
 
-describe('toSnakeCase', () => {
+describe('kebabCase', () => {
   test('casing functions', () => {
     const expected =
-      'some_weird_cased_$*_string_1986_foo_bar_w_for_wumbo' as const
-    const result = toSnakeCase(WEIRD_TEXT)
+      'some-weird-cased-$*-string-1986-foo-bar-w-for-wumbo' as const
+    const result = kebabCase(WEIRD_TEXT)
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, typeof expected>>
   })
   test('with various separators', () => {
-    const result = toSnakeCase(SEPARATORS_TEXT)
-    const expected = 'one_two_three_four_five_six_seven_eight_nine_ten'
+    const result = kebabCase(SEPARATORS_TEXT)
+    const expected = 'one-two-three-four-five-six-seven-eight-nine-ten'
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, typeof expected>>
   })

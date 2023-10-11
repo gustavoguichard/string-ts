@@ -1,7 +1,7 @@
 import {
   type DelimiterCase,
-  toDelimiterCase,
-} from '../word-case/to-delimiter-case.js'
+  delimiterCase,
+} from '../word-case/delimiter-case.js'
 import { deepTransformKeys } from './deep-transform-keys.js'
 
 /**
@@ -30,7 +30,5 @@ export function deepDelimiterKeys<T, D extends string>(
   obj: T,
   delimiter: D,
 ): DeepDelimiterKeys<T, D> {
-  return deepTransformKeys(obj, (str) =>
-    toDelimiterCase(str, delimiter),
-  ) as never
+  return deepTransformKeys(obj, (str) => delimiterCase(str, delimiter)) as never
 }
