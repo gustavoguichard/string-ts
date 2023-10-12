@@ -2,6 +2,7 @@ import type {
   UncapitalizeSTS,
   LowercaseSTS,
   UppercaseSTS,
+  CapitalizeSTS,
 } from './intrinsic.js'
 
 namespace Internals {
@@ -13,4 +14,7 @@ namespace Internals {
 
   type UppercaseSTS1 = Expect<Equal<UppercaseSTS<'abc'>, 'ABC'>>
   type UppercaseSTS2 = Expect<Equal<UppercaseSTS<string>, string>>
+
+  type CapitalizeSTSSTS1 = Expect<Equal<CapitalizeSTS<'abc'>, 'Abc'>>
+  type CapitalizeSTSSTS2 = Expect<Equal<CapitalizeSTS<string>, string>>
 }
