@@ -4,6 +4,45 @@ on:
   pull_request:
 
 jobs:
+  typecheck-outputs:
+    name: 🚚 Typecheck Outputs / ${{ matrix.typescript-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        typescript-version:
+          - '~5.2.0'
+          - '~5.1.0'
+            # We use features that were added in v5.0 of typescript, so that is
+            # the lowest we can go here. This also means this is the lowest
+            # version we support. When this value changes in the future it needs
+            # to be communicated to the users.
+          - '~5.0.0'
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🪡 Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: 📦 Install Dependencies
+        run: npm install
+
+      # Order is important here, we build with the typescript version defined
+      # in package.json, before we overrite it for the tests.
+      - name: 🏗️ Build
+        run: npm run build
+
+      - name: 📘 Install Typescript
+        run: npm install --dev typescript@${{ matrix.typescript-version }}
+
+      - name: 🔎 Type check
+        run: npm run tsc:dist
+
+
   test:
     name: Run tests
     runs-on: ubuntu-latest
