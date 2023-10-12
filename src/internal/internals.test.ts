@@ -2,18 +2,26 @@ import * as subject from './internals'
 import type * as Subject from './internals'
 
 namespace Internals {
-  type test = Expect<
+  type testPascalCaseAll1 = Expect<
     Equal<
       Subject.PascalCaseAll<['one', 'two', 'three']>,
       ['One', 'Two', 'Three']
     >
   >
+  type testPascalCaseAll2 = Expect<
+    Equal<Subject.PascalCaseAll<string[]>, string[]>
+  >
 
-  type test1 = Expect<
+  type testReject1 = Expect<
     Equal<
       Subject.Reject<['one', '', 'two', '', 'three'], ''>,
       ['one', 'two', 'three']
     >
+  >
+
+  type testReject2 = Expect<Equal<Subject.Reject<string[], ''>, string[]>>
+  type testReject3 = Expect<
+    Equal<Subject.Reject<['one', 'two', 'three'], string>, string[]>
   >
 
   type test2 = Expect<Equal<Subject.DropSuffix<'helloWorld', 'World'>, 'hello'>>
