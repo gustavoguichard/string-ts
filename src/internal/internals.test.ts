@@ -18,11 +18,6 @@ namespace Internals {
       ['one', 'two', 'three']
     >
   >
-  // // TODO: fix
-  // type testReject2 = Expect<Equal<Subject.Reject<string[], ''>, string[]>>
-  // type testReject3 = Expect<
-  //   Equal<Subject.Reject<['one', 'two', 'three'], string>, string[]>
-  // >
 
   type testDropSuffix1 = Expect<
     Equal<Subject.DropSuffix<'helloWorld', 'World'>, 'hello'>
@@ -35,10 +30,6 @@ namespace Internals {
   >
 
   type testTupleOf1 = Expect<Equal<Subject.TupleOf<3, ' '>, [' ', ' ', ' ']>>
-
-  // // TODO: fix this
-  // type testTupleOf2 = Expect<Equal<Subject.TupleOf<number, ' '>, string[]>>
-  // type testTupleOf3 = Expect<Equal<Subject.TupleOf<3, string>, string[]>>
 }
 
 describe('typeOf', () => {
