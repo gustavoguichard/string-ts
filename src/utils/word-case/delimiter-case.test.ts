@@ -6,13 +6,15 @@ import {
 import { type DelimiterCase, delimiterCase } from './delimiter-case.js'
 
 namespace TypeTransforms {
-  type test = Expect<
+  type test1 = Expect<
     Equal<
       DelimiterCase<WeirdTextUnion, '%'>,
       | 'some%Weird%cased%$*%String%1986%Foo%Bar%W%FOR%WUMBO'
       | 'dont%distribute%unions'
     >
   >
+  type test2 = Expect<Equal<DelimiterCase<string, '%'>, string>>
+  type test3 = Expect<Equal<DelimiterCase<'abc', string>, string>>
 }
 
 describe('delimiterCase', () => {

@@ -4,10 +4,11 @@ import { type Words, words } from '../words.js'
 /**
  * Transforms a string with the specified separator (delimiter).
  */
-export type DelimiterCase<T extends string, D extends string> = Join<
-  Words<T>,
-  D
->
+export type DelimiterCase<T extends string, D extends string> = string extends
+  | T
+  | D
+  ? string
+  : Join<Words<T>, D>
 /**
  * A function that transforms a string by splitting it into words and joining them with the specified delimiter.
  * @param str the string to transform.
@@ -18,8 +19,8 @@ export type DelimiterCase<T extends string, D extends string> = Join<
 export function delimiterCase<T extends string, D extends string>(
   str: T,
   delimiter: D,
-): DelimiterCase<T, D> {
-  return join(words(str), delimiter)
+) {
+  return join(words(str), delimiter) as DelimiterCase<T, D>
 }
 
 /**

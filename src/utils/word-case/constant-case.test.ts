@@ -5,13 +5,14 @@ import {
 import { type ConstantCase, constantCase } from './constant-case.js'
 
 namespace TypeTransforms {
-  type test = Expect<
+  type test1 = Expect<
     Equal<
       ConstantCase<WeirdTextUnion>,
       | 'SOME_WEIRD_CASED_$*_STRING_1986_FOO_BAR_W_FOR_WUMBO'
       | 'DONT_DISTRIBUTE_UNIONS'
     >
   >
+  type test2 = Expect<Equal<ConstantCase<string>, string>>
 }
 
 describe('constantCase', () => {

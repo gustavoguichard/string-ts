@@ -6,12 +6,13 @@ import {
 import { type CamelCase, camelCase } from './camel-case.js'
 
 namespace TypeTransforms {
-  type test = Expect<
+  type test1 = Expect<
     Equal<
       CamelCase<WeirdTextUnion>,
       'someWeirdCased$*String1986FooBarWForWumbo' | 'dontDistributeUnions'
     >
   >
+  type test2 = Expect<Equal<CamelCase<string>, Uncapitalize<string>>>
 }
 
 describe('camelCase', () => {

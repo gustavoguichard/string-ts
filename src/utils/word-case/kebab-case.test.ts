@@ -6,13 +6,14 @@ import {
 import { type KebabCase, kebabCase } from './kebab-case.js'
 
 namespace TypeTransforms {
-  type test = Expect<
+  type test1 = Expect<
     Equal<
       KebabCase<WeirdTextUnion>,
       | 'some-weird-cased-$*-string-1986-foo-bar-w-for-wumbo'
       | 'dont-distribute-unions'
     >
   >
+  type test2 = Expect<Equal<KebabCase<string>, string>>
 }
 
 describe('kebabCase', () => {

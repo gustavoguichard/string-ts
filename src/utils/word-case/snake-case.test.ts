@@ -6,13 +6,14 @@ import {
 import { type SnakeCase, snakeCase } from './snake-case.js'
 
 namespace TypeTransforms {
-  type test = Expect<
+  type test1 = Expect<
     Equal<
       SnakeCase<WeirdTextUnion>,
       | 'some_weird_cased_$*_string_1986_foo_bar_w_for_wumbo'
       | 'dont_distribute_unions'
     >
   >
+  type test2 = Expect<Equal<SnakeCase<string>, string>>
 }
 
 describe('snakeCase', () => {

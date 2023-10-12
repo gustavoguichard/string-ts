@@ -6,12 +6,13 @@ import {
 import { type PascalCase, pascalCase } from './pascal-case.js'
 
 namespace TypeTransforms {
-  type test = Expect<
+  type test1 = Expect<
     Equal<
       PascalCase<WeirdTextUnion>,
       'SomeWeirdCased$*String1986FooBarWForWumbo' | 'DontDistributeUnions'
     >
   >
+  type test2 = Expect<Equal<PascalCase<string>, string>>
 }
 
 describe('pascalCase', () => {

@@ -21,6 +21,8 @@ namespace WordsTests {
     >
   >
   type test2 = Expect<Equal<Words<string>, string[]>>
+  type test3 = Expect<Equal<Words<'abc def', string>, string[]>>
+  type test4 = Expect<Equal<Words<'abc def', ' ', string>, string[]>>
 }
 
 type Mutable<Type> = {
