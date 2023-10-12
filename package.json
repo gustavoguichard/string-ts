@@ -12,6 +12,7 @@
     "dev": "tsup ./src/index.ts --format esm,cjs --watch --dts",
     "lint": "eslint *.ts*",
     "tsc": "tsc --noEmit",
+    "tsc:dist": "tsc --project tsconfig.dist.json",
     "test": "vitest run"
   },
   "devDependencies": {
