@@ -35,6 +35,7 @@ export { toLowerCase } from './native/to-lower-case.js'
 export { toUpperCase } from './native/to-upper-case.js'
 export { trimStart } from './native/trim-start.js'
 export { trimEnd } from './native/trim-end.js'
+export { trim } from './native/trim.js'
 
 // Utils
 export type { Reverse } from './utils/reverse'
