@@ -2,7 +2,9 @@
  * Reverses a string.
  * - `T` The string to reverse.
  */
-type Reverse<T extends string> = T extends `${infer Head}${infer Tail}`
+type Reverse<T extends string> = string extends T
+  ? string
+  : T extends `${infer Head}${infer Tail}`
   ? `${Reverse<Tail>}${Head}`
   : T
 

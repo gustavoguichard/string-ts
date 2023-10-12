@@ -20,6 +20,7 @@ namespace WordsTests {
       ]
     >
   >
+  type test2 = Expect<Equal<Words<string>, string[]>>
 }
 
 type Mutable<Type> = {
