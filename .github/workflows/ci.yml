@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🪡 Install Node.js
         uses: actions/setup-node@v3
@@ -52,7 +52,7 @@ jobs:
         uses: styfle/cancel-workflow-action@0.9.1
 
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🪡 Install Node.js
         uses: actions/setup-node@v3
