@@ -6,9 +6,7 @@
 export type Split<
   T extends string,
   delimiter extends string = '',
-> = string extends T
-  ? string[]
-  : string extends delimiter
+> = string extends T | delimiter
   ? string[]
   : T extends `${infer first}${delimiter}${infer rest}`
   ? [first, ...Split<rest, delimiter>]

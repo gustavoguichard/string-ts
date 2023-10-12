@@ -11,9 +11,7 @@ export type Includes<
   T extends string,
   S extends string,
   P extends number = 0,
-> = string extends T
-  ? boolean
-  : string extends S
+> = string extends T | S
   ? boolean
   : Math.IsNegative<P> extends false
   ? P extends 0

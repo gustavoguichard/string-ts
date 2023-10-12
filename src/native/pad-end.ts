@@ -13,11 +13,9 @@ export type PadEnd<
   T extends string,
   times extends number = 0,
   pad extends string = ' ',
-> = string extends T
+> = string extends T | pad
   ? string
   : number extends times
-  ? string
-  : string extends pad
   ? string
   : Math.IsNegative<times> extends false
   ? Math.Subtract<times, Length<T>> extends infer missing extends number
