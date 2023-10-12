@@ -1,4 +1,5 @@
 import { type DeepCamelKeys, deepCamelKeys } from './deep-camel-keys.js'
+import { type Dict } from '../../internal/fixtures.js'
 
 namespace TypeTransforms {
   type test = Expect<
@@ -10,6 +11,7 @@ namespace TypeTransforms {
       { some: { deepNested: { value: true } }; otherValue: true }
     >
   >
+  type test2 = Expect<Equal<DeepCamelKeys<Dict<string>>, Dict<string>>>
 }
 
 describe('deepCamelKeys', () => {

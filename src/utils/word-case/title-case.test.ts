@@ -6,13 +6,14 @@ import {
 import { type TitleCase, titleCase } from './title-case.js'
 
 namespace TypeTransforms {
-  type test = Expect<
+  type test1 = Expect<
     Equal<
       TitleCase<WeirdTextUnion>,
       | 'Some Weird Cased $* String 1986 Foo Bar W For Wumbo'
       | 'Dont Distribute Unions'
     >
   >
+  type test2 = Expect<Equal<TitleCase<string>, string>>
 }
 
 describe('titleCase', () => {

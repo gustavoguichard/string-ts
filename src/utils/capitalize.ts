@@ -2,6 +2,7 @@ import { charAt } from '../native/char-at.js'
 import { join } from '../native/join.js'
 import { slice } from '../native/slice.js'
 import { toUpperCase } from '../native/to-upper-case.js'
+import type { CapitalizeSTS } from '../internal/intrinsic.js'
 
 /**
  * Capitalizes the first letter of a string. This is a runtime counterpart of `Capitalize<T>` from `src/types.d.ts`.
@@ -9,6 +10,6 @@ import { toUpperCase } from '../native/to-upper-case.js'
  * @returns the capitalized string.
  * @example capitalize('hello world') // 'Hello world'
  */
-export function capitalize<T extends string>(str: T): Capitalize<T> {
+export function capitalize<T extends string>(str: T): CapitalizeSTS<T> {
   return join([toUpperCase(charAt(str, 0)), slice(str, 1)])
 }

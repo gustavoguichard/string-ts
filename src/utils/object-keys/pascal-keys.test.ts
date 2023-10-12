@@ -1,4 +1,5 @@
 import { type PascalKeys, pascalKeys } from './pascal-keys.js'
+import { type Dict } from '../../internal/fixtures.js'
 
 namespace TypeTransforms {
   type test = Expect<
@@ -10,6 +11,7 @@ namespace TypeTransforms {
       { SomeValue: { deepNested: true }; OtherValue: true }
     >
   >
+  type test2 = Expect<Equal<PascalKeys<Dict<string>>, Dict<string>>>
 }
 
 test('pascalKeys', () => {

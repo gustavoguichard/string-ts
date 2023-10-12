@@ -1,4 +1,5 @@
 import { type DelimiterKeys, delimiterKeys } from './delimiter-keys.js'
+import { type Dict } from '../../internal/fixtures.js'
 
 namespace TypeTransforms {
   type test = Expect<
@@ -13,6 +14,7 @@ namespace TypeTransforms {
       { 'some@value': { 'nested-value': true }; 'other@value': true }
     >
   >
+  type test2 = Expect<Equal<DelimiterKeys<Dict<string>, '@'>, Dict<string>>>
 }
 
 test('delimiterKeys', () => {

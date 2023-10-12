@@ -1,4 +1,5 @@
 import { type ConstantKeys, constantKeys } from './constant-keys.js'
+import { type Dict } from '../../internal/fixtures.js'
 
 namespace TypeTransforms {
   type test = Expect<
@@ -10,6 +11,7 @@ namespace TypeTransforms {
       { SOME_VALUE: { deepNested: true }; OTHER_VALUE: true }
     >
   >
+  type test2 = Expect<Equal<ConstantKeys<Dict<string>>, Dict<string>>>
 }
 
 describe('constantKeys', () => {

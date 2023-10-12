@@ -1,4 +1,5 @@
 import { type KebabKeys, kebabKeys } from './kebab-keys.js'
+import { type Dict } from '../../internal/fixtures.js'
 
 namespace TypeTransforms {
   type test = Expect<
@@ -10,6 +11,7 @@ namespace TypeTransforms {
       { 'some-value': { deepNested: true }; 'other-value': true }
     >
   >
+  type test2 = Expect<Equal<KebabKeys<Dict<string>>, Dict<string>>>
 }
 
 test('kebabKeys', () => {

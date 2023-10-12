@@ -1,7 +1,8 @@
 import { type CamelKeys, camelKeys } from './camel-keys.js'
+import { type Dict } from '../../internal/fixtures.js'
 
 namespace TypeTransforms {
-  type test = Expect<
+  type test1 = Expect<
     Equal<
       CamelKeys<{
         'some-value': { 'deep-nested': true }
@@ -10,6 +11,7 @@ namespace TypeTransforms {
       { someValue: { 'deep-nested': true }; otherValue: true }
     >
   >
+  type test2 = Expect<Equal<CamelKeys<Dict<string>>, Dict<string>>>
 }
 
 test('camelKeys', () => {

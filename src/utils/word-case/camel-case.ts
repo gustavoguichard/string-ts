@@ -1,10 +1,11 @@
 import { type PascalCase, pascalCase } from './pascal-case.js'
 import { uncapitalize } from '../uncapitalize.js'
+import type { UncapitalizeSTS } from '../../internal/intrinsic.js'
 
 /**
  * Transforms a string to camelCase.
  */
-export type CamelCase<T extends string> = Uncapitalize<PascalCase<T>>
+export type CamelCase<T extends string> = UncapitalizeSTS<PascalCase<T>>
 
 /**
  * A strongly typed version of `camelCase` that works in both runtime and type level.

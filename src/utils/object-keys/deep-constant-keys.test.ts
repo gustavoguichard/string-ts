@@ -2,6 +2,7 @@ import {
   type DeepConstantKeys,
   deepConstantKeys,
 } from './deep-constant-keys.js'
+import { type Dict } from '../../internal/fixtures.js'
 
 namespace TypeTransforms {
   type test5 = Expect<
@@ -13,6 +14,7 @@ namespace TypeTransforms {
       { SOME: { DEEP_NESTED: { VALUE: true } }; OTHER_VALUE: true }
     >
   >
+  type test2 = Expect<Equal<DeepConstantKeys<Dict<string>>, Dict<string>>>
 }
 
 describe('deepConstantKeys', () => {

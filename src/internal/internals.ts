@@ -18,10 +18,9 @@ function typeOf(t: unknown) {
 /**
  * PascalCases all the words in a tuple of strings
  */
-type PascalCaseAll<T extends string[]> = T extends [
-  infer head extends string,
-  ...infer rest extends string[],
-]
+type PascalCaseAll<T extends string[]> = string[] extends T
+  ? string[]
+  : T extends [infer head extends string, ...infer rest extends string[]]
   ? [Capitalize<Lowercase<head>>, ...PascalCaseAll<rest>]
   : T
 

@@ -12,7 +12,7 @@ namespace TypeTransforms {
       'someWeirdCased$*String1986FooBarWForWumbo' | 'dontDistributeUnions'
     >
   >
-  type test2 = Expect<Equal<CamelCase<string>, Uncapitalize<string>>>
+  type test2 = Expect<Equal<CamelCase<string>, string>>
 }
 
 describe('camelCase', () => {
