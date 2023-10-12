@@ -11,7 +11,11 @@ export type StartsWith<
   T extends string,
   S extends string,
   P extends number = 0,
-> = Math.IsNegative<P> extends false
+> = string extends T | S
+  ? boolean
+  : number extends P
+  ? boolean
+  : Math.IsNegative<P> extends false
   ? P extends 0
     ? T extends `${S}${string}`
       ? true

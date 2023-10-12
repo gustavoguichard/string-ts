@@ -45,7 +45,11 @@ type Reject<tuple, cond, output extends any[] = []> = tuple extends [
 type DropSuffix<
   sentence extends string,
   suffix extends string,
-> = sentence extends `${infer rest}${suffix}` ? rest : sentence
+> = string extends sentence | suffix
+  ? string
+  : sentence extends `${infer rest}${suffix}`
+  ? rest
+  : sentence
 
 /**
  * Returns a tuple of the given length with the given type.

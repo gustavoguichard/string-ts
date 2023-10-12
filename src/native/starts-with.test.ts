@@ -1,7 +1,11 @@
 import { type StartsWith, startsWith } from './starts-with.js'
 
 namespace TypeTests {
-  type test = Expect<Equal<StartsWith<'abc', 'a'>, true>>
+  type test1 = Expect<Equal<StartsWith<'abc', 'a'>, true>>
+  type test2 = Expect<Equal<StartsWith<'abc', 'b', 1>, true>>
+  type test3 = Expect<Equal<StartsWith<string, 'a'>, boolean>>
+  type test4 = Expect<Equal<StartsWith<'abc', string>, boolean>>
+  type test5 = Expect<Equal<StartsWith<'abc', 'a', number>, boolean>>
 }
 
 describe('startsWith', () => {

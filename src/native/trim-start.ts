@@ -2,7 +2,9 @@
  * Trims all whitespaces at the start of a string.
  * T: The string to trim.
  */
-export type TrimStart<T extends string> = T extends ` ${infer rest}`
+export type TrimStart<T extends string> = string extends T
+  ? string
+  : T extends ` ${infer rest}`
   ? TrimStart<rest>
   : T
 /**
