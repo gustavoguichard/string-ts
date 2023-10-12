@@ -13,7 +13,13 @@ export type PadStart<
   T extends string,
   times extends number = 0,
   pad extends string = ' ',
-> = Math.IsNegative<times> extends false
+> = string extends T
+  ? string
+  : number extends times
+  ? string
+  : string extends pad
+  ? string
+  : Math.IsNegative<times> extends false
   ? Math.Subtract<times, Length<T>> extends infer missing extends number
     ? `${Slice<Repeat<pad, missing>, 0, missing>}${T}`
     : never

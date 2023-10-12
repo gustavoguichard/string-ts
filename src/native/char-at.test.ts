@@ -1,7 +1,12 @@
 import { type CharAt, charAt } from './char-at.js'
 
 namespace TypeTests {
-  type test = Expect<Equal<CharAt<'some nice string', 5>, 'n'>>
+  type test1 = Expect<Equal<CharAt<'some nice string', 5>, 'n'>>
+  type test2 = Expect<Equal<CharAt<string, 5>, string>>
+  type test3 = Expect<Equal<CharAt<'some nice string', number>, string>>
+
+  // TODO: index greater than Length<T>
+  // type test4 = Expect<Equal<CharAt<'some nice string', 100>, ''>>
 }
 
 describe('charAt', () => {

@@ -1,9 +1,11 @@
 import { type Split, split } from './split.js'
 
 namespace TypeTests {
-  type test = Expect<
+  type test1 = Expect<
     Equal<Split<'some nice string', ' '>, ['some', 'nice', 'string']>
   >
+  type test2 = Expect<Equal<Split<string, ' '>, string[]>>
+  type test3 = Expect<Equal<Split<'some nice string', string>, string[]>>
 }
 
 describe('split', () => {

@@ -12,7 +12,11 @@ export type EndsWith<
   T extends string,
   S extends string,
   P extends number = Length<T>,
-> = Math.IsNegative<P> extends false
+> = string extends T
+  ? boolean
+  : string extends S
+  ? boolean
+  : Math.IsNegative<P> extends false
   ? P extends Length<T>
     ? S extends Slice<T, Math.Subtract<Length<T>, Length<S>>, Length<T>>
       ? true

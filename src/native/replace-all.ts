@@ -9,7 +9,13 @@ export type ReplaceAll<
   lookup extends string | RegExp,
   replacement extends string = '',
 > = lookup extends string
-  ? sentence extends `${infer rest}${lookup}${infer rest2}`
+  ? string extends lookup
+    ? string
+    : string extends sentence
+    ? string
+    : string extends replacement
+    ? string
+    : sentence extends `${infer rest}${lookup}${infer rest2}`
     ? `${rest}${replacement}${ReplaceAll<rest2, lookup, replacement>}`
     : sentence
   : string
