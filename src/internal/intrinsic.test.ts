@@ -18,3 +18,5 @@ namespace Internals {
   type CapitalizeSTSSTS1 = Expect<Equal<CapitalizeSTS<'abc'>, 'Abc'>>
   type CapitalizeSTSSTS2 = Expect<Equal<CapitalizeSTS<string>, string>>
 }
+
+test('dummy test', () => expect(true).toBe(true))
