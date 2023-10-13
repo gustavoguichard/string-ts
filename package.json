@@ -1,6 +1,6 @@
 {
   "name": "string-ts",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Strongly-typed string functions.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
