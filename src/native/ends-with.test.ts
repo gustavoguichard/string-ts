@@ -1,9 +1,9 @@
 import { type EndsWith, endsWith } from './ends-with.js'
 
 namespace TypeTests {
-  type test = Expect<Equal<EndsWith<'abc', 'c'>, true>>
-  type test1 = Expect<Equal<EndsWith<string, 'c'>, boolean>>
-  type test2 = Expect<Equal<EndsWith<'abc', string>, boolean>>
+  type test1 = Expect<Equal<EndsWith<'abc', 'c'>, true>>
+  type test2 = Expect<Equal<EndsWith<string, 'c'>, boolean>>
+  type test3 = Expect<Equal<EndsWith<'abc', string>, boolean>>
 }
 
 describe('endsWith', () => {
