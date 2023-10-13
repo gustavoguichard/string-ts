@@ -1,7 +1,7 @@
-import { charAt } from '../native/char-at.js'
-import { join } from '../native/join.js'
-import { slice } from '../native/slice.js'
-import { toLowerCase } from '../native/to-lower-case.js'
+import { charAt } from '../../native/char-at.js'
+import { join } from '../../native/join.js'
+import { slice } from '../../native/slice.js'
+import { toLowerCase } from '../../native/to-lower-case.js'
 
 /**
  * Uncapitalizes the first letter of a string. This is a runtime counterpart of `Uncapitalize<T>` from `src/types.d.ts`.

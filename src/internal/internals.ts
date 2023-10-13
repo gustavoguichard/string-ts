@@ -1,4 +1,4 @@
-import { capitalize } from '../utils/capitalize.js'
+import { capitalize } from '../utils/word-case/capitalize.js'
 import { toLowerCase } from '../native/to-lower-case.js'
 
 /**
