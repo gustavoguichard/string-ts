@@ -51,6 +51,9 @@ export type { Digit, IsDigit } from './utils/characters/numbers.js'
 export type { IsSpecial } from './utils/characters/special.js'
 export type { Separator, IsSeparator } from './utils/characters/separators.js'
 
+// Case
+export type { Upper, Lower, Cap, Uncap } from './utils/case.js'
+
 // Word casing
 export type { CamelCase } from './utils/word-case/camel-case.js'
 export type { ConstantCase } from './utils/word-case/constant-case.js'

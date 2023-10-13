@@ -1,6 +1,6 @@
 import { toLowerCase } from '../../native/to-lower-case.js'
 import { type DelimiterCase, delimiterCase } from './delimiter-case.js'
-import type { LowercaseSTS } from '../../internal/intrinsic.js'
+import type { Lower } from '../case.js'
 
 /**
  * A strongly-typed version of `lowerCase` that works in both runtime and type level.
@@ -10,6 +10,6 @@ import type { LowercaseSTS } from '../../internal/intrinsic.js'
  */
 export function lowerCase<T extends string>(
   str: T,
-): LowercaseSTS<DelimiterCase<T, ' '>> {
+): Lower<DelimiterCase<T, ' '>> {
   return toLowerCase(delimiterCase(str, ' '))
 }

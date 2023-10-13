@@ -1,13 +1,13 @@
 import { type DelimiterCase, delimiterCase } from './delimiter-case.js'
 import { toUpperCase } from '../../native/to-upper-case.js'
-import type { UppercaseSTS } from '../../internal/intrinsic.js'
+import type { Upper } from '../case.js'
 
 /**
  * Transforms a string to CONSTANT_CASE.
  */
 export type ConstantCase<T extends string> = string extends T
   ? string
-  : UppercaseSTS<DelimiterCase<T, '_'>>
+  : Upper<DelimiterCase<T, '_'>>
 /**
  * A strongly typed version of `constantCase` that works in both runtime and type level.
  * @param str the string to convert to constant case.

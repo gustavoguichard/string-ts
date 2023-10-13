@@ -1,4 +1,4 @@
-import type { LowercaseSTS } from '../internal/intrinsic.js'
+import type { Lower } from '../utils/case.js'
 
 /**
  * This function is a strongly-typed counterpart of String.prototype.toLowerCase.
@@ -7,5 +7,5 @@ import type { LowercaseSTS } from '../internal/intrinsic.js'
  * @example toLowerCase('HELLO WORLD') // 'hello world'
  */
 export function toLowerCase<T extends string>(str: T) {
-  return str.toLowerCase() as LowercaseSTS<T>
+  return str.toLowerCase() as Lower<T>
 }

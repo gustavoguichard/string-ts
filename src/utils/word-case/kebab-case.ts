@@ -1,13 +1,13 @@
 import { type DelimiterCase, delimiterCase } from './delimiter-case.js'
 import { toLowerCase } from '../../native/to-lower-case.js'
-import type { LowercaseSTS } from '../../internal/intrinsic.js'
+import type { Lower } from '../case.js'
 
 /**
  * Transforms a string to kebab-case.
  */
 export type KebabCase<T extends string> = string extends T
   ? string
-  : LowercaseSTS<DelimiterCase<T, '-'>>
+  : Lower<DelimiterCase<T, '-'>>
 /**
  * A strongly typed version of `kebabCase` that works in both runtime and type level.
  * @param str the string to convert to kebab case.

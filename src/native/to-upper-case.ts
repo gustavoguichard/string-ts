@@ -1,4 +1,4 @@
-import type { UppercaseSTS } from '../internal/intrinsic.js'
+import type { Upper } from '../utils/case.js'
 
 /**
  * This function is a strongly-typed counterpart of String.prototype.toUpperCase.
@@ -7,5 +7,5 @@ import type { UppercaseSTS } from '../internal/intrinsic.js'
  * @example toUpperCase('hello world') // 'HELLO WORLD'
  */
 export function toUpperCase<T extends string>(str: T) {
-  return str.toUpperCase() as UppercaseSTS<T>
+  return str.toUpperCase() as Upper<T>
 }
