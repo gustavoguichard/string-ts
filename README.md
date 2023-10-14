@@ -814,6 +814,27 @@ St.Words<'hello-world'> // ['hello', 'world']
 
 ### Casing type utilities
 
+#### Wrappers around TS built-in types
+
+```ts
+St.Upper<'abc'> // 'ABC'
+St.Lower<'ABC'> // 'abc'
+St.Cap<'abc'> // 'Abc'
+St.Uncap<'ABC'> // 'aBC'
+```
+
+TS built-in types like `Uppercase` are only meant for literals.
+For contrast:
+
+```ts
+// string-ts
+St.Upper<'abc'> // 'ABC'
+St.Upper<string> // string
+// built-in type
+Uppercase<'abc'> // 'ABC'
+Uppercase<string> // Uppercase<string>
+```
+
 #### Core
 
 ```ts
