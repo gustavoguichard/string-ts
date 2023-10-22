@@ -1,5 +1,5 @@
 import { type PascalCase, pascalCase } from './pascal-case.js'
-import { uncapitalize } from '../uncapitalize.js'
+import { uncapitalize } from './uncapitalize.js'
 
 /**
  * Transforms a string to camelCase.
