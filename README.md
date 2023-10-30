@@ -38,7 +38,7 @@ TypeScript yields the best static analysis when types are highly specific.
 Literals are more specific than type `string`.
 This library preserves literals (and unions of literals) after transformations, unlike most existing utility libraries (and built-in string methods.)
 
-[I still didn't get the purpose of this library 🤔](#interview)
+[I still didn't get the purpose of this library 🤔](#%EF%B8%8F-interview)
 
 ### In-depth example
 
