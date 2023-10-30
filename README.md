@@ -38,6 +38,8 @@ TypeScript yields the best static analysis when types are highly specific.
 Literals are more specific than type `string`.
 This library preserves literals (and unions of literals) after transformations, unlike most existing utility libraries (and built-in string methods.)
 
+[I still didn't get the purpose of this library 🤔](#interview)
+
 ### In-depth example
 
 In the below example, I want to get a strongly-typed, camel-case version of `process.env`.
@@ -922,6 +924,12 @@ type MyType<T> = { [K in keyof T as Uppercase<K>]: T[K] }
 const result = deepTransformKeys(data, toUpperCase) as MyType<typeof data>
 //    ^ { 'HELLOWORLD': 'baz' }
 ```
+
+## 🎙️ Interview
+
+For a deeper dive into the code, reasoning, and how this library came to be, check out this interview with the author of StringTs on the Michigan TypeScript Meetup.
+
+[![StringTs on Michigan TS](https://img.youtube.com/vi/dOXpkAmmahw/0.jpg)](https://www.youtube.com/watch?v=dOXpkAmmahw)
 
 ## 🐝 Contributors
 
