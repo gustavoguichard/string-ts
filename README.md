@@ -7,9 +7,7 @@
 [![Code Coverage](https://img.shields.io/codecov/c/github/gustavoguichard/string-ts)](https://app.codecov.io/gh/gustavoguichard/string-ts)
 [![All Contributors](https://img.shields.io/github/contributors/gustavoguichard/string-ts)](#-contributors)
 
-# string-ts
-
-Strongly-typed string functions for all!
+## Strongly-typed string functions for all!
 
 ![A demonstration of string-ts](https://github.com/gustavoguichard/string-ts/assets/566971/0aa5603f-871d-4eb7-8ace-6a73466cec4d)
 
