@@ -13,7 +13,11 @@ export type Truncate<
   T extends string,
   Size extends number,
   Omission extends string = '...',
-> = Math.IsNegative<Size> extends true
+> = string extends T | Omission
+  ? string
+  : number extends Size
+  ? string
+  : Math.IsNegative<Size> extends true
   ? Omission
   : Math.Subtract<Length<T>, Size> extends 0
   ? T
@@ -32,8 +36,11 @@ export function truncate<
   T extends string,
   S extends number,
   P extends string = '...',
->(sentence: T, length: S, omission = '...' as P): Truncate<T, S, P> {
+>(sentence: T, length: S, omission = '...' as P) {
   if (length < 0) return omission as Truncate<T, S, P>
   if (sentence.length <= length) return sentence as Truncate<T, S, P>
-  return join([sentence.slice(0, length - omission.length), omission])
+  return join([
+    sentence.slice(0, length - omission.length),
+    omission,
+  ]) as Truncate<T, S, P>
 }

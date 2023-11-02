@@ -3,7 +3,9 @@ import type { Split } from './split.js'
 /**
  * Gets the length of a string.
  */
-export type Length<T extends string> = Split<T>['length']
+export type Length<T extends string> = string extends T
+  ? number
+  : Split<T>['length']
 /**
  * A strongly-typed version of `String.prototype.length`.
  * @param str the string to get the length from.

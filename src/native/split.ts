@@ -4,9 +4,11 @@
  * delimiter: The delimiter.
  */
 export type Split<
-  T,
+  T extends string,
   delimiter extends string = '',
-> = T extends `${infer first}${delimiter}${infer rest}`
+> = string extends T | delimiter
+  ? string[]
+  : T extends `${infer first}${delimiter}${infer rest}`
   ? [first, ...Split<rest, delimiter>]
   : T extends ''
   ? []

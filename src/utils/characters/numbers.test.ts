@@ -5,6 +5,7 @@ namespace TypeChecks {
   type test2 = Expect<Equal<IsDigit<'a'>, false>>
   type test3 = Expect<Equal<IsDigit<'A'>, false>>
   type test4 = Expect<Equal<IsDigit<'$'>, false>>
+  type test5 = Expect<Equal<IsDigit<string>, boolean>>
 }
 
 test('dummy test', () => expect(true).toBe(true))

@@ -2,7 +2,9 @@
  * Trims all whitespaces at the end of a string.
  * T: The string to trim.
  */
-export type TrimEnd<T extends string> = T extends `${infer rest} `
+export type TrimEnd<T extends string> = string extends T
+  ? string
+  : T extends `${infer rest} `
   ? TrimEnd<rest>
   : T
 /**

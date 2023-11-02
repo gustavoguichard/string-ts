@@ -1,7 +1,8 @@
 import { type Trim, trim } from './trim.js'
 
 namespace TypeTests {
-  type test = Expect<Equal<Trim<' some nice string '>, 'some nice string'>>
+  type test1 = Expect<Equal<Trim<' some nice string '>, 'some nice string'>>
+  type test2 = Expect<Equal<Trim<string>, string>>
 }
 
 describe('trim', () => {
