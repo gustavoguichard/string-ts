@@ -964,7 +964,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 StringTs logo by [NUMI](https://github.com/numi-hq/open-design):
 
-[<img src="https://raw.githubusercontent.com/numi-hq/open-design/main/assets/numi-lockup.png" alt="NUMI Logo" style="width: 200px;"/>](https://numi.tech/?ref=superjson)
+[<img src="https://raw.githubusercontent.com/numi-hq/open-design/main/assets/numi-lockup.png" alt="NUMI Logo" style="width: 200px;"/>](https://numi.tech/?ref=string-ts)
 
 ## 🫶 Acknowledgements
 
