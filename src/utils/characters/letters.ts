@@ -6,17 +6,27 @@ type LowerChars = Lowercase<UpperChars>
 /**
  * Checks if the given character is an upper case letter.
  */
-export type IsUpper<T extends string> = T extends UpperChars ? true : false
+export type IsUpper<T extends string> = string extends T
+  ? boolean
+  : T extends UpperChars
+  ? true
+  : false
 
 /**
  * Checks if the given character is a lower case letter.
  */
-export type IsLower<T extends string> = T extends LowerChars ? true : false
+export type IsLower<T extends string> = string extends T
+  ? boolean
+  : T extends LowerChars
+  ? true
+  : false
 
 /**
  * Checks if the given character is a letter.
  */
-export type IsLetter<T extends string> = IsUpper<T> extends true
+export type IsLetter<T extends string> = string extends T
+  ? boolean
+  : IsUpper<T> extends true
   ? true
   : IsLower<T> extends true
   ? true

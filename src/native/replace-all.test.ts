@@ -2,8 +2,18 @@
 import { type ReplaceAll, replaceAll } from './replace-all.js'
 
 namespace TypeTests {
-  type test = Expect<
+  type test1 = Expect<
     Equal<ReplaceAll<'some nice string', ' ', '-'>, 'some-nice-string'>
+  >
+  type test2 = Expect<
+    Equal<ReplaceAll<'some nice string', RegExp, '-'>, string>
+  >
+  type test3 = Expect<Equal<ReplaceAll<string, ' ', '-'>, string>>
+  type test4 = Expect<
+    Equal<ReplaceAll<'some nice string', string, '-'>, string>
+  >
+  type test5 = Expect<
+    Equal<ReplaceAll<'some nice string', ' ', string>, string>
   >
 }
 

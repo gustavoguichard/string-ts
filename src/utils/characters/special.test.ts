@@ -8,5 +8,6 @@ namespace TypeChecks {
   type test5 = Expect<Equal<Subject.IsSpecial<' '>, false>>
   type test6 = Expect<Equal<Subject.IsSpecial<'*'>, true>>
   type test7 = Expect<Equal<Subject.IsSpecial<'_'>, false>>
+  type test8 = Expect<Equal<Subject.IsSpecial<string>, boolean>>
 }
 test('dummy test', () => expect(true).toBe(true))

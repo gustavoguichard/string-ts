@@ -7,7 +7,9 @@ export type Join<
   T extends readonly string[],
   delimiter extends string = '',
 > = string[] extends T
-  ? string // Avoid spending resources on a wide type
+  ? string
+  : string extends delimiter
+  ? string
   : T extends readonly [
       infer first extends string,
       ...infer rest extends string[],

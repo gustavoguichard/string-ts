@@ -11,7 +11,11 @@ export type Slice<
   T extends string,
   startIndex extends number = 0,
   endIndex extends number = Length<T>,
-> = T extends `${infer head}${infer rest}`
+> = string extends T
+  ? string
+  : number extends startIndex | endIndex
+  ? string
+  : T extends `${infer head}${infer rest}`
   ? startIndex extends 0
     ? endIndex extends 0
       ? ''

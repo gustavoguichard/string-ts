@@ -1,20 +1,23 @@
 import type { IsLower, IsUpper, IsLetter } from './letters.js'
 
 namespace TypeChecks {
-  type test1 = Expect<Equal<IsLower<'1'>, false>>
-  type test2 = Expect<Equal<IsLower<'a'>, true>>
-  type test3 = Expect<Equal<IsLower<'A'>, false>>
-  type test4 = Expect<Equal<IsLower<'$'>, false>>
+  type testIsLower1 = Expect<Equal<IsLower<'1'>, false>>
+  type testIsLower2 = Expect<Equal<IsLower<'a'>, true>>
+  type testIsLower3 = Expect<Equal<IsLower<'A'>, false>>
+  type testIsLower4 = Expect<Equal<IsLower<'$'>, false>>
+  type testIsLower5 = Expect<Equal<IsLower<string>, boolean>>
 
-  type test5 = Expect<Equal<IsUpper<'1'>, false>>
-  type test6 = Expect<Equal<IsUpper<'a'>, false>>
-  type test7 = Expect<Equal<IsUpper<'A'>, true>>
-  type test8 = Expect<Equal<IsUpper<'$'>, false>>
+  type testIsUpper1 = Expect<Equal<IsUpper<'1'>, false>>
+  type testIsUpper2 = Expect<Equal<IsUpper<'a'>, false>>
+  type testIsUpper3 = Expect<Equal<IsUpper<'A'>, true>>
+  type testIsUpper4 = Expect<Equal<IsUpper<'$'>, false>>
+  type testIsUpper5 = Expect<Equal<IsUpper<string>, boolean>>
 
-  type test9 = Expect<Equal<IsLetter<'1'>, false>>
-  type test10 = Expect<Equal<IsLetter<'a'>, true>>
-  type test11 = Expect<Equal<IsLetter<'A'>, true>>
-  type test12 = Expect<Equal<IsLetter<'$'>, false>>
+  type testIsLetter1 = Expect<Equal<IsLetter<'1'>, false>>
+  type testIsLetter2 = Expect<Equal<IsLetter<'a'>, true>>
+  type testIsLetter3 = Expect<Equal<IsLetter<'A'>, true>>
+  type testIsLetter4 = Expect<Equal<IsLetter<'$'>, false>>
+  type testIsLetter5 = Expect<Equal<IsLetter<string>, boolean>>
 }
 
 test('dummy test', () => expect(true).toBe(true))

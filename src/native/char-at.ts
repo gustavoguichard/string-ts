@@ -5,7 +5,11 @@ import type { Split } from './split.js'
  * T: The string to get the character from.
  * index: The index of the character.
  */
-export type CharAt<T extends string, index extends number> = Split<T>[index]
+export type CharAt<T extends string, index extends number> = string extends T
+  ? string
+  : number extends index
+  ? string
+  : Split<T>[index]
 /**
  * A strongly-typed version of `String.prototype.charAt`.
  * @param str the string to get the character from.
@@ -17,5 +21,5 @@ export function charAt<T extends string, I extends number>(
   str: T,
   index: I,
 ): CharAt<T, I> {
-  return str.charAt(index)
+  return str.charAt(index) as CharAt<T, I>
 }

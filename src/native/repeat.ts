@@ -7,7 +7,14 @@ import type { TupleOf } from '../internal/internals.js'
  * T: The string to repeat.
  * N: The number of times to repeat.
  */
-export type Repeat<T extends string, times extends number = 0> = times extends 0
+export type Repeat<
+  T extends string,
+  times extends number = 0,
+> = string extends T
+  ? string
+  : number extends times
+  ? string
+  : times extends 0
   ? ''
   : Math.IsNegative<times> extends false
   ? Join<TupleOf<times, T>>

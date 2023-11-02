@@ -15,7 +15,7 @@ export type Words<
   sentence extends string,
   word extends string = '',
   prev extends string = '',
-> = string extends sentence
+> = string extends sentence | word | prev
   ? string[] // Avoid spending resources on a wide type
   : sentence extends `${infer curr}${infer rest}`
   ? IsSeparator<curr> extends true
