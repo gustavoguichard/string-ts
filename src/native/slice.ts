@@ -17,7 +17,7 @@ export type Slice<
   startIndex extends number = 0,
   endIndex extends number = Length<T>,
 > = All<
-  [IsStringLiteral<T>, IsNumberLiteral<startIndex>, IsNumberLiteral<endIndex>]
+  [IsStringLiteral<T>, IsNumberLiteral<startIndex | endIndex>]
 > extends true
   ? T extends `${infer head}${infer rest}`
     ? startIndex extends 0

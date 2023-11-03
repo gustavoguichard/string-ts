@@ -16,9 +16,7 @@ export type Words<
   sentence extends string,
   word extends string = '',
   prev extends string = '',
-> = All<
-  [IsStringLiteral<sentence>, IsStringLiteral<word>, IsStringLiteral<prev>]
-> extends true
+> = IsStringLiteral<sentence | word | prev> extends true
   ? sentence extends `${infer curr}${infer rest}`
     ? IsSeparator<curr> extends true
       ? // Step 1: Remove separators

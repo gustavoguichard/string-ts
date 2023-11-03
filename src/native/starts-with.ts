@@ -16,9 +16,7 @@ export type StartsWith<
   T extends string,
   S extends string,
   P extends number = 0,
-> = All<
-  [IsStringLiteral<T>, IsStringLiteral<S>, IsNumberLiteral<P>]
-> extends true
+> = All<[IsStringLiteral<T | S>, IsNumberLiteral<P>]> extends true
   ? Math.IsNegative<P> extends false
     ? P extends 0
       ? T extends `${S}${string}`

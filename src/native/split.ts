@@ -1,13 +1,14 @@
-import type { All, IsStringLiteral } from '../internal/literals.js'
+import type { IsStringLiteral } from '../internal/literals.js'
 
 /**
  * Splits a string into an array of substrings.
  * T: The string to split.
  * delimiter: The delimiter.
  */
-export type Split<T extends string, delimiter extends string = ''> = All<
-  [IsStringLiteral<T>, IsStringLiteral<delimiter>]
-> extends true
+export type Split<
+  T extends string,
+  delimiter extends string = '',
+> = IsStringLiteral<T | delimiter> extends true
   ? T extends `${infer first}${delimiter}${infer rest}`
     ? [first, ...Split<rest, delimiter>]
     : T extends ''

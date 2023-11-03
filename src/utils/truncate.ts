@@ -18,9 +18,7 @@ export type Truncate<
   T extends string,
   Size extends number,
   Omission extends string = '...',
-> = All<
-  [IsStringLiteral<T>, IsNumberLiteral<Size>, IsStringLiteral<Omission>]
-> extends true
+> = All<[IsStringLiteral<T | Omission>, IsNumberLiteral<Size>]> extends true
   ? Math.IsNegative<Size> extends true
     ? Omission
     : Math.Subtract<Length<T>, Size> extends 0

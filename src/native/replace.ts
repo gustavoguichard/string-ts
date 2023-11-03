@@ -11,13 +11,7 @@ export type Replace<
   lookup extends string | RegExp,
   replacement extends string = '',
 > = lookup extends string
-  ? All<
-      [
-        IsStringLiteral<lookup>,
-        IsStringLiteral<sentence>,
-        IsStringLiteral<replacement>,
-      ]
-    > extends true
+  ? IsStringLiteral<lookup | sentence | replacement> extends true
     ? sentence extends `${infer rest}${lookup}${infer rest2}`
       ? `${rest}${replacement}${rest2}`
       : sentence

@@ -1,7 +1,11 @@
 import type { Math } from '../internal/math.js'
 import type { Length } from './length.js'
 import type { Slice } from './slice.js'
-import type { All, IsStringLiteral } from '../internal/literals.js'
+import type {
+  All,
+  IsNumberLiteral,
+  IsStringLiteral,
+} from '../internal/literals.js'
 
 /**
  * Checks if a string ends with another string.
@@ -13,7 +17,7 @@ export type EndsWith<
   T extends string,
   S extends string,
   P extends number = Length<T>,
-> = All<[IsStringLiteral<T>, IsStringLiteral<S>]> extends true
+> = All<[IsStringLiteral<T | S>, IsNumberLiteral<P>]> extends true
   ? Math.IsNegative<P> extends false
     ? P extends Length<T>
       ? S extends Slice<T, Math.Subtract<Length<T>, Length<S>>, Length<T>>

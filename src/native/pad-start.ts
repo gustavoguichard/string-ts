@@ -18,9 +18,7 @@ export type PadStart<
   T extends string,
   times extends number = 0,
   pad extends string = ' ',
-> = All<
-  [IsStringLiteral<T>, IsNumberLiteral<times>, IsStringLiteral<pad>]
-> extends true
+> = All<[IsStringLiteral<T | pad>, IsNumberLiteral<times>]> extends true
   ? Math.IsNegative<times> extends false
     ? Math.Subtract<times, Length<T>> extends infer missing extends number
       ? `${Slice<Repeat<pad, missing>, 0, missing>}${T}`
