@@ -1,4 +1,4 @@
-import type { All, IsStringLiteral } from '../internal/literals.js'
+import type { IsStringLiteral } from '../internal/literals.js'
 
 /**
  * Replaces the first occurrence of a string with another string.

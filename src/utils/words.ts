@@ -4,7 +4,7 @@ import { SEPARATOR_REGEX } from './characters/separators.js'
 import type { IsLower, IsUpper } from './characters/letters.js'
 import type { IsDigit } from './characters/numbers.js'
 import type { IsSpecial } from './characters/special.js'
-import type { IsStringLiteral, All } from '../internal/literals.js'
+import type { IsStringLiteral } from '../internal/literals.js'
 
 /**
  * Splits a string into words.
