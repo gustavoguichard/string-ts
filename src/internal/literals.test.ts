@@ -57,6 +57,7 @@ namespace LiteralsTests {
   type testISL14 = Expect<Equal<true, IsStringLiteral<`${boolean}bar`>>>
   type testISL15 = Expect<Equal<true, IsStringLiteral<`${undefined}bar`>>>
   type testISL16 = Expect<Equal<true, IsStringLiteral<`${null}bar`>>>
+  type testISL17 = Expect<Equal<false, IsStringLiteral<`${number}`>>>
 
   // IsStringLiteralArray
   type testISLA1 = Expect<Equal<IsStringLiteralArray<['foo', 'bar']>, true>>
