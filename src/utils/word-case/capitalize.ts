@@ -9,6 +9,6 @@ import { toUpperCase } from '../../native/to-upper-case.js'
  * @returns the capitalized string.
  * @example capitalize('hello world') // 'Hello world'
  */
-export function capitalize<T extends string>(str: T): Capitalize<T> {
-  return join([toUpperCase(charAt(str, 0)), slice(str, 1)])
+export function capitalize<T extends string>(str: T) {
+  return join([toUpperCase(charAt(str, 0)), slice(str, 1)]) as Capitalize<T>
 }
