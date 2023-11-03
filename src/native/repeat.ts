@@ -2,23 +2,27 @@ import type { Math } from '../internal/math.js'
 import type { Join } from './join.js'
 import type { TupleOf } from '../internal/internals.js'
 
+import type {
+  All,
+  IsStringLiteral,
+  IsNumberLiteral,
+} from '../internal/literals.js'
+
 /**
  * Repeats a string N times.
  * T: The string to repeat.
  * N: The number of times to repeat.
  */
-export type Repeat<
-  T extends string,
-  times extends number = 0,
-> = string extends T
-  ? string
-  : number extends times
-  ? string
-  : times extends 0
-  ? ''
-  : Math.IsNegative<times> extends false
-  ? Join<TupleOf<times, T>>
-  : never
+export type Repeat<T extends string, times extends number = 0> = All<
+  [IsStringLiteral<T>, IsNumberLiteral<times>]
+> extends true
+  ? times extends 0
+    ? ''
+    : Math.IsNegative<times> extends false
+    ? Join<TupleOf<times, T>>
+    : never
+  : string
+
 /**
  * A strongly-typed version of `String.prototype.repeat`.
  * @param str the string to repeat.

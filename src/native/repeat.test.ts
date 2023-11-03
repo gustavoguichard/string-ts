@@ -3,7 +3,8 @@ import { type Repeat, repeat } from './repeat.js'
 namespace TypeTests {
   type test1 = Expect<Equal<Repeat<' ', 3>, '   '>>
   type test2 = Expect<Equal<Repeat<string, 3>, string>>
-  type test3 = Expect<Equal<Repeat<' ', number>, string>>
+  type test3 = Expect<Equal<Repeat<Uppercase<string>, 3>, string>>
+  type test4 = Expect<Equal<Repeat<' ', number>, string>>
 }
 
 describe('repeat', () => {

@@ -1,3 +1,5 @@
+import type { IsStringLiteral } from '../../internal/literals.js'
+
 // prettier-ignore
 type UpperChars = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
 type LowerChars = Lowercase<UpperChars>
@@ -6,28 +8,26 @@ type LowerChars = Lowercase<UpperChars>
 /**
  * Checks if the given character is an upper case letter.
  */
-export type IsUpper<T extends string> = string extends T
-  ? boolean
-  : T extends UpperChars
-  ? true
-  : false
+export type IsUpper<T extends string> = IsStringLiteral<T> extends true
+  ? T extends UpperChars
+    ? true
+    : false
+  : boolean
 
 /**
  * Checks if the given character is a lower case letter.
  */
-export type IsLower<T extends string> = string extends T
-  ? boolean
-  : T extends LowerChars
-  ? true
-  : false
+export type IsLower<T extends string> = IsStringLiteral<T> extends true
+  ? T extends LowerChars
+    ? true
+    : false
+  : boolean
 
 /**
  * Checks if the given character is a letter.
  */
-export type IsLetter<T extends string> = string extends T
-  ? boolean
-  : IsUpper<T> extends true
-  ? true
-  : IsLower<T> extends true
-  ? true
-  : false
+export type IsLetter<T extends string> = IsStringLiteral<T> extends true
+  ? T extends LowerChars | UpperChars
+    ? true
+    : false
+  : boolean

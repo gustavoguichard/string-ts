@@ -2,7 +2,8 @@ import { type Length, length } from './length.js'
 
 namespace TypeTests {
   type test1 = Expect<Equal<Length<'some nice string'>, 16>>
-  type test2 = Expect<Equal<Length<string>, number>>
+  type test2 = Expect<Equal<Length<Uppercase<string>>, number>>
+  type test3 = Expect<Equal<Length<string>, number>>
 }
 
 describe('length', () => {

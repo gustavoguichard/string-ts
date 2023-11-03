@@ -9,10 +9,11 @@ namespace TypeTests {
     Equal<ReplaceAll<'some nice string', RegExp, '-'>, string>
   >
   type test3 = Expect<Equal<ReplaceAll<string, ' ', '-'>, string>>
-  type test4 = Expect<
+  type test4 = Expect<Equal<ReplaceAll<Uppercase<string>, ' ', '-'>, string>>
+  type test5 = Expect<
     Equal<ReplaceAll<'some nice string', string, '-'>, string>
   >
-  type test5 = Expect<
+  type test6 = Expect<
     Equal<ReplaceAll<'some nice string', ' ', string>, string>
   >
 }

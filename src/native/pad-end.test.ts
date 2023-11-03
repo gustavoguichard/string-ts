@@ -3,8 +3,9 @@ import { type PadEnd, padEnd } from './pad-end.js'
 namespace TypeTests {
   type test1 = Expect<Equal<PadEnd<'hello', 10, ' '>, 'hello     '>>
   type test2 = Expect<Equal<PadEnd<string, 10, ' '>, string>>
-  type test3 = Expect<Equal<PadEnd<'hello', number, ' '>, string>>
-  type test4 = Expect<Equal<PadEnd<'hello', 10, string>, string>>
+  type test3 = Expect<Equal<PadEnd<Uppercase<string>, 10, ' '>, string>>
+  type test4 = Expect<Equal<PadEnd<'hello', number, ' '>, string>>
+  type test5 = Expect<Equal<PadEnd<'hello', 10, string>, string>>
 }
 
 describe('padEnd', () => {

@@ -5,7 +5,8 @@ namespace TypeTests {
     Equal<Split<'some nice string', ' '>, ['some', 'nice', 'string']>
   >
   type test2 = Expect<Equal<Split<string, ' '>, string[]>>
-  type test3 = Expect<Equal<Split<'some nice string', string>, string[]>>
+  type test3 = Expect<Equal<Split<Uppercase<string>, ' '>, string[]>>
+  type test4 = Expect<Equal<Split<'some nice string', string>, string[]>>
 }
 
 describe('split', () => {
