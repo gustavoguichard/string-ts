@@ -1,3 +1,5 @@
+import type { IsStringLiteral } from '../internal/literals.js'
+
 /**
  * Splits a string into an array of substrings.
  * T: The string to split.
@@ -6,13 +8,13 @@
 export type Split<
   T extends string,
   delimiter extends string = '',
-> = string extends T | delimiter
-  ? string[]
-  : T extends `${infer first}${delimiter}${infer rest}`
-  ? [first, ...Split<rest, delimiter>]
-  : T extends ''
-  ? []
-  : [T]
+> = IsStringLiteral<T | delimiter> extends true
+  ? T extends `${infer first}${delimiter}${infer rest}`
+    ? [first, ...Split<rest, delimiter>]
+    : T extends ''
+    ? []
+    : [T]
+  : string[]
 /**
  * A strongly-typed version of `String.prototype.split`.
  * @param str the string to split.

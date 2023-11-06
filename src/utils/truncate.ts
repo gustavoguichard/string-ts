@@ -2,6 +2,11 @@ import type { Math } from '../internal/math.js'
 import { join, type Join } from '../native/join.js'
 import { type Length } from '../native/length.js'
 import { type Slice } from '../native/slice.js'
+import type {
+  IsStringLiteral,
+  IsNumberLiteral,
+  All,
+} from '../internal/literals.js'
 
 // STRING FUNCTIONS
 
@@ -13,15 +18,13 @@ export type Truncate<
   T extends string,
   Size extends number,
   Omission extends string = '...',
-> = string extends T | Omission
-  ? string
-  : number extends Size
-  ? string
-  : Math.IsNegative<Size> extends true
-  ? Omission
-  : Math.Subtract<Length<T>, Size> extends 0
-  ? T
-  : Join<[Slice<T, 0, Math.Subtract<Size, Length<Omission>>>, Omission]>
+> = All<[IsStringLiteral<T | Omission>, IsNumberLiteral<Size>]> extends true
+  ? Math.IsNegative<Size> extends true
+    ? Omission
+    : Math.Subtract<Length<T>, Size> extends 0
+    ? T
+    : Join<[Slice<T, 0, Math.Subtract<Size, Length<Omission>>>, Omission]>
+  : string
 
 /**
  * A strongly typed function to truncate a string if it's longer than the given maximum string length.

@@ -1,12 +1,14 @@
+import type { IsStringLiteral } from '../internal/literals.js'
+
 /**
  * Trims all whitespaces at the start of a string.
  * T: The string to trim.
  */
-export type TrimStart<T extends string> = string extends T
-  ? string
-  : T extends ` ${infer rest}`
-  ? TrimStart<rest>
-  : T
+export type TrimStart<T extends string> = IsStringLiteral<T> extends true
+  ? T extends ` ${infer rest}`
+    ? TrimStart<rest>
+    : T
+  : string
 /**
  * A strongly-typed version of `String.prototype.trimStart`.
  * @param str the string to trim.

@@ -1,55 +1,43 @@
-import * as subject from './internals'
-import type * as Subject from './internals'
+import type { Reject, PascalCaseAll, DropSuffix, TupleOf } from './internals.js'
+import { typeOf, pascalCaseAll } from './internals.js'
 
 namespace Internals {
   type testPascalCaseAll1 = Expect<
-    Equal<
-      Subject.PascalCaseAll<['one', 'two', 'three']>,
-      ['One', 'Two', 'Three']
-    >
+    Equal<PascalCaseAll<['one', 'two', 'three']>, ['One', 'Two', 'Three']>
   >
-  type testPascalCaseAll2 = Expect<
-    Equal<Subject.PascalCaseAll<string[]>, string[]>
-  >
+  type testPascalCaseAll2 = Expect<Equal<PascalCaseAll<string[]>, string[]>>
 
   type testReject1 = Expect<
-    Equal<
-      Subject.Reject<['one', '', 'two', '', 'three'], ''>,
-      ['one', 'two', 'three']
-    >
+    Equal<Reject<['one', '', 'two', '', 'three'], ''>, ['one', 'two', 'three']>
   >
 
   type testDropSuffix1 = Expect<
-    Equal<Subject.DropSuffix<'helloWorld', 'World'>, 'hello'>
+    Equal<DropSuffix<'helloWorld', 'World'>, 'hello'>
   >
-  type testDropSuffix2 = Expect<
-    Equal<Subject.DropSuffix<string, 'World'>, string>
-  >
-  type testDropSuffix3 = Expect<
-    Equal<Subject.DropSuffix<'helloWorld', string>, string>
-  >
+  type testDropSuffix2 = Expect<Equal<DropSuffix<string, 'World'>, string>>
+  type testDropSuffix3 = Expect<Equal<DropSuffix<'helloWorld', string>, string>>
 
-  type testTupleOf1 = Expect<Equal<Subject.TupleOf<3, ' '>, [' ', ' ', ' ']>>
+  type testTupleOf1 = Expect<Equal<TupleOf<3, ' '>, [' ', ' ', ' ']>>
 }
 
 describe('typeOf', () => {
   test('null', () => {
-    expect(subject.typeOf(null)).toEqual('null')
+    expect(typeOf(null)).toEqual('null')
   })
   test('object', () => {
-    expect(subject.typeOf({})).toEqual('object')
+    expect(typeOf({})).toEqual('object')
   })
   test('object', () => {
-    expect(subject.typeOf(['a', 'b', 'c'])).toEqual('array')
+    expect(typeOf(['a', 'b', 'c'])).toEqual('array')
   })
   test('string', () => {
-    expect(subject.typeOf('hello')).toEqual('string')
+    expect(typeOf('hello')).toEqual('string')
   })
 })
 
 describe('pascalCaseAll', () => {
   test('simple', () => {
-    const result = subject.pascalCaseAll(['one', 'two', 'three'])
+    const result = pascalCaseAll(['one', 'two', 'three'])
     const expected = ['One', 'Two', 'Three']
     expect(result).toEqual(expected)
   })

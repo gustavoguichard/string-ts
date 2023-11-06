@@ -15,6 +15,7 @@ function typeOf(t: unknown) {
 }
 
 // MAP TYPES
+
 /**
  * PascalCases all the words in a tuple of strings
  */

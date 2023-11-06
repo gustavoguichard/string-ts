@@ -5,6 +5,7 @@ namespace TypeTests {
     Equal<TrimStart<' some nice string '>, 'some nice string '>
   >
   type test2 = Expect<Equal<TrimStart<string>, string>>
+  type test3 = Expect<Equal<TrimStart<Uppercase<string>>, string>>
 }
 
 describe('trimStart', () => {

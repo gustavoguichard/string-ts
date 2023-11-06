@@ -1,5 +1,10 @@
 import type { Math } from '../internal/math.js'
 import type { Slice } from './slice.js'
+import type {
+  All,
+  IsStringLiteral,
+  IsNumberLiteral,
+} from '../internal/literals.js'
 
 /**
  * Checks if a string starts with another string.
@@ -11,17 +16,15 @@ export type StartsWith<
   T extends string,
   S extends string,
   P extends number = 0,
-> = string extends T | S
-  ? boolean
-  : number extends P
-  ? boolean
-  : Math.IsNegative<P> extends false
-  ? P extends 0
-    ? T extends `${S}${string}`
-      ? true
-      : false
-    : StartsWith<Slice<T, P>, S, 0> // P is >0, slice
-  : StartsWith<T, S, 0> // P is negative, ignore it
+> = All<[IsStringLiteral<T | S>, IsNumberLiteral<P>]> extends true
+  ? Math.IsNegative<P> extends false
+    ? P extends 0
+      ? T extends `${S}${string}`
+        ? true
+        : false
+      : StartsWith<Slice<T, P>, S, 0> // P is >0, slice
+    : StartsWith<T, S, 0> // P is negative, ignore it
+  : boolean
 
 /**
  * A strongly-typed version of `String.prototype.startsWith`.

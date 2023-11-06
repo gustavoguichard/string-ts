@@ -6,8 +6,9 @@ namespace TypeTests {
   >
   type test2 = Expect<Equal<Replace<'some nice string', RegExp, '-'>, string>>
   type test3 = Expect<Equal<Replace<string, ' ', '-'>, string>>
-  type test4 = Expect<Equal<Replace<'some nice string', string, '-'>, string>>
-  type test5 = Expect<Equal<Replace<'some nice string', ' ', string>, string>>
+  type test4 = Expect<Equal<Replace<Uppercase<string>, ' ', '-'>, string>>
+  type test5 = Expect<Equal<Replace<'some nice string', string, '-'>, string>>
+  type test6 = Expect<Equal<Replace<'some nice string', ' ', string>, string>>
 }
 
 describe('replace', () => {

@@ -4,8 +4,9 @@ namespace TypeTests {
   type test1 = Expect<Equal<Slice<'some nice string', 5>, 'nice string'>>
   type test2 = Expect<Equal<Slice<'some nice string', 5, 9>, 'nice'>>
   type test3 = Expect<Equal<Slice<string, 5, 9>, string>>
-  type test4 = Expect<Equal<Slice<'some nice string', number, 9>, string>>
-  type test5 = Expect<Equal<Slice<'some nice string', 5, number>, string>>
+  type test4 = Expect<Equal<Slice<Uppercase<string>, 5, 9>, string>>
+  type test5 = Expect<Equal<Slice<'some nice string', number, 9>, string>>
+  type test6 = Expect<Equal<Slice<'some nice string', 5, number>, string>>
 }
 
 describe('slice', () => {
