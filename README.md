@@ -131,6 +131,7 @@ It also only work with common ASCII characters characters. We don't plan to supp
   - [trimStart](#trimstart)
 - [Strongly-typed alternatives to common loosely-typed functions](#strongly-typed-alternatives-to-common-loosely-typed-functions)
   - [camelCase](#camelcase)
+  - [dedent](#dedent)
   - [constantCase](#constantcase)
   - [delimiterCase](#delimitercase)
   - [kebabCase](#kebabcase)
@@ -541,6 +542,18 @@ const result = upperCase(str)
 //    ^ 'HELLO WORLD'
 ```
 
+### dedent
+
+This function dedents a string.
+
+```ts
+import { dedent } from 'string-ts'
+
+const str = '  Some text.'
+const result = dedent(str)
+//    ^ 'Some text.'
+```
+
 ### reverse
 
 This function reverses a string.
@@ -794,6 +807,7 @@ Uppercase<'hello world'> // 'HELLO WORLD'
 ```ts
 St.CharAt<'hello world', 6> // 'w'
 St.Concat<['a', 'bc', 'def']> // 'abcdef'
+St.Dedent<'  hello'> // 'hello'
 St.EndsWith<'abc', 'c'> // true
 St.Includes<'abcde', 'bcd'> // true
 St.Join<['hello', 'world'], '-'> // 'hello-world'

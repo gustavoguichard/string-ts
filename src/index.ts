@@ -38,6 +38,8 @@ export { toLowerCase } from './native/to-lower-case.js'
 export { toUpperCase } from './native/to-upper-case.js'
 
 // Utils
+export type { Dedent } from './utils/dedent.js'
+export { dedent } from './utils/dedent.js'
 export type { Reverse } from './utils/reverse'
 export { reverse } from './utils/reverse'
 export type { Truncate } from './utils/truncate.js'
