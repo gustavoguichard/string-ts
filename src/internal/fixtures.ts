@@ -4,4 +4,7 @@ export const SEPARATORS_TEXT =
 export const WEIRD_TEXT =
   ' someWeird-cased$*String1986Foo [Bar] W_FOR_WUMBO...' as const
 
-export type WeirdTextUnion = typeof WEIRD_TEXT | 'dont.distribute unions'
+export type WeirdTextUnion =
+  | typeof WEIRD_TEXT
+  | "where's the leak ma'am"
+  | 'dont.distribute unions'

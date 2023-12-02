@@ -9,7 +9,9 @@ namespace TypeTransforms {
   type test = Expect<
     Equal<
       PascalCase<WeirdTextUnion>,
-      'SomeWeirdCased$*String1986FooBarWForWumbo' | 'DontDistributeUnions'
+      | 'SomeWeirdCased$*String1986FooBarWForWumbo'
+      | 'WheresTheLeakMaam'
+      | 'DontDistributeUnions'
     >
   >
 }

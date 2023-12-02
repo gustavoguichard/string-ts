@@ -10,6 +10,7 @@ namespace TypeTransforms {
     Equal<
       TitleCase<WeirdTextUnion>,
       | 'Some Weird Cased $* String 1986 Foo Bar W For Wumbo'
+      | 'Wheres The Leak Maam'
       | 'Dont Distribute Unions'
     >
   >

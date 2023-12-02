@@ -6,6 +6,7 @@ import type { IsDigit } from './characters/numbers.js'
 import type { IsSpecial } from './characters/special.js'
 import type { IsStringLiteral } from '../internal/literals.js'
 
+// prettier-ignore
 /**
  * Splits a string into words.
  * sentence: The current string to split.
@@ -18,7 +19,10 @@ export type Words<
   prev extends string = '',
 > = IsStringLiteral<sentence | word | prev> extends true
   ? sentence extends `${infer curr}${infer rest}`
-    ? IsSeparator<curr> extends true
+    ? curr extends "'"
+      ? // Step 0: remove apostrophes
+        Words<rest, word, prev>
+      : IsSeparator<curr> extends true
       ? // Step 1: Remove separators
         Reject<[word, ...Words<rest>], ''>
       : prev extends ''
@@ -52,13 +56,14 @@ export type Words<
   : string[] // Avoid spending resources on a wide type
 
 /**
- * A strongly typed function to extract the words from a sentence.
+ * A strongly-typed function to extract the words from a sentence.
  * @param sentence the sentence to extract the words from.
  * @returns an array of words in both type level and runtime.
  * @example words('helloWorld') // ['hello', 'World']
  */
 export function words<T extends string>(sentence: T): Words<T> {
   return sentence
+    .replace(/'/g, '') // Step 0: remove apostrophes
     .replace(SEPARATOR_REGEX, ' ') // Step 1: Remove separators
     .replace(/([a-zA-Z])([0-9])/g, '$1 $2') // Step 2: From non-digit to digit
     .replace(/([0-9])([a-zA-Z])/g, '$1 $2') // Step 3: From digit to non-digit
