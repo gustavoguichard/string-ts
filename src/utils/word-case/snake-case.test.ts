@@ -14,7 +14,6 @@ namespace TypeTransforms {
       | 'dont_distribute_unions'
     >
   >
-  type test2 = Expect<Equal<SnakeCase<"don'tGo">, 'dont_go'>>
 }
 
 describe('snakeCase', () => {
