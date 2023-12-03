@@ -20,10 +20,10 @@ export type Words<
 > = IsStringLiteral<sentence | word | prev> extends true
   ? sentence extends `${infer curr}${infer rest}`
     ? curr extends "'"
-      ? // Step 0: remove apostrophes
+      ? // Step 0: Remove apostrophes (continue current word)
         Words<rest, word, prev>
       : IsSeparator<curr> extends true
-      ? // Step 1: Remove separators
+      ? // Step 1: Remove separators (end current word)
         Reject<[word, ...Words<rest>], ''>
       : prev extends ''
       ? // Start of sentence, start a new word
@@ -63,8 +63,8 @@ export type Words<
  */
 export function words<T extends string>(sentence: T): Words<T> {
   return sentence
-    .replace(/'/g, '') // Step 0: remove apostrophes
-    .replace(SEPARATOR_REGEX, ' ') // Step 1: Remove separators
+    .replace(/'/g, '') // Step 0: Remove apostrophes (continue current word)
+    .replace(SEPARATOR_REGEX, ' ') // Step 1: Remove separators (end current word)
     .replace(/([a-zA-Z])([0-9])/g, '$1 $2') // Step 2: From non-digit to digit
     .replace(/([0-9])([a-zA-Z])/g, '$1 $2') // Step 3: From digit to non-digit
     .replace(/([a-zA-Z0-9_\-./])([^a-zA-Z0-9_\-./])/g, '$1 $2') // Step 4: From non-special to special
