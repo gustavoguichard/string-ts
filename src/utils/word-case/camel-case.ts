@@ -1,10 +1,16 @@
 import { type PascalCase, pascalCase } from './pascal-case.js'
 import { uncapitalize } from './uncapitalize.js'
+import {
+  removeApostrophe,
+  type RemoveApostrophe,
+} from '../characters/apostrophe.js'
 
 /**
  * Transforms a string to camelCase.
  */
-export type CamelCase<T extends string> = Uncapitalize<PascalCase<T>>
+export type CamelCase<T extends string> = Uncapitalize<
+  PascalCase<RemoveApostrophe<T>>
+>
 
 /**
  * A strongly typed version of `camelCase` that works in both runtime and type level.
@@ -13,7 +19,7 @@ export type CamelCase<T extends string> = Uncapitalize<PascalCase<T>>
  * @example camelCase('hello world') // 'helloWorld'
  */
 export function camelCase<T extends string>(str: T): CamelCase<T> {
-  return uncapitalize(pascalCase(str))
+  return uncapitalize(pascalCase(removeApostrophe(str)))
 }
 
 /**

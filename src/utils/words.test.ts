@@ -24,7 +24,7 @@ namespace WordsTests {
   type test3 = Expect<Equal<Words<'abc def', string>, string[]>>
   type test4 = Expect<Equal<Words<'abc def', ' ', string>, string[]>>
   type test5 = Expect<
-    Equal<Words<"Where's the leak ma'am">, ['Wheres', 'the', 'leak', 'maam']>
+    Equal<Words<"Where's the leak ma'am">, ["Where's", 'the', 'leak', "ma'am"]>
   >
 }
 
@@ -74,8 +74,8 @@ describe('words', () => {
     type test = Expect<Equal<typeof result, Mutable<typeof expected>>>
   })
 
-  test('it drops apostrophes', () => {
-    const expected = ['Wheres', 'the', 'leak', 'maam'] as const
+  test('it preserves apostrophes', () => {
+    const expected = ["Where's", 'the', 'leak', "ma'am"] as const
     const result = words("Where's the leak ma'am")
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, Mutable<typeof expected>>>

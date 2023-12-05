@@ -1,10 +1,16 @@
 import { type DelimiterCase, delimiterCase } from './delimiter-case.js'
 import { toUpperCase } from '../../native/to-upper-case.js'
+import {
+  removeApostrophe,
+  type RemoveApostrophe,
+} from '../characters/apostrophe.js'
 
 /**
  * Transforms a string to CONSTANT_CASE.
  */
-export type ConstantCase<T extends string> = Uppercase<DelimiterCase<T, '_'>>
+export type ConstantCase<T extends string> = Uppercase<
+  DelimiterCase<RemoveApostrophe<T>, '_'>
+>
 /**
  * A strongly typed version of `constantCase` that works in both runtime and type level.
  * @param str the string to convert to constant case.
@@ -12,7 +18,7 @@ export type ConstantCase<T extends string> = Uppercase<DelimiterCase<T, '_'>>
  * @example constantCase('hello world') // 'HELLO_WORLD'
  */
 export function constantCase<T extends string>(str: T): ConstantCase<T> {
-  return toUpperCase(delimiterCase(str, '_'))
+  return toUpperCase(delimiterCase(removeApostrophe(str), '_'))
 }
 
 /**
