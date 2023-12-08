@@ -1,4 +1,4 @@
-import type { All, IsStringLiteral } from '../internal/literals.js'
+import type { IsStringLiteral } from '../internal/literals.js'
 
 /**
  * Replaces all the occurrences of a string with another string.

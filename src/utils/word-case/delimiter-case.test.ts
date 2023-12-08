@@ -10,6 +10,7 @@ namespace TypeTransforms {
     Equal<
       DelimiterCase<WeirdTextUnion, '%'>,
       | 'some%Weird%cased%$*%String%1986%Foo%Bar%W%FOR%WUMBO'
+      | 'wheres%the%leak%maam'
       | 'dont%distribute%unions'
     >
   >

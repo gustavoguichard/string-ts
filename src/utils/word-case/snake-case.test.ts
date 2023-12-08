@@ -10,6 +10,7 @@ namespace TypeTransforms {
     Equal<
       SnakeCase<WeirdTextUnion>,
       | 'some_weird_cased_$*_string_1986_foo_bar_w_for_wumbo'
+      | 'wheres_the_leak_maam'
       | 'dont_distribute_unions'
     >
   >
