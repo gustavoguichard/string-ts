@@ -2,9 +2,9 @@
  * Reverses a string.
  * - `T` The string to reverse.
  */
-type Reverse<T extends string> = T extends `${infer Head}${infer Tail}`
-  ? `${Reverse<Tail>}${Head}`
-  : T
+type Reverse<Str extends string, _acc extends string = ''> = Str extends `${infer Head}${infer Tail}`
+  ? Reverse<Tail, `${Head}${_acc}`>
+  : _acc extends '' ? Str : _acc
 
 /**
  * A strongly-typed function to reverse a string.
