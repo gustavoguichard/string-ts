@@ -10,6 +10,7 @@ namespace TypeTransforms {
     Equal<
       KebabCase<WeirdTextUnion>,
       | 'some-weird-cased-$*-string-1986-foo-bar-w-for-wumbo'
+      | 'wheres-the-leak-maam'
       | 'dont-distribute-unions'
     >
   >

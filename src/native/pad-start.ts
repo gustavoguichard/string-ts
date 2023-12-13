@@ -2,6 +2,11 @@ import type { Math } from '../internal/math.js'
 import type { Slice } from './slice.js'
 import type { Repeat } from './repeat.js'
 import type { Length } from './length.js'
+import type {
+  All,
+  IsStringLiteral,
+  IsNumberLiteral,
+} from '../internal/literals.js'
 
 /**
  * Pads a string at the start with another string.
@@ -13,11 +18,13 @@ export type PadStart<
   T extends string,
   times extends number = 0,
   pad extends string = ' ',
-> = Math.IsNegative<times> extends false
-  ? Math.Subtract<times, Length<T>> extends infer missing extends number
-    ? `${Slice<Repeat<pad, missing>, 0, missing>}${T}`
-    : never
-  : T
+> = All<[IsStringLiteral<T | pad>, IsNumberLiteral<times>]> extends true
+  ? Math.IsNegative<times> extends false
+    ? Math.Subtract<times, Length<T>> extends infer missing extends number
+      ? `${Slice<Repeat<pad, missing>, 0, missing>}${T}`
+      : never
+    : T
+  : string
 /**
  * A strongly-typed version of `String.prototype.padStart`.
  * @param str the string to pad.

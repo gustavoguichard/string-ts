@@ -1,5 +1,11 @@
-import type { Repeat } from './repeat.js'
-import { repeat } from './repeat.js'
+import { type Repeat, repeat } from './repeat.js'
+
+namespace TypeTests {
+  type test1 = Expect<Equal<Repeat<' ', 3>, '   '>>
+  type test2 = Expect<Equal<Repeat<string, 3>, string>>
+  type test3 = Expect<Equal<Repeat<Uppercase<string>, 3>, string>>
+  type test4 = Expect<Equal<Repeat<' ', number>, string>>
+}
 
 describe('repeat', () => {
   test('should repeat the string by a given number of times', () => {

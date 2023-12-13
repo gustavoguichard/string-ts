@@ -9,6 +9,7 @@ namespace TypeTransforms {
     Equal<
       ConstantCase<WeirdTextUnion>,
       | 'SOME_WEIRD_CASED_$*_STRING_1986_FOO_BAR_W_FOR_WUMBO'
+      | 'WHERES_THE_LEAK_MAAM'
       | 'DONT_DISTRIBUTE_UNIONS'
     >
   >

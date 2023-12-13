@@ -7,6 +7,10 @@ namespace TruncateTests {
   type test4 = Expect<Equal<Truncate<'Hello, world', 9, '[...]'>, 'Hell[...]'>>
   type test5 = Expect<Equal<Truncate<'Hello, world', -1>, '...'>>
   type test6 = Expect<Equal<Truncate<'Hello, world', 0, '[...]'>, '[...]'>>
+  type test7 = Expect<Equal<Truncate<string, 0, '[...]'>, string>>
+  type test8 = Expect<Equal<Truncate<Uppercase<string>, 0, '[...]'>, string>>
+  type test9 = Expect<Equal<Truncate<'Hello, world', number, '[...]'>, string>>
+  type test10 = Expect<Equal<Truncate<'Hello, world', 0, string>, string>>
 }
 
 describe('truncate', () => {

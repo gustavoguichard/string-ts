@@ -1,11 +1,13 @@
+<p align="center">
+  <img alt="StringTs Banner" src="./docs/string-ts-banner.png" width="800" />
+</p>
+
 [![NPM](https://img.shields.io/npm/v/string-ts)](https://www.npmjs.org/package/string-ts)
 ![Library size](https://img.shields.io/bundlephobia/minzip/string-ts)
 [![Code Coverage](https://img.shields.io/codecov/c/github/gustavoguichard/string-ts)](https://app.codecov.io/gh/gustavoguichard/string-ts)
 [![All Contributors](https://img.shields.io/github/contributors/gustavoguichard/string-ts)](#-contributors)
 
-# string-ts
-
-Strongly-typed string functions for all!
+## Strongly-typed string functions for all!
 
 ![A demonstration of string-ts](https://github.com/gustavoguichard/string-ts/assets/566971/0aa5603f-871d-4eb7-8ace-6a73466cec4d)
 
@@ -38,7 +40,7 @@ TypeScript yields the best static analysis when types are highly specific.
 Literals are more specific than type `string`.
 This library preserves literals (and unions of literals) after transformations, unlike most existing utility libraries (and built-in string methods.)
 
-[I still didn't get the purpose of this library 🤔](#%EF%B8%8F-interview)
+[I still don't get the purpose of this library 🤔](#%EF%B8%8F-interview)
 
 ### In-depth example
 
@@ -971,6 +973,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+StringTs logo by [NUMI](https://github.com/numi-hq/open-design):
+
+[<img src="https://raw.githubusercontent.com/numi-hq/open-design/main/assets/numi-lockup.png" alt="NUMI Logo" style="width: 200px;"/>](https://numi.tech/?ref=string-ts)
 
 ## 🫶 Acknowledgements
 

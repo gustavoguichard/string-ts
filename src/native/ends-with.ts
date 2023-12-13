@@ -1,6 +1,11 @@
 import type { Math } from '../internal/math.js'
 import type { Length } from './length.js'
 import type { Slice } from './slice.js'
+import type {
+  All,
+  IsNumberLiteral,
+  IsStringLiteral,
+} from '../internal/literals.js'
 
 /**
  * Checks if a string ends with another string.
@@ -12,13 +17,15 @@ export type EndsWith<
   T extends string,
   S extends string,
   P extends number = Length<T>,
-> = Math.IsNegative<P> extends false
-  ? P extends Length<T>
-    ? S extends Slice<T, Math.Subtract<Length<T>, Length<S>>, Length<T>>
-      ? true
-      : false
-    : EndsWith<Slice<T, 0, P>, S, Length<T>> // P !== T.length, slice
-  : false // P is negative, false
+> = All<[IsStringLiteral<T | S>, IsNumberLiteral<P>]> extends true
+  ? Math.IsNegative<P> extends false
+    ? P extends Length<T>
+      ? S extends Slice<T, Math.Subtract<Length<T>, Length<S>>, Length<T>>
+        ? true
+        : false
+      : EndsWith<Slice<T, 0, P>, S, Length<T>> // P !== T.length, slice
+    : false // P is negative, false
+  : boolean
 
 /**
  * A strongly-typed version of `String.prototype.endsWith`.

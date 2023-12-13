@@ -11,6 +11,8 @@ namespace TypeChecks {
   type test7 = Expect<Equal<IsSeparator<'/'>, true>>
   type test8 = Expect<Equal<IsSeparator<'_'>, true>>
   type test9 = Expect<Equal<IsSeparator<'.'>, true>>
+  type test10 = Expect<Equal<IsSeparator<string>, boolean>>
+  type test11 = Expect<Equal<IsSeparator<Uppercase<string>>, boolean>>
 }
 
 describe('SEPARATOR_REGEX', () => {

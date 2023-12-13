@@ -1,7 +1,9 @@
 import { type Includes, includes } from './includes.js'
 
 namespace TypeTests {
-  type test = Expect<Equal<Includes<'abcde', 'bcd'>, true>>
+  type test1 = Expect<Equal<Includes<'abcde', 'bcd'>, true>>
+  type test2 = Expect<Equal<Includes<string, 'bcd'>, boolean>>
+  type test3 = Expect<Equal<Includes<'abcde', string>, boolean>>
 }
 
 describe('includes', () => {

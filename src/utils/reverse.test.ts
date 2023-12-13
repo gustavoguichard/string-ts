@@ -6,6 +6,8 @@ namespace ReverseTests {
   type test3 = Expect<
     Equal<Reverse<'I love TypeScript!'>, '!tpircSepyT evol I'>
   >
+  type test4 = Expect<Equal<Reverse<string>, string>>
+  type test5 = Expect<Equal<Reverse<Uppercase<string>>, Uppercase<string>>>
 }
 
 describe('reverse', () => {

@@ -9,7 +9,9 @@ namespace TypeTransforms {
   type test = Expect<
     Equal<
       CamelCase<WeirdTextUnion>,
-      'someWeirdCased$*String1986FooBarWForWumbo' | 'dontDistributeUnions'
+      | 'someWeirdCased$*String1986FooBarWForWumbo'
+      | 'wheresTheLeakMaam'
+      | 'dontDistributeUnions'
     >
   >
 }

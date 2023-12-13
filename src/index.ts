@@ -32,8 +32,8 @@ export { trimStart } from './native/trim-start.js'
 export type { TrimEnd } from './native/trim-end.js'
 export { trimEnd } from './native/trim-end.js'
 export type { Trim } from './native/trim.js'
-
 export { trim } from './native/trim.js'
+
 export { toLowerCase } from './native/to-lower-case.js'
 export { toUpperCase } from './native/to-upper-case.js'
 

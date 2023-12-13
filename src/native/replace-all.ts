@@ -1,3 +1,5 @@
+import type { IsStringLiteral } from '../internal/literals.js'
+
 /**
  * Replaces all the occurrences of a string with another string.
  * sentence: The sentence to replace.
@@ -9,10 +11,12 @@ export type ReplaceAll<
   lookup extends string | RegExp,
   replacement extends string = '',
 > = lookup extends string
-  ? sentence extends `${infer rest}${lookup}${infer rest2}`
-    ? `${rest}${replacement}${ReplaceAll<rest2, lookup, replacement>}`
-    : sentence
-  : string
+  ? IsStringLiteral<lookup | sentence | replacement> extends true
+    ? sentence extends `${infer rest}${lookup}${infer rest2}`
+      ? `${rest}${replacement}${ReplaceAll<rest2, lookup, replacement>}`
+      : sentence
+    : string
+  : string // Regex used, can't preserve literal
 
 /**
  * A strongly-typed version of `String.prototype.replaceAll`.

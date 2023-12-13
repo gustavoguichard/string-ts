@@ -1,9 +1,11 @@
 import { type TrimStart, trimStart } from './trim-start.js'
 
 namespace TypeTests {
-  type test = Expect<
+  type test1 = Expect<
     Equal<TrimStart<' some nice string '>, 'some nice string '>
   >
+  type test2 = Expect<Equal<TrimStart<string>, string>>
+  type test3 = Expect<Equal<TrimStart<Uppercase<string>>, string>>
 }
 
 describe('trimStart', () => {

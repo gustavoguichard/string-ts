@@ -1,3 +1,5 @@
+import type { IsStringLiteral } from '../../internal/literals.js'
+
 const UNESCAPED_SEPARATORS = [
   '[',
   ']',
@@ -30,4 +32,8 @@ export type Separator = (typeof SEPARATORS)[number]
  * Checks if the given character is a separator.
  * E.g. space, underscore, dash, dot, slash.
  */
-export type IsSeparator<T extends string> = T extends Separator ? true : false
+export type IsSeparator<T extends string> = IsStringLiteral<T> extends true
+  ? T extends Separator
+    ? true
+    : false
+  : boolean

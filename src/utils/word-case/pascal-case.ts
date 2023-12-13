@@ -1,11 +1,17 @@
 import { type PascalCaseAll, pascalCaseAll } from '../../internal/internals.js'
 import { type Join, join } from '../../native/join.js'
 import { type Words, words } from '../words.js'
+import {
+  removeApostrophe,
+  type RemoveApostrophe,
+} from '../characters/apostrophe.js'
 
 /**
  * Transforms a string to PascalCase.
  */
-export type PascalCase<T extends string> = Join<PascalCaseAll<Words<T>>>
+export type PascalCase<T extends string> = Join<
+  PascalCaseAll<Words<RemoveApostrophe<T>>>
+>
 /**
  * A strongly typed version of `pascalCase` that works in both runtime and type level.
  * @param str the string to convert to pascal case.
@@ -13,7 +19,7 @@ export type PascalCase<T extends string> = Join<PascalCaseAll<Words<T>>>
  * @example pascalCase('hello world') // 'HelloWorld'
  */
 export function pascalCase<T extends string>(str: T): PascalCase<T> {
-  return join(pascalCaseAll(words(str)))
+  return join(pascalCaseAll(words(removeApostrophe(str))))
 }
 
 /**

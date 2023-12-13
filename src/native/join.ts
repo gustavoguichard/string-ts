@@ -1,3 +1,9 @@
+import type {
+  IsStringLiteral,
+  IsStringLiteralArray,
+  All,
+} from '../internal/literals.js'
+
 /**
  * Joins a tuple of strings with the given delimiter.
  * T: The tuple of strings to join.
@@ -6,16 +12,16 @@
 export type Join<
   T extends readonly string[],
   delimiter extends string = '',
-> = string[] extends T
-  ? string // Avoid spending resources on a wide type
-  : T extends readonly [
+> = All<[IsStringLiteralArray<T>, IsStringLiteral<delimiter>]> extends true
+  ? T extends readonly [
       infer first extends string,
       ...infer rest extends string[],
     ]
-  ? rest extends []
-    ? first
-    : `${first}${delimiter}${Join<rest, delimiter>}`
-  : ''
+    ? rest extends []
+      ? first
+      : `${first}${delimiter}${Join<rest, delimiter>}`
+    : ''
+  : string
 
 /**
  * A strongly-typed version of `Array.prototype.join`.

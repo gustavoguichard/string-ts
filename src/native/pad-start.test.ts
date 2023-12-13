@@ -1,4 +1,12 @@
-import { padStart } from './pad-start.js'
+import { type PadStart, padStart } from './pad-start.js'
+
+namespace TypeTests {
+  type test1 = Expect<Equal<PadStart<'hello', 10, ' '>, '     hello'>>
+  type test2 = Expect<Equal<PadStart<string, 10, ' '>, string>>
+  type test3 = Expect<Equal<PadStart<Uppercase<string>, 10, ' '>, string>>
+  type test4 = Expect<Equal<PadStart<'hello', number, ' '>, string>>
+  type test5 = Expect<Equal<PadStart<'hello', 10, string>, string>>
+}
 
 describe('padStart', () => {
   test('should pad a string at the start', () => {

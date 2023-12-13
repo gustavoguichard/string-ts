@@ -1,9 +1,11 @@
 import { type Concat, concat } from './concat.js'
 
 namespace TypeTests {
-  type test = Expect<
+  type test1 = Expect<Equal<Concat<['a', 'bc', 'def']>, 'abcdef'>>
+  type test2 = Expect<
     Equal<Concat<['a', 'bc', 'def'] | ['1', '23', '456']>, 'abcdef' | '123456'>
   >
+  type test3 = Expect<Equal<Concat<string[]>, string>>
 }
 
 describe('concat', () => {
