@@ -27,7 +27,7 @@ jobs:
         run: npm run test -- --coverage
 
       - name: Upload coverage to github actions artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: code-coverage
           path: coverage/
