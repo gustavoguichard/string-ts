@@ -88,6 +88,15 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "hverlin",
+      "name": "hverlin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9151470?v=4",
+      "profile": "https://huguesverlin.fr",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
