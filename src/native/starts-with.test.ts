@@ -9,7 +9,6 @@ namespace TypeTests {
   type test6 = Expect<Equal<StartsWith<'abc', 'a', number>, boolean>>
   type test7 = Expect<Equal<StartsWith<`abc${string}`, 'a'>, true>>
   type test8 = Expect<Equal<StartsWith<`cba${string}`, 'a'>, false>>
-  // TODO: fix
   type test9 = Expect<Equal<StartsWith<`abc${string}`, 'abc'>, true>>
 }
 

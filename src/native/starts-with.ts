@@ -19,17 +19,17 @@ export type StartsWith<
 > = All<[IsStringLiteral<S>, IsNumberLiteral<P>]> extends true
   ? Math.IsNegative<P> extends false
     ? P extends 0
-      ? T extends `${infer THead}${infer TRest}`
-        ? S extends `${infer SHead}${infer SRest}`
+      ? S extends `${infer SHead}${infer SRest}`
+        ? T extends `${infer THead}${infer TRest}`
           ? IsStringLiteral<THead | SHead> extends true
             ? THead extends SHead
               ? StartsWith<TRest, SRest>
               : false // Heads weren't equal
             : boolean // THead is non-literal
-          : true // Couldn't split S, we've already ruled out non-literal
-        : IsStringLiteral<T> extends true // Couldn't split T
-          ? false // T ran out, but we still have S
-          : boolean // T (or TRest) is not a literal
+          : IsStringLiteral<T> extends true // Couldn't split T
+            ? false // T ran out, but we still have S
+            : boolean // T (or TRest) is not a literal
+        : true // Couldn't split S, we've already ruled out non-literal
       : StartsWith<Slice<T, P>, S, 0> // P is >0, slice
     : StartsWith<T, S, 0> // P is negative, ignore it
   : boolean
