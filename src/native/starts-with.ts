@@ -22,10 +22,10 @@ export type StartsWith<
       ? T extends `${infer THead}${infer TRest}`
         ? S extends `${infer SHead}${infer SRest}`
           ? IsStringLiteral<THead | SHead> extends true
-            ? Equal<THead, SHead> extends true
+            ? THead extends SHead
               ? StartsWith<TRest, SRest>
               : false // Heads weren't equal
-            : false // Both heads are literals
+            : boolean // THead is non-literal
           : true // Couldn't split S, we've already ruled out non-literal
         : IsStringLiteral<T> extends true // Couldn't split T
           ? false // T ran out, but we still have S
