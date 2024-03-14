@@ -16,12 +16,20 @@ export type StartsWith<
   T extends string,
   S extends string,
   P extends number = 0,
-> = All<[IsStringLiteral<T | S>, IsNumberLiteral<P>]> extends true
+> = All<[IsStringLiteral<S>, IsNumberLiteral<P>]> extends true
   ? Math.IsNegative<P> extends false
     ? P extends 0
-      ? T extends `${S}${string}`
-        ? true
-        : false
+      ? T extends `${infer THead}${infer TRest}`
+        ? S extends `${infer SHead}${infer SRest}`
+          ? IsStringLiteral<THead | SHead> extends true
+            ? Equal<THead, SHead> extends true
+              ? StartsWith<TRest, SRest>
+              : false // Heads weren't equal
+            : false // Both heads are literals
+          : true // Couldn't split S, we've already ruled out non-literal
+        : IsStringLiteral<T> extends true // Couldn't split T
+          ? false // T ran out, but we still have S
+          : boolean // T (or TRest) is not a literal
       : StartsWith<Slice<T, P>, S, 0> // P is >0, slice
     : StartsWith<T, S, 0> // P is negative, ignore it
   : boolean
