@@ -10,6 +10,9 @@ namespace TypeTests {
   type test7 = Expect<Equal<StartsWith<`abc${string}`, 'a'>, true>>
   type test8 = Expect<Equal<StartsWith<`cba${string}`, 'a'>, false>>
   type test9 = Expect<Equal<StartsWith<`abc${string}`, 'abc'>, true>>
+
+  // TODO: won't work while Slice endIndex defaults to Length<`abc${string}`> which is `number`
+  // type test_ = Expect<Equal<StartsWith<`abc${string}`, 'b', 1>, true>>
 }
 
 describe('startsWith', () => {
