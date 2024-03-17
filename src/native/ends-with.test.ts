@@ -10,10 +10,13 @@ namespace TypeTests {
   type test8 = Expect<Equal<EndsWith<'abcde', 'e', 6>, true>>
   type test9 = Expect<Equal<EndsWith<'abcde', 'e', -1>, false>>
 
-  // TODO: fix these
   // // Template strings
-  // type testTS1 = Expect<Equal<EndsWith<`${string}cba`, 'a'>, true>>
-  // type testTS2 = Expect<Equal<StartsWith<`${string}abc`, 'a'>, false>>
+  type testTS1 = Expect<Equal<EndsWith<`${string}cba`, 'a'>, true>>
+  type testTS2 = Expect<Equal<EndsWith<`${string}abc`, 'a'>, false>>
+  type testTS3 = Expect<Equal<EndsWith<`zyx${string}cba`, 'a'>, true>>
+  type testTS4 = Expect<Equal<EndsWith<`xyz${string}abc`, 'a'>, false>>
+  type testTS5 = Expect<Equal<EndsWith<`abc${string}xyz`, 'c', 3>, true>>
+  type testTS6 = Expect<Equal<EndsWith<`abc${string}xyz`, 'c', 4>, boolean>>
 }
 
 describe('endsWith', () => {

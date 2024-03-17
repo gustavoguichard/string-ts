@@ -8,12 +8,15 @@ namespace TypeTests {
   type test5 = Expect<Equal<Slice<'some nice string', number, 9>, string>>
   type test6 = Expect<Equal<Slice<'some nice string', 5, number>, string>>
   type test7 = Expect<Equal<Slice<'abcde', -3>, 'cde'>>
+  type test8 = Expect<Equal<Slice<'abc', 10>, ''>>
+  type test9 = Expect<Equal<Slice<'abc', 10, 12>, ''>>
 
   // Template literals
   type testTS1 = Expect<Equal<Slice<`abc${string}`, 1, 3>, 'bc'>>
   type testTS2 = Expect<Equal<Slice<`abcd${string}`, 1, 3>, 'bc'>>
-  type testTS3 = Expect<Equal<Slice<`${string}abcd`, 1, 3>, string>>
-  type testTS4 = Expect<Equal<Slice<`abc${string}`, 1>, `bc${string}`>>
+  type testTS3 = Expect<Equal<Slice<`abc${string}xyz`, 0, 3>, 'abc'>>
+  type testTS4 = Expect<Equal<Slice<`${string}abcd`, 1, 3>, string>>
+  type testTS5 = Expect<Equal<Slice<`abc${string}`, 1>, `bc${string}`>>
 }
 
 describe('slice', () => {

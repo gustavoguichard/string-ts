@@ -39,13 +39,13 @@ type _Slice<
             Math.Subtract<Math.GetPositiveIndex<T, endIndex>, 1>,
             _result
           >
-      : string // Head is non-literal
+      : startIndex | endIndex extends 0
+        ? _result
+        : string // Head is non-literal
     : IsStringLiteral<T> extends true // Couldn't be split into head/tail
       ? _result // T ran out
-      : startIndex extends 0
-        ? endIndex extends 0
-          ? _result // Eg: Slice<`abc${string}`, 1, 3> -> 'bc'
-          : string // Head is non-literal
+      : startIndex | endIndex extends 0
+        ? _result // Eg: Slice<`abc${string}`, 1, 3> -> 'bc'
         : string // Head is non-literal
   : string
 
