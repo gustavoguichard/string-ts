@@ -7,12 +7,13 @@ namespace TypeTests {
   type test4 = Expect<Equal<Slice<Uppercase<string>, 5, 9>, string>>
   type test5 = Expect<Equal<Slice<'some nice string', number, 9>, string>>
   type test6 = Expect<Equal<Slice<'some nice string', 5, number>, string>>
-  type test7 = Expect<Equal<Slice<`abc${string}`, 1, 3>, 'bc'>>
-  type test8 = Expect<Equal<Slice<`abcd${string}`, 1, 3>, 'bc'>>
-  type test9 = Expect<Equal<Slice<`${string}abcd`, 1, 3>, string>>
+  type test7 = Expect<Equal<Slice<'abcde', -3>, 'cde'>>
 
-  // TODO: Won't work because endIndex defaults to Length<`abc${string}`> which is `number`
-  // type test_ = Expect<Equal<Slice<`abc${string}`, 1>, `bc${string}`>>
+  // Template literals
+  type testTS1 = Expect<Equal<Slice<`abc${string}`, 1, 3>, 'bc'>>
+  type testTS2 = Expect<Equal<Slice<`abcd${string}`, 1, 3>, 'bc'>>
+  type testTS3 = Expect<Equal<Slice<`${string}abcd`, 1, 3>, string>>
+  type testTS4 = Expect<Equal<Slice<`abc${string}`, 1>, `bc${string}`>>
 }
 
 describe('slice', () => {

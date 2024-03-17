@@ -1,5 +1,4 @@
 import type { Math } from '../internal/math.js'
-import type { Length } from './length.js'
 import type { IsStringLiteral, IsNumberLiteral } from '../internal/literals.js'
 
 /**
@@ -11,7 +10,16 @@ import type { IsStringLiteral, IsNumberLiteral } from '../internal/literals.js'
 export type Slice<
   T extends string,
   startIndex extends number = 0,
-  endIndex extends number = Length<T>,
+  endIndex extends number | undefined = undefined,
+> = endIndex extends number
+  ? _Slice<T, startIndex, endIndex>
+  : _SliceStart<T, startIndex>
+
+/** Slice with startIndex and endIndex */
+type _Slice<
+  T extends string,
+  startIndex extends number,
+  endIndex extends number,
   _result extends string = '',
 > = IsNumberLiteral<startIndex | endIndex> extends true
   ? T extends `${infer head}${infer rest}`
@@ -19,13 +27,13 @@ export type Slice<
       ? startIndex extends 0
         ? endIndex extends 0
           ? _result
-          : Slice<
+          : _Slice<
               rest,
               0,
               Math.Subtract<Math.GetPositiveIndex<T, endIndex>, 1>,
               `${_result}${head}`
             >
-        : Slice<
+        : _Slice<
             rest,
             Math.Subtract<Math.GetPositiveIndex<T, startIndex>, 1>,
             Math.Subtract<Math.GetPositiveIndex<T, endIndex>, 1>,
@@ -41,6 +49,29 @@ export type Slice<
         : string // Head is non-literal
   : string
 
+/** Slice with startIndex only */
+type _SliceStart<
+  T extends string,
+  startIndex extends number,
+  _result extends string = '',
+> = IsNumberLiteral<startIndex> extends true
+  ? T extends `${infer head}${infer rest}`
+    ? IsStringLiteral<head> extends true
+      ? startIndex extends 0
+        ? T
+        : _SliceStart<
+            rest,
+            Math.Subtract<Math.GetPositiveIndex<T, startIndex>, 1>,
+            _result
+          >
+      : string
+    : IsStringLiteral<T> extends true
+      ? _result
+      : startIndex extends 0
+        ? _result
+        : string
+  : string
+
 /**
  * A strongly-typed version of `String.prototype.slice`.
  * @param str the string to slice.
@@ -52,7 +83,7 @@ export type Slice<
 export function slice<
   T extends string,
   S extends number = 0,
-  E extends number = Length<T>,
->(str: T, start: S = 0 as S, end: E = str.length as E) {
+  E extends number | undefined = undefined,
+>(str: T, start: S = 0 as S, end: E = undefined as E) {
   return str.slice(start, end) as Slice<T, S, E>
 }
