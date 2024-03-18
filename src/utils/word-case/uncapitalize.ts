@@ -10,5 +10,8 @@ import { toLowerCase } from '../../native/to-lower-case.js'
  * @example uncapitalize('Hello world') // 'hello world'
  */
 export function uncapitalize<T extends string>(str: T) {
-  return join([toLowerCase(charAt(str, 0)), slice(str, 1)]) as Uncapitalize<T>
+  return join([
+    toLowerCase(charAt(str, 0) ?? ''),
+    slice(str, 1),
+  ]) as Uncapitalize<T>
 }
