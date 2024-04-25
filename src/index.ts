@@ -105,3 +105,5 @@ export type { DeepPascalKeys } from './utils/object-keys/deep-pascal-keys.js'
 export { deepPascalKeys } from './utils/object-keys/deep-pascal-keys.js'
 export type { DeepSnakeKeys } from './utils/object-keys/deep-snake-keys.js'
 export { deepSnakeKeys } from './utils/object-keys/deep-snake-keys.js'
+
+export { deepTransformKeys } from './utils/object-keys/deep-transform-keys.js'
