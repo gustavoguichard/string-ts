@@ -17,11 +17,11 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "latest",
-    "@vitest/coverage-v8": "^1.4.0",
+    "@vitest/coverage-v8": "^1.5.2",
     "eslint": "latest",
     "prettier": "latest",
     "tsup": "latest",
-    "typescript": "^5.4.2",
+    "typescript": "^5.4.5",
     "vitest": "latest"
   },
   "files": [
