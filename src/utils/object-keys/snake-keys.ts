@@ -2,7 +2,7 @@ import { transformKeys } from './transform-keys.js'
 import { type SnakeCase, snakeCase } from '../word-case/snake-case.js'
 
 /**
- * Shallowly transforms the keys of an Record to snake_case.
+ * Shallowly transforms the keys of a Record to snake_case.
  * T: the type of the Record to transform.
  */
 export type SnakeKeys<T> = T extends []

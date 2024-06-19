@@ -2,16 +2,16 @@ import { type KebabCase, kebabCase } from '../word-case/kebab-case.js'
 import { deepTransformKeys } from './deep-transform-keys.js'
 
 /**
- * Recursively transforms the keys of an Record to kebab-case.
+ * Recursively transforms the keys of a Record to kebab-case.
  * T: the type of the Record to transform.
  */
 export type DeepKebabKeys<T> = T extends [any, ...any]
   ? { [I in keyof T]: DeepKebabKeys<T[I]> }
   : T extends (infer V)[]
-  ? DeepKebabKeys<V>[]
-  : {
-      [K in keyof T as KebabCase<Extract<K, string>>]: DeepKebabKeys<T[K]>
-    }
+    ? DeepKebabKeys<V>[]
+    : {
+        [K in keyof T as KebabCase<Extract<K, string>>]: DeepKebabKeys<T[K]>
+      }
 /**
  * A strongly typed function that recursively transforms the keys of an object to kebab-case. The transformation is done both at runtime and type level.
  * @param obj the object to transform.

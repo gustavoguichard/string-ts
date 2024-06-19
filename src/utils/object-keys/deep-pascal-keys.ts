@@ -2,16 +2,16 @@ import { type PascalCase, pascalCase } from '../word-case/pascal-case.js'
 import { deepTransformKeys } from './deep-transform-keys.js'
 
 /**
- * Recursively transforms the keys of an Record to PascalCase.
+ * Recursively transforms the keys of a Record to PascalCase.
  * T: the type of the Record to transform.
  */
 export type DeepPascalKeys<T> = T extends [any, ...any]
   ? { [I in keyof T]: DeepPascalKeys<T[I]> }
   : T extends (infer V)[]
-  ? DeepPascalKeys<V>[]
-  : {
-      [K in keyof T as PascalCase<Extract<K, string>>]: DeepPascalKeys<T[K]>
-    }
+    ? DeepPascalKeys<V>[]
+    : {
+        [K in keyof T as PascalCase<Extract<K, string>>]: DeepPascalKeys<T[K]>
+      }
 /**
  * A strongly typed function that recursively transforms the keys of an object to pascal case. The transformation is done both at runtime and type level.
  * @param obj the object to transform.

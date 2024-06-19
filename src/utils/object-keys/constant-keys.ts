@@ -2,7 +2,7 @@ import { transformKeys } from './transform-keys.js'
 import { type ConstantCase, constantCase } from '../word-case/constant-case.js'
 
 /**
- * Shallowly transforms the keys of an Record to CONSTANT_CASE.
+ * Shallowly transforms the keys of a Record to CONSTANT_CASE.
  * T: the type of the Record to transform.
  */
 export type ConstantKeys<T> = T extends []

@@ -2,7 +2,7 @@ import { type PascalCase, pascalCase } from '../word-case/pascal-case.js'
 import { transformKeys } from './transform-keys.js'
 
 /**
- * Shallowly transforms the keys of an Record to PascalCase.
+ * Shallowly transforms the keys of a Record to PascalCase.
  * T: the type of the Record to transform.
  */
 export type PascalKeys<T> = T extends []

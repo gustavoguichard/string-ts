@@ -5,7 +5,7 @@ import {
 } from '../word-case/delimiter-case.js'
 
 /**
- * Shallowly transforms the keys of an Record to a custom delimiter case.
+ * Shallowly transforms the keys of a Record to a custom delimiter case.
  * T: the type of the Record to transform.
  * D: the delimiter to use.
  */

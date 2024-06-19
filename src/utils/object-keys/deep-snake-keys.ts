@@ -2,16 +2,16 @@ import { type SnakeCase, snakeCase } from '../word-case/snake-case.js'
 import { deepTransformKeys } from './deep-transform-keys.js'
 
 /**
- * Recursively transforms the keys of an Record to snake_case.
+ * Recursively transforms the keys of a Record to snake_case.
  * T: the type of the Record to transform.
  */
 export type DeepSnakeKeys<T> = T extends [any, ...any]
   ? { [I in keyof T]: DeepSnakeKeys<T[I]> }
   : T extends (infer V)[]
-  ? DeepSnakeKeys<V>[]
-  : {
-      [K in keyof T as SnakeCase<Extract<K, string>>]: DeepSnakeKeys<T[K]>
-    }
+    ? DeepSnakeKeys<V>[]
+    : {
+        [K in keyof T as SnakeCase<Extract<K, string>>]: DeepSnakeKeys<T[K]>
+      }
 /**
  * A strongly typed function that recursively transforms the keys of an object to snake_case. The transformation is done both at runtime and type level.
  * @param obj the object to transform.
