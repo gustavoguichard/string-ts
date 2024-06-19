@@ -14,6 +14,39 @@ namespace TypeTransforms {
       { value: { 'deep-nested': true }; 'other-value': true }
     >
   >
+  type testWithUnion = Expect<
+    Equal<
+      ReplaceKeys<Record<'foo' | 'bar', string>, 'oo', 'izz'>,
+      Record<'fizz' | 'bar', string>
+    >
+  >
+  type test2 = Expect<
+    Equal<
+      ReplaceKeys<Record<'some nice string', string>, RegExp, '-'>,
+      Record<string, string>
+    >
+  >
+  type test3 = Expect<
+    Equal<ReplaceKeys<Record<string, string>, ' ', '-'>, Record<string, string>>
+  >
+  type test4 = Expect<
+    Equal<
+      ReplaceKeys<Record<Uppercase<string>, string>, ' ', '-'>,
+      Record<string, string>
+    >
+  >
+  type test5 = Expect<
+    Equal<
+      ReplaceKeys<Record<'some nice string', string>, string, '-'>,
+      Record<string, string>
+    >
+  >
+  type test6 = Expect<
+    Equal<
+      ReplaceKeys<Record<'some nice string', string>, ' ', string>,
+      Record<string, string>
+    >
+  >
 }
 
 test('replaceKeys', () => {
