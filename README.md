@@ -148,6 +148,7 @@ It also only work with common ASCII characters characters. We don't plan to supp
   - [delimiterKeys](#delimiterkeys)
   - [kebabKeys](#kebabkeys)
   - [pascalKeys](#pascalkeys)
+  - [replaceKeys](#replacekeys)
   - [snakeKeys](#snakekeys)
 - [Strongly-typed deep transformation of objects](#strongly-typed-deep-transformation-of-objects)
   - [deepCamelKeys](#deepcamelkeys)
@@ -675,6 +676,22 @@ const data = {
 } as const
 const result = snakeKeys(data)
 //    ^ { 'hello_world': { 'fooBar': 'baz' } }
+```
+
+### replaceKeys
+
+This function shallowly transforms the keys of an object by applying [`replace`](#replace) to each of its keys at both runtime and type levels.
+
+```ts
+import { replaceKeys } from 'string-ts'
+
+const data = {
+  helloWorld: {
+    fooBar: 'baz',
+  },
+} as const
+const result = replaceKeys(data, 'o', 'a')
+//    ^ { 'hellaWorld': { 'fooBar': 'baz' } }
 ```
 
 ## Strongly-typed deep transformation of objects
