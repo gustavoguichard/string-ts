@@ -18,7 +18,7 @@ export type ReplaceKeys<
  * @param lookup the lookup string to be replaced.
  * @param replacement the replacement string.
  * @returns the transformed object.
- * @example replaceKeys({ 'foo-bar': { 'fizz-buzz': true } }, 'f', 'b') // { booBar: { 'bizz-buz': true } }
+ * @example replaceKeys({ 'foo-bar': { 'fizz-buzz': true } }, 'f', 'b') // { booBar: { 'fizz-buz': true } }
  */
 export function replaceKeys<
   T,
