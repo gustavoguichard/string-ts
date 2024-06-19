@@ -91,6 +91,9 @@ export type { PascalKeys } from './utils/object-keys/pascal-keys.js'
 export { pascalKeys } from './utils/object-keys/pascal-keys.js'
 export type { SnakeKeys } from './utils/object-keys/snake-keys.js'
 export { snakeKeys } from './utils/object-keys/snake-keys.js'
+// Object keys transformation
+export type { ReplaceKeys } from './utils/object-keys/replace-keys.js'
+export { replaceKeys } from './utils/object-keys/replace-keys.js'
 
 // Object keys word casing (deep)
 export type { DeepCamelKeys } from './utils/object-keys/deep-camel-keys.js'
