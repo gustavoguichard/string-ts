@@ -2,7 +2,7 @@ import { type KebabCase, kebabCase } from '../word-case/kebab-case.js'
 import { transformKeys } from './transform-keys.js'
 
 /**
- * Shallowly transforms the keys of an Record to kebab-case.
+ * Shallowly transforms the keys of a Record to kebab-case.
  * T: the type of the Record to transform.
  */
 export type KebabKeys<T> = T extends []

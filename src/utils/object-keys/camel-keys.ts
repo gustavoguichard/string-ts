@@ -2,7 +2,7 @@ import { transformKeys } from './transform-keys.js'
 import { type CamelCase, camelCase } from '../word-case/camel-case.js'
 
 /**
- * Shallowly transforms the keys of an Record to camelCase.
+ * Shallowly transforms the keys of a Record to camelCase.
  * T: the type of the Record to transform.
  */
 export type CamelKeys<T> = T extends []
