@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "latest",
-    "@vitest/coverage-v8": "^1.5.2",
+    "@vitest/coverage-v8": "^2.0.1",
     "eslint": "latest",
     "prettier": "latest",
     "tsup": "latest",
