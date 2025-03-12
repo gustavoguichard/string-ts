@@ -11,7 +11,7 @@ import { typeOf } from '../../internal/internals.js'
  */
 export function deepTransformKeys<T>(
   obj: T,
-  transform: (s: string) => string,
+  transform: (s: string) => string
 ): T {
   if (!['object', 'array'].includes(typeOf(obj))) return obj
 

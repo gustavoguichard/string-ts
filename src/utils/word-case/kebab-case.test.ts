@@ -1,7 +1,7 @@
 import {
-  type WeirdTextUnion,
-  WEIRD_TEXT,
   SEPARATORS_TEXT,
+  WEIRD_TEXT,
+  type WeirdTextUnion,
 } from '../../internal/fixtures.js'
 import { type KebabCase, kebabCase } from './kebab-case.js'
 

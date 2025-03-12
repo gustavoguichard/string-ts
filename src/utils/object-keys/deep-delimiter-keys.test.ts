@@ -28,7 +28,7 @@ test('deepDelimiterKeys', () => {
       some: { 'deep-nested': { value: true } },
       'other-value': true,
     },
-    '@',
+    '@'
   )
   expect(result).toEqual(expected)
   type test = Expect<Equal<typeof result, typeof expected>>

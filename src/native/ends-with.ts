@@ -1,13 +1,13 @@
-import type { Math } from '../internal/math.js'
-import type { Length } from './length.js'
-import type { Slice } from './slice.js'
-import type { StartsWith } from './starts-with.js'
-import type { Reverse } from '../utils/reverse.js'
 import type {
   All,
   IsNumberLiteral,
   IsStringLiteral,
 } from '../internal/literals.js'
+import type { Math } from '../internal/math.js'
+import type { Reverse } from '../utils/reverse.js'
+import type { Length } from './length.js'
+import type { Slice } from './slice.js'
+import type { StartsWith } from './starts-with.js'
 
 /**
  * Checks if a string ends with another string.

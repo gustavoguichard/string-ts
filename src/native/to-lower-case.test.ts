@@ -1,4 +1,4 @@
-import { WEIRD_TEXT, SEPARATORS_TEXT } from '../internal/fixtures.js'
+import { SEPARATORS_TEXT, WEIRD_TEXT } from '../internal/fixtures.js'
 import { toLowerCase } from './to-lower-case.js'
 
 describe('toLowerCase', () => {

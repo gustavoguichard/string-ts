@@ -1,5 +1,5 @@
-import { transformKeys } from './transform-keys.js'
 import { type ConstantCase, constantCase } from '../word-case/constant-case.js'
+import { transformKeys } from './transform-keys.js'
 
 /**
  * Shallowly transforms the keys of a Record to CONSTANT_CASE.

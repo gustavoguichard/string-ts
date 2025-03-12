@@ -1,5 +1,5 @@
-import { capitalize } from '../utils/word-case/capitalize.js'
 import { toLowerCase } from '../native/to-lower-case.js'
+import { capitalize } from '../utils/word-case/capitalize.js'
 
 /**
  * This is an enhanced version of the typeof operator to check the type of more complex values.
@@ -43,14 +43,13 @@ type Reject<tuple, cond, output extends any[] = []> = tuple extends [
 /**
  * Removes the given suffix from a sentence.
  */
-type DropSuffix<
-  sentence extends string,
-  suffix extends string,
-> = string extends sentence | suffix
+type DropSuffix<sentence extends string, suffix extends string> = string extends
+  | sentence
+  | suffix
   ? string
   : sentence extends `${infer rest}${suffix}`
-  ? rest
-  : sentence
+    ? rest
+    : sentence
 
 /**
  * Returns a tuple of the given length with the given type.

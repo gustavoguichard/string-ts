@@ -1,12 +1,12 @@
-import type { Math } from '../internal/math.js'
-import { join, type Join } from '../native/join.js'
-import { type Length } from '../native/length.js'
-import { type Slice } from '../native/slice.js'
 import type {
-  IsStringLiteral,
-  IsNumberLiteral,
   All,
+  IsNumberLiteral,
+  IsStringLiteral,
 } from '../internal/literals.js'
+import type { Math } from '../internal/math.js'
+import { type Join, join } from '../native/join.js'
+import type { Length } from '../native/length.js'
+import type { Slice } from '../native/slice.js'
 
 // STRING FUNCTIONS
 
@@ -22,8 +22,8 @@ export type Truncate<
   ? Math.IsNegative<Size> extends true
     ? Omission
     : Math.Subtract<Length<T>, Size> extends 0
-    ? T
-    : Join<[Slice<T, 0, Math.Subtract<Size, Length<Omission>>>, Omission]>
+      ? T
+      : Join<[Slice<T, 0, Math.Subtract<Size, Length<Omission>>>, Omission]>
   : string
 
 /**

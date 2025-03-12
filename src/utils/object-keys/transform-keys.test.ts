@@ -11,7 +11,7 @@ describe('transformKeys', () => {
         some: { 'deep-nested': { value: true } },
         'other-value': true,
       },
-      (key) => key.toUpperCase(),
+      (key) => key.toUpperCase()
     )
     expect(result).toEqual(expected)
   })

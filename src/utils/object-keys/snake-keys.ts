@@ -1,5 +1,5 @@
-import { transformKeys } from './transform-keys.js'
 import { type SnakeCase, snakeCase } from '../word-case/snake-case.js'
+import { transformKeys } from './transform-keys.js'
 
 /**
  * Shallowly transforms the keys of a Record to snake_case.

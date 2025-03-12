@@ -23,7 +23,7 @@ function escapeChar(char: string): string {
 
 export const SEPARATOR_REGEX = new RegExp(
   `[${SEPARATORS.map(escapeChar).join('')}]`,
-  'g',
+  'g'
 )
 
 export type Separator = (typeof SEPARATORS)[number]

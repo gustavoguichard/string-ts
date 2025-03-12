@@ -60,7 +60,7 @@ test('replaceKeys', () => {
       other_value: true,
     },
     'other_',
-    '',
+    ''
   )
   expect(result).toEqual(expected)
   type test = Expect<Equal<typeof result, typeof expected>>

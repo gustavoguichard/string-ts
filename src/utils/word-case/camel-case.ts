@@ -1,9 +1,9 @@
+import {
+  type RemoveApostrophe,
+  removeApostrophe,
+} from '../characters/apostrophe.js'
 import { type PascalCase, pascalCase } from './pascal-case.js'
 import { uncapitalize } from './uncapitalize.js'
-import {
-  removeApostrophe,
-  type RemoveApostrophe,
-} from '../characters/apostrophe.js'
 
 /**
  * Transforms a string to camelCase.

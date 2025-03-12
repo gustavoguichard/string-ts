@@ -28,7 +28,7 @@ export type DeepDelimiterKeys<T, D extends string> = T extends [any, ...any]
  */
 export function deepDelimiterKeys<T, D extends string>(
   obj: T,
-  delimiter: D,
+  delimiter: D
 ): DeepDelimiterKeys<T, D> {
   return deepTransformKeys(obj, (str) => delimiterCase(str, delimiter)) as never
 }

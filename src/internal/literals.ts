@@ -45,10 +45,10 @@ type IsStringLiteral<T extends string> = [T] extends [string]
   ? [string] extends [T]
     ? false
     : Uppercase<T> extends Uppercase<Lowercase<T>>
-    ? Lowercase<T> extends Lowercase<Uppercase<T>>
-      ? true
+      ? Lowercase<T> extends Lowercase<Uppercase<T>>
+        ? true
+        : false
       : false
-    : false
   : false
 
 type IsStringLiteralArray<Arr extends string[] | readonly string[]> =

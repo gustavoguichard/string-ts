@@ -1,5 +1,5 @@
-import { transformKeys } from './transform-keys.js'
 import { type Replace, replace } from '../../native/replace.js'
+import { transformKeys } from './transform-keys.js'
 
 /**
  * Shallowly transforms the keys of a Record with `replace`.
@@ -11,7 +11,9 @@ export type ReplaceKeys<
   replacement extends string = '',
 > = T extends []
   ? T
-  : { [K in keyof T as Replace<Extract<K, string>, lookup, replacement>]: T[K] }
+  : {
+      [K in keyof T as Replace<Extract<K, string>, lookup, replacement>]: T[K]
+    }
 /**
  * A strongly typed function that shallowly transforms the keys of an object by running the `replace` method in every key. The transformation is done both at runtime and type level.
  * @param obj the object to transform.

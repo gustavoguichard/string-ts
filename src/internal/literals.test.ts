@@ -1,8 +1,8 @@
 import type {
-  IsNumberLiteral,
-  IsBooleanLiteral,
-  Any,
   All,
+  Any,
+  IsBooleanLiteral,
+  IsNumberLiteral,
   IsStringLiteral,
   IsStringLiteralArray,
 } from './literals.js'

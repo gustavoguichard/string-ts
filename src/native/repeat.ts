@@ -1,11 +1,11 @@
+import type { TupleOf } from '../internal/internals.js'
 import type { Math } from '../internal/math.js'
 import type { Join } from './join.js'
-import type { TupleOf } from '../internal/internals.js'
 
 import type {
   All,
-  IsStringLiteral,
   IsNumberLiteral,
+  IsStringLiteral,
 } from '../internal/literals.js'
 
 /**
@@ -19,8 +19,8 @@ export type Repeat<T extends string, times extends number = 0> = All<
   ? times extends 0
     ? ''
     : Math.IsNegative<times> extends false
-    ? Join<TupleOf<times, T>>
-    : never
+      ? Join<TupleOf<times, T>>
+      : never
   : string
 
 /**
@@ -32,7 +32,7 @@ export type Repeat<T extends string, times extends number = 0> = All<
  */
 export function repeat<T extends string, N extends number = 0>(
   str: T,
-  times: N = 0 as N,
+  times: N = 0 as N
 ) {
   return str.repeat(times) as Repeat<T, N>
 }
