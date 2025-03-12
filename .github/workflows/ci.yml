@@ -11,6 +11,11 @@ jobs:
       fail-fast: false
       matrix:
         typescript-version:
+          - '~5.7.0'
+          - '~5.6.0'
+          - '~5.5.0'
+          - '~5.4.0'
+          - '~5.3.0'
           - '~5.2.0'
           - '~5.1.0'
             # We use features that were added in v5.0 of typescript, so that is
@@ -23,24 +28,28 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
+      - name: 📦 Manually Install pnpm
+        run: npm install -g pnpm@10
+
       - name: 🪡 Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'pnpm'
 
       - name: 📦 Install Dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile
 
       # Order is important here, we build with the typescript version defined
       # in package.json, before we overrite it for the tests.
       - name: 🏗️ Build
-        run: npm run build
+        run: pnpm run build
 
       - name: 📘 Install Typescript
-        run: npm install --dev typescript@${{ matrix.typescript-version }}
+        run: pnpm add -D typescript@${{ matrix.typescript-version }}
 
       - name: 🔎 Type check
-        run: npm run tsc:dist
+        run: pnpm run tsc:dist
 
 
   test:
@@ -54,23 +63,27 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
+      - name: 📦 Manually Install pnpm
+        run: npm install -g pnpm@10
+
       - name: 🪡 Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'pnpm'
 
       - name: 📦 Install Dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile
 
       - name: ⚡ Run tests
         run: |
-          npm run test
+          pnpm run test
       - name: 🚦 Lint
         run: |
-          npm run lint
+          pnpm run lint
       - name: 🧙🏿‍♂️ TSC
         run: |
-          npm run tsc
+          pnpm run tsc
       - name: 📥 Generate npm package
         run: |
-          npm run build
+          pnpm run build

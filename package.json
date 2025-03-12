@@ -22,7 +22,10 @@
     "typescript": "^5.7.3",
     "vitest": "latest"
   },
-  "files": ["README.md", "./dist/*"],
+  "files": [
+    "README.md",
+    "./dist/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gustavoguichard/string-ts.git"
@@ -30,5 +33,11 @@
   "bugs": {
     "url": "https://github.com/gustavoguichard/string-ts/issues"
   },
-  "sideEfects": false
+  "sideEfects": false,
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "esbuild"
+    ]
+  }
 }
