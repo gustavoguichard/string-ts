@@ -12,8 +12,8 @@ export type Split<
   ? T extends `${infer first}${delimiter}${infer rest}`
     ? [first, ...Split<rest, delimiter>]
     : T extends ''
-    ? []
-    : [T]
+      ? []
+      : [T]
   : string[]
 /**
  * A strongly-typed version of `String.prototype.split`.
@@ -24,7 +24,7 @@ export type Split<
  */
 export function split<T extends string, D extends string = ''>(
   str: T,
-  delimiter: D = '' as D,
+  delimiter: D = '' as D
 ) {
   return str.split(delimiter) as Split<T, D>
 }

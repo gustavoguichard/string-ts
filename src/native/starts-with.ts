@@ -1,10 +1,10 @@
-import type { Math } from '../internal/math.js'
-import type { Slice } from './slice.js'
 import type {
   All,
-  IsStringLiteral,
   IsNumberLiteral,
+  IsStringLiteral,
 } from '../internal/literals.js'
+import type { Math } from '../internal/math.js'
+import type { Slice } from './slice.js'
 
 /**
  * Checks if a string starts with another string.

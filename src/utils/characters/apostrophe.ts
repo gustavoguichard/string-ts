@@ -1,5 +1,5 @@
 import type { IsStringLiteral } from '../../internal/literals.js'
-import { replaceAll, type ReplaceAll } from '../../native/replace-all.js'
+import { type ReplaceAll, replaceAll } from '../../native/replace-all.js'
 
 type Apostrophe = "'"
 
@@ -15,7 +15,7 @@ export type IsApostrophe<T extends string> = IsStringLiteral<T> extends true
 export type RemoveApostrophe<T extends string> = ReplaceAll<T, "'", ''>
 
 export function removeApostrophe<T extends string>(
-  str: T,
+  str: T
 ): RemoveApostrophe<T> {
   return replaceAll(str, "'", '')
 }

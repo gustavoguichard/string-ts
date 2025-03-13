@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { type ReplaceAll, replaceAll } from './replace-all.js'
 
 namespace TypeTests {

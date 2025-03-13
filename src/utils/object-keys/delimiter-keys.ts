@@ -1,8 +1,8 @@
-import { transformKeys } from './transform-keys.js'
 import {
   type DelimiterCase,
   delimiterCase,
 } from '../word-case/delimiter-case.js'
+import { transformKeys } from './transform-keys.js'
 
 /**
  * Shallowly transforms the keys of a Record to a custom delimiter case.
@@ -21,7 +21,7 @@ export type DelimiterKeys<T, D extends string> = T extends []
  */
 export function delimiterKeys<T, D extends string>(
   obj: T,
-  delimiter: D,
+  delimiter: D
 ): DelimiterKeys<T, D> {
   return transformKeys(obj, (str) => delimiterCase(str, delimiter)) as never
 }

@@ -1,9 +1,9 @@
-import type { Split } from './split.js'
 import type {
   All,
-  IsStringLiteral,
   IsNumberLiteral,
+  IsStringLiteral,
 } from '../internal/literals.js'
+import type { Split } from './split.js'
 
 /**
  * Gets the character at the given index.
@@ -25,7 +25,7 @@ export type CharAt<T extends string, index extends number> = All<
  */
 export function charAt<T extends string, I extends number>(
   str: T,
-  index: I,
+  index: I
 ): CharAt<T, I> {
   return str.charAt(index) as CharAt<T, I>
 }

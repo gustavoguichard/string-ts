@@ -1,6 +1,6 @@
 import {
-  type WeirdTextUnion,
   SEPARATORS_TEXT,
+  type WeirdTextUnion,
 } from '../../internal/fixtures.js'
 import { type ConstantCase, constantCase } from './constant-case.js'
 
@@ -20,7 +20,7 @@ describe('constantCase', () => {
     const expected =
       'SOME_WEIRD_CASED_$*_STRING_1986_FOO_BAR_W_FOR_WUMBO' as const
     const result = constantCase(
-      ' someWeird-cased$*String1986Foo Bar W_FOR_WUMBO',
+      ' someWeird-cased$*String1986Foo Bar W_FOR_WUMBO'
     )
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, typeof expected>>

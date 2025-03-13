@@ -1,9 +1,9 @@
 import { type Join, join } from '../../native/join.js'
-import { type Words, words } from '../words.js'
 import {
-  removeApostrophe,
   type RemoveApostrophe,
+  removeApostrophe,
 } from '../characters/apostrophe.js'
+import { type Words, words } from '../words.js'
 
 /**
  * Transforms a string with the specified separator (delimiter).
@@ -21,7 +21,7 @@ export type DelimiterCase<T extends string, D extends string> = Join<
  */
 export function delimiterCase<T extends string, D extends string>(
   str: T,
-  delimiter: D,
+  delimiter: D
 ): DelimiterCase<T, D> {
   return join(words(removeApostrophe(str)), delimiter)
 }

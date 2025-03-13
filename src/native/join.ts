@@ -1,7 +1,7 @@
 import type {
+  All,
   IsStringLiteral,
   IsStringLiteralArray,
-  All,
 } from '../internal/literals.js'
 
 /**
@@ -32,7 +32,7 @@ export type Join<
  */
 export function join<const T extends readonly string[], D extends string = ''>(
   tuple: T,
-  delimiter: D = '' as D,
+  delimiter: D = '' as D
 ) {
   return tuple.join(delimiter) as Join<T, D>
 }

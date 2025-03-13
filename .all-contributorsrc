@@ -1,7 +1,5 @@
 {
-  "files": [
-    "README.md"
-  ],
+  "files": ["README.md"],
   "imageSize": 100,
   "commit": false,
   "commitType": "docs",
@@ -63,40 +61,28 @@
       "name": "Matt Pocock",
       "avatar_url": "https://avatars.githubusercontent.com/u/28293365?v=4",
       "profile": "https://totaltypescript.com",
-      "contributions": [
-        "doc",
-        "code",
-        "promotion"
-      ]
+      "contributions": ["doc", "code", "promotion"]
     },
     {
       "login": "iamandrewluca",
       "name": "Andrew Luca",
       "avatar_url": "https://avatars.githubusercontent.com/u/1881266?v=4",
       "profile": "https://luca.md",
-      "contributions": [
-        "doc",
-        "promotion"
-      ]
+      "contributions": ["doc", "promotion"]
     },
     {
       "login": "mjuksel",
       "name": "Mjuksel",
       "avatar_url": "https://avatars.githubusercontent.com/u/10691584?v=4",
       "profile": "https://github.com/mjuksel",
-      "contributions": [
-        "code",
-        "ideas"
-      ]
+      "contributions": ["code", "ideas"]
     },
     {
       "login": "hverlin",
       "name": "hverlin",
       "avatar_url": "https://avatars.githubusercontent.com/u/9151470?v=4",
       "profile": "https://huguesverlin.fr",
-      "contributions": [
-        "code"
-      ]
+      "contributions": ["code"]
     }
   ],
   "contributorsPerLine": 7,

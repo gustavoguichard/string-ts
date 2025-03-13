@@ -1,4 +1,4 @@
-import type { IsLower, IsUpper, IsLetter } from './letters.js'
+import type { IsLetter, IsLower, IsUpper } from './letters.js'
 
 namespace TypeChecks {
   type testIsLower1 = Expect<Equal<IsLower<'1'>, false>>

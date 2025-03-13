@@ -1,5 +1,5 @@
-import { capitalize } from './capitalize.js'
 import { WEIRD_TEXT } from '../../internal/fixtures.js'
+import { capitalize } from './capitalize.js'
 
 describe('capitalize', () => {
   test('it does nothing with a string that has no char at the beginning', () => {

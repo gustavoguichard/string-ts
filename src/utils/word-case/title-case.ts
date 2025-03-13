@@ -1,5 +1,5 @@
-import { type PascalCase, pascalCase } from './pascal-case.js'
 import { type DelimiterCase, delimiterCase } from './delimiter-case.js'
+import { type PascalCase, pascalCase } from './pascal-case.js'
 
 /**
  * Transforms a string to "Title Case".

@@ -1,8 +1,8 @@
-import type { IsSeparator } from './separators.js'
+import type { IsStringLiteral } from '../../internal/literals.js'
+import type { IsApostrophe } from './apostrophe.js'
 import type { IsLetter } from './letters.js'
 import type { IsDigit } from './numbers.js'
-import type { IsApostrophe } from './apostrophe.js'
-import type { IsStringLiteral } from '../../internal/literals.js'
+import type { IsSeparator } from './separators.js'
 
 /**
  * Checks if the given character is a special character.

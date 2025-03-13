@@ -1,12 +1,12 @@
-import type { Math } from '../internal/math.js'
-import type { Slice } from './slice.js'
-import type { Repeat } from './repeat.js'
-import type { Length } from './length.js'
 import type {
   All,
-  IsStringLiteral,
   IsNumberLiteral,
+  IsStringLiteral,
 } from '../internal/literals.js'
+import type { Math } from '../internal/math.js'
+import type { Length } from './length.js'
+import type { Repeat } from './repeat.js'
+import type { Slice } from './slice.js'
 
 /**
  * Pads a string at the start with another string.

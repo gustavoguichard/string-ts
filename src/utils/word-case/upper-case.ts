@@ -8,7 +8,7 @@ import { type DelimiterCase, delimiterCase } from './delimiter-case.js'
  * @example upperCase('hello-world') // 'HELLO WORLD'
  */
 export function upperCase<T extends string>(
-  str: T,
+  str: T
 ): Uppercase<DelimiterCase<T, ' '>> {
   return toUpperCase(delimiterCase(str, ' '))
 }

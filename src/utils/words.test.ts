@@ -47,7 +47,7 @@ describe('words', () => {
       'ten',
     ] as const
     const result = words(
-      '[one] two-three/four.five(six){seven}|eight_nine\\ten',
+      '[one] two-three/four.five(six){seven}|eight_nine\\ten'
     )
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, Mutable<typeof expected>>>

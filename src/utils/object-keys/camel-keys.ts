@@ -1,5 +1,5 @@
-import { transformKeys } from './transform-keys.js'
 import { type CamelCase, camelCase } from '../word-case/camel-case.js'
+import { transformKeys } from './transform-keys.js'
 
 /**
  * Shallowly transforms the keys of a Record to camelCase.

@@ -1,5 +1,5 @@
+import type { IsNumberLiteral, IsStringLiteral } from '../internal/literals.js'
 import type { Math } from '../internal/math.js'
-import type { IsStringLiteral, IsNumberLiteral } from '../internal/literals.js'
 
 /**
  * Slices a string from a startIndex to an endIndex.

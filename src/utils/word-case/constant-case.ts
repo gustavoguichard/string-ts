@@ -1,9 +1,9 @@
-import { type DelimiterCase, delimiterCase } from './delimiter-case.js'
 import { toUpperCase } from '../../native/to-upper-case.js'
 import {
-  removeApostrophe,
   type RemoveApostrophe,
+  removeApostrophe,
 } from '../characters/apostrophe.js'
+import { type DelimiterCase, delimiterCase } from './delimiter-case.js'
 
 /**
  * Transforms a string to CONSTANT_CASE.

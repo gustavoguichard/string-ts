@@ -1,12 +1,11 @@
-import type { Reject, DropSuffix } from '../internal/internals.js'
-import type { IsSeparator } from './characters/separators.js'
-import { SEPARATOR_REGEX } from './characters/separators.js'
+import type { DropSuffix, Reject } from '../internal/internals.js'
+import type { IsStringLiteral } from '../internal/literals.js'
 import type { IsLower, IsUpper } from './characters/letters.js'
 import type { IsDigit } from './characters/numbers.js'
+import type { IsSeparator } from './characters/separators.js'
+import { SEPARATOR_REGEX } from './characters/separators.js'
 import type { IsSpecial } from './characters/special.js'
-import type { IsStringLiteral } from '../internal/literals.js'
 
-// prettier-ignore
 /**
  * Splits a string into words.
  * sentence: The current string to split.
@@ -23,31 +22,34 @@ export type Words<
       ? // Step 1: Remove separators
         Reject<[word, ...Words<rest>], ''>
       : prev extends ''
-      ? // Start of sentence, start a new word
-        Reject<Words<rest, curr, curr>, ''>
-      : [false, true] extends [IsDigit<prev>, IsDigit<curr>]
-      ? // Step 2: From non-digit to digit
-        [word, ...Words<rest, curr, curr>]
-      : [true, false] extends [IsDigit<prev>, IsDigit<curr>]
-      ? // Step 3: From digit to non-digit
-        [word, ...Words<rest, curr, curr>]
-      : [false, true] extends [IsSpecial<prev>, IsSpecial<curr>]
-      ? // Step 4: From non-special to special
-        [word, ...Words<rest, curr, curr>]
-      : [true, false] extends [IsSpecial<prev>, IsSpecial<curr>]
-      ? // Step 5: From special to non-special
-        [word, ...Words<rest, curr, curr>]
-      : [true, true] extends [IsDigit<prev>, IsDigit<curr>]
-      ? // If both are digit, continue with the sentence
-        Reject<Words<rest, `${word}${curr}`, curr>, ''>
-      : [true, true] extends [IsLower<prev>, IsUpper<curr>]
-      ? // Step 6: From lower to upper
-        [word, ...Words<rest, curr, curr>]
-      : [true, true] extends [IsUpper<prev>, IsLower<curr>]
-      ? // Step 7: From upper to upper and lower
-        // Remove the last character from the current word and start a new word with it
-        [DropSuffix<word, prev>, ...Words<rest, `${prev}${curr}`, curr>]
-      : Reject<Words<rest, `${word}${curr}`, curr>, ''> // Otherwise continue with the sentence
+        ? // Start of sentence, start a new word
+          Reject<Words<rest, curr, curr>, ''>
+        : [false, true] extends [IsDigit<prev>, IsDigit<curr>]
+          ? // Step 2: From non-digit to digit
+            [word, ...Words<rest, curr, curr>]
+          : [true, false] extends [IsDigit<prev>, IsDigit<curr>]
+            ? // Step 3: From digit to non-digit
+              [word, ...Words<rest, curr, curr>]
+            : [false, true] extends [IsSpecial<prev>, IsSpecial<curr>]
+              ? // Step 4: From non-special to special
+                [word, ...Words<rest, curr, curr>]
+              : [true, false] extends [IsSpecial<prev>, IsSpecial<curr>]
+                ? // Step 5: From special to non-special
+                  [word, ...Words<rest, curr, curr>]
+                : [true, true] extends [IsDigit<prev>, IsDigit<curr>]
+                  ? // If both are digit, continue with the sentence
+                    Reject<Words<rest, `${word}${curr}`, curr>, ''>
+                  : [true, true] extends [IsLower<prev>, IsUpper<curr>]
+                    ? // Step 6: From lower to upper
+                      [word, ...Words<rest, curr, curr>]
+                    : [true, true] extends [IsUpper<prev>, IsLower<curr>]
+                      ? // Step 7: From upper to upper and lower
+                        // Remove the last character from the current word and start a new word with it
+                        [
+                          DropSuffix<word, prev>,
+                          ...Words<rest, `${prev}${curr}`, curr>,
+                        ]
+                      : Reject<Words<rest, `${word}${curr}`, curr>, ''> // Otherwise continue with the sentence
     : // Step 8: Trim the last word
       Reject<[word], ''>
   : string[] // Avoid spending resources on a wide type

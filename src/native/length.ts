@@ -1,5 +1,5 @@
-import type { Split } from './split.js'
 import type { IsStringLiteral } from '../internal/literals.js'
+import type { Split } from './split.js'
 
 /**
  * Gets the length of a string.

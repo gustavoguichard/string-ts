@@ -7,14 +7,14 @@ namespace Math {
     | B
     ? number
     : TupleOf<A> extends [...infer U, ...TupleOf<B>]
-    ? U['length']
-    : 0
+      ? U['length']
+      : 0
 
   export type IsNegative<T extends number> = number extends T
     ? boolean
     : `${T}` extends `-${number}`
-    ? true
-    : false
+      ? true
+      : false
 
   export type Abs<T extends number> = `${T}` extends `-${infer U extends
     number}`

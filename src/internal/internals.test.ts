@@ -1,5 +1,5 @@
-import type { Reject, PascalCaseAll, DropSuffix, TupleOf } from './internals.js'
-import { typeOf, pascalCaseAll } from './internals.js'
+import type { DropSuffix, PascalCaseAll, Reject, TupleOf } from './internals.js'
+import { pascalCaseAll, typeOf } from './internals.js'
 
 namespace Internals {
   type testPascalCaseAll1 = Expect<

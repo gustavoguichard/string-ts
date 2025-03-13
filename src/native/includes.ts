@@ -14,12 +14,12 @@ export type Includes<
 > = string extends T | S
   ? boolean
   : Math.IsNegative<P> extends false
-  ? P extends 0
-    ? T extends `${string}${S}${string}`
-      ? true
-      : false
-    : Includes<Slice<T, P>, S, 0> // P is >0, slice
-  : Includes<T, S, 0> // P is negative, ignore it
+    ? P extends 0
+      ? T extends `${string}${S}${string}`
+        ? true
+        : false
+      : Includes<Slice<T, P>, S, 0> // P is >0, slice
+    : Includes<T, S, 0> // P is negative, ignore it
 
 /**
  * A strongly-typed version of `String.prototype.includes`.
