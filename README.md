@@ -544,6 +544,18 @@ const result = upperCase(str)
 //    ^ 'HELLO WORLD'
 ```
 
+### dedent
+
+This function dedents a string.
+
+```ts
+import { dedent } from 'string-ts'
+
+const str = '  Hello StringTS!'
+const result = dedent(str)
+//    ^  'Hello StringTS!'
+```
+
 ### reverse
 
 This function reverses a string.
