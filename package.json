@@ -1,6 +1,6 @@
 {
   "name": "string-ts",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "Strongly-typed string functions.",
   "author": "Gustavo Guichard <@gugaguichard>",
   "license": "MIT",
@@ -27,7 +27,9 @@
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
-      "native": ["dist/native.d.ts"]
+      "native": [
+        "dist/native.d.ts"
+      ]
     }
   },
   "devDependencies": {
@@ -39,7 +41,10 @@
     "typescript": "^5.7.3",
     "vitest": "latest"
   },
-  "files": ["README.md", "./dist/*"],
+  "files": [
+    "README.md",
+    "./dist/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gustavoguichard/string-ts.git"
@@ -49,6 +54,9 @@
   },
   "sideEffects": false,
   "pnpm": {
-    "onlyBuiltDependencies": ["@biomejs/biome", "esbuild"]
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "esbuild"
+    ]
   }
 }
