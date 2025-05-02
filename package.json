@@ -1,6 +1,6 @@
 {
   "name": "string-ts",
-  "version": "2.3.0-experimental.0",
+  "version": "2.3.0-experimental.1",
   "description": "Strongly-typed string functions.",
   "author": "Gustavo Guichard <@gugaguichard>",
   "license": "MIT",
@@ -16,15 +16,14 @@
   "exports": {
     ".": {
       "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     },
     "./native": {
-      "default": "./dist/native.js"
+      "default": "./dist/native.js",
+      "types": "./dist/native.d.ts"
     }
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
       "native": ["dist/native.d.ts"]
