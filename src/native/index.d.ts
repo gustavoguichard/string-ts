@@ -7,14 +7,14 @@ import type {
   PadEnd,
   PadStart,
   Repeat,
-  Replace,
   ReplaceAll,
+  Replace,
   Slice,
   Split,
   StartsWith,
-  Trim,
   TrimEnd,
   TrimStart,
+  Trim,
 } from '..'
 
 // biome-ignore lint/complexity/noUselessEmptyExport: <explanation>
