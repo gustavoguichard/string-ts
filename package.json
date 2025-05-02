@@ -24,6 +24,7 @@
       "types": "./dist/native.d.ts"
     }
   },
+  "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
       "native": ["dist/native.d.ts"]
