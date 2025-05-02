@@ -1,21 +1,19 @@
-import type {
-  CharAt,
-  Concat,
-  EndsWith,
-  Includes,
-  Join,
-  PadEnd,
-  PadStart,
-  Repeat,
-  Replace,
-  ReplaceAll,
-  Slice,
-  Split,
-  StartsWith,
-  Trim,
-  TrimEnd,
-  TrimStart,
-} from '..'
+import type { CharAt } from './char-at.ts'
+import type { Concat } from './concat.ts'
+import type { EndsWith } from './ends-with.ts'
+import type { Includes } from './includes.ts'
+import type { Join } from './join.ts'
+import type { PadEnd } from './pad-end.ts'
+import type { PadStart } from './pad-start.ts'
+import type { Repeat } from './repeat.ts'
+import type { ReplaceAll } from './replace-all.ts'
+import type { Replace } from './replace.ts'
+import type { Slice } from './slice.ts'
+import type { Split } from './split.ts'
+import type { StartsWith } from './starts-with.ts'
+import type { TrimEnd } from './trim-end.ts'
+import type { TrimStart } from './trim-start.ts'
+import type { Trim } from './trim.ts'
 
 // biome-ignore lint/complexity/noUselessEmptyExport: <explanation>
 export {}

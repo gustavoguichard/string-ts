@@ -30,6 +30,9 @@ jobs:
 
       - name: 📦 Manually Install pnpm
         run: npm install -g pnpm@10
+      
+      - name: 🔧 Ensure TSX is available
+        run: pnpm add -D tsx
 
       - name: 🪡 Install Node.js
         uses: actions/setup-node@v4
@@ -87,3 +90,6 @@ jobs:
       - name: 📥 Generate npm package
         run: |
           pnpm run build
+      - name: ✅ Verify native entrypoint files
+        run: |
+          test -f dist/native.d.ts && test -f dist/native.js && test -f dist/native.mjs
