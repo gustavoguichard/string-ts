@@ -1,12 +1,11 @@
 {
   "name": "string-ts",
-  "version": "2.3.0-experimental.1",
+  "version": "2.3.0-experimental.3",
   "description": "Strongly-typed string functions.",
   "author": "Gustavo Guichard <@gugaguichard>",
   "license": "MIT",
-  "type": "module",
   "scripts": {
-    "build": "tsup ./src/index.ts --format esm,cjs --dts --treeshake && tsx scripts/generate-entrypoints.ts",
+    "build": "tsup ./src/index.ts --format esm,cjs --dts --treeshake && tsx scripts/generate-entrypoints.mts",
     "dev": "tsup ./src/index.ts --format esm,cjs --watch --dts",
     "lint": "node_modules/.bin/biome check --write --error-on-warnings",
     "tsc": "tsc --noEmit",
@@ -24,6 +23,8 @@
       "types": "./dist/native.d.ts"
     }
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
