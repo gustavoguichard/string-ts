@@ -1,31 +1,47 @@
 {
   "name": "string-ts",
-  "version": "2.2.1",
+  "version": "2.3.0-experimental.4",
   "description": "Strongly-typed string functions.",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "author": "Gustavo Guichard <@gugaguichard>",
   "license": "MIT",
   "scripts": {
-    "build": "tsup ./src/index.ts --format esm,cjs --dts --treeshake",
+    "build": "tsup ./src/index.ts --format esm,cjs --dts --treeshake && tsx scripts/generate-entrypoints.mts",
     "dev": "tsup ./src/index.ts --format esm,cjs --watch --dts",
     "lint": "node_modules/.bin/biome check --write --error-on-warnings",
     "tsc": "tsc --noEmit",
     "tsc:dist": "tsc --project tsconfig.dist.json",
     "test": "vitest run"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./native": {
+      "default": "./dist/native.js",
+      "types": "./dist/native.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "native": ["dist/native.d.ts"]
+    }
+  },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.15.3",
     "@vitest/coverage-v8": "^3.0.5",
     "tsup": "latest",
+    "tsx": "^4.19.4",
     "typescript": "^5.7.3",
     "vitest": "latest"
   },
-  "files": [
-    "README.md",
-    "./dist/*"
-  ],
+  "files": ["README.md", "./dist/*"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gustavoguichard/string-ts.git"
@@ -33,11 +49,8 @@
   "bugs": {
     "url": "https://github.com/gustavoguichard/string-ts/issues"
   },
-  "sideEfects": false,
+  "sideEffects": false,
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "@biomejs/biome",
-      "esbuild"
-    ]
+    "onlyBuiltDependencies": ["@biomejs/biome", "esbuild"]
   }
 }
