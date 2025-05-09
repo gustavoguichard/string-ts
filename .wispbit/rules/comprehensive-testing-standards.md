@@ -40,8 +40,6 @@ describe('truncate', () => {
   
   test('truncates a string that exceeds target length', () => {
     expect(truncate(longText, 9, '...')).toEqual('Hello,...');
-    // Type test using expectType
-    expectType<'Hello,...'>(truncate('Hello, world', 9, '...'));
   });
   
   test('does not truncate a string shorter than target length', () => {
