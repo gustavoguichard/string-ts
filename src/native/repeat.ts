@@ -13,15 +13,15 @@ import type {
  * T: The string to repeat.
  * N: The number of times to repeat.
  */
-export type Repeat<T extends string, times extends number = 0> = All<
-  [IsStringLiteral<T>, IsNumberLiteral<times>]
-> extends true
-  ? times extends 0
-    ? ''
-    : Math.IsNegative<times> extends false
-      ? Join<TupleOf<times, T>>
-      : never
-  : string
+export type Repeat<T extends string, times extends number = 0> = T extends T
+  ? All<[IsStringLiteral<T>, IsNumberLiteral<times>]> extends true
+    ? times extends 0
+      ? ''
+      : Math.IsNegative<times> extends false
+        ? Join<TupleOf<times, T>>
+        : never
+    : string
+  : never
 
 /**
  * A strongly-typed version of `String.prototype.repeat`.

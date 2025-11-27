@@ -5,6 +5,7 @@ namespace TypeTests {
   type test2 = Expect<Equal<Repeat<string, 3>, string>>
   type test3 = Expect<Equal<Repeat<Uppercase<string>, 3>, string>>
   type test4 = Expect<Equal<Repeat<' ', number>, string>>
+  type test5 = Expect<Equal<Repeat<'a' | 'b', 2>, 'aa' | 'bb'>>
 }
 
 describe('repeat', () => {
@@ -26,5 +27,12 @@ describe('repeat', () => {
     const data = 'abc'
     expect(() => repeat(data, -1)).toThrow()
     type test = Expect<Equal<Repeat<'a', -1>, never>>
+  })
+
+  test('should correctly type union inputs without creating permutations', () => {
+    const data = 'a' as 'a' | 'b'
+    const result = repeat(data, 2)
+    expect(['aa', 'bb']).toContain(result)
+    type test = Expect<Equal<typeof result, 'aa' | 'bb'>>
   })
 })
