@@ -6,6 +6,8 @@ namespace TypeTests {
   type test3 = Expect<Equal<PadStart<Uppercase<string>, 10, ' '>, string>>
   type test4 = Expect<Equal<PadStart<'hello', number, ' '>, string>>
   type test5 = Expect<Equal<PadStart<'hello', 10, string>, string>>
+  type test6 = Expect<Equal<PadStart<'a' | 'b', 3, 'x'>, 'xxa' | 'xxb'>>
+  type test7 = Expect<Equal<PadStart<'a', 3, 'x' | 'y'>, 'xxa' | 'yya'>>
 }
 
 describe('padStart', () => {
