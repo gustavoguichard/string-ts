@@ -17,10 +17,11 @@ import type {
   Trim,
 } from '..'
 
-// biome-ignore lint/complexity/noUselessEmptyExport: <explanation>
+// biome-ignore lint/complexity/noUselessEmptyExport: required to make this a module
 export {}
 
 declare global {
+  // biome-ignore lint/correctness/noUnusedVariables: T is required for interface extension
   interface ReadonlyArray<T> {
     join<const A extends readonly string[], D extends string = ''>(
       this: A,
