@@ -15,6 +15,9 @@ namespace TypeTests {
   type test6 = Expect<
     Equal<ReplaceAll<'some nice string', ' ', string>, string>
   >
+  type test7 = Expect<
+    Equal<ReplaceAll<'a-b-c' | 'd-e-f', '-', '='>, 'a=b=c' | 'd=e=f'>
+  >
 }
 
 beforeEach(() => {

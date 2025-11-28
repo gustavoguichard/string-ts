@@ -9,6 +9,7 @@ namespace TypeTests {
   type test4 = Expect<Equal<Replace<Uppercase<string>, ' ', '-'>, string>>
   type test5 = Expect<Equal<Replace<'some nice string', string, '-'>, string>>
   type test6 = Expect<Equal<Replace<'some nice string', ' ', string>, string>>
+  type test7 = Expect<Equal<Replace<'a-b' | 'c-d', '-', '='>, 'a=b' | 'c=d'>>
 }
 
 describe('replace', () => {

@@ -11,6 +11,8 @@ namespace TypeTests {
   type test8 = Expect<Equal<StartsWith<`cba${string}`, 'a'>, false>>
   type test9 = Expect<Equal<StartsWith<`abc${string}`, 'abc'>, true>>
   type test10 = Expect<Equal<StartsWith<`abc${string}`, 'b', 1>, true>>
+  type test11 = Expect<Equal<StartsWith<'abc' | 'def', 'a'>, boolean>>
+  type test12 = Expect<Equal<StartsWith<'abc' | 'axy', 'a'>, true>>
 }
 
 describe('startsWith', () => {

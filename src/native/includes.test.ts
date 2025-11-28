@@ -4,6 +4,8 @@ namespace TypeTests {
   type test1 = Expect<Equal<Includes<'abcde', 'bcd'>, true>>
   type test2 = Expect<Equal<Includes<string, 'bcd'>, boolean>>
   type test3 = Expect<Equal<Includes<'abcde', string>, boolean>>
+  type test4 = Expect<Equal<Includes<'abcde' | 'xyz', 'bcd'>, boolean>>
+  type test5 = Expect<Equal<Includes<'abcde' | 'xbcdy', 'bcd'>, true>>
 }
 
 describe('includes', () => {

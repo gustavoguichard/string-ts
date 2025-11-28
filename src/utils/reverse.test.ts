@@ -13,6 +13,9 @@ namespace ReverseTests {
   type testTS1 = Expect<Equal<Reverse<`abc${string}`>, `${string}cba`>>
   type testTS2 = Expect<Equal<Reverse<`abc${string}xyz`>, `zyx${string}cba`>>
   type testTS3 = Expect<Equal<Reverse<`${string}xyz`>, `zyx${string}`>>
+
+  // Union types
+  type testUnion = Expect<Equal<Reverse<'ab' | 'cd'>, 'ba' | 'dc'>>
 }
 
 describe('reverse', () => {

@@ -17,6 +17,10 @@ namespace TypeTests {
   type testTS4 = Expect<Equal<EndsWith<`xyz${string}abc`, 'a'>, false>>
   type testTS5 = Expect<Equal<EndsWith<`abc${string}xyz`, 'c', 3>, true>>
   type testTS6 = Expect<Equal<EndsWith<`abc${string}xyz`, 'c', 4>, boolean>>
+
+  // Union types
+  type testUnion1 = Expect<Equal<EndsWith<'abc' | 'xyz', 'c'>, boolean>>
+  type testUnion2 = Expect<Equal<EndsWith<'abc' | 'xyzc', 'c'>, true>>
 }
 
 describe('endsWith', () => {
