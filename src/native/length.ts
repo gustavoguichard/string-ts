@@ -4,9 +4,8 @@ import type { Split } from './split.js'
 /**
  * Gets the length of a string.
  */
-export type Length<T extends string> = IsStringLiteral<T> extends true
-  ? Split<T>['length']
-  : number
+export type Length<T extends string> =
+  IsStringLiteral<T> extends true ? Split<T>['length'] : number
 /**
  * A strongly-typed version of `String.prototype.length`.
  * @param str the string to get the length from.

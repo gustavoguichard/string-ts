@@ -6,11 +6,12 @@ type Apostrophe = "'"
 /**
  * Checks if the given character is an apostrophe
  */
-export type IsApostrophe<T extends string> = IsStringLiteral<T> extends true
-  ? T extends Apostrophe
-    ? true
-    : false
-  : boolean
+export type IsApostrophe<T extends string> =
+  IsStringLiteral<T> extends true
+    ? T extends Apostrophe
+      ? true
+      : false
+    : boolean
 
 export type RemoveApostrophe<T extends string> = ReplaceAll<T, "'", ''>
 

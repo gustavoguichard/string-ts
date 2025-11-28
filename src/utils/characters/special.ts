@@ -8,14 +8,15 @@ import type { IsSeparator } from './separators.js'
  * Checks if the given character is a special character.
  * E.g. not a letter, number, or separator.
  */
-export type IsSpecial<T extends string> = IsStringLiteral<T> extends true
-  ? IsLetter<T> extends true
-    ? false
-    : IsDigit<T> extends true
+export type IsSpecial<T extends string> =
+  IsStringLiteral<T> extends true
+    ? IsLetter<T> extends true
       ? false
-      : IsSeparator<T> extends true
+      : IsDigit<T> extends true
         ? false
-        : IsApostrophe<T> extends true
+        : IsSeparator<T> extends true
           ? false
-          : true
-  : boolean
+          : IsApostrophe<T> extends true
+            ? false
+            : true
+    : boolean

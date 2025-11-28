@@ -1,12 +1,11 @@
 import type { TupleOf } from '../internal/internals.js'
-import type { Math } from '../internal/math.js'
-import type { Join } from './join.js'
-
 import type {
   All,
   IsNumberLiteral,
   IsStringLiteral,
 } from '../internal/literals.js'
+import type { Math } from '../internal/math.js'
+import type { Join } from './join.js'
 
 /**
  * Repeats a string N times.

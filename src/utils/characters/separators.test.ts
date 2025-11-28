@@ -1,5 +1,5 @@
-import { SEPARATOR_REGEX } from './separators.js'
 import type { IsSeparator } from './separators.js'
+import { SEPARATOR_REGEX } from './separators.js'
 
 namespace TypeChecks {
   type test1 = Expect<Equal<IsSeparator<'1'>, false>>

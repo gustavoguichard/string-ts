@@ -33,8 +33,9 @@ export type Separator = Separators[number]
  * Checks if the given character is a separator.
  * E.g. space, underscore, dash, dot, slash.
  */
-export type IsSeparator<T extends string> = IsStringLiteral<T> extends true
-  ? T extends Separator
-    ? true
-    : false
-  : boolean
+export type IsSeparator<T extends string> =
+  IsStringLiteral<T> extends true
+    ? T extends Separator
+      ? true
+      : false
+    : boolean

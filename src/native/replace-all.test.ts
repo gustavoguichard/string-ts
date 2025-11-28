@@ -52,7 +52,7 @@ describe('replaceAll polyfill', () => {
   const replaceAllPlaceholder = String.prototype.replaceAll
 
   beforeAll(() => {
-    // @ts-ignore
+    // @ts-expect-error
     String.prototype.replaceAll = undefined
   })
 

@@ -1,5 +1,5 @@
-import { join } from './join.js'
 import type { Join } from './join.js'
+import { join } from './join.js'
 
 /**
  * Concatenates a tuple of strings.

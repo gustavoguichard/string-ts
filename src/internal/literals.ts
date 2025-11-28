@@ -30,13 +30,14 @@ type Any<Arr extends boolean[]> = Arr extends [
 /**
  * Returns true if every element in boolean array is the literal true (not false or boolean)
  */
-type All<Arr extends boolean[]> = IsBooleanLiteral<Arr[number]> extends true
-  ? Arr extends [infer Head extends boolean, ...infer Rest extends boolean[]]
-    ? Head extends true
-      ? Any<Rest>
-      : false // Found `false` in array
-    : true // Empty array (or all elements have already passed test)
-  : false // Array/Tuple contains `boolean` type
+type All<Arr extends boolean[]> =
+  IsBooleanLiteral<Arr[number]> extends true
+    ? Arr extends [infer Head extends boolean, ...infer Rest extends boolean[]]
+      ? Head extends true
+        ? Any<Rest>
+        : false // Found `false` in array
+      : true // Empty array (or all elements have already passed test)
+    : false // Array/Tuple contains `boolean` type
 
 /**
  * Returns true if string input type is a literal
