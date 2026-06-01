@@ -159,6 +159,10 @@ _Note: Only methods already supported by the library are typed. The `length` pro
   - [trim](#trim)
   - [trimEnd](#trimend)
   - [trimStart](#trimstart)
+- [Type guards](#type-guards)
+  - [includesGuard](#includesguard)
+  - [startsWithGuard](#startswithguard)
+  - [endsWithGuard](#endswithguard)
 - [Strongly-typed alternatives to common loosely-typed functions](#strongly-typed-alternatives-to-common-loosely-typed-functions)
   - [camelCase](#camelcase)
   - [constantCase](#constantcase)
@@ -460,6 +464,63 @@ import { trimStart } from 'string-ts'
 const str = '  hello world  '
 const result = trimStart(str)
 //    ^ 'hello world  '
+```
+
+## Type guards
+
+These are [type-guard](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) versions of [`includes`](#includes), [`startsWith`](#startswith), and [`endsWith`](#endswith). Instead of returning a strongly-typed boolean, they **narrow** the input string — keeping only the members of a string-literal union that satisfy the check, in both branches of the condition.
+
+_Note: a TypeScript type predicate always surfaces a plain `boolean` to the caller, so these functions trade the literal `true`/`false` return of their counterparts for the ability to narrow. Reach for the plain function when you want the literal boolean, and for the `*Guard` function when you want narrowing._
+
+### includesGuard
+
+This function is a type-guard version of [`includes`](#includes).
+
+```ts
+import { includesGuard } from 'string-ts'
+
+declare const reportType:
+  | 'HouseCalendar'
+  | 'SenateCalendar'
+  | 'HouseFirstReading'
+
+if (includesGuard(reportType, 'Calendar')) {
+  reportType
+  //  ^ 'HouseCalendar' | 'SenateCalendar'
+} else {
+  reportType
+  //  ^ 'HouseFirstReading'
+}
+```
+
+### startsWithGuard
+
+This function is a type-guard version of [`startsWith`](#startswith).
+
+```ts
+import { startsWithGuard } from 'string-ts'
+
+declare const reportType: 'HouseCalendar' | 'SenateCalendar'
+
+if (startsWithGuard(reportType, 'House')) {
+  reportType
+  //  ^ 'HouseCalendar'
+}
+```
+
+### endsWithGuard
+
+This function is a type-guard version of [`endsWith`](#endswith).
+
+```ts
+import { endsWithGuard } from 'string-ts'
+
+declare const reportType: 'HouseCalendar' | 'HouseFirstReading'
+
+if (endsWithGuard(reportType, 'Calendar')) {
+  reportType
+  //  ^ 'HouseCalendar'
+}
 ```
 
 ## Strongly-typed alternatives to common loosely-typed functions
@@ -861,6 +922,11 @@ St.TrimEnd<' hello world '> // ' hello world'
 St.TrimStart<' hello world '> // 'hello world '
 St.Truncate<'hello world', 9, '[...]'> // 'hello[...]
 St.Words<'hello-world'> // ['hello', 'world']
+
+// Type-guard filters: keep the union members that satisfy the check
+St.WhenIncludes<'abcde' | 'xyz', 'bcd'> // 'abcde'
+St.WhenStartsWith<'abc' | 'xyz', 'a'> // 'abc'
+St.WhenEndsWith<'abc' | 'xyz', 'c'> // 'abc'
 ```
 
 ### Casing type utilities
