@@ -261,6 +261,8 @@ const result = endsWith('abc', 'c')
 //    ^ true
 ```
 
+_See [`endsWithGuard`](#endswithguard) for a [type-guard](#type-guards) counterpart that narrows the input string instead of returning a boolean._
+
 ### includes
 
 This function is a strongly-typed counterpart of `String.prototype.includes`.
@@ -271,6 +273,8 @@ import { includes } from 'string-ts'
 const result = includes('abcde', 'bcd')
 //    ^ true
 ```
+
+_See [`includesGuard`](#includesguard) for a [type-guard](#type-guards) counterpart that narrows the input string instead of returning a boolean._
 
 ### join
 
@@ -405,6 +409,8 @@ import { startsWith } from 'string-ts'
 const result = startsWith('abc', 'a')
 //    ^ true
 ```
+
+_See [`startsWithGuard`](#startswithguard) for a [type-guard](#type-guards) counterpart that narrows the input string instead of returning a boolean._
 
 ### toLowerCase
 
