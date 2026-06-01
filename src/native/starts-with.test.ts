@@ -1,4 +1,9 @@
-import { type StartsWith, startsWith } from './starts-with.js'
+import {
+  type StartsWith,
+  startsWith,
+  startsWithGuard,
+  type WhenStartsWith,
+} from './starts-with.js'
 
 namespace TypeTests {
   type test1 = Expect<Equal<StartsWith<'abc', 'a'>, true>>
@@ -54,6 +59,59 @@ describe('startsWith', () => {
       const result = startsWith(text, 'a', 10)
       expect(result).toEqual(false)
       type test = Expect<Equal<typeof result, false>>
+    })
+  })
+})
+
+namespace GuardTypeTests {
+  // keeps the members that start with the search, drops the ones that don't
+  type test1 = Expect<Equal<WhenStartsWith<'abc' | 'xyz', 'a'>, 'abc'>>
+  type test2 = Expect<
+    Equal<WhenStartsWith<'abc' | 'axy' | 'xyz', 'a'>, 'abc' | 'axy'>
+  >
+  // a single non-matching member narrows to `never`
+  type test3 = Expect<Equal<WhenStartsWith<'xyz', 'a'>, never>>
+  // non-literal members can't be ruled out, so they're kept
+  type test4 = Expect<Equal<WhenStartsWith<string, 'a'>, string>>
+  type test5 = Expect<Equal<WhenStartsWith<'abc', string>, 'abc'>>
+  // honors the position argument
+  type test6 = Expect<
+    Equal<WhenStartsWith<'abc' | 'xbc', 'b', 1>, 'abc' | 'xbc'>
+  >
+}
+
+describe('startsWithGuard', () => {
+  describe('type narrowing', () => {
+    test('narrows a union to the members that start with the search', () => {
+      const reportType = 'HouseCalendar' as
+        | 'HouseCalendar'
+        | 'HouseFirstReading'
+        | 'SenateCalendar'
+
+      if (startsWithGuard(reportType, 'House')) {
+        type test = Expect<
+          Equal<typeof reportType, 'HouseCalendar' | 'HouseFirstReading'>
+        >
+        expect(reportType.startsWith('House')).toBe(true)
+      } else {
+        type test = Expect<Equal<typeof reportType, 'SenateCalendar'>>
+      }
+    })
+  })
+
+  describe('runtime behavior', () => {
+    const text = 'abc'
+
+    test('returns a plain boolean (narrowing trades away the literal)', () => {
+      const result = startsWithGuard(text, 'a')
+      type test = Expect<Equal<typeof result, boolean>>
+      expect(result).toBe(true)
+    })
+    test('returns false when text does not start with search', () => {
+      expect(startsWithGuard(text, 'b')).toBe(false)
+    })
+    test('honors the position argument', () => {
+      expect(startsWithGuard(text, 'b', 1)).toBe(true)
     })
   })
 })
