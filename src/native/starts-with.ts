@@ -49,3 +49,40 @@ export function startsWith<
 >(text: T, search: S, position = 0 as P) {
   return text.startsWith(search, position) as StartsWith<T, S, P>
 }
+
+/**
+ * Narrows a string-literal union to the members that start with another string.
+ * It keeps every member for which `StartsWith` isn't provably `false`, so
+ * non-literal members are preserved instead of being narrowed to `never`.
+ * T: The union to filter.
+ * S: The string to search for.
+ * P: The position to start the search.
+ */
+export type WhenStartsWith<
+  T extends string,
+  S extends string,
+  P extends number = 0,
+> = T extends unknown ? (StartsWith<T, S, P> extends false ? never : T) : never
+
+/**
+ * A type-guard version of `startsWith`. It narrows the input string to the
+ * members of a string-literal union that start with the search string.
+ * Unlike `startsWith`, it returns a plain `boolean` (a type predicate can't also
+ * surface the literal `true`/`false`), trading that literal for narrowing.
+ * @param text the string to search.
+ * @param search the string to search with.
+ * @param position the index to start search at.
+ * @returns whether the text starts with the search string, narrowing `text`.
+ * @example
+ * declare const x: 'HouseCalendar' | 'SenateCalendar'
+ * if (startsWithGuard(x, 'House')) {
+ *   x // 'HouseCalendar'
+ * }
+ */
+export function startsWithGuard<
+  T extends string,
+  S extends string,
+  P extends number = 0,
+>(text: T, search: S, position = 0 as P): text is WhenStartsWith<T, S, P> {
+  return text.startsWith(search, position)
+}

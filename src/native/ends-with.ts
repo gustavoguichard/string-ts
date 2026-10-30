@@ -56,3 +56,41 @@ export function endsWith<
 >(text: T, search: S, position = text.length as P) {
   return text.endsWith(search, position) as EndsWith<T, S, P>
 }
+
+/**
+ * Narrows a string-literal union to the members that end with another string.
+ * It keeps every member for which `EndsWith` isn't provably `false`, so
+ * non-literal members are preserved instead of being narrowed to `never`.
+ * When `P` is omitted each member is checked against its own end.
+ * T: The union to filter.
+ * S: The string to search for.
+ * P: The position the search should end.
+ */
+export type WhenEndsWith<
+  T extends string,
+  S extends string,
+  P extends number | undefined = undefined,
+> = T extends unknown ? (EndsWith<T, S, P> extends false ? never : T) : never
+
+/**
+ * A type-guard version of `endsWith`. It narrows the input string to the
+ * members of a string-literal union that end with the search string.
+ * Unlike `endsWith`, it returns a plain `boolean` (a type predicate can't also
+ * surface the literal `true`/`false`), trading that literal for narrowing.
+ * @param text the string to search.
+ * @param search the string to search with.
+ * @param position the index the search should end at.
+ * @returns whether the text ends with the search string, narrowing `text`.
+ * @example
+ * declare const x: 'HouseCalendar' | 'HouseFirstReading'
+ * if (endsWithGuard(x, 'Calendar')) {
+ *   x // 'HouseCalendar'
+ * }
+ */
+export function endsWithGuard<
+  T extends string,
+  S extends string,
+  P extends number | undefined = undefined,
+>(text: T, search: S, position?: P): text is WhenEndsWith<T, S, P> {
+  return text.endsWith(search, position)
+}

@@ -1,4 +1,9 @@
-import { type EndsWith, endsWith } from './ends-with.js'
+import {
+  type EndsWith,
+  endsWith,
+  endsWithGuard,
+  type WhenEndsWith,
+} from './ends-with.js'
 
 namespace TypeTests {
   type test1 = Expect<Equal<EndsWith<'abc', 'c'>, true>>
@@ -67,6 +72,59 @@ describe('endsWith', () => {
       const result = endsWith(text, 'c', 10)
       expect(result).toEqual(true)
       type test = Expect<Equal<typeof result, true>>
+    })
+  })
+})
+
+namespace GuardTypeTests {
+  // keeps the members that end with the search, drops the ones that don't
+  type test1 = Expect<Equal<WhenEndsWith<'abc' | 'xyz', 'c'>, 'abc'>>
+  type test2 = Expect<
+    Equal<WhenEndsWith<'abc' | 'xyzc' | 'def', 'c'>, 'abc' | 'xyzc'>
+  >
+  // a single non-matching member narrows to `never`
+  type test3 = Expect<Equal<WhenEndsWith<'xyz', 'c'>, never>>
+  // non-literal members can't be ruled out, so they're kept
+  type test4 = Expect<Equal<WhenEndsWith<string, 'c'>, string>>
+  type test5 = Expect<Equal<WhenEndsWith<'abc', string>, 'abc'>>
+  // honors the position argument
+  type test6 = Expect<
+    Equal<WhenEndsWith<'abcde' | 'abxde', 'd', 4>, 'abcde' | 'abxde'>
+  >
+}
+
+describe('endsWithGuard', () => {
+  describe('type narrowing', () => {
+    test('narrows a union to the members that end with the search', () => {
+      const reportType = 'HouseCalendar' as
+        | 'HouseCalendar'
+        | 'SenateCalendar'
+        | 'HouseFirstReading'
+
+      if (endsWithGuard(reportType, 'Calendar')) {
+        type test = Expect<
+          Equal<typeof reportType, 'HouseCalendar' | 'SenateCalendar'>
+        >
+        expect(reportType.endsWith('Calendar')).toBe(true)
+      } else {
+        type test = Expect<Equal<typeof reportType, 'HouseFirstReading'>>
+      }
+    })
+  })
+
+  describe('runtime behavior', () => {
+    const text = 'abc'
+
+    test('returns a plain boolean (narrowing trades away the literal)', () => {
+      const result = endsWithGuard(text, 'c')
+      type test = Expect<Equal<typeof result, boolean>>
+      expect(result).toBe(true)
+    })
+    test('returns false when text does not end with search', () => {
+      expect(endsWithGuard(text, 'b')).toBe(false)
+    })
+    test('honors the position argument', () => {
+      expect(endsWithGuard(text, 'b', 2)).toBe(true)
     })
   })
 })

@@ -1,4 +1,9 @@
-import { type Includes, includes } from './includes.js'
+import {
+  type Includes,
+  includes,
+  includesGuard,
+  type WhenIncludes,
+} from './includes.js'
 
 namespace TypeTests {
   type test1 = Expect<Equal<Includes<'abcde', 'bcd'>, true>>
@@ -52,6 +57,62 @@ describe('includes', () => {
       const result = includes(text, 'c', 10)
       expect(result).toEqual(false)
       type test = Expect<Equal<typeof result, false>>
+    })
+  })
+})
+
+namespace GuardTypeTests {
+  // keeps the members that contain the search, drops the ones that don't
+  type test1 = Expect<Equal<WhenIncludes<'abcde' | 'xyz', 'bcd'>, 'abcde'>>
+  type test2 = Expect<
+    Equal<WhenIncludes<'abcde' | 'xbcdy' | 'xyz', 'bcd'>, 'abcde' | 'xbcdy'>
+  >
+  // a single non-matching member narrows to `never`
+  type test3 = Expect<Equal<WhenIncludes<'xyz', 'bcd'>, never>>
+  // non-literal members can't be ruled out, so they're kept
+  type test4 = Expect<Equal<WhenIncludes<string, 'bcd'>, string>>
+  type test5 = Expect<Equal<WhenIncludes<'abcde', string>, 'abcde'>>
+  // honors the position argument
+  type test6 = Expect<Equal<WhenIncludes<'abcde', 'a', 1>, never>>
+  type test7 = Expect<Equal<WhenIncludes<'abcde', 'c', 1>, 'abcde'>>
+}
+
+describe('includesGuard', () => {
+  describe('type narrowing', () => {
+    test('narrows a union to the members that contain the search', () => {
+      const reportType = 'HouseCalendar' as
+        | 'HouseCalendar'
+        | 'SenateCalendar'
+        | 'HouseFirstReading'
+        | 'CurrentStatus'
+
+      if (includesGuard(reportType, 'Calendar')) {
+        type test = Expect<
+          Equal<typeof reportType, 'HouseCalendar' | 'SenateCalendar'>
+        >
+        expect(reportType.includes('Calendar')).toBe(true)
+      } else {
+        type test = Expect<
+          Equal<typeof reportType, 'HouseFirstReading' | 'CurrentStatus'>
+        >
+      }
+    })
+  })
+
+  describe('runtime behavior', () => {
+    const text = 'abcde'
+
+    test('returns a plain boolean (narrowing trades away the literal)', () => {
+      const result = includesGuard(text, 'bcd')
+      type test = Expect<Equal<typeof result, boolean>>
+      expect(result).toBe(true)
+    })
+    test('returns false when text does not contain search', () => {
+      expect(includesGuard(text, 'xyz')).toBe(false)
+    })
+    test('honors the position argument', () => {
+      expect(includesGuard(text, 'a', 1)).toBe(false)
+      expect(includesGuard(text, 'c', 1)).toBe(true)
     })
   })
 })
