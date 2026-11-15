@@ -16,4 +16,10 @@ describe('trim', () => {
     expect(result).toEqual('some nice string')
     type test = Expect<Equal<typeof result, 'some nice string'>>
   })
+
+  test('should trim tabs and newlines at both type level and runtime level', () => {
+    const result = trim('\thello\n')
+    expect(result).toEqual('hello')
+    type test = Expect<Equal<typeof result, 'hello'>>
+  })
 })

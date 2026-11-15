@@ -62,4 +62,22 @@ describe('slice', () => {
     expect(result2).toEqual('')
     type test2 = Expect<Equal<typeof result2, ''>>
   })
+
+  test('should clamp negative indices at or past -length', () => {
+    const r1 = slice('hello', -5)
+    expect(r1).toEqual('hello')
+    type t1 = Expect<Equal<typeof r1, 'hello'>>
+
+    const r2 = slice('hello', -6)
+    expect(r2).toEqual('hello')
+    type t2 = Expect<Equal<typeof r2, 'hello'>>
+
+    const r3 = slice('hello', -5, -4)
+    expect(r3).toEqual('h')
+    type t3 = Expect<Equal<typeof r3, 'h'>>
+
+    const r4 = slice('hello', 0, -9)
+    expect(r4).toEqual('')
+    type t4 = Expect<Equal<typeof r4, ''>>
+  })
 })

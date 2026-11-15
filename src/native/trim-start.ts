@@ -1,8 +1,18 @@
+export type Whitespace =
+  | ' '
+  | '\t'
+  | '\n'
+  | '\r'
+  | '\v'
+  | '\f'
+  | '\u00A0'
+  | '\uFEFF'
+
 /**
  * Trims all whitespaces at the start of a string.
  * T: The string to trim.
  */
-export type TrimStart<T extends string> = T extends ` ${infer rest}`
+export type TrimStart<T extends string> = T extends `${Whitespace}${infer rest}`
   ? TrimStart<rest>
   : T
 /**

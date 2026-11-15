@@ -46,6 +46,24 @@ describe('replaceAll', () => {
     // Note: `string` instead of `some-nice-string`
     type test = Expect<Equal<typeof result, string>>
   })
+
+  test('should interpret $ replacement patterns at both type and runtime level', () => {
+    const r1 = replaceAll('a-b-c', '-', '$&$&')
+    expect(r1).toEqual('a--b--c')
+    type t1 = Expect<Equal<typeof r1, 'a--b--c'>>
+
+    const r2 = replaceAll('a-b-c', '-', '$$')
+    expect(r2).toEqual('a$b$c')
+    type t2 = Expect<Equal<typeof r2, 'a$b$c'>>
+
+    const r3 = replaceAll('a-b-c', '-', '$`')
+    expect(r3).toEqual('aaba-bc')
+    type t3 = Expect<Equal<typeof r3, 'aaba-bc'>>
+
+    const r4 = replaceAll('a-b-c', '-', "$'")
+    expect(r4).toEqual('ab-cbcc')
+    type t4 = Expect<Equal<typeof r4, 'ab-cbcc'>>
+  })
 })
 
 describe('replaceAll polyfill', () => {

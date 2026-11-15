@@ -25,4 +25,26 @@ describe('replace', () => {
     expect(result).toEqual('some string')
     type test = Expect<Equal<typeof result, string>>
   })
+
+  test('should interpret $ replacement patterns at both type and runtime level', () => {
+    const r1 = replace('price: X', 'X', '$&5')
+    expect(r1).toEqual('price: X5')
+    type t1 = Expect<Equal<typeof r1, 'price: X5'>>
+
+    const r2 = replace('a-b', '-', '$$')
+    expect(r2).toEqual('a$b')
+    type t2 = Expect<Equal<typeof r2, 'a$b'>>
+
+    const r3 = replace('a-b', '-', '$$&')
+    expect(r3).toEqual('a$&b')
+    type t3 = Expect<Equal<typeof r3, 'a$&b'>>
+
+    const r4 = replace('a-b', '-', '$`')
+    expect(r4).toEqual('aab')
+    type t4 = Expect<Equal<typeof r4, 'aab'>>
+
+    const r5 = replace('a-b', '-', "$'")
+    expect(r5).toEqual('abb')
+    type t5 = Expect<Equal<typeof r5, 'abb'>>
+  })
 })

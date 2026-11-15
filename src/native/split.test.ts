@@ -28,4 +28,18 @@ describe('split', () => {
     expect(result2).toEqual([])
     type test2 = Expect<Equal<typeof result2, []>>
   })
+
+  test('should preserve trailing empty string when splitting by non-empty delimiter', () => {
+    const r1 = split('a,b,', ',')
+    expect(r1).toEqual(['a', 'b', ''])
+    type t1 = Expect<Equal<typeof r1, ['a', 'b', '']>>
+
+    const r2 = split('a', 'a')
+    expect(r2).toEqual(['', ''])
+    type t2 = Expect<Equal<typeof r2, ['', '']>>
+
+    const r3 = split('', ',')
+    expect(r3).toEqual([''])
+    type t3 = Expect<Equal<typeof r3, ['']>>
+  })
 })

@@ -5,16 +5,14 @@ import type { IsStringLiteral } from '../internal/literals.js'
  * T: The string to split.
  * delimiter: The delimiter.
  */
-export type Split<
-  T extends string,
-  delimiter extends string = '',
-> = IsStringLiteral<T | delimiter> extends true
-  ? T extends `${infer first}${delimiter}${infer rest}`
-    ? [first, ...Split<rest, delimiter>]
-    : T extends ''
-      ? []
-      : [T]
-  : string[]
+export type Split<T extends string, delimiter extends string = ''> =
+  IsStringLiteral<T | delimiter> extends true
+    ? T extends `${infer first}${delimiter}${infer rest}`
+      ? [first, ...Split<rest, delimiter>]
+      : [T, delimiter] extends ['', '']
+        ? []
+        : [T]
+    : string[]
 /**
  * A strongly-typed version of `String.prototype.split`.
  * @param str the string to split.

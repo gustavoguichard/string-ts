@@ -12,8 +12,12 @@ export type Slice<
   startIndex extends number = 0,
   endIndex extends number | undefined = undefined,
 > = endIndex extends number
-  ? _Slice<T, startIndex, endIndex>
-  : _SliceStart<T, startIndex>
+  ? _Slice<
+      T,
+      Math.GetPositiveIndex<T, startIndex>,
+      Math.GetPositiveIndex<T, endIndex>
+    >
+  : _SliceStart<T, Math.GetPositiveIndex<T, startIndex>>
 
 /** Slice with startIndex and endIndex */
 type _Slice<
@@ -21,56 +25,49 @@ type _Slice<
   startIndex extends number,
   endIndex extends number,
   _result extends string = '',
-> = IsNumberLiteral<startIndex | endIndex> extends true
-  ? T extends `${infer head}${infer rest}`
-    ? IsStringLiteral<head> extends true
-      ? startIndex extends 0
-        ? endIndex extends 0
-          ? _result
+> =
+  IsNumberLiteral<startIndex | endIndex> extends true
+    ? T extends `${infer head}${infer rest}`
+      ? IsStringLiteral<head> extends true
+        ? startIndex extends 0
+          ? endIndex extends 0
+            ? _result
+            : _Slice<rest, 0, Math.Subtract<endIndex, 1>, `${_result}${head}`>
           : _Slice<
               rest,
-              0,
-              Math.Subtract<Math.GetPositiveIndex<T, endIndex>, 1>,
-              `${_result}${head}`
+              Math.Subtract<startIndex, 1>,
+              Math.Subtract<endIndex, 1>,
+              _result
             >
-        : _Slice<
-            rest,
-            Math.Subtract<Math.GetPositiveIndex<T, startIndex>, 1>,
-            Math.Subtract<Math.GetPositiveIndex<T, endIndex>, 1>,
-            _result
-          >
-      : startIndex | endIndex extends 0
-        ? _result
-        : string // Head is non-literal
-    : IsStringLiteral<T> extends true // Couldn't be split into head/tail
-      ? _result // T ran out
-      : startIndex | endIndex extends 0
-        ? _result // Eg: Slice<`abc${string}`, 1, 3> -> 'bc'
-        : string // Head is non-literal
-  : string
+        : startIndex | endIndex extends 0
+          ? _result
+          : string // Head is non-literal
+      : IsStringLiteral<T> extends true // Couldn't be split into head/tail
+        ? _result // T ran out
+        : startIndex | endIndex extends 0
+          ? _result // Eg: Slice<`abc${string}`, 1, 3> -> 'bc'
+          : string // Head is non-literal
+    : string
 
 /** Slice with startIndex only */
 type _SliceStart<
   T extends string,
   startIndex extends number,
   _result extends string = '',
-> = IsNumberLiteral<startIndex> extends true
-  ? T extends `${infer head}${infer rest}`
-    ? IsStringLiteral<head> extends true
-      ? startIndex extends 0
-        ? T
-        : _SliceStart<
-            rest,
-            Math.Subtract<Math.GetPositiveIndex<T, startIndex>, 1>,
-            _result
-          >
-      : string
-    : IsStringLiteral<T> extends true
-      ? _result
-      : startIndex extends 0
-        ? _result
+> =
+  IsNumberLiteral<startIndex> extends true
+    ? T extends `${infer head}${infer rest}`
+      ? IsStringLiteral<head> extends true
+        ? startIndex extends 0
+          ? T
+          : _SliceStart<rest, Math.Subtract<startIndex, 1>, _result>
         : string
-  : string
+      : IsStringLiteral<T> extends true
+        ? _result
+        : startIndex extends 0
+          ? _result
+          : string
+    : string
 
 /**
  * A strongly-typed version of `String.prototype.slice`.
