@@ -12,7 +12,17 @@ const UNESCAPED_SEPARATORS = [
   '-',
   '\\',
 ] as const
-const SEPARATORS = [...UNESCAPED_SEPARATORS, ' ', '_', '.'] as const
+const SEPARATORS = [
+  ...UNESCAPED_SEPARATORS,
+  ' ',
+  '\t',
+  '\n',
+  '\r',
+  '\v',
+  '\f',
+  '_',
+  '.',
+] as const
 
 /** Escape characters with special significance in regular expressions */
 function escapeChar(char: string): string {

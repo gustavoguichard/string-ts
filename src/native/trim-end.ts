@@ -1,8 +1,10 @@
+import type { Whitespace } from './trim-start.js'
+
 /**
  * Trims all whitespaces at the end of a string.
  * T: The string to trim.
  */
-export type TrimEnd<T extends string> = T extends `${infer rest} `
+export type TrimEnd<T extends string> = T extends `${infer rest}${Whitespace}`
   ? TrimEnd<rest>
   : T
 /**

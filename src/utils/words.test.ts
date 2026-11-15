@@ -96,4 +96,28 @@ describe('words', () => {
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, Mutable<typeof expected>>>
   })
+
+  test('it treats tabs and newlines as separators', () => {
+    const r1 = words('hello\tworld')
+    expect(r1).toEqual(['hello', 'world'])
+    type t1 = Expect<Equal<typeof r1, ['hello', 'world']>>
+
+    const r2 = words('foo\nbar')
+    expect(r2).toEqual(['foo', 'bar'])
+    type t2 = Expect<Equal<typeof r2, ['foo', 'bar']>>
+  })
+
+  test('it returns an empty array for empty or separator-only strings', () => {
+    const r1 = words('')
+    expect(r1).toEqual([])
+    type t1 = Expect<Equal<typeof r1, []>>
+
+    const r2 = words('  ')
+    expect(r2).toEqual([])
+    type t2 = Expect<Equal<typeof r2, []>>
+
+    const r3 = words('-_')
+    expect(r3).toEqual([])
+    type t3 = Expect<Equal<typeof r3, []>>
+  })
 })

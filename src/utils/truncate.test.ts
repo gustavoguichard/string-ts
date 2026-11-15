@@ -48,4 +48,18 @@ describe('truncate', () => {
     expect(result).toEqual(expected)
     type test = Expect<Equal<typeof result, typeof expected>>
   })
+
+  test('truncate when length is smaller than omission length', () => {
+    const result1 = truncate('Hello, World', 2)
+    expect(result1).toEqual('...')
+    type test1 = Expect<Equal<typeof result1, '...'>>
+
+    const result2 = truncate('Hello, World', 0)
+    expect(result2).toEqual('...')
+    type test2 = Expect<Equal<typeof result2, '...'>>
+
+    const result3 = truncate('Hi', 2)
+    expect(result3).toEqual('Hi')
+    type test3 = Expect<Equal<typeof result3, 'Hi'>>
+  })
 })
